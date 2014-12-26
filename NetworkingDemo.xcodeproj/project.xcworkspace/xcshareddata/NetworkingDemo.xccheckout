@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2FCC6EBC-8F14-419F-A881-B5EBEAA4FA33</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NetworkingDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EFA37C16EB61208ECFBD2FE2565C2C557A4A231F</key>
+		<string>https://github.com/mlouisekelley/460NetworkingDemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NetworkingDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EFA37C16EB61208ECFBD2FE2565C2C557A4A231F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mlouisekelley/460NetworkingDemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EFA37C16EB61208ECFBD2FE2565C2C557A4A231F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EFA37C16EB61208ECFBD2FE2565C2C557A4A231F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>460NetworkingDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
