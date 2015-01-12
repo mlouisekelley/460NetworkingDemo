@@ -22,6 +22,17 @@
 
 @implementation ViewController
 
+static ViewController *vc;
+
++(ViewController *)sharedViewController
+{
+    if(vc == nil)
+    {
+        vc = [[self alloc] init];
+    }
+    return vc;
+}
+
 - (NSMutableArray *)board
 {
     if (!_board) {
@@ -50,6 +61,7 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
     [self.tileCollectionView setTag:2];
@@ -61,6 +73,8 @@
     [self.tileCollectionView reloadData];
     self.tileCollectionView.dataSource = self;
     self.tileCollectionView.delegate = self;
+    vc = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +100,15 @@
     return 1;
 }
 
+-(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter
+{
+    //BoardViewCell *cell = [self.boardCollectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
+    self.board[indexPath.item] = [letter stringByAppendingString:@"*"];
+    //cell.backgroundColor = [UIColor redColor];
+    NSArray* indicies = @[indexPath];
+    [self.boardCollectionView reloadItemsAtIndexPaths:indicies];
+}
+
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 1) {
@@ -95,11 +118,23 @@
         if ([text isEqualToString:@"-"]) {
             text = @"";
             cell.backgroundColor = [UIColor lightGrayColor];
-            //cell.backgroundColor = [UIColor colorWithRed:143.0f green:203.0f blue:255.0f alpha:0.45f];
         }
         else {
-            NSLog(@"%d", indexPath.item);
+            if([cell.backgroundColor isEqual:[UIColor lightGrayColor]]){
+                //Send chat update with position of letters added
+                NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, text];
+                [[WarpClient getInstance] sendChat:message];
+                NSLog(@"%ld", (long)indexPath.item);
+
+            }
             cell.backgroundColor = [UIColor greenColor];
+        }
+        
+        //check to see if the character is an from opponent
+        if([text rangeOfString:[NSString stringWithFormat:@"%c",'*']].location != NSNotFound){
+            //enemy letter
+            cell.backgroundColor = [UIColor redColor];
+            text = [text substringWithRange:NSMakeRange(0, 1)];
         }
         
         cell.layer.borderWidth=1.0f;

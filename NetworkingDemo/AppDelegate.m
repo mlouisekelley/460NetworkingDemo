@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "RoomListener.h"
+#import "NotificationListener.h"
+#import "ConnectionListener.h"
+#import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +21,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //appwarp configuration
+    [WarpClient initWarp:@"0e870a97a4690a79887457c63424cdaba52df6f1d04bdc6bcfea6e1b6944a996" secretKey:@"0a9b21ad63eef6d793a247b61be5c1790c68882cb613b66fd2b3de73073c8300"];
+    
+    WarpClient *warpClient = [WarpClient getInstance];
+    [warpClient setRecoveryAllowance:60];
+    [warpClient enableTrace:YES];
+    
+    ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
+    [warpClient addConnectionRequestListener:connectionListener];
+    [warpClient addZoneRequestListener:connectionListener];
+    
+    RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
+    [warpClient addRoomRequestListener:roomListener];
+    
+    NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
+    [warpClient addNotificationListener:notificationListener];
+    
+    [warpClient connectWithUserName:@"userName"];
+    
     return YES;
 }
 

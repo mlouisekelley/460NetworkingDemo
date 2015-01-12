@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273F70611A61C60E005103BA /* ConnectionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70601A61C60E005103BA /* ConnectionListener.m */; };
+		273F70661A61C68C005103BA /* RoomListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70631A61C68C005103BA /* RoomListener.m */; };
+		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
+		273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */; };
 		A30ADC8C1A4CFBD200047201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC8B1A4CFBD200047201 /* main.m */; };
 		A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC8E1A4CFBD200047201 /* AppDelegate.m */; };
 		A30ADC921A4CFBD200047201 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC911A4CFBD200047201 /* ViewController.m */; };
@@ -29,6 +33,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../Downloads/AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
+		273F705F1A61C60E005103BA /* ConnectionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionListener.h; sourceTree = "<group>"; };
+		273F70601A61C60E005103BA /* ConnectionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListener.m; sourceTree = "<group>"; };
+		273F70621A61C68C005103BA /* RoomListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomListener.h; sourceTree = "<group>"; };
+		273F70631A61C68C005103BA /* RoomListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomListener.m; sourceTree = "<group>"; };
+		273F70641A61C68C005103BA /* NotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationListener.h; sourceTree = "<group>"; };
+		273F70651A61C68C005103BA /* NotificationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListener.m; sourceTree = "<group>"; };
 		A30ADC861A4CFBD200047201 /* NetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30ADC8A1A4CFBD200047201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30ADC8B1A4CFBD200047201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +81,7 @@
 		A30ADC7D1A4CFBD200047201 = {
 			isa = PBXGroup;
 			children = (
+				273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */,
 				A30ADC881A4CFBD200047201 /* NetworkingDemo */,
 				A30ADCA21A4CFBD200047201 /* NetworkingDemoTests */,
 				A30ADC871A4CFBD200047201 /* Products */,
@@ -93,6 +106,12 @@
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
+				273F70621A61C68C005103BA /* RoomListener.h */,
+				273F70631A61C68C005103BA /* RoomListener.m */,
+				273F70641A61C68C005103BA /* NotificationListener.h */,
+				273F70651A61C68C005103BA /* NotificationListener.m */,
+				273F705F1A61C60E005103BA /* ConnectionListener.h */,
+				273F70601A61C60E005103BA /* ConnectionListener.m */,
 				A30ADC931A4CFBD200047201 /* Main.storyboard */,
 				A30ADC961A4CFBD200047201 /* Images.xcassets */,
 				A30ADC981A4CFBD200047201 /* LaunchScreen.xib */,
@@ -230,9 +249,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A30ADC921A4CFBD200047201 /* ViewController.m in Sources */,
+				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
+				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
+				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
 				A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,9 +379,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/kyle/Downloads,
+				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -367,9 +397,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/kyle/Downloads,
+				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -426,6 +464,7 @@
 				A30ADCAB1A4CFBD200047201 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A30ADCAC1A4CFBD200047201 /* Build configuration list for PBXNativeTarget "NetworkingDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +473,7 @@
 				A30ADCAE1A4CFBD200047201 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
