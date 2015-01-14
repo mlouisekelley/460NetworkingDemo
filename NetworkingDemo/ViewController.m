@@ -168,7 +168,7 @@ static ViewController *vc;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 1) {
-        [self playTileAtIndexPath:indexPath];
+//        [self playTileAtIndexPath:indexPath];
     }
     
     else if (collectionView.tag == 2) {
@@ -204,9 +204,9 @@ static ViewController *vc;
     else return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
--(void) playTileAtIndexPath:(NSIndexPath *)indexPath {
+-(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath {
     NSString *currentBoardLetter = self.board[indexPath.item];
-    NSString *currentSelectedLetter = self.tiles[self.selectedIndex];
+    NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
         //update the board
         self.board[indexPath.item] = currentSelectedLetter;
@@ -215,11 +215,12 @@ static ViewController *vc;
         //update the user's tiles
         [self.tiles removeObjectAtIndex:self.selectedIndex];
         [self.tileCollectionView reloadData];
+        return YES;
     }
+    return NO;
 }
 
 -(void)tileDidMove:(UIView *)tile {
-    NSLog(@"X: %f Y: %f", tile.frame.origin.x, tile.frame.origin.y);
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
     if (closestCell != nil) {
@@ -232,14 +233,13 @@ static ViewController *vc;
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
     if (closestCell) {
         closestCell.tag = 1;
-        [self playTileAtIndexPath:[_boardCollectionView indexPathForCell:closestCell]];
-        return YES;
+        return [self playTile:(TileViewCell*)tile atIndexPath:[_boardCollectionView indexPathForCell:closestCell]];
     }
     return NO;
 }
 -(void) unselectAllCells {
     for (UICollectionViewCell *cell in _boardCollectionView.visibleCells) {
-        cell.layer.borderWidth = 0.0f;
+        cell.layer.borderWidth = 1.0f;
         cell.layer.borderColor = [UIColor whiteColor].CGColor;
     }
 }
@@ -249,7 +249,7 @@ static ViewController *vc;
     BoardViewCell *closestCell = nil;
     for (BoardViewCell *cell in _boardCollectionView.visibleCells) {
         float curDist = [self view:view DistanceToView:cell];
-        if (curDist < view.frame.size.height * 2) {
+        if (curDist < view.frame.size.height/2 + cell.frame.size.height/2) {
             if (curDist < minDist || minDist == -1) {
                 minDist = curDist;
                 closestCell = cell;

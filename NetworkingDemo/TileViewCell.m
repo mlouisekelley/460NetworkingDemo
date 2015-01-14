@@ -14,7 +14,10 @@
 
 CGPoint offset, startPoint;
 ViewController *superview;
-
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    _letterLabel.text = [self getRandomUppercaseLetter];
+}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
@@ -54,6 +57,12 @@ ViewController *superview;
     }
 }
 
+-(NSString *)getRandomUppercaseLetter {
+    NSString *letters = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSString *str = @"";
+    str = [str stringByAppendingFormat:@"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+    return str;
+}
 -(ViewController *)superVC {
     if (superview == nil) {
         UIResponder* nextResponder = [self.superview nextResponder];
