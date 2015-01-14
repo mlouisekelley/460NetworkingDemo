@@ -47,11 +47,13 @@ ViewController *superview;
     BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
     
     if (shouldDisappear) {
-        [self removeFromSuperview];
+//        [self removeFromSuperview];
+        self.frame = CGRectMake(startPoint.x, startPoint.y, self.frame.size.width, self.frame.size.height);
+        self.letterLabel.text = [self getRandomUppercaseLetter];
     }
     else {
         [UIView animateWithDuration:0.1 animations:^{
-            self.frame = CGRectMake(startPoint.x, startPoint.y, self.frame.size.width, self.frame.size.height);;
+            self.frame = CGRectMake(startPoint.x, startPoint.y, self.frame.size.width, self.frame.size.height);
         }];
         
     }

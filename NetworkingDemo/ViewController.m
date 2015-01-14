@@ -89,9 +89,6 @@ static ViewController *vc;
     if (collectionView.tag == 1) {
         return 100;
     }
-    else if (collectionView.tag == 2) {
-//        return [self.tiles count];
-    }
     return 0;
 }
 
@@ -102,9 +99,7 @@ static ViewController *vc;
 
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter
 {
-    //BoardViewCell *cell = [self.boardCollectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
     self.board[indexPath.item] = [letter stringByAppendingString:@"*"];
-    //cell.backgroundColor = [UIColor redColor];
     NSArray* indicies = @[indexPath];
     [self.boardCollectionView reloadItemsAtIndexPaths:indicies];
 }
@@ -145,22 +140,6 @@ static ViewController *vc;
         return cell;
     }
     
-    if (collectionView.tag == 2) {
-//        //use self.tiles to determine how the tiles look
-//        TileViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"user cell" forIndexPath:indexPath];
-//        if (indexPath.item == self.selectedIndex) {
-//            cell.layer.borderWidth = 2.0f;
-//            cell.layer.borderColor = [UIColor blackColor].CGColor;
-//        }
-//        else {
-//            cell.layer.borderWidth = 0.0f;
-//            cell.layer.borderColor = [UIColor clearColor].CGColor;
-//        }
-//        cell.letterLabel.text = [self.tiles objectAtIndex:indexPath.item];
-//        cell.letterLabel.textColor = [UIColor blackColor];
-//        return cell;
-        
-    }
     return nil;
 }
 
@@ -211,10 +190,6 @@ static ViewController *vc;
         //update the board
         self.board[indexPath.item] = currentSelectedLetter;
         [self.boardCollectionView reloadData];
-        
-        //update the user's tiles
-        [self.tiles removeObjectAtIndex:self.selectedIndex];
-        [self.tileCollectionView reloadData];
         return YES;
     }
     return NO;
@@ -230,6 +205,7 @@ static ViewController *vc;
 }
 
 -(BOOL) tileDidFinishMoving:(UIView *)tile {
+    [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
     if (closestCell) {
         closestCell.tag = 1;
