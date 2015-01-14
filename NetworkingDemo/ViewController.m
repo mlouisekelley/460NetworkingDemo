@@ -120,8 +120,6 @@ static ViewController *vc;
         else {
             if([cell.backgroundColor isEqual:[UIColor lightGrayColor]]){
                 //Send chat update with position of letters added
-                NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, text];
-                [[WarpClient getInstance] sendChat:message];
                 NSLog(@"%ld", (long)indexPath.item);
 
             }
@@ -206,13 +204,14 @@ static ViewController *vc;
     NSString *currentBoardLetter = self.board[indexPath.item];
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
+        
+        //send update packet
+        NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, currentSelectedLetter];
+        [[WarpClient getInstance] sendChat:message];
+        
         //update the board
         self.board[indexPath.item] = currentSelectedLetter;
         [self.boardCollectionView reloadData];
-        
-        //update the user's tiles
-        [self.tiles removeObjectAtIndex:self.selectedIndex];
-        [self.tileCollectionView reloadData];
         return YES;
     }
     return NO;
