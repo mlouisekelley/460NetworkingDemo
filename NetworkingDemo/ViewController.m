@@ -118,6 +118,13 @@ static ViewController *vc;
             cell.backgroundColor = [UIColor lightGrayColor];
         }
         else {
+            if([cell.backgroundColor isEqual:[UIColor lightGrayColor]]){
+                //Send chat update with position of letters added
+                NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, text];
+                [[WarpClient getInstance] sendChat:message];
+                NSLog(@"%ld", (long)indexPath.item);
+
+            }
             cell.backgroundColor = [UIColor greenColor];
         }
         
@@ -206,11 +213,6 @@ static ViewController *vc;
         //update the user's tiles
         [self.tiles removeObjectAtIndex:self.selectedIndex];
         [self.tileCollectionView reloadData];
-        
-        //send the update out
-        NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, currentSelectedLetter];
-        [[WarpClient getInstance] sendChat:message];
-        
         return YES;
     }
     return NO;
