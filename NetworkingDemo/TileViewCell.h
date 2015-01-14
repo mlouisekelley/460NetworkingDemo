@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface TileViewCell : UICollectionViewCell
+@interface TileViewCell : UIView
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
 

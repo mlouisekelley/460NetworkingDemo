@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
-
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 +(ViewController *)sharedViewController;
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter;
-
-
+-(void)tileDidMove:(UIView *)tile;
+-(BOOL) tileDidFinishMoving:(UIView *)tile;
 @end
 
