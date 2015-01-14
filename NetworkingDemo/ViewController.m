@@ -102,9 +102,7 @@ static ViewController *vc;
 
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter
 {
-    //BoardViewCell *cell = [self.boardCollectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
     self.board[indexPath.item] = [letter stringByAppendingString:@"*"];
-    //cell.backgroundColor = [UIColor redColor];
     NSArray* indicies = @[indexPath];
     [self.boardCollectionView reloadItemsAtIndexPaths:indicies];
 }
