@@ -11,3 +11,5 @@
 #define APPWARP_SECRET_KEY  @"0a9b21ad63eef6d793a247b61be5c1790c68882cb613b66fd2b3de73073c8300"
 #define ROOM_ID             @"187591599"
 #define USER_NAME           @"userName"
+#define TILE_WIDTH          32
+#define STARTING_NUMBER_OF_TILES 7

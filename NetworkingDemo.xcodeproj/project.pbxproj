@@ -20,6 +20,7 @@
 		A30ADCA61A4CFBD200047201 /* NetworkingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCA51A4CFBD200047201 /* NetworkingDemoTests.m */; };
 		A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB31A4D0CAD00047201 /* TileViewCell.m */; };
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
+		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		A30ADCB31A4D0CAD00047201 /* TileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileViewCell.m; sourceTree = "<group>"; };
 		A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewCell.h; sourceTree = "<group>"; };
 		A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewCell.m; sourceTree = "<group>"; };
+		F04428EF1A68302600D7B02E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 			children = (
 				A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */,
 				A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */,
+				F04428F11A68303600D7B02E /* Player.h */,
+				F04428EF1A68302600D7B02E /* Player.m */,
 				A30ADC901A4CFBD200047201 /* ViewController.h */,
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
@@ -257,6 +262,7 @@
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
 				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
+				F04428F01A68302600D7B02E /* Player.m in Sources */,
 				A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

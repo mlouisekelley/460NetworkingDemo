@@ -14,5 +14,7 @@
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter;
 -(void)tileDidMove:(UIView *)tile;
 -(BOOL) tileDidFinishMoving:(UIView *)tile;
+-(void)boardWasTouched:(UITouch *)touch;
+- (IBAction)touchUpSubmit:(id)sender;
 @end
 

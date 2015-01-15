@@ -14,6 +14,18 @@
 
 CGPoint offset, startPoint;
 ViewController *superview;
+-(id)initWithFrame:(CGRect)frame letter:(NSString*)letter{
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:[UIColor orangeColor]];
+        self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 42, 21)];
+        self.letterLabel.text = letter;
+        [self addSubview:self.letterLabel];
+    }
+    return self;
+}
+-(id)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter]];
+}
 -(void)awakeFromNib {
     [super awakeFromNib];
     _letterLabel.text = [self getRandomUppercaseLetter];
@@ -47,9 +59,7 @@ ViewController *superview;
     BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
     
     if (shouldDisappear) {
-//        [self removeFromSuperview];
-        self.frame = CGRectMake(startPoint.x, startPoint.y, self.frame.size.width, self.frame.size.height);
-        self.letterLabel.text = [self getRandomUppercaseLetter];
+        [self removeFromSuperview];
     }
     else {
         [UIView animateWithDuration:0.1 animations:^{
