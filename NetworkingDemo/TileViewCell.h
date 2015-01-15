@@ -12,6 +12,7 @@
 @interface TileViewCell : UIView
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
+@property (nonatomic) CGPoint startPoint;
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter;
 

@@ -12,7 +12,7 @@
 @implementation TileViewCell
 
 
-CGPoint offset, startPoint;
+CGPoint offset;
 ViewController *superview;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter{
     if (self = [super initWithFrame:frame]) {
@@ -34,7 +34,7 @@ ViewController *superview;
 {
     [super touchesBegan:touches withEvent:event];
     UITouch *aTouch = [touches anyObject];
-    startPoint = self.frame.origin;
+    _startPoint = self.frame.origin;
     offset = [aTouch locationInView: self];
     CGPoint location = [aTouch locationInView:self.superview];
     
@@ -63,7 +63,7 @@ ViewController *superview;
     }
     else {
         [UIView animateWithDuration:0.1 animations:^{
-            self.frame = CGRectMake(startPoint.x, startPoint.y, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(_startPoint.x, _startPoint.y, self.frame.size.width, self.frame.size.height);
         }];
         
     }

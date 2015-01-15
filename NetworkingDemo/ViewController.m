@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *tileCollectionView;
 @property (strong, nonatomic) NSMutableArray *board;
-@property (strong, nonatomic) NSMutableArray *tiles;
+@property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
 @end
 
@@ -53,13 +53,12 @@ Player *player;
     return _board;
 }
 
-- (NSArray *)tiles
+- (NSArray *)tileSpaces
 {
-    if (!_tiles) {
-        NSArray *arr = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h"];
-        _tiles = [[NSMutableArray alloc] initWithArray:arr];
+    if (!_tileSpaces) {
+        _tileSpaces = [[NSMutableArray alloc] init];
     }
-    return _tiles;
+    return _tileSpaces;
 }
 
 - (void)viewDidLoad {
@@ -80,6 +79,8 @@ Player *player;
     player = [[Player alloc] init];
     
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
+        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
     
@@ -237,6 +238,10 @@ Player *player;
         [self.boardCollectionView reloadData];
         
         player.numberOfTiles--;
+        
+        CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        
         return YES;
     }
     return NO;
@@ -264,7 +269,10 @@ Player *player;
 }
 
 -(void) addTile {
-    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH)];
+    
+    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0]CGRectValue]];
+    [_tileSpaces removeObjectAtIndex:0];
+    
     [self.view addSubview:newTile];
     player.numberOfTiles++;
 }
