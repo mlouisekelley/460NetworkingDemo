@@ -40,6 +40,7 @@
 		273F70631A61C68C005103BA /* RoomListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomListener.m; sourceTree = "<group>"; };
 		273F70641A61C68C005103BA /* NotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationListener.h; sourceTree = "<group>"; };
 		273F70651A61C68C005103BA /* NotificationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListener.m; sourceTree = "<group>"; };
+		273F70711A66F5D7005103BA /* GameConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		A30ADC861A4CFBD200047201 /* NetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30ADC8A1A4CFBD200047201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30ADC8B1A4CFBD200047201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
+				273F70711A66F5D7005103BA /* GameConstants.h */,
 				273F70621A61C68C005103BA /* RoomListener.h */,
 				273F70631A61C68C005103BA /* RoomListener.m */,
 				273F70641A61C68C005103BA /* NotificationListener.h */,

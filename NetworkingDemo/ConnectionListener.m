@@ -22,7 +22,7 @@
     if (event.result==SUCCESS)
     {
         NSLog(@"connection success");
-        [[WarpClient getInstance] joinRoom:@"187591599"];
+        [[WarpClient getInstance] joinRoom:ROOM_ID];
     }
     else if (event.result==SUCCESS_RECOVERED)
     {

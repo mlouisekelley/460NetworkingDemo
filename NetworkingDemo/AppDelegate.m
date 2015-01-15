@@ -23,7 +23,7 @@
     // Override point for customization after application launch.
     
     //appwarp configuration
-    [WarpClient initWarp:@"0e870a97a4690a79887457c63424cdaba52df6f1d04bdc6bcfea6e1b6944a996" secretKey:@"0a9b21ad63eef6d793a247b61be5c1790c68882cb613b66fd2b3de73073c8300"];
+    [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
     
     WarpClient *warpClient = [WarpClient getInstance];
     [warpClient setRecoveryAllowance:60];
@@ -39,7 +39,7 @@
     NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
     [warpClient addNotificationListener:notificationListener];
     
-    [warpClient connectWithUserName:@"userName"];
+    [warpClient connectWithUserName:USER_NAME];
     
     return YES;
 }
