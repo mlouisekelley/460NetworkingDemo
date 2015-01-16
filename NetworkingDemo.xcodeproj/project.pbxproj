@@ -20,6 +20,8 @@
 		A30ADCA61A4CFBD200047201 /* NetworkingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCA51A4CFBD200047201 /* NetworkingDemoTests.m */; };
 		A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB31A4D0CAD00047201 /* TileViewCell.m */; };
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
+		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
+		A36C3C191A674B25000BF0B0 /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		A30ADCB31A4D0CAD00047201 /* TileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileViewCell.m; sourceTree = "<group>"; };
 		A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewCell.h; sourceTree = "<group>"; };
 		A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewCell.m; sourceTree = "<group>"; };
+		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
+		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
+		A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36C3C191A674B25000BF0B0 /* AppWarp_iOS_SDK.framework in Frameworks */,
 				273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +88,7 @@
 		A30ADC7D1A4CFBD200047201 = {
 			isa = PBXGroup;
 			children = (
+				A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */,
 				273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */,
 				A30ADC881A4CFBD200047201 /* NetworkingDemo */,
 				A30ADCA21A4CFBD200047201 /* NetworkingDemoTests */,
@@ -101,6 +108,8 @@
 		A30ADC881A4CFBD200047201 /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A36C3C151A670DF0000BF0B0 /* BoardChecker.h */,
+				A36C3C161A670DF0000BF0B0 /* BoardChecker.m */,
 				A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */,
 				A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */,
 				A30ADC901A4CFBD200047201 /* ViewController.h */,
@@ -256,6 +265,7 @@
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
+				A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */,
 				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
 				A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */,
 			);
@@ -386,6 +396,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/kyle/Downloads,
+					/Users/margaretkelley/Desktop,
 				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -404,6 +415,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/kyle/Downloads,
+					/Users/margaretkelley/Desktop,
 				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;

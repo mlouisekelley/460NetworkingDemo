@@ -11,3 +11,4 @@
 #define APPWARP_SECRET_KEY  @"0a9b21ad63eef6d793a247b61be5c1790c68882cb613b66fd2b3de73073c8300"
 #define ROOM_ID             @"187591599"
 #define USER_NAME           @"userName"
+#define DICTIONARY_KEY      @"414e9bf0-a284-4b40-9d99-2d339299a333"
