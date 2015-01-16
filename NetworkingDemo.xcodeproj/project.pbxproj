@@ -11,6 +11,8 @@
 		273F70661A61C68C005103BA /* RoomListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70631A61C68C005103BA /* RoomListener.m */; };
 		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
 		273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */; };
+		27C759A71A69AAEF0004DB59 /* NetworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C759A61A69AAEF0004DB59 /* NetworkUtils.m */; };
+		27C759A91A69AB1A0004DB59 /* GameConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C759A81A69AB1A0004DB59 /* GameConstants.m */; };
 		A30ADC8C1A4CFBD200047201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC8B1A4CFBD200047201 /* main.m */; };
 		A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC8E1A4CFBD200047201 /* AppDelegate.m */; };
 		A30ADC921A4CFBD200047201 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC911A4CFBD200047201 /* ViewController.m */; };
@@ -21,7 +23,6 @@
 		A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB31A4D0CAD00047201 /* TileViewCell.m */; };
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
-		A36C3C191A674B25000BF0B0 /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,9 @@
 		273F70641A61C68C005103BA /* NotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationListener.h; sourceTree = "<group>"; };
 		273F70651A61C68C005103BA /* NotificationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListener.m; sourceTree = "<group>"; };
 		273F70711A66F5D7005103BA /* GameConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
+		27C7599D1A699BAA0004DB59 /* NetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtils.h; sourceTree = "<group>"; };
+		27C759A61A69AAEF0004DB59 /* NetworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtils.m; sourceTree = "<group>"; };
+		27C759A81A69AB1A0004DB59 /* GameConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.m; sourceTree = "<group>"; };
 		A30ADC861A4CFBD200047201 /* NetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30ADC8A1A4CFBD200047201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30ADC8B1A4CFBD200047201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,7 +67,6 @@
 		A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewCell.m; sourceTree = "<group>"; };
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
-		A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		F04428EF1A68302600D7B02E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A36C3C191A674B25000BF0B0 /* AppWarp_iOS_SDK.framework in Frameworks */,
 				273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +93,6 @@
 		A30ADC7D1A4CFBD200047201 = {
 			isa = PBXGroup;
 			children = (
-				A36C3C181A674B25000BF0B0 /* AppWarp_iOS_SDK.framework */,
 				273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */,
 				A30ADC881A4CFBD200047201 /* NetworkingDemo */,
 				A30ADCA21A4CFBD200047201 /* NetworkingDemoTests */,
@@ -119,9 +120,12 @@
 				F04428EF1A68302600D7B02E /* Player.m */,
 				A30ADC901A4CFBD200047201 /* ViewController.h */,
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
+				27C7599D1A699BAA0004DB59 /* NetworkUtils.h */,
+				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
 				273F70711A66F5D7005103BA /* GameConstants.h */,
+				27C759A81A69AB1A0004DB59 /* GameConstants.m */,
 				273F70621A61C68C005103BA /* RoomListener.h */,
 				273F70631A61C68C005103BA /* RoomListener.m */,
 				273F70641A61C68C005103BA /* NotificationListener.h */,
@@ -269,9 +273,11 @@
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
+				27C759A91A69AB1A0004DB59 /* GameConstants.m in Sources */,
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
 				A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */,
 				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
+				27C759A71A69AAEF0004DB59 /* NetworkUtils.m in Sources */,
 				F04428F01A68302600D7B02E /* Player.m in Sources */,
 				A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */,
 			);
