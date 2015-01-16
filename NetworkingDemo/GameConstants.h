@@ -12,3 +12,5 @@
 #define ROOM_ID             @"187591599"
 #define USER_NAME           @"userName"
 #define DICTIONARY_KEY      @"414e9bf0-a284-4b40-9d99-2d339299a333"
+#define TILE_WIDTH          32
+#define STARTING_NUMBER_OF_TILES 7

@@ -9,20 +9,22 @@
 #import "ViewController.h"
 #import "BoardViewCell.h"
 #import "TileViewCell.h"
+#import "GameConstants.h"
+#import "Player.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *tileCollectionView;
 @property (strong, nonatomic) NSMutableArray *board;
-@property (strong, nonatomic) NSMutableArray *tiles;
+@property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
-
 @end
 
 @implementation ViewController
 
 static ViewController *vc;
+Player *player;
 
 +(ViewController *)sharedViewController
 {
@@ -51,13 +53,12 @@ static ViewController *vc;
     return _board;
 }
 
-- (NSArray *)tiles
+- (NSArray *)tileSpaces
 {
-    if (!_tiles) {
-        NSArray *arr = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h"];
-        _tiles = [[NSMutableArray alloc] initWithArray:arr];
+    if (!_tileSpaces) {
+        _tileSpaces = [[NSMutableArray alloc] init];
     }
-    return _tiles;
+    return _tileSpaces;
 }
 
 - (void)viewDidLoad {
@@ -73,7 +74,15 @@ static ViewController *vc;
     [self.tileCollectionView reloadData];
     self.tileCollectionView.dataSource = self;
     self.tileCollectionView.delegate = self;
+    
     vc = self;
+    player = [[Player alloc] init];
+    
+    for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
+        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        [self addTile];
+    }
     
 }
 
@@ -88,9 +97,6 @@ static ViewController *vc;
 {
     if (collectionView.tag == 1) {
         return 100;
-    }
-    else if (collectionView.tag == 2) {
-//        return [self.tiles count];
     }
     return 0;
 }
@@ -141,29 +147,47 @@ static ViewController *vc;
         return cell;
     }
     
-    if (collectionView.tag == 2) {
-//        //use self.tiles to determine how the tiles look
-//        TileViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"user cell" forIndexPath:indexPath];
-//        if (indexPath.item == self.selectedIndex) {
-//            cell.layer.borderWidth = 2.0f;
-//            cell.layer.borderColor = [UIColor blackColor].CGColor;
-//        }
-//        else {
-//            cell.layer.borderWidth = 0.0f;
-//            cell.layer.borderColor = [UIColor clearColor].CGColor;
-//        }
-//        cell.letterLabel.text = [self.tiles objectAtIndex:indexPath.item];
-//        cell.letterLabel.textColor = [UIColor blackColor];
-//        return cell;
-        
-    }
     return nil;
+}
+
+-(void)boardWasTouched:(UITouch *)touch {
+    CGPoint someLocation = [touch locationInView: self.view];
+    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x, someLocation.y, 1, 1)];
+    BoardViewCell *cell = [self findClosestCellToView:tempView];
+    NSString *text = cell.textLabel.text;
+    if ([text isEqualToString:@""]) {
+    }
+    else {
+        cell.textLabel.text = @"";
+        cell.backgroundColor = [UIColor lightGrayColor];
+        NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
+        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:self.board [indexPath.row]];
+        [self.view addSubview:tile];
+        self.board[indexPath.row] = @"-";
+        [self.boardCollectionView reloadData];
+        [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
+        player.numberOfTiles++;
+    }
+    
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *currentBoardLetter = self.board[indexPath.item];
     if (collectionView.tag == 1) {
+        UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+        if ([currentBoardLetter isEqualToString:@"-"]) {
+            
+        }
+        else {
+            TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(collectionView.frame.origin.x + cell.frame.origin.x, collectionView.frame.origin.y + cell.frame.origin.y, TILE_WIDTH, TILE_WIDTH)];
+            [self.view addSubview:tile];
+            [self.view bringSubviewToFront:tile];
+            self.board[indexPath.item] = @"-";
+            [self.boardCollectionView reloadData];
+            
+        }
 //        [self playTileAtIndexPath:indexPath];
     }
     
@@ -212,6 +236,12 @@ static ViewController *vc;
         //update the board
         self.board[indexPath.item] = currentSelectedLetter;
         [self.boardCollectionView reloadData];
+        
+        player.numberOfTiles--;
+        
+        CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        
         return YES;
     }
     return NO;
@@ -226,7 +256,36 @@ static ViewController *vc;
     }
 }
 
+- (IBAction)touchUpSubmit:(id)sender {
+    if ([self isBoardValid]) {
+        [self sendBoardInfo];
+        if (player.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+            int num = STARTING_NUMBER_OF_TILES - player.numberOfTiles;
+            for (int i = 0; i < num; i++) {
+                [self addTile];
+            }
+        }
+    }
+}
+
+-(void) addTile {
+    
+    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0]CGRectValue]];
+    [_tileSpaces removeObjectAtIndex:0];
+    
+    [self.view addSubview:newTile];
+    player.numberOfTiles++;
+}
+
+-(void) sendBoardInfo {
+    // TODO
+}
+
+-(BOOL) isBoardValid {
+    return YES;
+}
 -(BOOL) tileDidFinishMoving:(UIView *)tile {
+    [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
     if (closestCell) {
         closestCell.tag = 1;

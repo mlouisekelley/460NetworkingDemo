@@ -1,4 +1,3 @@
-//
 //  TileViewCell.h
 //  NetworkingDemo
 //
@@ -9,11 +8,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface TileViewCell : UIView
+@interface Player : NSObject
 
-@property (strong, nonatomic) IBOutlet UILabel *letterLabel;
-@property (nonatomic) CGPoint startPoint;
-
--(id)initWithFrame:(CGRect)frame letter:(NSString*)letter;
+@property (nonatomic) int numberOfTiles;
 
 @end
