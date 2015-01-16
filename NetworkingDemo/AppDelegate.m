@@ -39,7 +39,7 @@
     NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
     [warpClient addNotificationListener:notificationListener];
     
-    [warpClient connectWithUserName:USER_NAME];
+    [warpClient connectWithUserName:[GameConstants getUserName]];
     
     return YES;
 }

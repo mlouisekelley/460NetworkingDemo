@@ -14,3 +14,11 @@
 #define DICTIONARY_KEY      @"414e9bf0-a284-4b40-9d99-2d339299a333"
 #define TILE_WIDTH          32
 #define STARTING_NUMBER_OF_TILES 7
+
+#import <Foundation/Foundation.h>
+#import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
+@interface GameConstants : NSObject
+
++(NSString *)getUserName;
+
+@end

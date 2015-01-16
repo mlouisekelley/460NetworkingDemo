@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
+#import "NetworkUtils.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 +(ViewController *)sharedViewController;

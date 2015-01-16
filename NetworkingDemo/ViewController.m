@@ -231,7 +231,7 @@ Player *player;
         
         //send update packet
         NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, currentSelectedLetter];
-        [[WarpClient getInstance] sendChat:message];
+        [NetworkUtils sendLetterPlayed:message];
         
         //update the board
         self.board[indexPath.item] = currentSelectedLetter;
