@@ -45,7 +45,7 @@
     NSIndexPath *myIP = [NSIndexPath indexPathForItem:[arrayWithTwoStrings[0] integerValue]
                                             inSection:0];
     
-    if([chatEvent.sender isEqualToString:[WarpClient getInstance].userName]){
+    if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
         NSLog(@"Chat successfully sent");
     } else {
         NSLog(@"Recieved chat");

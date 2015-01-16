@@ -11,16 +11,22 @@
 
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+NSString *userName = nil;
+
 +(NSString *) getUserName
 {
     
-    NSMutableString *randomString = [NSMutableString stringWithCapacity: 10];
-    
-    for (int i=0; i<10; i++) {
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    if(userName == nil){
+        NSMutableString *randomString = [NSMutableString stringWithCapacity: 10];
+        
+        for (int i=0; i<10; i++) {
+            [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+        }
+        
+        userName = randomString;
     }
     
-    return randomString;
+    return userName;
 }
 
 @end
