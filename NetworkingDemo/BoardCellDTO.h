@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 Margaret Kelley. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
+#import <Foundation/Foundation.h>
+@interface BoardCellDTO : NSObject
 
-@interface BoardViewCell : UICollectionViewCell
-
-@property (strong, nonatomic) IBOutlet UILabel *textLabel;
+@property (strong, nonatomic) NSString* text;
 @property (nonatomic) int player;
 
 @end

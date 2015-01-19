@@ -24,6 +24,7 @@
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
+		F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = F07943071A6D97EA002849ED /* BoardCellDTO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		F04428EF1A68302600D7B02E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		F07943071A6D97EA002849ED /* BoardCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardCellDTO.m; sourceTree = "<group>"; };
+		F07943091A6D97F5002849ED /* BoardCellDTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardCellDTO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				273F70651A61C68C005103BA /* NotificationListener.m */,
 				273F705F1A61C60E005103BA /* ConnectionListener.h */,
 				273F70601A61C60E005103BA /* ConnectionListener.m */,
+				F07943091A6D97F5002849ED /* BoardCellDTO.h */,
+				F07943071A6D97EA002849ED /* BoardCellDTO.m */,
 				A30ADC931A4CFBD200047201 /* Main.storyboard */,
 				A30ADC961A4CFBD200047201 /* Images.xcassets */,
 				A30ADC981A4CFBD200047201 /* LaunchScreen.xib */,
@@ -270,6 +275,7 @@
 			files = (
 				A30ADC921A4CFBD200047201 /* ViewController.m in Sources */,
 				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
+				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,

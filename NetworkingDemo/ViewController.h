@@ -11,6 +11,10 @@
 #import "NetworkUtils.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UITextView *scores;
+@property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+
 +(ViewController *)sharedViewController;
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter;
 -(void)tileDidMove:(UIView *)tile;

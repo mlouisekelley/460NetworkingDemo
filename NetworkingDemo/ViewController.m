@@ -10,21 +10,68 @@
 #import "BoardViewCell.h"
 #import "TileViewCell.h"
 #import "GameConstants.h"
+#import "BoardCellDTO.h"
 #import "Player.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *tileCollectionView;
 @property (strong, nonatomic) NSMutableArray *board;
 @property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation ViewController
 
 static ViewController *vc;
 Player *player;
+int numPlayers = 2;
+int minutes;
+int seconds;
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    [self.boardCollectionView setTag:1];
+    [self.tileCollectionView setTag:2];
+    
+    [self.boardCollectionView reloadData];
+    self.boardCollectionView.dataSource = self;
+    self.boardCollectionView.delegate = self;   
+    self.boardCollectionView.minimumZoomScale = .01;
+    self.boardCollectionView.zoomScale = 10;
+
+    [self.tileCollectionView reloadData];
+    self.tileCollectionView.dataSource = self;
+    self.tileCollectionView.delegate = self;
+    
+    vc = self;
+    player = [[Player alloc] init];
+    minutes = 2;
+    seconds = 0;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+
+    for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
+        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        [self addTile];
+    }
+    
+    
+    [self updateScores];
+    
+}
+
+- (void)updateCounter:(NSTimer *)theTimer {
+    if (seconds > 0) {
+        seconds--;
+    }
+    else if (minutes > 0) {
+        seconds = 59;
+        minutes--;
+    }
+    self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+}
 
 +(ViewController *)sharedViewController
 {
@@ -38,17 +85,15 @@ Player *player;
 - (NSMutableArray *)board
 {
     if (!_board) {
-        NSArray *arr = @[@"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-",
-                         @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-", @"-"];
-        _board = [[NSMutableArray alloc] initWithArray:arr];
+        _board = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                BoardCellDTO *cell = [[BoardCellDTO alloc] init];
+                cell.text = @"-";
+                cell.player = 0;
+                [_board addObject:cell];
+            }
+        }
     }
     return _board;
 }
@@ -59,31 +104,6 @@ Player *player;
         _tileSpaces = [[NSMutableArray alloc] init];
     }
     return _tileSpaces;
-}
-
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-    [self.boardCollectionView setTag:1];
-    [self.tileCollectionView setTag:2];
-
-    [self.boardCollectionView reloadData];
-    self.boardCollectionView.dataSource = self;
-    self.boardCollectionView.delegate = self;
-    
-    [self.tileCollectionView reloadData];
-    self.tileCollectionView.dataSource = self;
-    self.tileCollectionView.delegate = self;
-    
-    vc = self;
-    player = [[Player alloc] init];
-    
-    for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
-        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
-        [self addTile];
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,9 +128,14 @@ Player *player;
 
 -(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter
 {
-    self.board[indexPath.item] = [letter stringByAppendingString:@"*"];
+    BoardCellDTO *dto =self.board[indexPath.item];
+
+    dto.text = [letter stringByAppendingString:@"*"];
+    dto.player = 2;
     NSArray* indicies = @[indexPath];
+    
     [self.boardCollectionView reloadItemsAtIndexPaths:indicies];
+    [self updateScores];
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +143,7 @@ Player *player;
     if (collectionView.tag == 1) {
         //use self.board to determine how the board looks
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
-        NSString *text = [self.board objectAtIndex:indexPath.item];
+        NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
         if ([text isEqualToString:@"-"]) {
             text = @"";
             cell.backgroundColor = [UIColor lightGrayColor];
@@ -130,6 +155,8 @@ Player *player;
 
             }
             cell.backgroundColor = [UIColor greenColor];
+            cell.player = 1;
+
         }
         
         //check to see if the character is an from opponent
@@ -137,6 +164,7 @@ Player *player;
             //enemy letter
             cell.backgroundColor = [UIColor redColor];
             text = [text substringWithRange:NSMakeRange(0, 1)];
+            cell.player = 2;
         }
         
         cell.layer.borderWidth=1.0f;
@@ -155,15 +183,18 @@ Player *player;
     UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x, someLocation.y, 1, 1)];
     BoardViewCell *cell = [self findClosestCellToView:tempView];
     NSString *text = cell.textLabel.text;
-    if ([text isEqualToString:@""]) {
+    if (text == nil || [text isEqualToString:@""]) {
     }
     else {
         cell.textLabel.text = @"";
         cell.backgroundColor = [UIColor lightGrayColor];
         NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
-        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:self.board [indexPath.row]];
+        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:((BoardCellDTO *)self.board[indexPath.row]).text];
         [self.view addSubview:tile];
-        self.board[indexPath.row] = @"-";
+        BoardCellDTO *dto =self.board[indexPath.row];
+
+        dto.text = @"-";
+        dto.player = 0;
         [self.boardCollectionView reloadData];
         [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
         player.numberOfTiles++;
@@ -174,7 +205,7 @@ Player *player;
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *currentBoardLetter = self.board[indexPath.item];
+    NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     if (collectionView.tag == 1) {
         UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
         if ([currentBoardLetter isEqualToString:@"-"]) {
@@ -184,7 +215,7 @@ Player *player;
             TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(collectionView.frame.origin.x + cell.frame.origin.x, collectionView.frame.origin.y + cell.frame.origin.y, TILE_WIDTH, TILE_WIDTH)];
             [self.view addSubview:tile];
             [self.view bringSubviewToFront:tile];
-            self.board[indexPath.item] = @"-";
+            ((BoardCellDTO *)self.board[indexPath.item]).text = @"-";
             [self.boardCollectionView reloadData];
             
         }
@@ -225,7 +256,7 @@ Player *player;
 }
 
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath {
-    NSString *currentBoardLetter = self.board[indexPath.item];
+    NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
         
@@ -234,7 +265,9 @@ Player *player;
         [NetworkUtils sendLetterPlayed:message];
         
         //update the board
-        self.board[indexPath.item] = currentSelectedLetter;
+        BoardCellDTO *dto =self.board[indexPath.item];
+        dto.text = currentSelectedLetter;
+        dto.player = 1;
         [self.boardCollectionView reloadData];
         
         player.numberOfTiles--;
@@ -265,6 +298,7 @@ Player *player;
                 [self addTile];
             }
         }
+        [self updateScores];
     }
 }
 
@@ -319,4 +353,24 @@ Player *player;
     return sqrt(pow(view.center.x - otherView.center.x - _boardCollectionView.frame.origin.x, 2) + pow(view.center.y - otherView.center.y - _boardCollectionView.frame.origin.y, 2));
 }
 
+-(void) updateScores {
+    NSString *scoresString = @"SCORES:\n";
+    
+    for (int i = 1; i <= numPlayers; i++) {
+        scoresString = [scoresString stringByAppendingFormat:@"PLAYER %d: %d\n", i, [self calculateScoreForPlayer:i]];
+    }
+    _scores.text = scoresString;
+}
+
+-(int) calculateScoreForPlayer:(int)playerNum {
+    int playerScore = 0;
+    for (int i = 0; i < [self.board count]; i++) {
+        BoardCellDTO *cell = [self.board objectAtIndex:i];
+        if (cell.player == playerNum) {
+            playerScore++;
+        }
+    }
+    
+    return playerScore;
+}
 @end
