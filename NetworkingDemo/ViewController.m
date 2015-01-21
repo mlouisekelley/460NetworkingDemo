@@ -169,15 +169,18 @@ int seconds;
     UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x, someLocation.y, 1, 1)];
     BoardViewCell *cell = [self findClosestCellToView:tempView];
     NSString *text = cell.textLabel.text;
-    if (text == nil || [text isEqualToString:@""]) {
+    
+    NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
+    BoardCellDTO *dto =self.board[indexPath.row];
+    
+    if (text == nil || [text isEqualToString:@""] || dto.pending == 1) {
     }
     else {
         cell.textLabel.text = @"";
         cell.backgroundColor = [UIColor lightGrayColor];
-        NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
+        
         TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:((BoardCellDTO *)self.board[indexPath.row]).text];
         [self.view addSubview:tile];
-        BoardCellDTO *dto =self.board[indexPath.row];
 
         dto.text = @"-";
         dto.player = 0;
