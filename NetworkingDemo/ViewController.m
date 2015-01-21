@@ -10,6 +10,7 @@
 #import "BoardViewCell.h"
 #import "TileViewCell.h"
 #import "GameConstants.h"
+#import "BoardChecker.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
 
@@ -290,16 +291,47 @@ int seconds;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-    if ([self isBoardValid]) {
-        [self sendBoardInfo];
-        if (player.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-            int num = STARTING_NUMBER_OF_TILES - player.numberOfTiles;
-            for (int i = 0; i < num; i++) {
-                [self addTile];
-            }
+    dispatch_queue_t otherQ = dispatch_queue_create("check_board", NULL);
+    dispatch_async(otherQ, ^{
+        NSArray *invalidWordsOnBoard = [BoardChecker checkBoardState:self.board];
+        if ([invalidWordsOnBoard count] > 0) {
+            
+            NSString *alertMessage = @"Found the following invalid words: ";
+            alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
+            
+            //create an alert
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Invalid Board"
+                                          message:alertMessage
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            //create ok action for alert
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok]; // add action to uialertcontroller
+            
+            dispatch_queue_t mainQ = dispatch_get_main_queue();
+            dispatch_async(mainQ, ^{
+                [self sendBoardInfo];
+                if (player.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+                    int num = STARTING_NUMBER_OF_TILES - player.numberOfTiles;
+                    for (int i = 0; i < num; i++) {
+                        [self addTile];
+                    }
+                }
+                [self updateScores];
+            });
         }
-        [self updateScores];
-    }
+    });
 }
 
 -(void) addTile {
@@ -315,9 +347,6 @@ int seconds;
     // TODO
 }
 
--(BOOL) isBoardValid {
-    return YES;
-}
 -(BOOL) tileDidFinishMoving:(UIView *)tile {
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
