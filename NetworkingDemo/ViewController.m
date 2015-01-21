@@ -29,6 +29,7 @@ Player *player;
 int numPlayers = 2;
 int minutes;
 int seconds;
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -270,22 +271,6 @@ int seconds;
     return NO;
 }
 
--(void)placeEnemyPendingLetter: (NSString *)letter atIndexPath:(NSIndexPath *)indexPath {
-    //update the board
-    BoardCellDTO *dto =self.board[indexPath.item];
-    dto.text = letter;
-    dto.player = 2;
-    dto.pending = 1;
-    [self.boardCollectionView reloadData];
-}
-
--(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath {
-    BoardCellDTO *dto =self.board[indexPath.item];
-    dto.text = @"-";
-    dto.player = -1;
-    [self.boardCollectionView reloadData];
-}
-
 -(void)tileDidMove:(UIView *)tile {
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
@@ -335,6 +320,8 @@ int seconds;
                 }
                 [self updateScores];
             });
+        } else {
+            [NetworkUtils sendWordPlayed];
         }
     });
 }
@@ -407,4 +394,47 @@ int seconds;
     
     return playerScore;
 }
+
+////////////////////
+// Begin Networking Calls
+////////////////////
+
+-(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath {
+    ((BoardCellDTO *)self.board[indexPath.item]).pending = 1;
+    [self placeEnemyLetter:letter atIndexPath:indexPath];
+}
+
+-(void)placeEnemyFinializedLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath{
+    ((BoardCellDTO *)self.board[indexPath.item]).pending = 0;
+    [self placeEnemyLetter:letter atIndexPath:indexPath];
+}
+
+-(void)placeEnemyLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath{
+    BoardCellDTO *dto =self.board[indexPath.item];
+    dto.text = letter;
+    dto.player = 2;
+    [self.boardCollectionView reloadData];
+}
+
+-(void)finalizePendingEnemyTiles {
+    for (int i = 0; i < [self.board count]; i++) {
+        BoardCellDTO *cellDTO = self.board[i];
+        if(cellDTO.pending == 1){
+            cellDTO.pending = 0;
+        }
+    }
+    [self.boardCollectionView reloadData];
+}
+
+-(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath {
+    BoardCellDTO *dto =self.board[indexPath.item];
+    dto.text = @"-";
+    dto.player = -1;
+    [self.boardCollectionView reloadData];
+}
+
+////////////////////
+// End Networking Calls
+////////////////////
+
 @end

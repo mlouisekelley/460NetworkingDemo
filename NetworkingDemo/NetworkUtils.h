@@ -13,7 +13,7 @@
 @interface NetworkUtils : NSObject
 
 +(void)sendLetterPlayed:(NSString *)update;
-+(void)sendWordPlayed:(NSString *)update;
++(void)sendWordPlayed;
 +(void)sendLetterRemoved:(NSString *)update;
 
 @end

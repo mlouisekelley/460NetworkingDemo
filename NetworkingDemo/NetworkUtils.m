@@ -14,9 +14,10 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
-+(void)sendWordPlayed:(NSString *)update
++(void)sendWordPlayed
 {
-    [[WarpClient getInstance] sendChat:update]; 
+    NSString* message = [NSString stringWithFormat:@"wp"];
+    [[WarpClient getInstance] sendChat:message];
 }
 
 +(void)sendLetterRemoved:(NSString *)update

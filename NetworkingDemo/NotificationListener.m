@@ -42,22 +42,23 @@
 -(void)onChatReceived:(ChatEvent*)chatEvent{
     
     NSArray *message = [chatEvent.message componentsSeparatedByString:@","];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:([message[0] integerValue]+1)
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
                                             inSection:0];
-    
-    //letter removed
-    if(message.count == 1){
-        [[ViewController sharedViewController]removeEnemyLetterAtIndexPath:indexPath];
-        return;
-    }
+
     
     if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
         NSLog(@"Chat successfully sent");
-        [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
-                                                           atIndexPath:indexPath];
-
     } else {
         NSLog(@"Recieved chat");
+        //letter removed
+        if(message.count == 1){
+            if([message[0] isEqualToString:@"wp"]){
+                [[ViewController sharedViewController] finalizePendingEnemyTiles];
+                return;
+            }
+            [[ViewController sharedViewController]removeEnemyLetterAtIndexPath:indexPath];
+            return;
+        }
         [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
                                                          atIndexPath:indexPath];
     }

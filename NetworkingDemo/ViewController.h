@@ -23,5 +23,6 @@
 - (IBAction)touchUpSubmit:(id)sender;
 -(void)placeEnemyPendingLetter: (NSString *)letter atIndexPath:(NSIndexPath *)indexPath;
 -(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath;
+-(void)finalizePendingEnemyTiles;
 @end
 
