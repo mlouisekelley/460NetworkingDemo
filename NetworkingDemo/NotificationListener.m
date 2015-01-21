@@ -41,15 +41,25 @@
 }
 -(void)onChatReceived:(ChatEvent*)chatEvent{
     
-    NSArray *arrayWithTwoStrings = [chatEvent.message componentsSeparatedByString:@","];
-    NSIndexPath *myIP = [NSIndexPath indexPathForItem:[arrayWithTwoStrings[0] integerValue]
+    NSArray *message = [chatEvent.message componentsSeparatedByString:@","];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:([message[0] integerValue]+1)
                                             inSection:0];
+    
+    //letter removed
+    if(message.count == 1){
+        [[ViewController sharedViewController]removeEnemyLetterAtIndexPath:indexPath];
+        return;
+    }
     
     if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
         NSLog(@"Chat successfully sent");
+        [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
+                                                           atIndexPath:indexPath];
+
     } else {
         NSLog(@"Recieved chat");
-        [[ViewController sharedViewController] updateCellForIndexPath:myIP withLetter:arrayWithTwoStrings[1]];
+        [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
+                                                         atIndexPath:indexPath];
     }
 }
 

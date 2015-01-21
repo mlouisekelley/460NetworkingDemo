@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "BoardViewCell.h"
-#import "TileViewCell.h"
 #import "GameConstants.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
@@ -126,18 +125,6 @@ int seconds;
     return 1;
 }
 
--(void)updateCellForIndexPath:(NSIndexPath *)indexPath withLetter:(NSString *)letter
-{
-    BoardCellDTO *dto =self.board[indexPath.item];
-
-    dto.text = [letter stringByAppendingString:@"*"];
-    dto.player = 2;
-    NSArray* indicies = @[indexPath];
-    
-    [self.boardCollectionView reloadItemsAtIndexPaths:indicies];
-    [self updateScores];
-}
-
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 1) {
@@ -149,22 +136,19 @@ int seconds;
             cell.backgroundColor = [UIColor lightGrayColor];
         }
         else {
-            if([cell.backgroundColor isEqual:[UIColor lightGrayColor]]){
-                //Send chat update with position of letters added
-                NSLog(@"%ld", (long)indexPath.item);
-
-            }
             cell.backgroundColor = [UIColor greenColor];
             cell.player = 1;
-
         }
-        
-        //check to see if the character is an from opponent
-        if([text rangeOfString:[NSString stringWithFormat:@"%c",'*']].location != NSNotFound){
-            //enemy letter
-            cell.backgroundColor = [UIColor redColor];
-            text = [text substringWithRange:NSMakeRange(0, 1)];
-            cell.player = 2;
+
+        //check if this was an enemy played tile
+        BoardCellDTO *dto =self.board[indexPath.row];
+        if(dto.player == 2){
+            cell.player = 1;
+            if(dto.pending == 1){
+                cell.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
+            } else {
+                cell.backgroundColor = [UIColor redColor];
+            }
         }
         
         cell.layer.borderWidth=1.0f;
@@ -196,6 +180,11 @@ int seconds;
         dto.text = @"-";
         dto.player = 0;
         [self.boardCollectionView reloadData];
+        
+        //update other players that letter was removed
+        NSString* message = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
+        [NetworkUtils sendLetterRemoved:message];
+        
         [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
         player.numberOfTiles++;
     }
@@ -278,6 +267,22 @@ int seconds;
         return YES;
     }
     return NO;
+}
+
+-(void)placeEnemyPendingLetter: (NSString *)letter atIndexPath:(NSIndexPath *)indexPath {
+    //update the board
+    BoardCellDTO *dto =self.board[indexPath.item];
+    dto.text = letter;
+    dto.player = 2;
+    dto.pending = 1;
+    [self.boardCollectionView reloadData];
+}
+
+-(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath {
+    BoardCellDTO *dto =self.board[indexPath.item];
+    dto.text = @"-";
+    dto.player = -1;
+    [self.boardCollectionView reloadData];
 }
 
 -(void)tileDidMove:(UIView *)tile {

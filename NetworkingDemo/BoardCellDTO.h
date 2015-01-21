@@ -11,5 +11,6 @@
 
 @property (strong, nonatomic) NSString* text;
 @property (nonatomic) int player;
+@property (nonatomic) int pending;
 
 @end

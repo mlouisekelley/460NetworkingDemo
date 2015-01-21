@@ -16,12 +16,12 @@
 
 +(void)sendWordPlayed:(NSString *)update
 {
-    
+    [[WarpClient getInstance] sendChat:update]; 
 }
 
 +(void)sendLetterRemoved:(NSString *)update
 {
-    
+    [[WarpClient getInstance] sendChat:update];
 }
 
 @end
