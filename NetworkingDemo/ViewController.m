@@ -312,6 +312,7 @@ int seconds;
             
             [alert addAction:ok]; // add action to uialertcontroller
             
+        } else {
             dispatch_queue_t mainQ = dispatch_get_main_queue();
             dispatch_async(mainQ, ^{
                 [self sendBoardInfo];
@@ -322,9 +323,8 @@ int seconds;
                     }
                 }
                 [self updateScores];
+                [NetworkUtils sendWordPlayed];
             });
-        } else {
-            [NetworkUtils sendWordPlayed];
         }
     });
 }

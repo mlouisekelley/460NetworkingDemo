@@ -28,7 +28,7 @@
     for (int i = 0; i<[board count]; i++) {
         BoardCellDTO *cellDTO = board[i];
         NSString *space = cellDTO.text;
-        if (![self isBlank:space]) {
+        if (![self isBlank:space] && [self shouldCheckCellDTO:cellDTO]) {
             NSString *up = (i - 10) >= 0 ? ((BoardCellDTO *)board[i - 10]).text : @"-";
             NSString *left = (i - 1) >= 0 ? ((BoardCellDTO *)board[i - 1]).text : @"-";
             NSString *right = (i + 1)%10 > 0 ? ((BoardCellDTO *)board[i + 1]).text : @"-";
@@ -65,6 +65,18 @@
         }
     }
     return incorrectWords;
+}
+
++(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
+    //refactor to include dynamic player numbers
+    if (cell.player != 0 && cell.pending != 1) {
+        return YES;
+    }
+    if (cell.player == 0) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 +(BOOL)isBlank:(NSString *)space {
