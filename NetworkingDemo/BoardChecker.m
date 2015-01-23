@@ -29,16 +29,16 @@
         BoardCellDTO *cellDTO = board[i];
         NSString *space = cellDTO.text;
         if (![self isBlank:space] && [self shouldCheckCellDTO:cellDTO]) {
-            NSString *up = (i - 10) >= 0 ? ((BoardCellDTO *)board[i - 10]).text : @"-";
-            NSString *left = (i - 1) >= 0 ? ((BoardCellDTO *)board[i - 1]).text : @"-";
-            NSString *right = (i + 1)%10 > 0 ? ((BoardCellDTO *)board[i + 1]).text : @"-";
-            NSString *down = (i + 10) < 100 ? ((BoardCellDTO *)board[i + 10]).text : @"-";
+            BoardCellDTO *up = (i - 10) >= 0 ? board[i - 10] : nil;
+            BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
+            BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
+            BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             
-            if ([self isBlank:up] && ![self isBlank:down]) {
+            if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
                 NSString *word = space;
                 int currLetterIndex = i + 10;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
-                while (![self isBlank:currentDTO.text] && currLetterIndex < 100) {
+                while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     word = [word stringByAppendingString:currentDTO.text];
                     currLetterIndex += 10;
                     currentDTO = board[currLetterIndex];
@@ -48,11 +48,11 @@
                 }
             }
             
-            if ([self isBlank:left] && ![self isBlank:right]) {
+            if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
                 NSString *word = space;
                 int currLetterIndex = i + 1;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
-                while (![self isBlank:currentDTO.text] && (currLetterIndex%10 > 0)) {
+                while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     word = [word stringByAppendingString:currentDTO.text];
                     currLetterIndex++;
                     currentDTO = board[currLetterIndex];
@@ -69,6 +69,9 @@
 
 +(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     //refactor to include dynamic player numbers
+    if ([self isBlank: cell.text]) {
+        return NO;
+    }
     if (cell.player != 0 && cell.pending != 1) {
         return YES;
     }
