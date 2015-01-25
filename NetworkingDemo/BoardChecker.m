@@ -41,7 +41,7 @@
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     word = [word stringByAppendingString:currentDTO.text];
                     currLetterIndex += 10;
-                    currentDTO = board[currLetterIndex];
+                    currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                 }
                 if (![self isValid:word]) {
                     [incorrectWords addObject:word];
@@ -107,8 +107,9 @@
     {
         //log response
         //NSLog(@"Response from server = %@", responseString);
-        NSString *entryString = @"<entry id=";
-        if (![responseString containsString:entryString]) {
+        NSString *entryString = [NSString stringWithUTF8String:"<entry id="];
+        NSRange range = [responseString rangeOfString:entryString];
+        if (range.length == 0) {
             return NO;
         }
     }

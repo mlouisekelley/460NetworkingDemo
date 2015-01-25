@@ -84,4 +84,9 @@
     
 }
 
+-(void)onUserPaused:(NSString *)userName withLocation:(NSString *)locId isLobby:(BOOL)isLobby
+{
+    
+}
+
 @end
