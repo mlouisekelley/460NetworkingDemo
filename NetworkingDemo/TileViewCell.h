@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
 @property (nonatomic) CGPoint startPoint;
-
+@property (nonatomic) BOOL shouldReplace;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter;
-
 @end

@@ -19,11 +19,13 @@ ViewController *superview;
         [self setBackgroundColor:[UIColor orangeColor]];
         self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 42, 21)];
         self.letterLabel.text = letter;
+        _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
     }
     return self;
 }
 -(id)initWithFrame:(CGRect)frame {
+    _shouldReplace = YES;
     return [self initWithFrame:frame letter:[self getRandomUppercaseLetter]];
 }
 -(void)awakeFromNib {
@@ -34,7 +36,6 @@ ViewController *superview;
 {
     [super touchesBegan:touches withEvent:event];
     UITouch *aTouch = [touches anyObject];
-    _startPoint = self.frame.origin;
     offset = [aTouch locationInView: self];
     CGPoint location = [aTouch locationInView:self.superview];
     

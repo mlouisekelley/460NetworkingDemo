@@ -266,9 +266,10 @@ int seconds;
         
         player.numberOfTiles--;
         
-        CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
-        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
-        
+        if (tile.shouldReplace) {
+            CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+            [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        }
         return YES;
     }
     return NO;
@@ -292,25 +293,7 @@ int seconds;
             NSString *alertMessage = @"Found the following invalid words: ";
             alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
             
-            //create an alert
-            UIAlertController * alert=   [UIAlertController
-                                          alertControllerWithTitle:@"Invalid Board"
-                                          message:alertMessage
-                                          preferredStyle:UIAlertControllerStyleAlert];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            //create ok action for alert
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"OK"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                     
-                                 }];
-            
-            [alert addAction:ok]; // add action to uialertcontroller
+            //tion:ok]; // add action to uialertcontroller
             
         } else {
             dispatch_queue_t mainQ = dispatch_get_main_queue();
