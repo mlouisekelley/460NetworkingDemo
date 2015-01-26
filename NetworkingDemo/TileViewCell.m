@@ -71,7 +71,7 @@ ViewController *superview;
 }
 
 -(NSString *)getRandomUppercaseLetter {
-    NSString *letters = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSString *letters = @"AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ";
     NSString *str = @"";
     str = [str stringByAppendingFormat:@"%C", [letters characterAtIndex: arc4random() % [letters length]]];
     return str;
