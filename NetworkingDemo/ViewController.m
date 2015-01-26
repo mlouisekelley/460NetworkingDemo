@@ -409,6 +409,7 @@ int seconds;
             cellDTO.pending = 0;
         }
     }
+    [self updateScores];
     [self.boardCollectionView reloadData];
 }
 
