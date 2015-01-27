@@ -264,17 +264,20 @@ int seconds;
         dto.player = 1;
         [self.boardCollectionView reloadData];
         
-        player.numberOfTiles--;
-        
-        if (tile.shouldReplace) {
-            CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
-            [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
-        }
+        [self removeTile:tile];
         return YES;
     }
     return NO;
 }
 
+-(void) removeTile:(TileViewCell *)tile {
+    player.numberOfTiles--;
+    
+    if (tile.shouldReplace) {
+        CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+    }
+}
 -(void)tileDidMove:(UIView *)tile {
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
@@ -332,8 +335,28 @@ int seconds;
         closestCell.tag = 1;
         return [self playTile:(TileViewCell*)tile atIndexPath:[_boardCollectionView indexPathForCell:closestCell]];
     }
+    if ([self isThrowingAway:tile]) {
+        [self tossTile:tile];
+        return YES;
+    }
     return NO;
 }
+
+-(BOOL) isThrowingAway:(UIView *)tile {
+    float curDist = [self view:tile DistanceToView:_tossView];
+    if (curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
+        NSLog(@"YES");
+        return YES;
+    }
+    return NO;
+}
+
+-(void) tossTile:(UIView *)tile {
+    TileViewCell *tileCell = (TileViewCell *)tile;
+    [self removeTile:tileCell];
+    [self addTile];
+}
+
 -(void) unselectAllCells {
     for (UICollectionViewCell *cell in _boardCollectionView.visibleCells) {
         cell.layer.borderWidth = 1.0f;

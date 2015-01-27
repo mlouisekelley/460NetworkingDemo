@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *scores;
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
-
+@property (weak, nonatomic) IBOutlet UIView *tossView;
 +(ViewController *)sharedViewController;
 -(void)tileDidMove:(UIView *)tile;
 -(BOOL) tileDidFinishMoving:(UIView *)tile;
