@@ -133,25 +133,27 @@ int seconds;
         //use self.board to determine how the board looks
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
         NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
-        if ([text isEqualToString:@"-"]) {
+       
+
+//        if ([text isEqualToString:@"-"]) {
             text = @"";
             cell.backgroundColor = [UIColor lightGrayColor];
-        }
-        else {
-            cell.backgroundColor = [UIColor greenColor];
-            cell.player = 1;
-        }
+//        }
+//        else {
+//            cell.backgroundColor = [UIColor greenColor];
+//            cell.player = 1;
+//        }
 
-        //check if this was an enemy played tile
-        BoardCellDTO *dto =self.board[indexPath.row];
-        if(dto.player == 2){
-            cell.player = 1;
-            if(dto.pending == 1){
-                cell.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
-            } else {
-                cell.backgroundColor = [UIColor redColor];
-            }
-        }
+//        //check if this was an enemy played tile
+//        BoardCellDTO *dto =self.board[indexPath.row];
+//        if(dto.player == 2){
+//            cell.player = 1;
+//            if(dto.pending == 1){
+//                cell.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
+//            } else {
+//                cell.backgroundColor = [UIColor redColor];
+//            }
+//        }
         
         cell.layer.borderWidth=1.0f;
         
@@ -176,22 +178,22 @@ int seconds;
     if (text == nil || [text isEqualToString:@""] || dto.pending == 1) {
     }
     else {
-        cell.textLabel.text = @"";
-        cell.backgroundColor = [UIColor lightGrayColor];
-        
-        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:((BoardCellDTO *)self.board[indexPath.row]).text];
-        [self.view addSubview:tile];
-
-        dto.text = @"-";
-        dto.player = 0;
-        [self.boardCollectionView reloadData];
-        
-        //update other players that letter was removed
-        NSString* message = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
-        [NetworkUtils sendLetterRemoved:message];
-        
-        [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
-        player.numberOfTiles++;
+//        cell.textLabel.text = @"";
+//        cell.backgroundColor = [UIColor lightGrayColor];
+//        
+//        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:((BoardCellDTO *)self.board[indexPath.row]).text];
+//        [self.view addSubview:tile];
+//
+//        dto.text = @"-";
+//        dto.player = 0;
+//        [self.boardCollectionView reloadData];
+//        
+//        //update other players that letter was removed
+//        NSString* message = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
+//        [NetworkUtils sendLetterRemoved:message];
+//        
+//        [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
+//        player.numberOfTiles++;
     }
     
 }
@@ -199,6 +201,7 @@ int seconds;
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     if (collectionView.tag == 1) {
         UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
@@ -249,7 +252,7 @@ int seconds;
     else return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
--(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath {
+-(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
@@ -259,13 +262,19 @@ int seconds;
         [NetworkUtils sendLetterPlayed:message];
         
         //update the board
-        BoardCellDTO *dto =self.board[indexPath.item];
+        BoardCellDTO *dto = self.board[indexPath.item];
         dto.text = currentSelectedLetter;
         dto.player = 1;
         [self.boardCollectionView reloadData];
         
         [self removeTile:tile];
-        return YES;
+        
+        CGRect newFrame = CGRectMake(bvc.frame.origin.x + self.boardCollectionView.frame.origin.x, bvc.frame.origin.y+ self.boardCollectionView.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
+        tile.frame = newFrame;
+        tile.startPoint = newFrame.origin;
+        tile.indexPath = indexPath;
+        tile.isNotOnBoard = NO;
+        return NO;
     }
     return NO;
 }
@@ -273,9 +282,14 @@ int seconds;
 -(void) removeTile:(TileViewCell *)tile {
     player.numberOfTiles--;
     
-    if (tile.shouldReplace) {
+    if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+    }
+    else {
+        BoardCellDTO *dto = self.board[tile.indexPath.item];
+        dto.text = @"-";
+        
     }
 }
 -(void)tileDidMove:(UIView *)tile {
@@ -316,11 +330,12 @@ int seconds;
 }
 
 -(void) addTile {
-    
-    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0]CGRectValue]];
+        NSLog(@"%d", player.numberOfTiles);
+    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue]];
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
+    NSLog(@"%d", player.numberOfTiles);
     player.numberOfTiles++;
 }
 
@@ -331,29 +346,28 @@ int seconds;
 -(BOOL) tileDidFinishMoving:(UIView *)tile {
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
+    TileViewCell *tileCell = (TileViewCell *)tile;
     if (closestCell) {
         closestCell.tag = 1;
-        return [self playTile:(TileViewCell*)tile atIndexPath:[_boardCollectionView indexPathForCell:closestCell]];
+        return [self playTile:tileCell atIndexPath:[_boardCollectionView indexPathForCell:closestCell] onCell:closestCell];
     }
-    if ([self isThrowingAway:tile]) {
-        [self tossTile:tile];
+    if ([self isThrowingAway:tileCell]) {
+        [self tossTile:tileCell];
         return YES;
     }
     return NO;
 }
 
--(BOOL) isThrowingAway:(UIView *)tile {
+-(BOOL) isThrowingAway:(TileViewCell *)tile {
     float curDist = [self view:tile DistanceToView:_tossView];
-    if (curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
-        NSLog(@"YES");
+    if (tile.isNotOnBoard && curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
         return YES;
     }
     return NO;
 }
 
--(void) tossTile:(UIView *)tile {
-    TileViewCell *tileCell = (TileViewCell *)tile;
-    [self removeTile:tileCell];
+-(void) tossTile:(TileViewCell *)tile {
+    [self removeTile:tile];
     [self addTile];
 }
 
@@ -422,7 +436,11 @@ int seconds;
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = letter;
     dto.player = 2;
-    [self.boardCollectionView reloadData];
+
+    UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+    CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerID:dto.player];
+    [self.view addSubview:tvc];
 }
 
 -(void)finalizePendingEnemyTiles {

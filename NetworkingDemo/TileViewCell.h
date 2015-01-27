@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
 @property (nonatomic) CGPoint startPoint;
-@property (nonatomic) BOOL shouldReplace;
--(id)initWithFrame:(CGRect)frame letter:(NSString*)letter;
+@property (nonatomic) BOOL isNotOnBoard;
+@property (nonatomic) NSIndexPath *indexPath;
+
+-(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerID:(int)playerID;
 @end

@@ -14,19 +14,26 @@
 
 CGPoint offset;
 ViewController *superview;
--(id)initWithFrame:(CGRect)frame letter:(NSString*)letter{
+int pid;
+-(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerID:(int)p{
     if (self = [super initWithFrame:frame]) {
-        [self setBackgroundColor:[UIColor orangeColor]];
-        self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 42, 21)];
+        if (p == 1) {
+            [self setBackgroundColor:[UIColor orangeColor]];
+        }
+        else {
+            [self setBackgroundColor:[UIColor redColor]];
+        }
+        self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 12, 42, 21)];
         self.letterLabel.text = letter;
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
+        pid = p;
     }
     return self;
 }
 -(id)initWithFrame:(CGRect)frame {
-    _shouldReplace = YES;
-    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter]];
+    _isNotOnBoard = YES;
+    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerID:1];
 }
 -(void)awakeFromNib {
     [super awakeFromNib];
