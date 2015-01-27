@@ -310,7 +310,25 @@ int seconds;
             NSString *alertMessage = @"Found the following invalid words: ";
             alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
             
-            //tion:ok]; // add action to uialertcontroller
+            //create an alert
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Invalid Board"
+                                          message:alertMessage
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            //create ok action for alert
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok]; // add action to uialertcontroller
             
         } else {
             dispatch_queue_t mainQ = dispatch_get_main_queue();
