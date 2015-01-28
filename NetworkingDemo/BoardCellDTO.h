@@ -10,7 +10,7 @@
 @interface BoardCellDTO : NSObject
 
 @property (strong, nonatomic) NSString* text;
-@property (nonatomic) int player;
+@property (nonatomic, strong) NSString* playerUserName;
 @property (nonatomic) int pending;
 
 @end

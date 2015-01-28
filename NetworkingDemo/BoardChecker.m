@@ -69,13 +69,15 @@
 
 +(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     //refactor to include dynamic player numbers
+    NSString *myUserName = [GameConstants getUserName];
+    
     if ([self isBlank: cell.text]) {
         return NO;
     }
-    if (cell.player != 0 && cell.pending != 1) {
+    if (![cell.playerUserName isEqualToString:myUserName] && cell.pending != 1) {
         return YES;
     }
-    if (cell.player == 0) {
+    if ([cell.playerUserName isEqualToString:myUserName]) {
         return YES;
     }
     

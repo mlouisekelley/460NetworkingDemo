@@ -16,5 +16,5 @@
 @property (nonatomic) BOOL isNotOnBoard;
 @property (nonatomic) NSIndexPath *indexPath;
 
--(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerID:(int)playerID;
+-(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 @end

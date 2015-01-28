@@ -22,8 +22,10 @@
 -(BOOL) tileDidFinishMoving:(UIView *)tile;
 -(void)boardWasTouched:(UITouch *)touch;
 - (IBAction)touchUpSubmit:(id)sender;
--(void)placeEnemyPendingLetter: (NSString *)letter atIndexPath:(NSIndexPath *)indexPath;
+-(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
 -(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath;
 -(void)finalizePendingEnemyTiles;
+-(void)addPlayer:(NSString *)playerUserName;
+-(void)updatePlayerList:(NSArray *)currentPlayers;
 @end
 

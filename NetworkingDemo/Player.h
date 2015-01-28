@@ -11,5 +11,6 @@
 @interface Player : NSObject
 
 @property (nonatomic) int numberOfTiles;
+@property (nonatomic, strong) NSString *userName;
 
 @end

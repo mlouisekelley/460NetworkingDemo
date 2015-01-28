@@ -8,16 +8,17 @@
 
 #import "TileViewCell.h"
 #import "ViewController.h"
+#import "GameConstants.h"
 
 @implementation TileViewCell
 
 
 CGPoint offset;
 ViewController *superview;
-int pid;
--(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerID:(int)p{
+NSString *pid;
+-(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID{
     if (self = [super initWithFrame:frame]) {
-        if (p == 1) {
+        if ([playerID isEqualToString:[GameConstants getUserName]]) {
             [self setBackgroundColor:[UIColor orangeColor]];
         }
         else {
@@ -27,13 +28,13 @@ int pid;
         self.letterLabel.text = letter;
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
-        pid = p;
+        pid = playerID;
     }
     return self;
 }
 -(id)initWithFrame:(CGRect)frame {
     _isNotOnBoard = YES;
-    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerID:1];
+    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerUserName:@""];
 }
 -(void)awakeFromNib {
     [super awakeFromNib];

@@ -42,6 +42,7 @@
         NSLog(@"onSubscribeRoomDone  Failed");
     }
 }
+
 -(void)onUnSubscribeRoomDone:(RoomEvent*)roomEvent{
     if (roomEvent.result == SUCCESS)
     {
@@ -52,6 +53,7 @@
         
     }
 }
+
 -(void)onJoinRoomDone:(RoomEvent*)roomEvent
 {
    NSLog(@".onJoinRoomDone..on Join room listener called");
@@ -60,6 +62,7 @@
     {
         RoomData *roomData = roomEvent.roomData;
         [[WarpClient getInstance]subscribeRoom:roomData.roomId];
+        [[WarpClient getInstance]getLiveRoomInfo:roomData.roomId];
         NSLog(@".onJoinRoomDone..on Join room listener called Success");
     }
     else
@@ -69,6 +72,7 @@
     }
     
 }
+
 -(void)onLeaveRoomDone:(RoomEvent*)roomEvent{
     if (roomEvent.result == SUCCESS) {
         [[WarpClient getInstance]unsubscribeRoom:roomEvent.roomData.roomId];
@@ -76,18 +80,18 @@
     else {
     }
 }
+
 -(void)onGetLiveRoomInfoDone:(LiveRoomInfoEvent*)event{
     NSString *joinedUsers = @"";
     NSLog(@"joined users array = %@",event.joinedUsers);
-    
+    [[ViewController sharedViewController] updatePlayerList:event.joinedUsers];
     for (int i=0; i<[event.joinedUsers count]; i++)
     {
         joinedUsers = [joinedUsers stringByAppendingString:[event.joinedUsers objectAtIndex:i]];
+        
     }
-    
-    
-    
 }
+
 -(void)onSetCustomRoomDataDone:(LiveRoomInfoEvent*)event{
     NSLog(@"event joined users = %@",event.joinedUsers);
     NSLog(@"event custom data = %@",event.customData);

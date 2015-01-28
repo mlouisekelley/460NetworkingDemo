@@ -32,6 +32,7 @@
 -(void)onUserJoinedRoom:(RoomData*)roomData username:(NSString*)username
 {
    //[[AppWarpHelper sharedAppWarpHelper] getAllUsers];
+    [[ViewController sharedViewController] addPlayer:username];
 }
 -(void)onUserLeftLobby:(LobbyData*)lobbyData username:(NSString*)username{
     
@@ -60,7 +61,7 @@
             return;
         }
         [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
-                                                         atIndexPath:indexPath];
+                                                           atIndexPath:indexPath forEnemy:chatEvent.sender];
     }
 }
 

@@ -20,13 +20,13 @@
 @property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSMutableArray *players;
 @end
 
 @implementation ViewController
 
 static ViewController *vc;
 Player *player;
-int numPlayers = 2;
 int minutes;
 int seconds;
 
@@ -91,7 +91,7 @@ int seconds;
             for (int j = 0; j < 10; j++) {
                 BoardCellDTO *cell = [[BoardCellDTO alloc] init];
                 cell.text = @"-";
-                cell.player = 0;
+                cell.playerUserName = @"";
                 [_board addObject:cell];
             }
         }
@@ -105,6 +105,14 @@ int seconds;
         _tileSpaces = [[NSMutableArray alloc] init];
     }
     return _tileSpaces;
+}
+
+- (NSMutableArray *)players {
+    if (!_players) {
+        _players = [[NSMutableArray alloc] init];
+        [_players addObject:[GameConstants getUserName]];
+    }
+    return _players;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -264,7 +272,7 @@ int seconds;
         //update the board
         BoardCellDTO *dto = self.board[indexPath.item];
         dto.text = currentSelectedLetter;
-        dto.player = 1;
+        dto.playerUserName = [GameConstants getUserName];
         [self.boardCollectionView reloadData];
         
         [self removeTile:tile];
@@ -289,9 +297,9 @@ int seconds;
     else {
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
-        
     }
 }
+
 -(void)tileDidMove:(UIView *)tile {
     [self unselectAllCells];
     BoardViewCell *closestCell = [self findClosestCellToView:tile];
@@ -418,17 +426,17 @@ int seconds;
 -(void) updateScores {
     NSString *scoresString = @"SCORES:\n";
     
-    for (int i = 1; i <= numPlayers; i++) {
-        scoresString = [scoresString stringByAppendingFormat:@"PLAYER %d: %d\n", i, [self calculateScoreForPlayer:i]];
+    for (NSString *playerID in self.players) {
+        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, [self calculateScoreForPlayer:playerID]];
     }
     _scores.text = scoresString;
 }
 
--(int) calculateScoreForPlayer:(int)playerNum {
+-(int) calculateScoreForPlayer:(NSString *)playerUserName {
     int playerScore = 0;
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cell = [self.board objectAtIndex:i];
-        if (cell.player == playerNum) {
+        if ([cell.playerUserName isEqualToString:playerUserName]) {
             playerScore++;
         }
     }
@@ -440,24 +448,34 @@ int seconds;
 // Begin Networking Calls
 ////////////////////
 
--(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath {
+-(void)addPlayer:(NSString *)playerUserName {
+    [self.players addObject:playerUserName];
+    [self updateScores];
+}
+
+-(void)updatePlayerList:(NSArray *)currentPlayers {
+    self.players = [currentPlayers mutableCopy];
+    [self updateScores];
+}
+
+-(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
     ((BoardCellDTO *)self.board[indexPath.item]).pending = 1;
-    [self placeEnemyLetter:letter atIndexPath:indexPath];
+    [self placeEnemyLetter:letter atIndexPath:indexPath forEnemy:(NSString *)enemyID];
 }
 
--(void)placeEnemyFinializedLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath{
+-(void)placeEnemyFinializedLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
     ((BoardCellDTO *)self.board[indexPath.item]).pending = 0;
-    [self placeEnemyLetter:letter atIndexPath:indexPath];
+    [self placeEnemyLetter:letter atIndexPath:indexPath forEnemy:enemyID];
 }
 
--(void)placeEnemyLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath{
+-(void)placeEnemyLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = letter;
-    dto.player = 2;
+    dto.playerUserName = enemyID;
 
     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-    TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerID:dto.player];
+    TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:dto.playerUserName];
     [self.view addSubview:tvc];
 }
 
@@ -475,7 +493,7 @@ int seconds;
 -(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = @"-";
-    dto.player = -1;
+    dto.playerUserName = @"";
     [self.boardCollectionView reloadData];
 }
 
