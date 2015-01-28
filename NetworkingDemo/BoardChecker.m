@@ -55,7 +55,7 @@
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     word = [word stringByAppendingString:currentDTO.text];
                     currLetterIndex++;
-                    currentDTO = board[currLetterIndex];
+                    currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
                 }
                 if (![self isValid:word]) {
                     [incorrectWords addObject:word];
@@ -70,7 +70,9 @@
 +(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     //refactor to include dynamic player numbers
     NSString *myUserName = [GameConstants getUserName];
-    
+    if (!cell) {
+        return NO;
+    }
     if ([self isBlank: cell.text]) {
         return NO;
     }
