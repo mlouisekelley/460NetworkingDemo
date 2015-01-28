@@ -15,6 +15,7 @@
 @property (nonatomic) CGPoint startPoint;
 @property (nonatomic) BOOL isNotOnBoard;
 @property (nonatomic) NSIndexPath *indexPath;
-
+@property (nonatomic) BOOL isPending;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
+-(void) makePending;
 @end

@@ -403,6 +403,7 @@ BOOL isGameOver = NO;
 -(void) addTile {
         NSLog(@"%d", currentPlayer.numberOfTiles);
     TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue]];
+    
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
