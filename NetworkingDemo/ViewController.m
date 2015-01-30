@@ -60,7 +60,7 @@ BOOL isGameOver = NO;
         [self addTile];
     }
     
-    [self placeStartingWord];
+    //[self placeStartingWord];
     [self updateScores];
     
 }
@@ -73,6 +73,11 @@ BOOL isGameOver = NO;
         CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
         TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"S" playerUserName:@"stone"];
         [self.view addSubview:tvc];
+        
+        BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
+        dto.text = @"S";
+        dto.playerUserName = [GameConstants getUserName];
+        dto.tvc = tvc;
     }
     
     [self.boardCollectionView reloadData];
@@ -384,25 +389,36 @@ BOOL isGameOver = NO;
             NSString *alertMessage = @"Found the following invalid words: ";
             alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
             
-            //create an alert
-            UIAlertController * alert=   [UIAlertController
-                                          alertControllerWithTitle:@"Invalid Board"
-                                          message:alertMessage
-                                          preferredStyle:UIAlertControllerStyleAlert];
+            if (objc_getClass("UIAlertController") != nil){
+                
+                //create an alert
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"Invalid Board"
+                                              message:alertMessage
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
+                //create ok action for alert
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok]; // add action to uialertcontroller
+                
+            }
+            else {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Board" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                
+            }
             
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            //create ok action for alert
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"OK"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                     
-                                 }];
-            
-            [alert addAction:ok]; // add action to uialertcontroller
             
         } else {
             dispatch_queue_t mainQ = dispatch_get_main_queue();
