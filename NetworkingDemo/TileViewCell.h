@@ -17,5 +17,6 @@
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) BOOL isPending;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
+-(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
 -(void) makePending;
 @end
