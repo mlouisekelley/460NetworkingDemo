@@ -26,9 +26,10 @@
 @implementation ViewController
 
 static ViewController *vc;
-Player *player;
+Player *currentPlayer;
 int minutes;
 int seconds;
+BOOL isGameOver = NO;
 
 - (void)viewDidLoad {
     
@@ -47,19 +48,34 @@ int seconds;
     self.tileCollectionView.delegate = self;
     
     vc = self;
-    player = [[Player alloc] init];
+    currentPlayer = [[Player alloc] init];
+    currentPlayer.userName = [GameConstants getUserName];
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
     
-    
+    [self placeStartingWord];
     [self updateScores];
+    
+}
+
+-(void)placeStartingWord{
+    
+    for(int i = 0; i < 5; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+        CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+        TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"S" playerUserName:@"stone"];
+        [self.view addSubview:tvc];
+    }
+    
+    [self.boardCollectionView reloadData];
     
 }
 
@@ -71,9 +87,52 @@ int seconds;
         seconds = 59;
         minutes--;
     }
+    else if (!isGameOver) {
+        [self gameOver];
+    }
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
+-(void) gameOver {
+    isGameOver = YES;
+    NSString *alertMessage = @"";
+    
+    if ([self currentPlayerWon]) {
+        alertMessage = @"You Win!";
+    }
+    else {
+        alertMessage = @"You Lose.";
+    }
+    
+    //create an alert
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"GAME OVER"
+                                  message:alertMessage
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    //create ok action for alert
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    [alert addAction:ok]; // add action to uialertcontroller
+}
+
+-(BOOL) currentPlayerWon {
+    for (Player *player in self.players) {
+        if (currentPlayer.score < player.score) {
+            return NO;
+        }
+    }
+    return NO;
+}
 +(ViewController *)sharedViewController
 {
     if(vc == nil)
@@ -110,7 +169,7 @@ int seconds;
 - (NSMutableArray *)players {
     if (!_players) {
         _players = [[NSMutableArray alloc] init];
-        [_players addObject:[GameConstants getUserName]];
+        [_players addObject:currentPlayer];
     }
     return _players;
 }
@@ -261,6 +320,7 @@ int seconds;
 }
 
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
+    NSLog(@"%ld", (long)indexPath.item);
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
@@ -282,13 +342,14 @@ int seconds;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
         tile.isNotOnBoard = NO;
+        dto.tvc = tile;
         return NO;
     }
     return NO;
 }
 
 -(void) removeTile:(TileViewCell *)tile {
-    player.numberOfTiles--;
+    currentPlayer.numberOfTiles--;
     
     if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
@@ -297,6 +358,11 @@ int seconds;
     else {
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
+        dto.tvc = nil;
+        
+        //send removed tile update
+        NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
+        [NetworkUtils sendLetterRemoved:message];
     }
 }
 
@@ -342,8 +408,8 @@ int seconds;
             dispatch_queue_t mainQ = dispatch_get_main_queue();
             dispatch_async(mainQ, ^{
                 [self sendBoardInfo];
-                if (player.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-                    int num = STARTING_NUMBER_OF_TILES - player.numberOfTiles;
+                if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+                    int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
                     for (int i = 0; i < num; i++) {
                         [self addTile];
                     }
@@ -356,13 +422,13 @@ int seconds;
 }
 
 -(void) addTile {
-        NSLog(@"%d", player.numberOfTiles);
     TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue] playerID:[GameConstants getUserName]];
+        NSLog(@"%d", currentPlayer.numberOfTiles);
+    
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
-    NSLog(@"%d", player.numberOfTiles);
-    player.numberOfTiles++;
+    currentPlayer.numberOfTiles++;
 }
 
 -(void) sendBoardInfo {
@@ -426,8 +492,11 @@ int seconds;
 -(void) updateScores {
     NSString *scoresString = @"SCORES:\n";
     
-    for (NSString *playerID in self.players) {
-        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, [self calculateScoreForPlayer:playerID]];
+    for (Player *player in self.players) {
+        NSString *playerID = player.userName;
+        player.score = [self calculateScoreForPlayer:playerID];
+        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, player.score];
+        
     }
     _scores.text = scoresString;
 }
@@ -449,12 +518,20 @@ int seconds;
 ////////////////////
 
 -(void)addPlayer:(NSString *)playerUserName {
-    [self.players addObject:playerUserName];
+    Player *player = [[Player alloc] init];
+    player.userName = playerUserName;
+    [self.players addObject:player];
     [self updateScores];
 }
 
 -(void)updatePlayerList:(NSArray *)currentPlayers {
-    self.players = [currentPlayers mutableCopy];
+    self.players = [[NSMutableArray alloc] init];
+    for (NSString *playerName in currentPlayers) {
+        Player *newPlayer = [[Player alloc] init];
+        newPlayer.userName = playerName;
+        [self.players addObject:newPlayer];
+        
+    }
     [self updateScores];
 }
 
@@ -477,6 +554,7 @@ int seconds;
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:dto.playerUserName];
     [self.view addSubview:tvc];
+    dto.tvc = tvc;
 }
 
 -(void)finalizePendingEnemyTiles {
@@ -494,8 +572,18 @@ int seconds;
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = @"-";
     dto.playerUserName = @"";
+    
+    if(dto.tvc != nil){
+        [dto.tvc removeFromSuperview];
+    }
+    
     [self.boardCollectionView reloadData];
 }
+
+-(void)leaveGame{
+    [[WarpClient getInstance] disconnect];
+}
+
 
 ////////////////////
 // End Networking Calls

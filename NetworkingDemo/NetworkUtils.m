@@ -20,6 +20,7 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
+//String should just be index path item of letter removed
 +(void)sendLetterRemoved:(NSString *)update
 {
     [[WarpClient getInstance] sendChat:update];
