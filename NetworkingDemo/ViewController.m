@@ -139,6 +139,8 @@ BOOL isGameOver = NO;
         
     }
     
+    [self leaveGame];
+    
     
 }
 
