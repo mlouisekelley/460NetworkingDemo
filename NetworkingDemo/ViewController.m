@@ -26,9 +26,10 @@
 @implementation ViewController
 
 static ViewController *vc;
-Player *player;
+Player *currentPlayer;
 int minutes;
 int seconds;
+BOOL isGameOver = NO;
 
 - (void)viewDidLoad {
     
@@ -47,13 +48,14 @@ int seconds;
     self.tileCollectionView.delegate = self;
     
     vc = self;
-    player = [[Player alloc] init];
+    currentPlayer = [[Player alloc] init];
+    currentPlayer.userName = [GameConstants getUserName];
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(player.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
@@ -82,9 +84,52 @@ int seconds;
         seconds = 59;
         minutes--;
     }
+    else if (!isGameOver) {
+        [self gameOver];
+    }
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
+-(void) gameOver {
+    isGameOver = YES;
+    NSString *alertMessage = @"";
+    
+    if ([self currentPlayerWon]) {
+        alertMessage = @"You Win!";
+    }
+    else {
+        alertMessage = @"You Lose.";
+    }
+    
+    //create an alert
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"GAME OVER"
+                                  message:alertMessage
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    //create ok action for alert
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    [alert addAction:ok]; // add action to uialertcontroller
+}
+
+-(BOOL) currentPlayerWon {
+    for (Player *player in self.players) {
+        if (currentPlayer.score < player.score) {
+            return NO;
+        }
+    }
+    return NO;
+}
 +(ViewController *)sharedViewController
 {
     if(vc == nil)
@@ -121,7 +166,7 @@ int seconds;
 - (NSMutableArray *)players {
     if (!_players) {
         _players = [[NSMutableArray alloc] init];
-        [_players addObject:[GameConstants getUserName]];
+        [_players addObject:currentPlayer];
     }
     return _players;
 }
@@ -300,7 +345,7 @@ int seconds;
 
 -(void) removeTile:(TileViewCell *)tile {
     NSLog(@"REMOVE TILE WAS CALLED");
-    player.numberOfTiles--;
+    currentPlayer.numberOfTiles--;
     
     if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
@@ -359,8 +404,8 @@ int seconds;
             dispatch_queue_t mainQ = dispatch_get_main_queue();
             dispatch_async(mainQ, ^{
                 [self sendBoardInfo];
-                if (player.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-                    int num = STARTING_NUMBER_OF_TILES - player.numberOfTiles;
+                if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+                    int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
                     for (int i = 0; i < num; i++) {
                         [self addTile];
                     }
@@ -373,13 +418,13 @@ int seconds;
 }
 
 -(void) addTile {
-        NSLog(@"%d", player.numberOfTiles);
+        NSLog(@"%d", currentPlayer.numberOfTiles);
     TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue]];
+    
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
-    NSLog(@"%d", player.numberOfTiles);
-    player.numberOfTiles++;
+    currentPlayer.numberOfTiles++;
 }
 
 -(void) sendBoardInfo {
@@ -443,8 +488,11 @@ int seconds;
 -(void) updateScores {
     NSString *scoresString = @"SCORES:\n";
     
-    for (NSString *playerID in self.players) {
-        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, [self calculateScoreForPlayer:playerID]];
+    for (Player *player in self.players) {
+        NSString *playerID = player.userName;
+        player.score = [self calculateScoreForPlayer:playerID];
+        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, player.score];
+        
     }
     _scores.text = scoresString;
 }
@@ -466,12 +514,20 @@ int seconds;
 ////////////////////
 
 -(void)addPlayer:(NSString *)playerUserName {
-    [self.players addObject:playerUserName];
+    Player *player = [[Player alloc] init];
+    player.userName = playerUserName;
+    [self.players addObject:player];
     [self updateScores];
 }
 
 -(void)updatePlayerList:(NSArray *)currentPlayers {
-    self.players = [currentPlayers mutableCopy];
+    self.players = [[NSMutableArray alloc] init];
+    for (NSString *playerName in currentPlayers) {
+        Player *newPlayer = [[Player alloc] init];
+        newPlayer.userName = playerName;
+        [self.players addObject:newPlayer];
+        
+    }
     [self updateScores];
 }
 
