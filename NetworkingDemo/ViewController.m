@@ -109,25 +109,37 @@ BOOL isGameOver = NO;
         alertMessage = @"You Lose.";
     }
     
-    //create an alert
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"GAME OVER"
-                                  message:alertMessage
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    if (objc_getClass("UIAlertController") != nil){
+        
+        //create an alert
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"GAME OVER"
+                                      message:alertMessage
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        //create ok action for alert
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok]; // add action to uialertcontroller
+        
+    }
+    else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Board" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
     
-    [self presentViewController:alert animated:YES completion:nil];
     
-    //create ok action for alert
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    
-    [alert addAction:ok]; // add action to uialertcontroller
 }
 
 -(BOOL) currentPlayerWon {
@@ -206,26 +218,8 @@ BOOL isGameOver = NO;
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
         NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
        
-
-//        if ([text isEqualToString:@"-"]) {
-            text = @"";
-            cell.backgroundColor = [UIColor lightGrayColor];
-//        }
-//        else {
-//            cell.backgroundColor = [UIColor greenColor];
-//            cell.player = 1;
-//        }
-
-//        //check if this was an enemy played tile
-//        BoardCellDTO *dto =self.board[indexPath.row];
-//        if(dto.player == 2){
-//            cell.player = 1;
-//            if(dto.pending == 1){
-//                cell.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4];
-//            } else {
-//                cell.backgroundColor = [UIColor redColor];
-//            }
-//        }
+        text = @"";
+        cell.backgroundColor = [UIColor lightGrayColor];
         
         cell.layer.borderWidth=1.0f;
         
@@ -250,22 +244,7 @@ BOOL isGameOver = NO;
     if (text == nil || [text isEqualToString:@""] || dto.pending == 1) {
     }
     else {
-//        cell.textLabel.text = @"";
-//        cell.backgroundColor = [UIColor lightGrayColor];
-//        
-//        TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(someLocation.x -TILE_WIDTH/2, someLocation.y - TILE_WIDTH/2, TILE_WIDTH, TILE_WIDTH) letter:((BoardCellDTO *)self.board[indexPath.row]).text];
-//        [self.view addSubview:tile];
-//
-//        dto.text = @"-";
-//        dto.player = 0;
-//        [self.boardCollectionView reloadData];
-//        
-//        //update other players that letter was removed
-//        NSString* message = [NSString stringWithFormat:@"%ld", (long)indexPath.item];
-//        [NetworkUtils sendLetterRemoved:message];
-//        
-//        [tile touchesBegan:[[NSSet alloc] initWithObjects:touch, nil] withEvent:nil];
-//        player.numberOfTiles++;
+        
     }
     
 }
