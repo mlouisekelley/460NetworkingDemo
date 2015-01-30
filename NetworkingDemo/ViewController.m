@@ -593,6 +593,7 @@ BOOL isGameOver = NO;
         [dto.tvc removeFromSuperview];
     }
     
+    dto.tvc = nil;
     [self.boardCollectionView reloadData];
 }
 
