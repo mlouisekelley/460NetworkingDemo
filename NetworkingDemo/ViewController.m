@@ -60,19 +60,22 @@ BOOL isGameOver = NO;
         [self addTile];
     }
     
-    
+    [self placeStartingWord];
     [self updateScores];
     
 }
 
 -(void)placeStartingWord{
     
-    /* 
-     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
-    CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-    TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"s" playerUserName:dto.playerUserName];
-    [self.view addSubview:tvc];
-     */
+    for(int i = 0; i < 5; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+        CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+        TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"S" playerUserName:@"stone"];
+        [self.view addSubview:tvc];
+    }
+    
+    [self.boardCollectionView reloadData];
     
 }
 
@@ -317,6 +320,7 @@ BOOL isGameOver = NO;
 }
 
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
+    NSLog(@"%ld", indexPath.item);
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if ([currentBoardLetter isEqualToString:@"-"]) {
@@ -338,13 +342,13 @@ BOOL isGameOver = NO;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
         tile.isNotOnBoard = NO;
+        dto.tvc = tile;
         return NO;
     }
     return NO;
 }
 
 -(void) removeTile:(TileViewCell *)tile {
-    NSLog(@"REMOVE TILE WAS CALLED");
     currentPlayer.numberOfTiles--;
     
     if (tile.isNotOnBoard) {
@@ -354,10 +358,10 @@ BOOL isGameOver = NO;
     else {
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
+        dto.tvc = nil;
         
         //send removed tile update
         NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
-        NSLog(@"MOVED!!!!");
         [NetworkUtils sendLetterRemoved:message];
     }
 }
@@ -550,6 +554,7 @@ BOOL isGameOver = NO;
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:dto.playerUserName];
     [self.view addSubview:tvc];
+    dto.tvc = tvc;
 }
 
 -(void)finalizePendingEnemyTiles {
@@ -567,6 +572,11 @@ BOOL isGameOver = NO;
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = @"-";
     dto.playerUserName = @"";
+    
+    if(dto.tvc != nil){
+        [dto.tvc removeFromSuperview];
+    }
+    
     [self.boardCollectionView reloadData];
 }
 
