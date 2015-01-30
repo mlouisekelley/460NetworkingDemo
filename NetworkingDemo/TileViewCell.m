@@ -16,6 +16,7 @@
 CGPoint offset;
 ViewController *superview;
 NSString *pid;
+
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID{
     if (self = [super initWithFrame:frame]) {
         if ([playerID isEqualToString:[GameConstants getUserName]]) {
@@ -32,16 +33,18 @@ NSString *pid;
     }
     return self;
 }
+
 -(id)initWithFrame:(CGRect)frame {
     _isNotOnBoard = YES;
     return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerUserName:@""];
 }
+
 -(void)awakeFromNib {
     [super awakeFromNib];
     _letterLabel.text = [self getRandomUppercaseLetter];
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     UITouch *aTouch = [touches anyObject];
     offset = [aTouch locationInView: self];
@@ -63,6 +66,7 @@ NSString *pid;
     
     [[self superVC] tileDidMove:self];
 }
+
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
@@ -84,6 +88,7 @@ NSString *pid;
     str = [str stringByAppendingFormat:@"%C", [letters characterAtIndex: arc4random() % [letters length]]];
     return str;
 }
+
 -(ViewController *)superVC {
     if (superview == nil) {
         UIResponder* nextResponder = [self.superview nextResponder];
@@ -95,4 +100,5 @@ NSString *pid;
     }
     return superview;
 }
+
 @end

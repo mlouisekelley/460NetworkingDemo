@@ -63,6 +63,17 @@ int seconds;
     
 }
 
+-(void)placeStartingWord{
+    
+    /* 
+     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+    CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"s" playerUserName:dto.playerUserName];
+    [self.view addSubview:tvc];
+     */
+    
+}
+
 - (void)updateCounter:(NSTimer *)theTimer {
     if (seconds > 0) {
         seconds--;
@@ -288,6 +299,7 @@ int seconds;
 }
 
 -(void) removeTile:(TileViewCell *)tile {
+    NSLog(@"REMOVE TILE WAS CALLED");
     player.numberOfTiles--;
     
     if (tile.isNotOnBoard) {
@@ -297,6 +309,11 @@ int seconds;
     else {
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
+        
+        //send removed tile update
+        NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
+        NSLog(@"MOVED!!!!");
+        [NetworkUtils sendLetterRemoved:message];
     }
 }
 
@@ -496,6 +513,11 @@ int seconds;
     dto.playerUserName = @"";
     [self.boardCollectionView reloadData];
 }
+
+-(void)leaveGame{
+    [[WarpClient getInstance] disconnect];
+}
+
 
 ////////////////////
 // End Networking Calls
