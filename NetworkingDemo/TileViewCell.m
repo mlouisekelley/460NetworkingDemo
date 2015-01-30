@@ -22,7 +22,7 @@ NSString *pid;
             [self setBackgroundColor:[UIColor orangeColor]];
         }
         else {
-            [self setBackgroundColor:[UIColor redColor]];
+            [self setBackgroundColor:[UIColor blueColor]];
         }
         self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 12, 42, 21)];
         self.letterLabel.text = letter;
@@ -32,9 +32,9 @@ NSString *pid;
     }
     return self;
 }
--(id)initWithFrame:(CGRect)frame {
+-(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID {
     _isNotOnBoard = YES;
-    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerUserName:@""];
+    return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerUserName:playerID];
 }
 -(void)awakeFromNib {
     [super awakeFromNib];

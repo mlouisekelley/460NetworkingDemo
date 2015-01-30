@@ -17,4 +17,5 @@
 @property (nonatomic) NSIndexPath *indexPath;
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
+-(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
 @end

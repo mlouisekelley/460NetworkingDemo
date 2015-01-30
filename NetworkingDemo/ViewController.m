@@ -209,7 +209,7 @@ int seconds;
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    BoardCellDTO *cellDTO = (BoardCellDTO *)self.board[indexPath.item];
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
     if (collectionView.tag == 1) {
         UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
@@ -217,7 +217,7 @@ int seconds;
             
         }
         else {
-            TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(collectionView.frame.origin.x + cell.frame.origin.x, collectionView.frame.origin.y + cell.frame.origin.y, TILE_WIDTH, TILE_WIDTH)];
+            TileViewCell *tile = [[TileViewCell alloc] initWithFrame:CGRectMake(collectionView.frame.origin.x + cell.frame.origin.x, collectionView.frame.origin.y + cell.frame.origin.y, TILE_WIDTH, TILE_WIDTH) playerID:cellDTO.playerUserName];
             [self.view addSubview:tile];
             [self.view bringSubviewToFront:tile];
             ((BoardCellDTO *)self.board[indexPath.item]).text = @"-";
@@ -357,7 +357,7 @@ int seconds;
 
 -(void) addTile {
         NSLog(@"%d", player.numberOfTiles);
-    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue]];
+    TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue] playerID:[GameConstants getUserName]];
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
