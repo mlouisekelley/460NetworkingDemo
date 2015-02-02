@@ -114,6 +114,13 @@ int TILE_WIDTH = 44;
     }
     _selectedTile = nil;
 }
+- (IBAction)togglePlayStyle:(id)sender {
+    if(_touchToPlay){
+        _touchToPlay = false;
+    } else {
+        _touchToPlay = true;
+    }
+}
 
 //end
 
