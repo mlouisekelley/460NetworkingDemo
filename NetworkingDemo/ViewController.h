@@ -24,7 +24,7 @@
 - (IBAction)touchUpSubmit:(id)sender;
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
 -(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath;
--(void)finalizePendingEnemyTiles;
+-(void)finalizePendingEnemyTilesForPlayer:(NSString *)player;
 -(void)addPlayer:(NSString *)playerUserName;
 -(void)updatePlayerList:(NSArray *)currentPlayers;
 @end

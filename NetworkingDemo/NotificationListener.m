@@ -54,7 +54,7 @@
         //letter removed
         if(message.count == 1){
             if([message[0] isEqualToString:@"wp"]){
-                [[ViewController sharedViewController] finalizePendingEnemyTiles];
+                [[ViewController sharedViewController] finalizePendingEnemyTilesForPlayer:chatEvent.sender];
                 return;
             }
             [[ViewController sharedViewController]removeEnemyLetterAtIndexPath:indexPath];

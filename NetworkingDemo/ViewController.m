@@ -21,6 +21,7 @@
 @property (nonatomic) NSInteger selectedIndex;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *players;
+@property (strong, nonatomic) NSMutableDictionary *playerScores;
 @end
 
 @implementation ViewController
@@ -61,8 +62,15 @@ BOOL isGameOver = NO;
     }
     
     //[self placeStartingWord];
-    [self updateScores];
+    [self refreshScoresText];
     
+}
+
+- (NSMutableDictionary *)playerScores {
+    if (!_playerScores) {
+        _playerScores = [[NSMutableDictionary alloc] init];
+    }
+    return _playerScores;
 }
 
 -(void)placeStartingWord{
@@ -412,7 +420,7 @@ BOOL isGameOver = NO;
                         [self addTile];
                     }
                 }
-                [self finalizePendingEnemyTiles];
+                [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
                 //[self updateScores];
                 [NetworkUtils sendWordPlayed];
             });
@@ -488,29 +496,40 @@ BOOL isGameOver = NO;
     return sqrt(pow(view.center.x - otherView.center.x - _boardCollectionView.frame.origin.x, 2) + pow(view.center.y - otherView.center.y - _boardCollectionView.frame.origin.y, 2));
 }
 
--(void) updateScores {
-    NSString *scoresString = @"SCORES:\n";
-    
-    for (Player *player in self.players) {
-        NSString *playerID = player.userName;
-        player.score = [self calculateScoreForPlayer:playerID];
-        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, player.score];
-        
-    }
-    _scores.text = scoresString;
-}
-
--(int) calculateScoreForPlayer:(NSString *)playerUserName {
-    int playerScore = 0;
+-(void) updateScoresForPlayer:(NSString *)player {
+    int pointsEarned = 0;
     for (int i = 0; i < [self.board count]; i++) {
-        BoardCellDTO *cell = [self.board objectAtIndex:i];
-        if ([cell.playerUserName isEqualToString:playerUserName]) {
-            playerScore++;
+        BoardCellDTO *cellDTO = self.board[i];
+        if(cellDTO.pending == 1){
+            pointsEarned++;
         }
     }
-    
-    return playerScore;
+    NSNumber *oldScore = [self.playerScores valueForKey:player];
+    int newScore = pointsEarned + [oldScore intValue];
+    [self.playerScores setValue:[NSNumber numberWithInt:newScore] forKey:player];
+    [self refreshScoresText];
 }
+
+-(void) refreshScoresText {
+    NSString *scoresString = @"SCORES:\n";
+    for (NSString *playerName in self.playerScores.allKeys) {
+        NSNumber *num = [self.playerScores valueForKey:playerName];
+        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
+    }
+    self.scores.text = scoresString;
+}
+
+//-(int) calculateScoreForPlayer:(NSString *)playerUserName {
+//    int playerScore = 0;
+//    for (int i = 0; i < [self.board count]; i++) {
+//        BoardCellDTO *cell = [self.board objectAtIndex:i];
+//        if ([cell.playerUserName isEqualToString:playerUserName]) {
+//            playerScore++;
+//        }
+//    }
+//    
+//    return playerScore;
+//}
 
 ////////////////////
 // Begin Networking Calls
@@ -520,7 +539,8 @@ BOOL isGameOver = NO;
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
     [self.players addObject:player];
-    [self updateScores];
+    [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
+    [self refreshScoresText];
 }
 
 -(void)updatePlayerList:(NSArray *)currentPlayers {
@@ -529,9 +549,9 @@ BOOL isGameOver = NO;
         Player *newPlayer = [[Player alloc] init];
         newPlayer.userName = playerName;
         [self.players addObject:newPlayer];
-        
+        [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerName];
     }
-    [self updateScores];
+    [self refreshScoresText];
 }
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
@@ -552,7 +572,8 @@ BOOL isGameOver = NO;
     dto.tvc = tvc;
 }
 
--(void)finalizePendingEnemyTiles {
+-(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
+    [self updateScoresForPlayer:player];
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         if(cellDTO.pending == 1){
@@ -560,7 +581,6 @@ BOOL isGameOver = NO;
             [cellDTO.tvc makeFinalized];
         }
     }
-    [self updateScores];
     [self.boardCollectionView reloadData];
 }
 
