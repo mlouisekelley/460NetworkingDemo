@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -68,7 +68,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ecd-Kc-MI2">
                                 <rect key="frame" x="520" y="516" width="64" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Toss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zic-Rt-8WY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Toss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zic-Rt-8WY">
                                         <rect key="frame" x="15" y="21" width="35" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -144,12 +144,24 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcI-Ye-S9P">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcI-Ye-S9P">
                                 <rect key="frame" x="440" y="537" width="72" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPs-dh-7hS">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Toggle">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="516" width="46" height="27"/>
+                                </variation>
+                                <connections>
+                                    <action selector="togglePlayStyle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uCW-M8-svp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -174,6 +186,9 @@
                             <constraint firstItem="GBG-WR-4Rf" firstAttribute="top" secondItem="Mbl-rH-m8c" secondAttribute="bottom" constant="8" symbolic="YES" id="uVj-At-NWu"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="FPs-dh-7hS"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="9Rb-aC-UPC"/>
                                 <exclude reference="lLN-X6-6KY"/>
@@ -183,11 +198,16 @@
                                 <exclude reference="V2i-Bc-WoS"/>
                                 <exclude reference="aMb-Xk-4ZS"/>
                                 <exclude reference="keZ-fB-0HO"/>
+                                <exclude reference="RPG-8M-bCJ"/>
+                                <exclude reference="pDb-48-dua"/>
                                 <exclude reference="bGb-Wu-BaJ"/>
                                 <exclude reference="gco-Ox-tUk"/>
                                 <exclude reference="nqd-jv-8AP"/>
-                                <exclude reference="RPG-8M-bCJ"/>
-                                <exclude reference="pDb-48-dua"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="FPs-dh-7hS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -206,11 +226,11 @@
                                 <include reference="V2i-Bc-WoS"/>
                                 <include reference="aMb-Xk-4ZS"/>
                                 <include reference="keZ-fB-0HO"/>
+                                <include reference="RPG-8M-bCJ"/>
+                                <include reference="pDb-48-dua"/>
                                 <include reference="bGb-Wu-BaJ"/>
                                 <include reference="gco-Ox-tUk"/>
                                 <include reference="nqd-jv-8AP"/>
-                                <include reference="RPG-8M-bCJ"/>
-                                <include reference="pDb-48-dua"/>
                             </mask>
                         </variation>
                     </view>
@@ -223,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.5" y="382.5"/>
+            <point key="canvasLocation" x="448" y="382.5"/>
         </scene>
     </scenes>
 </document>
