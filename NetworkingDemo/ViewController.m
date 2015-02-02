@@ -32,7 +32,8 @@ Player *currentPlayer;
 int minutes;
 int seconds;
 BOOL isGameOver = NO;
-int TILE_WIDTH = 44;
+int TILE_WIDTH;
+int TILE_HEIGHT;
 
 - (void)viewDidLoad {
     
@@ -52,6 +53,9 @@ int TILE_WIDTH = 44;
     self.tileCollectionView.dataSource = self;
     self.tileCollectionView.delegate = self;
     
+    TILE_WIDTH = self.boardCollectionView.frame.size.width/8;
+    TILE_HEIGHT = self.boardCollectionView.frame.size.height/6;
+    
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
@@ -62,7 +66,7 @@ int TILE_WIDTH = 44;
     //[self initializeBoardSize];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.frame.size.height * 10.0/6, TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
@@ -338,18 +342,10 @@ int TILE_WIDTH = 44;
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (collectionView.tag == 1) {
-        int width = self.boardCollectionView.frame.size.width/10;
-        int height = self.boardCollectionView.frame.size.height/10;
-        return CGSizeMake(width, height);
-    }
-    if (collectionView.tag == 2) {
-        int width = (self.tileCollectionView.frame.size.width/8) - 20;
-        int height = self.tileCollectionView.frame.size.height - 20;
-        return CGSizeMake(width, height);
-    }
-    return CGSizeMake(10, 10);
+//    
+//    int width = self.boardCollectionView.frame.size.width/10;
+//    int height = self.boardCollectionView.frame.size.height/10;
+    return CGSizeMake(TILE_WIDTH, TILE_HEIGHT);
 }
 
 // 3
