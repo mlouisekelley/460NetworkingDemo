@@ -643,6 +643,12 @@ int TILE_WIDTH = 44;
 
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
     [self updateScoresForPlayer:player];
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+        int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+        for (int i = 0; i < num; i++) {
+            [self addTile];
+        }
+    }
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         if(cellDTO.pending == 1){
