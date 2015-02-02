@@ -35,7 +35,7 @@ int TILE_WIDTH = 44;
 
 - (void)viewDidLoad {
     
-    _touchToPlay = false;
+    _touchToPlay = true;
     
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
@@ -85,6 +85,8 @@ int TILE_WIDTH = 44;
     return (to % 2 == 0) ? to : (to + 1);
 }
 
+// Methods For Touch and Tap Type of Playing Tiles
+
 -(BOOL)tileIsSelected {
     if(!_selectedTile){
         return false;
@@ -104,6 +106,8 @@ int TILE_WIDTH = 44;
     }
     _selectedTile = nil;
 }
+
+//end
 
 -(void)placeStartingWord{
     
@@ -297,6 +301,16 @@ int TILE_WIDTH = 44;
         
     }
     
+}
+
+-(void)tossWasTouched:(UITouch *)touch {
+    if(_touchToPlay){
+        if([self tileIsSelected]){
+            TileViewCell *tile = _selectedTile;
+            [self clearSelectedTile];
+            [self tossTile:tile];
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
