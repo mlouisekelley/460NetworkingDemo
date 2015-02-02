@@ -30,6 +30,9 @@ NSString *pid;
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
         pid = playerID;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        tapGesture.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tapGesture];
     }
     return self;
 }
@@ -42,6 +45,9 @@ NSString *pid;
 -(void)awakeFromNib {
     [super awakeFromNib];
     _letterLabel.text = [self getRandomUppercaseLetter];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:tapGesture];
 }
 
 -(void) makePending {
@@ -56,6 +62,14 @@ NSString *pid;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if([[self superVC] touchToPlay]){
+        if([[self superVC] tileIsSelected]){
+            [[self superVC] clearSelectedTile];
+        }
+        [self makePending];
+        [[self superVC] setSelectedTile:self];
+    }
+    
     if (!_isPending) {
         [super touchesBegan:touches withEvent:event];
         UITouch *aTouch = [touches anyObject];
@@ -97,6 +111,12 @@ NSString *pid;
             }];
             
         }
+    }
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [[self superVC] takeTile:self];
     }
 }
 

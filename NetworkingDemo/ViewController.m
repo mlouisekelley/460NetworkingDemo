@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
+@property (strong, nonatomic) TileViewCell *selectedTile;
 @end
 
 @implementation ViewController
@@ -31,8 +32,11 @@ Player *currentPlayer;
 int minutes;
 int seconds;
 BOOL isGameOver = NO;
+int TILE_WIDTH = 44;
 
 - (void)viewDidLoad {
+    
+    _touchToPlay = false;
     
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
@@ -54,6 +58,8 @@ BOOL isGameOver = NO;
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    
+    //[self initializeBoardSize];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
@@ -71,6 +77,40 @@ BOOL isGameOver = NO;
         _playerScores = [[NSMutableDictionary alloc] init];
     }
     return _playerScores;
+}
+
+-(void)initializeBoardSize {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    //CGFloat screenHeight = screenRect.size.height;
+    
+    TILE_WIDTH = [self nearestEvenInt:(screenWidth - 50) / 10];
+    
+}
+
+-(int) nearestEvenInt:(int) to
+{
+    return (to % 2 == 0) ? to : (to + 1);
+}
+
+-(BOOL)tileIsSelected {
+    if(!_selectedTile){
+        return false;
+    }
+    return true;
+}
+
+-(void)setSelectedTile:(TileViewCell *)tile
+{
+    _selectedTile = tile;
+}
+
+-(void)clearSelectedTile
+{
+    if(_selectedTile){
+        [_selectedTile makeFinalized];
+    }
+    _selectedTile = nil;
 }
 
 -(void)placeStartingWord{
@@ -158,7 +198,7 @@ BOOL isGameOver = NO;
             return NO;
         }
     }
-    return NO;
+    return YES;
 }
 +(ViewController *)sharedViewController
 {
@@ -251,6 +291,14 @@ BOOL isGameOver = NO;
     NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
     BoardCellDTO *dto =self.board[indexPath.row];
     
+    if(_touchToPlay){
+        if([self tileIsSelected]){
+            [self playTile:_selectedTile atIndexPath:indexPath onCell:cell];
+            [_selectedTile makeFinalized];
+            _selectedTile = nil;
+        }
+    }
+    
     if (text == nil || [text isEqualToString:@""] || dto.pending == 1) {
     }
     else {
@@ -312,7 +360,24 @@ BOOL isGameOver = NO;
     }
     else return UIEdgeInsetsMake(10, 10, 10, 10);
 }
-
+-(void) takeTile:(UIView *)tile {
+    TileViewCell *theTile = ((TileViewCell *)tile);
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES && !theTile.isPending) {
+        [UIView animateWithDuration:0.1 animations:^{
+            tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
+        }];
+        
+        
+        [_tileSpaces removeObjectAtIndex:0];
+        currentPlayer.numberOfTiles++;
+        BoardCellDTO *dto = self.board[theTile.indexPath.item];
+        dto.text = @"-";
+        dto.playerUserName = @"";
+        theTile.isNotOnBoard = YES;
+        theTile.startPoint = tile.frame.origin;
+        theTile.isNotOnBoard = YES;
+    }
+}
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
     NSLog(@"%ld", (long)indexPath.item);
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
@@ -354,6 +419,7 @@ BOOL isGameOver = NO;
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
         dto.tvc = nil;
+        dto.playerUserName = @"";
         
         //send removed tile update
         NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
@@ -450,9 +516,12 @@ BOOL isGameOver = NO;
         closestCell.tag = 1;
         return [self playTile:tileCell atIndexPath:[_boardCollectionView indexPathForCell:closestCell] onCell:closestCell];
     }
-    if ([self isThrowingAway:tileCell]) {
+    else if ([self isThrowingAway:tileCell]) {
         [self tossTile:tileCell];
         return YES;
+    }
+    else {
+        [self takeTile:tileCell];
     }
     return NO;
 }

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIView *tossView;
+@property (nonatomic) BOOL touchToPlay;
 
 +(ViewController *)sharedViewController;
 -(void)tileDidMove:(UIView *)tile;
@@ -27,5 +28,9 @@
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player;
 -(void)addPlayer:(NSString *)playerUserName;
 -(void)updatePlayerList:(NSArray *)currentPlayers;
+-(BOOL)tileIsSelected;
+-(void)setSelectedTile:(TileViewCell *)tile;
+-(void)clearSelectedTile;
+-(void)takeTile:(UIView *)tile;
 @end
 
