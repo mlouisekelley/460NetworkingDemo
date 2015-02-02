@@ -50,7 +50,7 @@ NSString *pid;
 }
 
 -(void) makeFinalized {
-    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1]];
+    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
     _isPending = NO;
 }
 

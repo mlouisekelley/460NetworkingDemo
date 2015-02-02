@@ -319,6 +319,7 @@ BOOL isGameOver = NO;
         BoardCellDTO *dto = self.board[indexPath.item];
         dto.text = currentSelectedLetter;
         dto.playerUserName = [GameConstants getUserName];
+        dto.pending = 1;
         [self.boardCollectionView reloadData];
         
         [self removeTile:tile];
@@ -328,6 +329,7 @@ BOOL isGameOver = NO;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
         tile.isNotOnBoard = NO;
+        [tile makePending];
         dto.tvc = tile;
         return NO;
     }
@@ -410,7 +412,8 @@ BOOL isGameOver = NO;
                         [self addTile];
                     }
                 }
-                [self updateScores];
+                [self finalizePendingEnemyTiles];
+                //[self updateScores];
                 [NetworkUtils sendWordPlayed];
             });
         }
