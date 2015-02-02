@@ -22,6 +22,7 @@
 -(void)tileDidMove:(UIView *)tile;
 -(BOOL) tileDidFinishMoving:(UIView *)tile;
 -(void)boardWasTouched:(UITouch *)touch;
+-(void)tossWasTouched:(UITouch *)touch;
 - (IBAction)touchUpSubmit:(id)sender;
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
 -(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath;

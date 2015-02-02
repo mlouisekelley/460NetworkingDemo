@@ -32,12 +32,11 @@ Player *currentPlayer;
 int minutes;
 int seconds;
 BOOL isGameOver = NO;
-int TILE_WIDTH;
-int TILE_HEIGHT;
+int TILE_WIDTH = 44;
 
 - (void)viewDidLoad {
     
-    _touchToPlay = false;
+    _touchToPlay = true;
     
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
@@ -53,20 +52,15 @@ int TILE_HEIGHT;
     self.tileCollectionView.dataSource = self;
     self.tileCollectionView.delegate = self;
     
-    TILE_WIDTH = self.boardCollectionView.frame.size.width/8;
-    TILE_HEIGHT = self.boardCollectionView.frame.size.height/6;
-    
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
-    
-    //[self initializeBoardSize];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.frame.size.height * 10.0/6, TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
@@ -83,19 +77,7 @@ int TILE_HEIGHT;
     return _playerScores;
 }
 
--(void)initializeBoardSize {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    //CGFloat screenHeight = screenRect.size.height;
-    
-    TILE_WIDTH = [self nearestEvenInt:(screenWidth - 50) / 10];
-    
-}
-
--(int) nearestEvenInt:(int) to
-{
-    return (to % 2 == 0) ? to : (to + 1);
-}
+// Methods For Touch and Tap Type of Playing Tiles
 
 -(BOOL)tileIsSelected {
     if(!_selectedTile){
@@ -116,6 +98,19 @@ int TILE_HEIGHT;
     }
     _selectedTile = nil;
 }
+- (IBAction)togglePlayStyle:(id)sender {
+    if(_touchToPlay){
+        _touchToPlay = false;
+    } else {
+        _touchToPlay = true;
+    }
+    
+    if(_selectedTile){
+        [_selectedTile makeUnselected];
+    }
+}
+
+//end
 
 -(void)placeStartingWord{
     
@@ -298,7 +293,7 @@ int TILE_HEIGHT;
     if(_touchToPlay){
         if([self tileIsSelected]){
             [self playTile:_selectedTile atIndexPath:indexPath onCell:cell];
-            [_selectedTile makeFinalized];
+            [_selectedTile makeUnselected];
             _selectedTile = nil;
         }
     }
@@ -309,6 +304,16 @@ int TILE_HEIGHT;
         
     }
     
+}
+
+-(void)tossWasTouched:(UITouch *)touch {
+    if(_touchToPlay){
+        if([self tileIsSelected]){
+            TileViewCell *tile = _selectedTile;
+            [self clearSelectedTile];
+            [self tossTile:tile];
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -342,10 +347,21 @@ int TILE_HEIGHT;
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    int width = self.boardCollectionView.frame.size.width/10;
-//    int height = self.boardCollectionView.frame.size.height/10;
-    return CGSizeMake(TILE_WIDTH, TILE_HEIGHT);
+    
+    //CGRect screenRect = [[UIScreen mainScreen] bounds];
+    //CGFloat screenWidth = screenRect.size.width;
+    //CGFloat screenHeight = screenRect.size.height;
+    if (collectionView.tag == 1) {
+        int width = self.boardCollectionView.frame.size.width/10;
+        int height = self.boardCollectionView.frame.size.height/10;
+        return CGSizeMake(width, height);
+    }
+    if (collectionView.tag == 2) {
+        int width = (self.tileCollectionView.frame.size.width/8) - 20;
+        int height = self.tileCollectionView.frame.size.height - 20;
+        return CGSizeMake(width, height);
+    }
+    return CGSizeMake(10, 10);
 }
 
 // 3
