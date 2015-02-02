@@ -69,10 +69,6 @@ int TILE_WIDTH = 44;
     //[self placeStartingWord];
     [self updateScores];
     
-//    float X_Co = self.view.frame.size.width - yourButtonWidth;
-//    float Y_Co = self.view.frame.size.height - yourButtonheight;
-//    [button setFrame:CGRectMake(X_Co, Y_Co, yourButtonWidth, yourButtonheight)];
-    
 }
 
 -(void)initializeBoardSize {
