@@ -56,6 +56,14 @@ NSString *pid;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if([[self superVC] touchToPlay]){
+        if([[self superVC] tileIsSelected]){
+            [[self superVC] clearSelectedTile];
+        }
+        [self makePending];
+        [[self superVC] setSelectedTile:self];
+    }
+    
     if (!_isPending) {
         [super touchesBegan:touches withEvent:event];
         UITouch *aTouch = [touches anyObject];

@@ -21,6 +21,7 @@
 @property (nonatomic) NSInteger selectedIndex;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *players;
+@property (strong, nonatomic) TileViewCell *selectedTile;
 @end
 
 @implementation ViewController
@@ -30,8 +31,11 @@ Player *currentPlayer;
 int minutes;
 int seconds;
 BOOL isGameOver = NO;
+int TILE_WIDTH = 44;
 
 - (void)viewDidLoad {
+    
+    _touchToPlay = false;
     
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
@@ -53,6 +57,8 @@ BOOL isGameOver = NO;
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    
+    //[self initializeBoardSize];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
@@ -63,6 +69,44 @@ BOOL isGameOver = NO;
     //[self placeStartingWord];
     [self updateScores];
     
+//    float X_Co = self.view.frame.size.width - yourButtonWidth;
+//    float Y_Co = self.view.frame.size.height - yourButtonheight;
+//    [button setFrame:CGRectMake(X_Co, Y_Co, yourButtonWidth, yourButtonheight)];
+    
+}
+
+-(void)initializeBoardSize {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    //CGFloat screenHeight = screenRect.size.height;
+    
+    TILE_WIDTH = [self nearestEvenInt:(screenWidth - 50) / 10];
+    
+}
+
+-(int) nearestEvenInt:(int) to
+{
+    return (to % 2 == 0) ? to : (to + 1);
+}
+
+-(BOOL)tileIsSelected {
+    if(!_selectedTile){
+        return false;
+    }
+    return true;
+}
+
+-(void)setSelectedTile:(TileViewCell *)tile
+{
+    _selectedTile = tile;
+}
+
+-(void)clearSelectedTile
+{
+    if(_selectedTile){
+        [_selectedTile makeFinalized];
+    }
+    _selectedTile = nil;
 }
 
 -(void)placeStartingWord{
@@ -150,7 +194,7 @@ BOOL isGameOver = NO;
             return NO;
         }
     }
-    return NO;
+    return YES;
 }
 +(ViewController *)sharedViewController
 {
@@ -242,6 +286,14 @@ BOOL isGameOver = NO;
     
     NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
     BoardCellDTO *dto =self.board[indexPath.row];
+    
+    if(_touchToPlay){
+        if([self tileIsSelected]){
+            [self playTile:_selectedTile atIndexPath:indexPath onCell:cell];
+            [_selectedTile makeFinalized];
+            _selectedTile = nil;
+        }
+    }
     
     if (text == nil || [text isEqualToString:@""] || dto.pending == 1) {
     }
