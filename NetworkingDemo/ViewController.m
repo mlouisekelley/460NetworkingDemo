@@ -58,8 +58,6 @@ int TILE_WIDTH = 44;
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
-    
-    //[self initializeBoardSize];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(currentPlayer.numberOfTiles * TILE_WIDTH * 2 + self.boardCollectionView.frame.origin.x, 560, TILE_WIDTH, TILE_WIDTH);
@@ -77,20 +75,6 @@ int TILE_WIDTH = 44;
         _playerScores = [[NSMutableDictionary alloc] init];
     }
     return _playerScores;
-}
-
--(void)initializeBoardSize {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    //CGFloat screenHeight = screenRect.size.height;
-    
-    TILE_WIDTH = [self nearestEvenInt:(screenWidth - 50) / 10];
-    
-}
-
--(int) nearestEvenInt:(int) to
-{
-    return (to % 2 == 0) ? to : (to + 1);
 }
 
 // Methods For Touch and Tap Type of Playing Tiles
@@ -359,6 +343,10 @@ int TILE_WIDTH = 44;
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //CGRect screenRect = [[UIScreen mainScreen] bounds];
+    //CGFloat screenWidth = screenRect.size.width;
+    //CGFloat screenHeight = screenRect.size.height;
     
     if (collectionView.tag == 1) {
         int width = self.boardCollectionView.frame.size.width/10;
