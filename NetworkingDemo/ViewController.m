@@ -335,10 +335,9 @@ BOOL isGameOver = NO;
 }
 
 -(void) removeTile:(TileViewCell *)tile {
-    currentPlayer.numberOfTiles--;
-    
     if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+        currentPlayer.numberOfTiles--;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
     }
     else {
@@ -537,11 +536,6 @@ BOOL isGameOver = NO;
     [self placeEnemyLetter:letter atIndexPath:indexPath forEnemy:(NSString *)enemyID];
 }
 
--(void)placeEnemyFinializedLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
-    ((BoardCellDTO *)self.board[indexPath.item]).pending = 0;
-    [self placeEnemyLetter:letter atIndexPath:indexPath forEnemy:enemyID];
-}
-
 -(void)placeEnemyLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.text = letter;
@@ -550,6 +544,7 @@ BOOL isGameOver = NO;
     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:dto.playerUserName];
+    [tvc makePending];
     [self.view addSubview:tvc];
     dto.tvc = tvc;
 }
@@ -559,6 +554,7 @@ BOOL isGameOver = NO;
         BoardCellDTO *cellDTO = self.board[i];
         if(cellDTO.pending == 1){
             cellDTO.pending = 0;
+            [cellDTO.tvc makeFinalized];
         }
     }
     [self updateScores];

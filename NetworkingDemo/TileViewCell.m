@@ -48,6 +48,12 @@ NSString *pid;
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
     _isPending = YES;
 }
+
+-(void) makeFinalized {
+    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1]];
+    _isPending = NO;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (!_isPending) {
