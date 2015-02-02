@@ -333,10 +333,9 @@ BOOL isGameOver = NO;
 }
 
 -(void) removeTile:(TileViewCell *)tile {
-    currentPlayer.numberOfTiles--;
-    
     if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
+        currentPlayer.numberOfTiles--;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
     }
     else {
