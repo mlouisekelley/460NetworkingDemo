@@ -60,17 +60,27 @@ NSString *pid;
     _isPending = NO;
 }
 
+-(void) makeSelected {
+    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
+    _isSelected = YES;
+}
+
+-(void) makeUnselected {
+    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1.0]];
+    _isSelected = NO;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if([[self superVC] touchToPlay]){
         if([[self superVC] tileIsSelected]){
             [[self superVC] clearSelectedTile];
         }
-        [self makePending];
+        [self makeSelected];
         [[self superVC] setSelectedTile:self];
     }
     
-    if (!_isPending) {
+    if (!_isPending && !_isSelected) {
         [super touchesBegan:touches withEvent:event];
         UITouch *aTouch = [touches anyObject];
         offset = [aTouch locationInView: self];
@@ -84,7 +94,7 @@ NSString *pid;
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending) {
+    if (!_isPending && !_isSelected) {
         UITouch *aTouch = [touches anyObject];
         CGPoint location = [aTouch locationInView:self.superview];
         
@@ -98,7 +108,7 @@ NSString *pid;
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending) {
+    if (!_isPending && !_isSelected) {
 
         BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
         

@@ -16,8 +16,11 @@
 @property (nonatomic) BOOL isNotOnBoard;
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) BOOL isPending;
+@property (nonatomic) BOOL isSelected;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
 -(void) makePending;
 -(void) makeFinalized;
+-(void) makeSelected;
+-(void) makeUnselected;
 @end

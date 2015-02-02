@@ -104,6 +104,10 @@ int TILE_WIDTH = 44;
     } else {
         _touchToPlay = true;
     }
+    
+    if(_selectedTile){
+        [_selectedTile makeUnselected];
+    }
 }
 
 //end
@@ -289,7 +293,7 @@ int TILE_WIDTH = 44;
     if(_touchToPlay){
         if([self tileIsSelected]){
             [self playTile:_selectedTile atIndexPath:indexPath onCell:cell];
-            [_selectedTile makeFinalized];
+            [_selectedTile makeUnselected];
             _selectedTile = nil;
         }
     }
