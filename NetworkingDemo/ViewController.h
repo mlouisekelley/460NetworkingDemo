@@ -31,5 +31,6 @@
 -(BOOL)tileIsSelected;
 -(void)setSelectedTile:(TileViewCell *)tile;
 -(void)clearSelectedTile;
+-(void)takeTile:(UIView *)tile;
 @end
 

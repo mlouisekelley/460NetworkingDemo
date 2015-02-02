@@ -30,6 +30,9 @@ NSString *pid;
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
         pid = playerID;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        tapGesture.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tapGesture];
     }
     return self;
 }
@@ -42,6 +45,9 @@ NSString *pid;
 -(void)awakeFromNib {
     [super awakeFromNib];
     _letterLabel.text = [self getRandomUppercaseLetter];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:tapGesture];
 }
 
 -(void) makePending {
@@ -105,6 +111,12 @@ NSString *pid;
             }];
             
         }
+    }
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [[self superVC] takeTile:self];
     }
 }
 
