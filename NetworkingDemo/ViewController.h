@@ -27,5 +27,6 @@
 -(void)finalizePendingEnemyTiles;
 -(void)addPlayer:(NSString *)playerUserName;
 -(void)updatePlayerList:(NSArray *)currentPlayers;
+-(void)takeTile:(UIView *)tile;
 @end
 

@@ -304,7 +304,24 @@ BOOL isGameOver = NO;
     }
     else return UIEdgeInsetsMake(10, 10, 10, 10);
 }
-
+-(void) takeTile:(UIView *)tile {
+    TileViewCell *theTile = ((TileViewCell *)tile);
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES && !theTile.isPending) {
+        [UIView animateWithDuration:0.1 animations:^{
+            tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
+        }];
+        
+        
+        [_tileSpaces removeObjectAtIndex:0];
+        currentPlayer.numberOfTiles++;
+        BoardCellDTO *dto = self.board[theTile.indexPath.item];
+        dto.text = @"-";
+        dto.playerUserName = @"";
+        theTile.isNotOnBoard = YES;
+        theTile.startPoint = tile.frame.origin;
+        theTile.isNotOnBoard = YES;
+    }
+}
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
     NSLog(@"%ld", (long)indexPath.item);
     NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
@@ -344,6 +361,7 @@ BOOL isGameOver = NO;
         BoardCellDTO *dto = self.board[tile.indexPath.item];
         dto.text = @"-";
         dto.tvc = nil;
+        dto.playerUserName = @"";
         
         //send removed tile update
         NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
@@ -439,9 +457,12 @@ BOOL isGameOver = NO;
         closestCell.tag = 1;
         return [self playTile:tileCell atIndexPath:[_boardCollectionView indexPathForCell:closestCell] onCell:closestCell];
     }
-    if ([self isThrowingAway:tileCell]) {
+    else if ([self isThrowingAway:tileCell]) {
         [self tossTile:tileCell];
         return YES;
+    }
+    else {
+        [self takeTile:tileCell];
     }
     return NO;
 }
