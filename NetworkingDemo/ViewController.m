@@ -21,6 +21,7 @@
 @property (nonatomic) NSInteger selectedIndex;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *players;
+@property (strong, nonatomic) NSMutableDictionary *playerScores;
 @property (strong, nonatomic) TileViewCell *selectedTile;
 @end
 
@@ -67,8 +68,15 @@ int TILE_WIDTH = 44;
     }
     
     //[self placeStartingWord];
-    [self updateScores];
+    [self refreshScoresText];
     
+}
+
+- (NSMutableDictionary *)playerScores {
+    if (!_playerScores) {
+        _playerScores = [[NSMutableDictionary alloc] init];
+    }
+    return _playerScores;
 }
 
 -(void)initializeBoardSize {
@@ -398,6 +406,7 @@ int TILE_WIDTH = 44;
         BoardCellDTO *dto = self.board[indexPath.item];
         dto.text = currentSelectedLetter;
         dto.playerUserName = [GameConstants getUserName];
+        dto.pending = 1;
         [self.boardCollectionView reloadData];
         
         [self removeTile:tile];
@@ -407,6 +416,7 @@ int TILE_WIDTH = 44;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
         tile.isNotOnBoard = NO;
+        [tile makePending];
         dto.tvc = tile;
         return NO;
     }
@@ -490,7 +500,8 @@ int TILE_WIDTH = 44;
                         [self addTile];
                     }
                 }
-                [self updateScores];
+                [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
+                //[self updateScores];
                 [NetworkUtils sendWordPlayed];
             });
         }
@@ -568,29 +579,40 @@ int TILE_WIDTH = 44;
     return sqrt(pow(view.center.x - otherView.center.x - _boardCollectionView.frame.origin.x, 2) + pow(view.center.y - otherView.center.y - _boardCollectionView.frame.origin.y, 2));
 }
 
--(void) updateScores {
-    NSString *scoresString = @"SCORES:\n";
-    
-    for (Player *player in self.players) {
-        NSString *playerID = player.userName;
-        player.score = [self calculateScoreForPlayer:playerID];
-        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerID, player.score];
-        
-    }
-    _scores.text = scoresString;
-}
-
--(int) calculateScoreForPlayer:(NSString *)playerUserName {
-    int playerScore = 0;
+-(void) updateScoresForPlayer:(NSString *)player {
+    int pointsEarned = 0;
     for (int i = 0; i < [self.board count]; i++) {
-        BoardCellDTO *cell = [self.board objectAtIndex:i];
-        if ([cell.playerUserName isEqualToString:playerUserName]) {
-            playerScore++;
+        BoardCellDTO *cellDTO = self.board[i];
+        if(cellDTO.pending == 1){
+            pointsEarned++;
         }
     }
-    
-    return playerScore;
+    NSNumber *oldScore = [self.playerScores valueForKey:player];
+    int newScore = pointsEarned + [oldScore intValue];
+    [self.playerScores setValue:[NSNumber numberWithInt:newScore] forKey:player];
+    [self refreshScoresText];
 }
+
+-(void) refreshScoresText {
+    NSString *scoresString = @"SCORES:\n";
+    for (NSString *playerName in self.playerScores.allKeys) {
+        NSNumber *num = [self.playerScores valueForKey:playerName];
+        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
+    }
+    self.scores.text = scoresString;
+}
+
+//-(int) calculateScoreForPlayer:(NSString *)playerUserName {
+//    int playerScore = 0;
+//    for (int i = 0; i < [self.board count]; i++) {
+//        BoardCellDTO *cell = [self.board objectAtIndex:i];
+//        if ([cell.playerUserName isEqualToString:playerUserName]) {
+//            playerScore++;
+//        }
+//    }
+//    
+//    return playerScore;
+//}
 
 ////////////////////
 // Begin Networking Calls
@@ -600,7 +622,8 @@ int TILE_WIDTH = 44;
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
     [self.players addObject:player];
-    [self updateScores];
+    [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
+    [self refreshScoresText];
 }
 
 -(void)updatePlayerList:(NSArray *)currentPlayers {
@@ -609,9 +632,9 @@ int TILE_WIDTH = 44;
         Player *newPlayer = [[Player alloc] init];
         newPlayer.userName = playerName;
         [self.players addObject:newPlayer];
-        
+        [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerName];
     }
-    [self updateScores];
+    [self refreshScoresText];
 }
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
@@ -632,7 +655,14 @@ int TILE_WIDTH = 44;
     dto.tvc = tvc;
 }
 
--(void)finalizePendingEnemyTiles {
+-(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
+    [self updateScoresForPlayer:player];
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+        int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+        for (int i = 0; i < num; i++) {
+            [self addTile];
+        }
+    }
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         if(cellDTO.pending == 1){
@@ -640,7 +670,6 @@ int TILE_WIDTH = 44;
             [cellDTO.tvc makeFinalized];
         }
     }
-    [self updateScores];
     [self.boardCollectionView reloadData];
 }
 
