@@ -405,7 +405,7 @@ int TILE_HEIGHT;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
         tile.isNotOnBoard = NO;
-        [tile makePending];
+//        [tile makePending];
         dto.tvc = tile;
         return NO;
     }
