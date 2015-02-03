@@ -398,7 +398,7 @@ int TILE_HEIGHT;
         dto.pending = 1;
         [self.boardCollectionView reloadData];
         
-        [self removeTile:tile];
+        [self removeTileFromCurrentSpot:tile];
         
         CGRect newFrame = CGRectMake(bvc.frame.origin.x + self.boardCollectionView.frame.origin.x, bvc.frame.origin.y+ self.boardCollectionView.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
         tile.frame = newFrame;
@@ -411,8 +411,11 @@ int TILE_HEIGHT;
     }
     return NO;
 }
-
 -(void) removeTile:(TileViewCell *)tile {
+    [self removeTileFromCurrentSpot:tile];
+    [tile removeFromSuperview];
+}
+-(void) removeTileFromCurrentSpot:(TileViewCell *)tile {
     if (tile.isNotOnBoard) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
         currentPlayer.numberOfTiles--;
