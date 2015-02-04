@@ -118,6 +118,7 @@ int TILE_HEIGHT;
     }
     _selectedTile = nil;
 }
+
 - (IBAction)togglePlayStyle:(id)sender {
     if(_touchToPlay){
         _touchToPlay = false;
