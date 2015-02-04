@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
 @property (nonatomic) CGPoint startPoint;
-@property (nonatomic) BOOL isNotOnBoard;
+@property (nonatomic) BOOL isOnRack;
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) BOOL isPending;
 @property (nonatomic) BOOL isSelected;

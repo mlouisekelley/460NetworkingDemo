@@ -45,7 +45,7 @@ NSString *pid;
 }
 
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID {
-    _isNotOnBoard = YES;
+    _isOnRack = YES;
     return [self initWithFrame:frame letter:[self getRandomUppercaseLetter] playerUserName:playerID];
 }
 
@@ -82,6 +82,7 @@ NSString *pid;
     if([[self superVC] touchToPlay] && !_isPending && !_isStartingTile){
         if([[self superVC] tileIsSelected]){
             [[self superVC] clearSelectedTile];
+            
         }
         [self makeSelected];
         [[self superVC] setSelectedTile:self];

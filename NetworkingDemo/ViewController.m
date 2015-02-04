@@ -116,7 +116,11 @@ int TILE_HEIGHT;
 -(void)clearSelectedTile
 {
     if(_selectedTile){
-        [_selectedTile makeFinalized];
+        [_selectedTile makeUnselected];
+        if (!_selectedTile.isOnRack) {
+            [_selectedTile makeFinalized];
+        }
+        
     }
     _selectedTile = nil;
 }
@@ -403,9 +407,9 @@ int TILE_HEIGHT;
         BoardCellDTO *dto = self.board[theTile.indexPath.item];
         dto.text = @"-";
         dto.playerUserName = @"";
-        theTile.isNotOnBoard = YES;
+        theTile.isOnRack = YES;
         theTile.startPoint = tile.frame.origin;
-        theTile.isNotOnBoard = YES;
+        theTile.isOnRack = YES;
     }
 }
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
@@ -431,7 +435,7 @@ int TILE_HEIGHT;
         tile.frame = newFrame;
         tile.startPoint = newFrame.origin;
         tile.indexPath = indexPath;
-        tile.isNotOnBoard = NO;
+        tile.isOnRack = NO;
 //        [tile makePending];
         dto.tvc = tile;
         return NO;
@@ -443,7 +447,7 @@ int TILE_HEIGHT;
     [tile removeFromSuperview];
 }
 -(void) removeTileFromCurrentSpot:(TileViewCell *)tile {
-    if (tile.isNotOnBoard) {
+    if (tile.isOnRack) {
         CGRect rec = CGRectMake(tile.startPoint.x, tile.startPoint.y, tile.frame.size.width, tile.frame.size.height);
         currentPlayer.numberOfTiles--;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
@@ -561,7 +565,7 @@ int TILE_HEIGHT;
 
 -(BOOL) isThrowingAway:(TileViewCell *)tile {
     float curDist = [self view:tile DistanceToView:_tossView];
-    if (tile.isNotOnBoard && curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
+    if (tile.isOnRack && curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
         return YES;
     }
     return NO;
