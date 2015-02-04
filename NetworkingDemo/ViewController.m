@@ -69,8 +69,8 @@ int TILE_HEIGHT;
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CGRect bounds = self.boardCollectionView.bounds;
-    CGRect frame = self.boardCollectionView.frame;
+    //CGRect bounds = self.boardCollectionView.bounds;
+    //CGRect frame = self.boardCollectionView.frame;
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.bounds.size.height, TILE_WIDTH, TILE_HEIGHT);
@@ -224,6 +224,7 @@ int TILE_HEIGHT;
     }
     return YES;
 }
+
 +(ViewController *)sharedViewController
 {
     if(vc == nil)
@@ -606,7 +607,11 @@ int TILE_HEIGHT;
     NSString *scoresString = @"SCORES:\n";
     for (NSString *playerName in self.playerScores.allKeys) {
         NSNumber *num = [self.playerScores valueForKey:playerName];
-        scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
+        if([playerName isEqualToString:[GameConstants getUserName]]){
+            scoresString = [scoresString stringByAppendingFormat:@"Me: %d\n", [num intValue]];
+        } else {
+            scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
+        }
     }
     self.scores.text = scoresString;
 }

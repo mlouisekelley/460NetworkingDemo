@@ -22,25 +22,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //appwarp configuration
-    [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
-    
-    WarpClient *warpClient = [WarpClient getInstance];
-    [warpClient setRecoveryAllowance:60];
-    [warpClient enableTrace:YES];
-    
-    ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
-    [warpClient addConnectionRequestListener:connectionListener];
-    [warpClient addZoneRequestListener:connectionListener];
-    
-    RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
-    [warpClient addRoomRequestListener:roomListener];
-    
-    NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
-    [warpClient addNotificationListener:notificationListener];
-    
-    [warpClient connectWithUserName:[GameConstants getUserName]];
-    
     return YES;
 }
 

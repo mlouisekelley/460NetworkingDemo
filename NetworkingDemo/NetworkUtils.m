@@ -26,4 +26,10 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
++(void)sendJoinedGame
+{
+    NSString* message = [NSString stringWithFormat:@"joined"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 @end

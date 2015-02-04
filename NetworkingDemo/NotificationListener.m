@@ -42,6 +42,17 @@
 }
 -(void)onChatReceived:(ChatEvent*)chatEvent{
     
+    if([chatEvent.message isEqualToString:@"joined"]){
+        if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
+            NSLog(@"I JOINED");
+            //[[LobbyViewController sharedViewController] beginGame];
+            return;
+        }
+        NSLog(@"SOMEONE ELSE JOINED THE ROOM");
+        [[LobbyViewController sharedViewController] beginGame];
+        return;
+    }
+    
     NSArray *message = [chatEvent.message componentsSeparatedByString:@","];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
                                             inSection:0];

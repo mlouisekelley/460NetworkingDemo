@@ -12,6 +12,7 @@
 		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
 		273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */; };
 		277E15EC1A800035009BD072 /* TossTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 277E15EB1A800035009BD072 /* TossTileView.m */; };
+		277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277E15EE1A8292F4009BD072 /* LobbyViewController.m */; };
 		27C759A71A69AAEF0004DB59 /* NetworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C759A61A69AAEF0004DB59 /* NetworkUtils.m */; };
 		27C759A91A69AB1A0004DB59 /* GameConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C759A81A69AB1A0004DB59 /* GameConstants.m */; };
 		A30ADC8C1A4CFBD200047201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADC8B1A4CFBD200047201 /* main.m */; };
@@ -49,6 +50,8 @@
 		273F70711A66F5D7005103BA /* GameConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		277E15EA1A7FFFD6009BD072 /* TossTileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TossTileView.h; sourceTree = "<group>"; };
 		277E15EB1A800035009BD072 /* TossTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TossTileView.m; sourceTree = "<group>"; };
+		277E15ED1A8292F4009BD072 /* LobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
+		277E15EE1A8292F4009BD072 /* LobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyViewController.m; sourceTree = "<group>"; };
 		27C7599D1A699BAA0004DB59 /* NetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtils.h; sourceTree = "<group>"; };
 		27C759A61A69AAEF0004DB59 /* NetworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtils.m; sourceTree = "<group>"; };
 		27C759A81A69AB1A0004DB59 /* GameConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.m; sourceTree = "<group>"; };
@@ -128,12 +131,14 @@
 				F04428EF1A68302600D7B02E /* Player.m */,
 				A30ADC901A4CFBD200047201 /* ViewController.h */,
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
-				27C7599D1A699BAA0004DB59 /* NetworkUtils.h */,
-				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
+				277E15ED1A8292F4009BD072 /* LobbyViewController.h */,
+				277E15EE1A8292F4009BD072 /* LobbyViewController.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
 				273F70711A66F5D7005103BA /* GameConstants.h */,
 				27C759A81A69AB1A0004DB59 /* GameConstants.m */,
+				27C7599D1A699BAA0004DB59 /* NetworkUtils.h */,
+				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
 				273F70621A61C68C005103BA /* RoomListener.h */,
 				273F70631A61C68C005103BA /* RoomListener.m */,
 				273F70641A61C68C005103BA /* NotificationListener.h */,
@@ -284,6 +289,7 @@
 				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
+				277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */,
 				277E15EC1A800035009BD072 /* TossTileView.m in Sources */,
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
 				27C759A91A69AB1A0004DB59 /* GameConstants.m in Sources */,
