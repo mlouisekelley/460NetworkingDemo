@@ -49,12 +49,10 @@ int TILE_HEIGHT;
     self.boardCollectionView.minimumZoomScale = .01;
     self.boardCollectionView.zoomScale = 10;
 
+    
     [self.tileCollectionView reloadData];
     self.tileCollectionView.dataSource = self;
     self.tileCollectionView.delegate = self;
-    
-    TILE_WIDTH = self.boardCollectionView.frame.size.width/8;
-    TILE_HEIGHT = self.boardCollectionView.frame.size.height/6;
     
     vc = self;
     currentPlayer = [[Player alloc] init];
@@ -63,8 +61,18 @@ int TILE_HEIGHT;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
 
+    
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    CGRect bounds = self.boardCollectionView.bounds;
+    CGRect frame = self.boardCollectionView.frame;
+
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.frame.size.height * 10.0/6, TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.bounds.size.height, TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self addTile];
     }
@@ -351,6 +359,8 @@ int TILE_HEIGHT;
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    TILE_WIDTH = self.boardCollectionView.bounds.size.width/10;
+    TILE_HEIGHT = self.boardCollectionView.bounds.size.width/10;
 
     return CGSizeMake(TILE_WIDTH, TILE_HEIGHT);
 }
