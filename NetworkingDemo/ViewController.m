@@ -135,7 +135,8 @@ int TILE_HEIGHT;
 
 -(void)placeStartingWord{
     
-    NSArray *starting_words = @[@"START", @"BEGIN" , @"WORDS" , @"PLAY"];
+    //NSArray *starting_words = @[@"START", @"BEGIN" , @"WORDS" , @"PLAY"];
+    NSArray *starting_words = @[@"START"];
     NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
     
     for(int i = 0; i < starting_word.length; i++) {

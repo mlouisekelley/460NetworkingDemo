@@ -19,6 +19,7 @@
 @implementation LobbyViewController
 
 static LobbyViewController *vc;
+static bool joined = NO;
 
 +(LobbyViewController *)sharedViewController
 {
@@ -70,11 +71,15 @@ static LobbyViewController *vc;
 }
 
 -(void)beginGame {
+    if(joined){
+        return;
+    }
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Test"];
     [self presentViewController:vc animated:YES completion:nil];
     [NetworkUtils sendJoinedGame];
+    joined = YES;
 }
 
 /*
