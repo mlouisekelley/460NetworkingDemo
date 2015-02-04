@@ -78,7 +78,7 @@ int TILE_HEIGHT;
         [self addTile];
     }
     
-    //[self placeStartingWord];
+    [self placeStartingWord];
     [self refreshScoresText];
     
 }
@@ -135,15 +135,19 @@ int TILE_HEIGHT;
 
 -(void)placeStartingWord{
     
-    for(int i = 0; i < 5; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+    NSArray *starting_words = @[@"START", @"BEGIN" , @"WORDS" , @"PLAY"];
+    NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
+    
+    for(int i = 0; i < starting_word.length; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(43 + i) inSection:0];
         UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
         CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-        TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:@"S" playerUserName:@"stone"];
+        NSString *letter = [NSString stringWithFormat:@"%c" , [starting_word characterAtIndex:i]];
+        TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:@"stone"];
         [self.view addSubview:tvc];
         
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
-        dto.text = @"S";
+        dto.text = letter;
         dto.playerUserName = [GameConstants getUserName];
         dto.tvc = tvc;
     }

@@ -23,7 +23,12 @@ NSString *pid;
             [self setBackgroundColor:[UIColor orangeColor]];
         }
         else {
-            [self setBackgroundColor:[UIColor blueColor]];
+            if([playerID isEqualToString:@"stone"]){
+                [self setBackgroundColor:[UIColor blackColor]];
+                [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
+            } else {
+                [self setBackgroundColor:[UIColor blueColor]];
+            }
         }
         self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 12, 42, 21)];
         self.letterLabel.text = letter;
