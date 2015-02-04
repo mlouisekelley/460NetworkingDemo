@@ -18,6 +18,7 @@ ViewController *superview;
 NSString *pid;
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID{
+    _isStartingTile = NO;
     if (self = [super initWithFrame:frame]) {
         if ([playerID isEqualToString:[GameConstants getUserName]]) {
             [self setBackgroundColor:[UIColor orangeColor]];
@@ -26,6 +27,7 @@ NSString *pid;
             if([playerID isEqualToString:@"stone"]){
                 [self setBackgroundColor:[UIColor blackColor]];
                 [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
+                _isStartingTile = YES;
             } else {
                 [self setBackgroundColor:[UIColor blueColor]];
             }
@@ -77,7 +79,7 @@ NSString *pid;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if([[self superVC] touchToPlay]){
+    if([[self superVC] touchToPlay] && !_isPending && !_isStartingTile){
         if([[self superVC] tileIsSelected]){
             [[self superVC] clearSelectedTile];
         }
@@ -85,7 +87,7 @@ NSString *pid;
         [[self superVC] setSelectedTile:self];
     }
     
-    if (!_isPending && !_isSelected) {
+    if (!_isPending && !_isSelected && !_isStartingTile) {
         [super touchesBegan:touches withEvent:event];
         UITouch *aTouch = [touches anyObject];
         offset = [aTouch locationInView: self];
@@ -99,7 +101,7 @@ NSString *pid;
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending && !_isSelected) {
+    if (!_isPending && !_isSelected && !_isStartingTile) {
         UITouch *aTouch = [touches anyObject];
         CGPoint location = [aTouch locationInView:self.superview];
         
@@ -113,7 +115,7 @@ NSString *pid;
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending && !_isSelected) {
+    if (!_isPending && !_isSelected && !_isStartingTile) {
 
         BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
         

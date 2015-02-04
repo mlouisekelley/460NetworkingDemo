@@ -17,6 +17,7 @@
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) BOOL isPending;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL isStartingTile;
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
 -(void) makePending;

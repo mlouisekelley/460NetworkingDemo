@@ -61,6 +61,8 @@ int TILE_HEIGHT;
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    
+    [self updateScoresForPlayer:currentPlayer.userName];
 
     
     
