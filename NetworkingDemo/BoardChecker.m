@@ -12,17 +12,26 @@
 
 @interface BoardChecker()
 
+@property (nonatomic, strong) NSMutableDictionary *alreadyCheckedWords;
+
 @end
 
 @implementation BoardChecker
 
+
+- (NSMutableDictionary *) alreadyCheckedWords {
+    if (!_alreadyCheckedWords) {
+        _alreadyCheckedWords = [[NSMutableDictionary alloc] init];
+    }
+    return _alreadyCheckedWords;
+}
 
 /*
  Note: this method runs synchronous URL requests, so be sure to call it off the main queue
  This checks the board for incorrect words. If the board is valid, the returned array
  will be empty.
  */
-+(NSArray *)checkBoardState:(NSArray *)board {
+-(NSArray *)checkBoardState:(NSArray *)board {
     
     NSMutableArray *incorrectWords = [[NSMutableArray alloc] init];
     for (int i = 0; i<[board count]; i++) {
@@ -67,7 +76,7 @@
     return incorrectWords;
 }
 
-+(NSUInteger)calculateScoreForBoard:(NSArray *)board {
+-(NSUInteger)calculateScoreForBoard:(NSArray *)board {
     NSUInteger count = 0;
     
     for (int i = 0; i<[board count]; i++) {
@@ -120,8 +129,7 @@
     return count;
 }
 
-+(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
-    //refactor to include dynamic player numbers
+-(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     NSString *myUserName = [GameConstants getUserName];
     if (!cell) {
         return NO;
@@ -139,7 +147,7 @@
     return NO;
 }
 
-+(BOOL)isBlank:(NSString *)space {
+-(BOOL)isBlank:(NSString *)space {
     if ([space isEqualToString:@"-"]) {
         return YES;
     }
@@ -149,7 +157,14 @@
 /*
  Note: this method runs synchronous URL requests, so be sure to call it off the main queue
  */
-+(BOOL)isValid:(NSString *)word {
+-(BOOL)isValid:(NSString *)word {
+    //first check if the word is already in the alreadyCheckedWords dictionary
+    NSNumber *value =[self.alreadyCheckedWords objectForKey:word];
+    if (value != nil) {
+        return [value boolValue];
+    }
+    
+    //if no word was found, check dictionary
     NSString *query = [NSString stringWithFormat:@"http://www.dictionaryapi.com/api/v1/references/collegiate/xml/%@?key=%@", word, DICTIONARY_KEY];
     NSURL *url = [NSURL URLWithString:query];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -167,12 +182,14 @@
         NSString *entryString = [NSString stringWithUTF8String:"<entry id="];
         NSRange range = [responseString rangeOfString:entryString];
         if (range.length == 0) {
+            [self.alreadyCheckedWords setValue:[NSNumber numberWithBool:NO] forKey:word];
             return NO;
         }
     }
     else {
         NSLog(@"%@", [error localizedDescription]);
     }
+    [self.alreadyCheckedWords setValue:[NSNumber numberWithBool:YES] forKey:word];
     return YES;
 }
 

@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
 @property (strong, nonatomic) TileViewCell *selectedTile;
+@property (strong, nonatomic) BoardChecker *boardChecker;
 @end
 
 @implementation ViewController
@@ -87,6 +88,13 @@ int TILE_HEIGHT;
         _playerScores = [[NSMutableDictionary alloc] init];
     }
     return _playerScores;
+}
+
+- (BoardChecker *) boardChecker {
+    if (!_boardChecker) {
+        _boardChecker = [[BoardChecker alloc] init];
+    }
+    return _boardChecker;
 }
 
 // Methods For Touch and Tap Type of Playing Tiles
@@ -455,7 +463,7 @@ int TILE_HEIGHT;
 - (IBAction)touchUpSubmit:(id)sender {
     dispatch_queue_t otherQ = dispatch_queue_create("check_board", NULL);
     dispatch_async(otherQ, ^{
-        NSArray *invalidWordsOnBoard = [BoardChecker checkBoardState:self.board];
+        NSArray *invalidWordsOnBoard = [self.boardChecker checkBoardState:self.board];
         if ([invalidWordsOnBoard count] > 0) {
             
             NSString *alertMessage = @"Found the following invalid words: ";
@@ -582,7 +590,7 @@ int TILE_HEIGHT;
 }
 
 -(void) updateScoresForPlayer:(NSString *)player {
-    int pointsEarned = [BoardChecker calculateScoreForBoard:self.board];
+    int pointsEarned = [self.boardChecker calculateScoreForBoard:self.board];
     NSNumber *oldScore = [self.playerScores valueForKey:player];
     int newScore = pointsEarned + [oldScore intValue];
     [self.playerScores setValue:[NSNumber numberWithInt:newScore] forKey:player];

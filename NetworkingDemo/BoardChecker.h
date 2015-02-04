@@ -11,7 +11,6 @@
 
 @interface BoardChecker : NSObject
 
-+(NSArray *)checkBoardState:(NSArray *)board;
-+(BOOL)isValid:(NSString *)word;
-+(NSUInteger)calculateScoreForBoard:(NSArray *)board ;
+-(NSArray *)checkBoardState:(NSArray *)board;
+-(NSUInteger)calculateScoreForBoard:(NSArray *)board;
 @end
