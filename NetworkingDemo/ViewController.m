@@ -582,13 +582,7 @@ int TILE_HEIGHT;
 }
 
 -(void) updateScoresForPlayer:(NSString *)player {
-    int pointsEarned = 0;
-    for (int i = 0; i < [self.board count]; i++) {
-        BoardCellDTO *cellDTO = self.board[i];
-        if(cellDTO.pending == 1){
-            pointsEarned++;
-        }
-    }
+    int pointsEarned = [BoardChecker calculateScoreForBoard:self.board];
     NSNumber *oldScore = [self.playerScores valueForKey:player];
     int newScore = pointsEarned + [oldScore intValue];
     [self.playerScores setValue:[NSNumber numberWithInt:newScore] forKey:player];

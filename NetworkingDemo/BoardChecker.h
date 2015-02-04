@@ -13,5 +13,5 @@
 
 +(NSArray *)checkBoardState:(NSArray *)board;
 +(BOOL)isValid:(NSString *)word;
-
++(NSUInteger)calculateScoreForBoard:(NSArray *)board ;
 @end

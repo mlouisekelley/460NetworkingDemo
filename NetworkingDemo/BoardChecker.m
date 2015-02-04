@@ -67,6 +67,59 @@
     return incorrectWords;
 }
 
++(NSUInteger)calculateScoreForBoard:(NSArray *)board {
+    NSUInteger count = 0;
+    
+    for (int i = 0; i<[board count]; i++) {
+        BoardCellDTO *cellDTO = board[i];
+        NSString *space = cellDTO.text;
+        if (![self isBlank:space] && [self shouldCheckCellDTO:cellDTO]) {
+            BoardCellDTO *up = (i - 10) >= 0 ? board[i - 10] : nil;
+            BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
+            BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
+            BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
+            
+            if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
+                NSString *word = space;
+                BOOL shouldScoreWord = (cellDTO.pending == 1) ? YES : NO;
+                int currLetterIndex = i + 10;
+                BoardCellDTO *currentDTO = board[currLetterIndex];
+                while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
+                    word = [word stringByAppendingString:currentDTO.text];
+                    if (currentDTO.pending == 1) {
+                        shouldScoreWord = YES;
+                    }
+                    currLetterIndex += 10;
+                    currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
+                }
+                if (shouldScoreWord) {
+                    count += [word length] * [word length];
+                }
+            }
+            
+            if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
+                NSString *word = space;
+                BOOL shouldScoreWord = (cellDTO.pending == 1) ? YES : NO;
+                int currLetterIndex = i + 1;
+                BoardCellDTO *currentDTO = board[currLetterIndex];
+                while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
+                    word = [word stringByAppendingString:currentDTO.text];
+                    if (currentDTO.pending == 1) {
+                        shouldScoreWord = YES;
+                    }
+                    currLetterIndex++;
+                    currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
+                }
+                if (shouldScoreWord) {
+                    count += [word length] * [word length];
+                }
+            }
+            
+        }
+    }
+    return count;
+}
+
 +(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     //refactor to include dynamic player numbers
     NSString *myUserName = [GameConstants getUserName];

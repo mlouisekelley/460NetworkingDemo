@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -56,6 +56,9 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="10" y="20" width="780" height="636"/>
+                                </variation>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-GD-Fhj">
                                 <rect key="frame" x="16" y="567" width="66" height="25"/>
@@ -74,7 +77,8 @@
                                         <exclude reference="VGw-NT-EYw"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="10" y="767" width="66" height="25"/>
                                     <mask key="constraints">
                                         <include reference="Q4R-ah-S2T"/>
                                         <include reference="VGw-NT-EYw"/>
@@ -88,22 +92,23 @@
                                 <rect key="frame" x="147" y="464" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="ATu-Qs-n9g"/>
-                                    <constraint firstAttribute="height" constant="128" id="S0b-fp-YcF"/>
+                                    <constraint firstAttribute="height" constant="66" id="7O0-YT-WTn"/>
+                                    <constraint firstAttribute="width" constant="240" id="RMr-Hc-7Hz"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="ATu-Qs-n9g"/>
-                                        <exclude reference="S0b-fp-YcF"/>
+                                        <exclude reference="7O0-YT-WTn"/>
+                                        <exclude reference="RMr-Hc-7Hz"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="147" y="726" width="240" height="66"/>
                                     <mask key="constraints">
-                                        <include reference="ATu-Qs-n9g"/>
-                                        <include reference="S0b-fp-YcF"/>
+                                        <include reference="7O0-YT-WTn"/>
+                                        <include reference="RMr-Hc-7Hz"/>
                                     </mask>
                                 </variation>
                             </textView>
@@ -123,43 +128,45 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="top" secondItem="Mbl-rH-m8c" secondAttribute="bottom" constant="70" id="0p4-UI-fyk"/>
                             <constraint firstItem="QcI-Ye-S9P" firstAttribute="leading" secondItem="IxI-rr-9IA" secondAttribute="trailing" constant="8" symbolic="YES" id="49c-RI-tWe"/>
                             <constraint firstItem="IxI-rr-9IA" firstAttribute="leading" secondItem="GBG-WR-4Rf" secondAttribute="trailing" constant="8" symbolic="YES" id="4tq-Br-uyi"/>
                             <constraint firstItem="GBG-WR-4Rf" firstAttribute="leading" secondItem="Pcs-GD-Fhj" secondAttribute="trailing" constant="65" id="72r-4o-yVb"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9Rb-aC-UPC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Pcs-GD-Fhj" secondAttribute="bottom" constant="8" symbolic="YES" id="BzD-u7-lq3"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="centerX" secondItem="y3c-jy-aDJ" secondAttribute="centerX" id="COm-aN-g2r"/>
+                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="bottom" secondItem="QcI-Ye-S9P" secondAttribute="bottom" id="Fz9-If-QpK"/>
                             <constraint firstItem="GBG-WR-4Rf" firstAttribute="top" secondItem="Mbl-rH-m8c" secondAttribute="bottom" constant="8" symbolic="YES" id="Iil-5Y-Lky"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GBG-WR-4Rf" secondAttribute="bottom" constant="8" symbolic="YES" id="NKh-Dj-fPr"/>
-                            <constraint firstItem="QcI-Ye-S9P" firstAttribute="bottom" secondItem="GBG-WR-4Rf" secondAttribute="bottom" id="RPG-8M-bCJ"/>
-                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="leading" secondItem="Pcs-GD-Fhj" secondAttribute="trailing" constant="71" id="TIg-Ug-c7h"/>
                             <constraint firstItem="Pcs-GD-Fhj" firstAttribute="leading" secondItem="Mbl-rH-m8c" secondAttribute="leading" id="V2i-Bc-WoS"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IxI-rr-9IA" secondAttribute="bottom" constant="5" id="W5Q-wG-JEN"/>
+                            <constraint firstItem="IxI-rr-9IA" firstAttribute="leading" secondItem="GBG-WR-4Rf" secondAttribute="trailing" constant="8" symbolic="YES" id="YCl-Sn-lmk"/>
                             <constraint firstItem="Pcs-GD-Fhj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aMb-Xk-4ZS"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cmT-q2-z7h"/>
                             <constraint firstAttribute="bottom" secondItem="QcI-Ye-S9P" secondAttribute="bottom" constant="20" symbolic="YES" id="dLv-sG-QKF"/>
-                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="bottom" secondItem="Pcs-GD-Fhj" secondAttribute="bottom" id="eFc-r0-lSD"/>
                             <constraint firstItem="IxI-rr-9IA" firstAttribute="top" secondItem="QcI-Ye-S9P" secondAttribute="top" id="eZ7-1C-MJ8"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="i10-el-koF"/>
                             <constraint firstAttribute="bottom" secondItem="Pcs-GD-Fhj" secondAttribute="bottom" constant="20" symbolic="YES" id="keZ-fB-0HO"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lLN-X6-6KY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QcI-Ye-S9P" secondAttribute="trailing" constant="-36" id="pDb-48-dua"/>
                             <constraint firstItem="QcI-Ye-S9P" firstAttribute="trailing" secondItem="wfy-db-euE" secondAttribute="trailing" id="pjR-SI-xhz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GBG-WR-4Rf" secondAttribute="bottom" constant="8" symbolic="YES" id="pnj-8w-rrl"/>
+                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="leading" secondItem="Pcs-GD-Fhj" secondAttribute="trailing" constant="71" id="pyn-SX-qat"/>
                             <constraint firstItem="IxI-rr-9IA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="395" id="sQC-Q2-pPu"/>
-                            <constraint firstItem="GBG-WR-4Rf" firstAttribute="top" secondItem="Mbl-rH-m8c" secondAttribute="bottom" constant="8" symbolic="YES" id="uVj-At-NWu"/>
                             <constraint firstItem="Pcs-GD-Fhj" firstAttribute="leading" secondItem="Mbl-rH-m8c" secondAttribute="leading" id="uyh-RV-2v3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="9Rb-aC-UPC"/>
                                 <exclude reference="lLN-X6-6KY"/>
-                                <exclude reference="TIg-Ug-c7h"/>
-                                <exclude reference="eFc-r0-lSD"/>
-                                <exclude reference="uVj-At-NWu"/>
+                                <exclude reference="0p4-UI-fyk"/>
+                                <exclude reference="Fz9-If-QpK"/>
+                                <exclude reference="pyn-SX-qat"/>
                                 <exclude reference="V2i-Bc-WoS"/>
                                 <exclude reference="aMb-Xk-4ZS"/>
                                 <exclude reference="keZ-fB-0HO"/>
-                                <exclude reference="RPG-8M-bCJ"/>
+                                <exclude reference="pnj-8w-rrl"/>
+                                <exclude reference="YCl-Sn-lmk"/>
                                 <exclude reference="pDb-48-dua"/>
                             </mask>
                         </variation>
@@ -167,13 +174,18 @@
                             <mask key="constraints">
                                 <include reference="9Rb-aC-UPC"/>
                                 <include reference="lLN-X6-6KY"/>
-                                <include reference="TIg-Ug-c7h"/>
-                                <include reference="eFc-r0-lSD"/>
-                                <include reference="uVj-At-NWu"/>
+                                <include reference="0p4-UI-fyk"/>
+                                <exclude reference="72r-4o-yVb"/>
+                                <include reference="Fz9-If-QpK"/>
+                                <exclude reference="Iil-5Y-Lky"/>
+                                <include reference="pyn-SX-qat"/>
                                 <include reference="V2i-Bc-WoS"/>
                                 <include reference="aMb-Xk-4ZS"/>
                                 <include reference="keZ-fB-0HO"/>
-                                <include reference="RPG-8M-bCJ"/>
+                                <exclude reference="NKh-Dj-fPr"/>
+                                <include reference="pnj-8w-rrl"/>
+                                <exclude reference="4tq-Br-uyi"/>
+                                <include reference="YCl-Sn-lmk"/>
                                 <include reference="pDb-48-dua"/>
                             </mask>
                         </variation>
@@ -187,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="403" y="393"/>
+            <point key="canvasLocation" x="402.75" y="393"/>
         </scene>
     </scenes>
 </document>
