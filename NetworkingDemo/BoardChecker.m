@@ -90,12 +90,12 @@
             
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
                 NSString *word = space;
-                BOOL shouldScoreWord = (cellDTO.pending == 1) ? YES : NO;
+                BOOL shouldScoreWord = (cellDTO.tvc.isPending) ? YES : NO;
                 int currLetterIndex = i + 10;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     word = [word stringByAppendingString:currentDTO.text];
-                    if (currentDTO.pending == 1) {
+                    if (cellDTO.tvc.isPending) {
                         shouldScoreWord = YES;
                     }
                     currLetterIndex += 10;
@@ -108,12 +108,12 @@
             
             if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
                 NSString *word = space;
-                BOOL shouldScoreWord = (cellDTO.pending == 1) ? YES : NO;
+                BOOL shouldScoreWord = (cellDTO.tvc.isPending) ? YES : NO;
                 int currLetterIndex = i + 1;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     word = [word stringByAppendingString:currentDTO.text];
-                    if (currentDTO.pending == 1) {
+                    if (cellDTO.tvc.isPending) {
                         shouldScoreWord = YES;
                     }
                     currLetterIndex++;
@@ -137,10 +137,10 @@
     if ([self isBlank: cell.text]) {
         return NO;
     }
-    if (![cell.playerUserName isEqualToString:myUserName] && cell.pending != 1) {
+    if (![cell.tvc.pid isEqualToString:myUserName] && cell.tvc.isPending != 1) {
         return YES;
     }
-    if ([cell.playerUserName isEqualToString:myUserName]) {
+    if ([cell.tvc.pid isEqualToString:myUserName]) {
         return YES;
     }
     

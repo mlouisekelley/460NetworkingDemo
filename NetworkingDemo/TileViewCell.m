@@ -15,7 +15,6 @@
 
 CGPoint offset;
 ViewController *superview;
-NSString *pid;
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID{
     _isStartingTile = NO;
@@ -36,7 +35,7 @@ NSString *pid;
         self.letterLabel.text = letter;
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
-        pid = playerID;
+        _pid = playerID;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         tapGesture.numberOfTapsRequired = 2;
         [self addGestureRecognizer:tapGesture];
@@ -84,7 +83,6 @@ NSString *pid;
             [[self superVC] clearSelectedTile];
             
         }
-        [self makeSelected];
         [[self superVC] setSelectedTile:self];
     }
     
@@ -118,23 +116,18 @@ NSString *pid;
 {
     if (!_isPending && !_isSelected && !_isStartingTile) {
 
-        BOOL shouldDisappear = [[self superVC] tileDidFinishMoving:self];
+        [[self superVC] tileDidFinishMoving:self];
         
-        if (shouldDisappear) {
-            [self removeFromSuperview];
-        }
-        else {
-            [UIView animateWithDuration:0.1 animations:^{
-                self.frame = CGRectMake(_startPoint.x, _startPoint.y, self.frame.size.width, self.frame.size.height);
-            }];
+        [UIView animateWithDuration:0.1 animations:^{
+            self.frame = CGRectMake(_startPoint.x, _startPoint.y, self.frame.size.width, self.frame.size.height);
+        }];
             
-        }
     }
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        [[self superVC] takeTile:self];
+        [[self superVC] takeTileFromBoard:self];
     }
 }
 

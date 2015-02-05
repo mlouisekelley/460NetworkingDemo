@@ -11,8 +11,6 @@
 @interface BoardCellDTO : NSObject
 
 @property (strong, nonatomic) NSString* text;
-@property (nonatomic, strong) NSString* playerUserName;
-@property (nonatomic) int pending;
 @property (nonatomic) TileViewCell* tvc;
 
 @end
