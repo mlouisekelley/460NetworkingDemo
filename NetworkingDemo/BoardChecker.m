@@ -171,14 +171,12 @@
     if ([self isBlank: cell.text]) {
         return NO;
     }
-//    if (![cell.tvc.pid isEqualToString:myUserName] && cell.tvc.isPending != 1) {
-//        return YES;
-//    }
-    if ([cell.tvc.pid isEqualToString:myUserName] || cell.tvc.isPending != 1) {
+
+    if ([cell.tvc.pid isEqualToString:myUserName] || !cell.tvc.isPending) {
         return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 -(BOOL)isBlank:(NSString *)space {

@@ -546,7 +546,6 @@ int TILE_HEIGHT;
 #pragma mark - scoring
 -(void) updateScoresForPlayer:(NSString *)player {
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:player];
-    NSNumber *oldScore = [self.playerScores valueForKey:player];
     NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:player];
     [self refreshScoresText];
@@ -606,7 +605,7 @@ int TILE_HEIGHT;
     
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
-        if (!cellDTO.tvc.isStartingTile) {
+        if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
             [cellDTO.tvc makeFinalized];
         }
     }

@@ -9,9 +9,9 @@
 #import "NetworkUtils.h"
 @implementation NetworkUtils
 
-+(void)sendLetterPlayed:(NSString *)update
++(void)sendLetterPlayed:(NSString *)theUpdate
 {
-    [[WarpClient getInstance] sendChat:update];
+    [[WarpClient getInstance] sendChat:theUpdate];
 }
 
 +(void)sendWordPlayed
