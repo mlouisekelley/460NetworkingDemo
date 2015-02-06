@@ -452,6 +452,7 @@ int TILE_HEIGHT;
         [self removeTileFromCurrentSpot:theTile];
         currentPlayer.numberOfTiles++;
         theTile.isOnRack = YES;
+        [theTile makeUnselected];
         theTile.startPoint = tile.frame.origin;
     }
 }
