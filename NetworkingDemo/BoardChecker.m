@@ -102,7 +102,7 @@
     return incorrectWords;
 }
 
--(NSUInteger)calculateScoreForBoard:(NSArray *)board {
+-(NSUInteger)calculateScoreForBoard:(NSArray *)board andPlayer:(NSString *)player {
     NSUInteger count = 0;
     
     for (int i = 0; i<[board count]; i++) {
@@ -115,38 +115,46 @@
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
-                NSString *word = space;
-                BOOL shouldScoreWord = (cellDTO.tvc.isPending) ? YES : NO;
-                int currLetterIndex = i + 10;
-                BoardCellDTO *currentDTO = board[currLetterIndex];
+                BOOL shouldScoreWord = NO;
+                int currLetterIndex = i;
+                
+                BoardCellDTO *currentDTO = cellDTO;
+                int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
-                    word = [word stringByAppendingString:currentDTO.text];
-                    if (cellDTO.tvc.isPending) {
+                    if (currentDTO.tvc.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
+                        shouldScoreWord = NO;
+                    }
+                    if ([currentDTO.tvc.pid isEqualToString:player]) {
                         shouldScoreWord = YES;
+                        numLettersToScore++;
                     }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                 }
                 if (shouldScoreWord) {
-                    count += [word length] * [word length];
+                    count += numLettersToScore * numLettersToScore;
                 }
             }
             
             if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
-                NSString *word = space;
-                BOOL shouldScoreWord = (cellDTO.tvc.isPending) ? YES : NO;
-                int currLetterIndex = i + 1;
-                BoardCellDTO *currentDTO = board[currLetterIndex];
+                BOOL shouldScoreWord = NO;
+                int currLetterIndex = i;
+                
+                BoardCellDTO *currentDTO = cellDTO;
+                int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
-                    word = [word stringByAppendingString:currentDTO.text];
-                    if (cellDTO.tvc.isPending) {
+                    if (currentDTO.tvc.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
+                        shouldScoreWord = NO;
+                    }
+                    if ([currentDTO.tvc.pid isEqualToString:player]) {
                         shouldScoreWord = YES;
+                        numLettersToScore++;
                     }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
                 }
                 if (shouldScoreWord) {
-                    count += [word length] * [word length];
+                    count += numLettersToScore * numLettersToScore;
                 }
             }
             
@@ -163,14 +171,14 @@
     if ([self isBlank: cell.text]) {
         return NO;
     }
-    if (![cell.tvc.pid isEqualToString:myUserName] && cell.tvc.isPending != 1) {
-        return YES;
-    }
-    if ([cell.tvc.pid isEqualToString:myUserName]) {
+//    if (![cell.tvc.pid isEqualToString:myUserName] && cell.tvc.isPending != 1) {
+//        return YES;
+//    }
+    if ([cell.tvc.pid isEqualToString:myUserName] || cell.tvc.isPending != 1) {
         return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 -(BOOL)isBlank:(NSString *)space {

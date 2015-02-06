@@ -12,6 +12,6 @@
 @interface BoardChecker : NSObject
 
 -(NSArray *)checkBoardState:(NSArray *)board;
--(NSUInteger)calculateScoreForBoard:(NSArray *)board;
+-(NSUInteger)calculateScoreForBoard:(NSArray *)board andPlayer:(NSString *)player;
 - (id)initWithScrabbleDict;
 @end

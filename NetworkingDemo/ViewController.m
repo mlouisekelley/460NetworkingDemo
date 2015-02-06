@@ -537,9 +537,9 @@ int TILE_HEIGHT;
 
 #pragma mark - scoring
 -(void) updateScoresForPlayer:(NSString *)player {
-    NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board];
+    NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:player];
     NSNumber *oldScore = [self.playerScores valueForKey:player];
-    NSUInteger newScore = pointsEarned + [oldScore intValue];
+    NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:player];
     [self refreshScoresText];
 }
