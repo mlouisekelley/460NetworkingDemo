@@ -467,9 +467,9 @@ int TILE_HEIGHT;
 
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
     NSLog(@"%ld", (long)indexPath.item);
-    NSString *currentBoardLetter = ((BoardCellDTO *)self.board[indexPath.item]).text;
+    BoardCellDTO *dto = ((BoardCellDTO *)self.board[indexPath.item]);
     NSString *currentSelectedLetter = tile.letterLabel.text;
-    if ([currentBoardLetter isEqualToString:@"-"]) {
+    if (dto.tvc == nil) {
         
         //send update packet
         NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, currentSelectedLetter];
@@ -594,6 +594,7 @@ int TILE_HEIGHT;
     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:enemyID];
+    tvc.indexPath = indexPath;
     [tvc makePending];
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
 
@@ -617,8 +618,8 @@ int TILE_HEIGHT;
     BoardCellDTO *dto =self.board[indexPath.item];
     
     if(dto.tvc != nil){
-        [self removeTileFromBoard:dto.tvc];
         [dto.tvc removeFromSuperview];
+        [self removeTileFromBoard:dto.tvc];
     }
     
     [self.boardCollectionView reloadData];
@@ -635,7 +636,7 @@ int TILE_HEIGHT;
     BoardViewCell *closestCell = nil;
     for (BoardViewCell *cell in _boardCollectionView.visibleCells) {
         float curDist = [self view:view DistanceToView:cell];
-        if (curDist < view.frame.size.height/2 + cell.frame.size.height/2) {
+        if (curDist < view.frame.size.height / 2 + cell.frame.size.height / 2 + 2) {
             if (curDist < minDist || minDist == -1) {
                 minDist = curDist;
                 closestCell = cell;
