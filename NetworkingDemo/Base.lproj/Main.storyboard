@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Lobby View Controller-->
         <scene sceneID="HfL-ra-gmY">
             <objects>
-                <viewController id="Ti6-2w-sDr" customClass="LobbyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Lobby" id="Ti6-2w-sDr" customClass="LobbyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s2r-ZU-Nas"/>
                         <viewControllerLayoutGuide type="bottom" id="R42-JK-exl"/>
@@ -101,9 +101,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="10" y="20" width="780" height="636"/>
-                                </variation>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-GD-Fhj">
                                 <rect key="frame" x="16" y="567" width="66" height="25"/>
@@ -122,8 +119,7 @@
                                         <exclude reference="VGw-NT-EYw"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="10" y="767" width="66" height="25"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <include reference="Q4R-ah-S2T"/>
                                         <include reference="VGw-NT-EYw"/>
@@ -149,8 +145,7 @@
                                         <exclude reference="RMr-Hc-7Hz"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="147" y="726" width="240" height="66"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <include reference="7O0-YT-WTn"/>
                                         <include reference="RMr-Hc-7Hz"/>
@@ -181,10 +176,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="458" y="725" width="111" height="21"/>
-                                </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pW-9D-7Ka">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Restart">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="578" y="723" width="50" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="619" y="735" width="50" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="restartButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yad-ET-tPl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -212,6 +219,8 @@
                             <constraint firstItem="IxI-rr-9IA" firstAttribute="top" secondItem="U8X-4K-xSW" secondAttribute="bottom" constant="13" id="kEC-US-X65"/>
                             <constraint firstAttribute="bottom" secondItem="Pcs-GD-Fhj" secondAttribute="bottom" constant="20" symbolic="YES" id="keZ-fB-0HO"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lLN-X6-6KY"/>
+                            <constraint firstItem="IxI-rr-9IA" firstAttribute="top" secondItem="8pW-9D-7Ka" secondAttribute="bottom" constant="6" id="mDF-sb-QTp"/>
+                            <constraint firstItem="8pW-9D-7Ka" firstAttribute="leading" secondItem="U8X-4K-xSW" secondAttribute="trailing" constant="8" id="n7l-g7-SL2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QcI-Ye-S9P" secondAttribute="trailing" constant="-36" id="pDb-48-dua"/>
                             <constraint firstItem="QcI-Ye-S9P" firstAttribute="trailing" secondItem="wfy-db-euE" secondAttribute="trailing" id="pjR-SI-xhz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GBG-WR-4Rf" secondAttribute="bottom" constant="8" symbolic="YES" id="pnj-8w-rrl"/>
@@ -223,10 +232,9 @@
                             <mask key="subviews">
                                 <exclude reference="fmC-TU-d7z"/>
                                 <exclude reference="U8X-4K-xSW"/>
+                                <exclude reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="W3e-JD-GV2"/>
-                                <exclude reference="drq-KN-wlM"/>
                                 <exclude reference="9Rb-aC-UPC"/>
                                 <exclude reference="lLN-X6-6KY"/>
                                 <exclude reference="0p4-UI-fyk"/>
@@ -236,9 +244,13 @@
                                 <exclude reference="aMb-Xk-4ZS"/>
                                 <exclude reference="keZ-fB-0HO"/>
                                 <exclude reference="pnj-8w-rrl"/>
+                                <exclude reference="drq-KN-wlM"/>
                                 <exclude reference="9UO-Ww-ptd"/>
                                 <exclude reference="YCl-Sn-lmk"/>
                                 <exclude reference="kEC-US-X65"/>
+                                <exclude reference="mDF-sb-QTp"/>
+                                <exclude reference="W3e-JD-GV2"/>
+                                <exclude reference="n7l-g7-SL2"/>
                                 <exclude reference="pDb-48-dua"/>
                             </mask>
                         </variation>
@@ -246,12 +258,15 @@
                             <mask key="subviews">
                                 <include reference="fmC-TU-d7z"/>
                                 <include reference="U8X-4K-xSW"/>
+                                <include reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="W3e-JD-GV2"/>
                                 <include reference="drq-KN-wlM"/>
                                 <include reference="9UO-Ww-ptd"/>
                                 <include reference="kEC-US-X65"/>
+                                <include reference="mDF-sb-QTp"/>
+                                <include reference="W3e-JD-GV2"/>
+                                <include reference="n7l-g7-SL2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">

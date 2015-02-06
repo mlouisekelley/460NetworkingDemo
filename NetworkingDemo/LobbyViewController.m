@@ -32,6 +32,7 @@ static bool joined = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    joined = NO;
     // Do any additional setup after loading the view.
 }
 

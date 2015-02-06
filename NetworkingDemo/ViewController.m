@@ -221,7 +221,7 @@ int TILE_HEIGHT;
                              handler:^(UIAlertAction * action)
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                 
+                                 [self restart];
                              }];
         
         [alert addAction:ok]; // add action to uialertcontroller
@@ -233,10 +233,6 @@ int TILE_HEIGHT;
         [alert show];
         
     }
-    
-    [self leaveGame];
-    
-    
 }
 
 -(BOOL) didCurrentPlayerWin {
@@ -246,6 +242,18 @@ int TILE_HEIGHT;
         }
     }
     return YES;
+}
+
+-(void)restart {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Lobby"];
+    [self presentViewController:vc animated:YES completion:nil];
+    [self leaveGame];
+}
+
+- (IBAction)restartButtonHit:(id)sender {
+    [self restart];
 }
 
 #pragma mark - UICollectionViewDataSource
