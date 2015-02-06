@@ -13,4 +13,5 @@
 
 -(NSArray *)checkBoardState:(NSArray *)board;
 -(NSUInteger)calculateScoreForBoard:(NSArray *)board;
+- (id)initWithScrabbleDict;
 @end

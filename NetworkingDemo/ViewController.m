@@ -93,7 +93,7 @@ int TILE_HEIGHT;
 
 - (BoardChecker *) boardChecker {
     if (!_boardChecker) {
-        _boardChecker = [[BoardChecker alloc] init];
+        _boardChecker = [[BoardChecker alloc] initWithScrabbleDict];
     }
     return _boardChecker;
 }
@@ -329,8 +329,6 @@ int TILE_HEIGHT;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-    dispatch_queue_t otherQ = dispatch_queue_create("check_board", NULL);
-    dispatch_async(otherQ, ^{
         NSArray *invalidWordsOnBoard = [self.boardChecker checkBoardState:self.board];
         if ([invalidWordsOnBoard count] > 0) {
             
@@ -369,19 +367,16 @@ int TILE_HEIGHT;
             
             
         } else {
-            dispatch_queue_t mainQ = dispatch_get_main_queue();
-            dispatch_async(mainQ, ^{
-                if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-                    int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-                    for (int i = 0; i < num; i++) {
-                        [self createTileInRack];
-                    }
-                }
-                [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
-                [NetworkUtils sendWordPlayed];
-            });
+            
+            if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+                int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+                for (int i = 0; i < num; i++) {
+                    [self createTileInRack];
+            }
+            [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
+            [NetworkUtils sendWordPlayed];
         }
-    });
+    }
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout

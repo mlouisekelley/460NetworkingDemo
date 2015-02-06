@@ -13,10 +13,36 @@
 @interface BoardChecker()
 
 @property (nonatomic, strong) NSMutableDictionary *alreadyCheckedWords;
+@property (nonatomic, strong) NSDictionary *scrabbleDict;
 
 @end
 
 @implementation BoardChecker
+
+- (id) initWithScrabbleDict {
+    self = [super init];
+    NSMutableDictionary *wordDict = [[NSMutableDictionary alloc] init];
+    
+    //open the file and read each line into an array
+    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"scrabble_words" ofType:@"txt"];
+    NSError *error;
+    NSString *fileContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error)
+        NSLog(@"Error reading file: %@", error.localizedDescription);
+    
+    
+    NSArray *listArray = [fileContents componentsSeparatedByString:@"\n"];
+    NSLog(@"items = %d", [listArray count]);
+    
+    for (NSString *word in listArray) {
+        [wordDict setValue:@"" forKey:word];
+    }
+    
+    self.scrabbleDict = wordDict;
+    
+    return self;
+}
 
 
 - (NSMutableDictionary *) alreadyCheckedWords {
@@ -158,39 +184,10 @@
  Note: this method runs synchronous URL requests, so be sure to call it off the main queue
  */
 -(BOOL)isValid:(NSString *)word {
-    //first check if the word is already in the alreadyCheckedWords dictionary
-    NSNumber *value =[self.alreadyCheckedWords objectForKey:word];
-    if (value != nil) {
-        return [value boolValue];
+    if ([self.scrabbleDict valueForKey:[word lowercaseString]] != nil) {
+        return YES;
     }
-    
-    //if no word was found, check dictionary
-    NSString *query = [NSString stringWithFormat:@"http://www.dictionaryapi.com/api/v1/references/collegiate/xml/%@?key=%@", word, DICTIONARY_KEY];
-    NSURL *url = [NSURL URLWithString:query];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLResponse *response;
-    NSError *error;
-    //send it synchronous
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    // check for an error. If there is a network error, you should handle it here.
-    if(!error)
-    {
-        //log response
-        //NSLog(@"Response from server = %@", responseString);
-        NSString *entryString = [NSString stringWithUTF8String:"<entry id="];
-        NSRange range = [responseString rangeOfString:entryString];
-        if (range.length == 0) {
-            [self.alreadyCheckedWords setValue:[NSNumber numberWithBool:NO] forKey:word];
-            return NO;
-        }
-    }
-    else {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    [self.alreadyCheckedWords setValue:[NSNumber numberWithBool:YES] forKey:word];
-    return YES;
+    return NO;
 }
 
 @end
