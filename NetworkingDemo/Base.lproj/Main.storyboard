@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Lobby View Controller-->
@@ -235,6 +234,9 @@
                                 <exclude reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="W3e-JD-GV2"/>
+                                <exclude reference="n7l-g7-SL2"/>
+                                <exclude reference="drq-KN-wlM"/>
                                 <exclude reference="9Rb-aC-UPC"/>
                                 <exclude reference="lLN-X6-6KY"/>
                                 <exclude reference="0p4-UI-fyk"/>
@@ -244,13 +246,10 @@
                                 <exclude reference="aMb-Xk-4ZS"/>
                                 <exclude reference="keZ-fB-0HO"/>
                                 <exclude reference="pnj-8w-rrl"/>
-                                <exclude reference="drq-KN-wlM"/>
                                 <exclude reference="9UO-Ww-ptd"/>
                                 <exclude reference="YCl-Sn-lmk"/>
                                 <exclude reference="kEC-US-X65"/>
                                 <exclude reference="mDF-sb-QTp"/>
-                                <exclude reference="W3e-JD-GV2"/>
-                                <exclude reference="n7l-g7-SL2"/>
                                 <exclude reference="pDb-48-dua"/>
                             </mask>
                         </variation>
@@ -261,12 +260,12 @@
                                 <include reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="W3e-JD-GV2"/>
+                                <include reference="n7l-g7-SL2"/>
                                 <include reference="drq-KN-wlM"/>
                                 <include reference="9UO-Ww-ptd"/>
                                 <include reference="kEC-US-X65"/>
                                 <include reference="mDF-sb-QTp"/>
-                                <include reference="W3e-JD-GV2"/>
-                                <include reference="n7l-g7-SL2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
