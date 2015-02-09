@@ -242,11 +242,17 @@ int TILE_HEIGHT;
 }
 
 -(void)restart {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Lobby"];
-    [self presentViewController:vc animated:YES completion:nil];
-    [self leaveGame];
+    
+//    NSString * storyboardName = @"Main";
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+//    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Lobby"];
+//    //[self presentViewController:vc animated:YES completion:nil];
+//    
+//    [[[UIApplication sharedApplication] keyWindow].rootViewController dismissViewControllerAnimated:YES completion:nil];
+//    [[UIApplication sharedApplication] keyWindow].rootViewController = vc;
+//    
+//    
+//    [self leaveGame];
 }
 
 - (IBAction)restartButtonHit:(id)sender {

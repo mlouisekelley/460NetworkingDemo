@@ -20,6 +20,7 @@
 
 static LobbyViewController *vc;
 static bool joined = NO;
+static bool first = YES;
 
 +(LobbyViewController *)sharedViewController
 {
@@ -45,24 +46,29 @@ static bool joined = NO;
     
     vc = self;
     
-    //appwarp configuration
-    [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
-    
-    WarpClient *warpClient = [WarpClient getInstance];
-    [warpClient setRecoveryAllowance:60];
-    [warpClient enableTrace:YES];
-    
-    ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
-    [warpClient addConnectionRequestListener:connectionListener];
-    [warpClient addZoneRequestListener:connectionListener];
-    
-    RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
-    [warpClient addRoomRequestListener:roomListener];
-    
-    NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
-    [warpClient addNotificationListener:notificationListener];
-    
-    [warpClient connectWithUserName:[GameConstants getUserName]];
+    if(first){
+        //appwarp configuration
+        [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
+        
+        WarpClient *warpClient = [WarpClient getInstance];
+        [warpClient setRecoveryAllowance:60];
+        [warpClient enableTrace:YES];
+        
+        ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
+        [warpClient addConnectionRequestListener:connectionListener];
+        [warpClient addZoneRequestListener:connectionListener];
+        
+        RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
+        [warpClient addRoomRequestListener:roomListener];
+        
+        NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
+        [warpClient addNotificationListener:notificationListener];
+        
+        [warpClient connectWithUserName:[GameConstants getUserName]];
+        first = NO;
+    } else {
+        [NetworkUtils sendJoinedGame];
+    }
     
     [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
     [sender setEnabled:NO];
