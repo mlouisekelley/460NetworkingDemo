@@ -623,10 +623,10 @@ int TILE_HEIGHT;
             [NetworkUtils sendFinalLetterPlayed:message];
             [cellDTO.tvc makeFinalized];
         }
-        if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
+        else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
             //send removed tile update
-            NSString* message = [NSString stringWithFormat:@"removeLetter:%ld", (long)cellDTO.tvc.indexPath.item];
+            NSString* message = [NSString stringWithFormat:@"removeLetter:%ld", (long)i];
             [NetworkUtils sendLetterFinalRemoved:message];
 
         }
@@ -644,7 +644,7 @@ int TILE_HEIGHT;
 -(void)removeEnemyFinalLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
     [self destroyTile:dto.tvc];
-    
+    dto.isPending = NO;
     [self.boardCollectionView reloadData];
 }
 
