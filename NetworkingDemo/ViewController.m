@@ -283,6 +283,7 @@ int TILE_HEIGHT;
        
         text = @"";
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
+        dto.cell = cell;
         if (dto.isPending) {
             cell.backgroundColor = [UIColor redColor];
         }
@@ -607,14 +608,16 @@ int TILE_HEIGHT;
 }
 
 -(void)placeEnemyFinalLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
-
-    UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
+    BoardCellDTO *dto =self.board[indexPath.item];
+    UICollectionViewCell *cell = dto.cell;
+    if (cell == nil) {
+        NSLog(@"Something bad happened! %ld", indexPath.item);
+    }
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:enemyID];
     tvc.indexPath = indexPath;
     [tvc makeFinalized];
     
-    BoardCellDTO *dto = self.board[indexPath.item];
     if (dto.tvc != nil) {
         [self takeTileFromBoard:dto.tvc];
     }
@@ -640,7 +643,6 @@ int TILE_HEIGHT;
         }
     }
     [NetworkUtils sendFinalLetterPlayed:finalLetterMessage];
-    [self.boardCollectionView reloadData];
 }
 
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {

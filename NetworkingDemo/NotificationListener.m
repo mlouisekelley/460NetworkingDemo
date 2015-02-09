@@ -84,7 +84,7 @@
             
         }
 
-        if ([message[0] isEqualToString:@"finalLetter"]) {
+        if ([message[0] isEqualToString:@"f"]) {
             for (int i = 1; i < [message count]; i += 3) {
             indexPath = [NSIndexPath indexPathForItem:[message[i+1] integerValue]
                                             inSection:0];
