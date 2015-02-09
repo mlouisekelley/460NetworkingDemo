@@ -78,12 +78,15 @@ ViewController *superview;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if([[self superVC] touchToPlay] && !_isPending && !_isStartingTile){
-        if([[self superVC] tileIsSelected]){
-            [[self superVC] clearSelectedTile];
-            
+    if([[self superVC] touchToPlay] && !_isStartingTile){
+        if (!_isSelected || (_isSelected && [_pid isEqualToString:[GameConstants getUserName]])) {
+            if([[self superVC] tileIsSelected]){
+                [[self superVC] clearSelectedTile];
+                
+            }
+            [[self superVC] setSelectedTile:self];
         }
-        [[self superVC] setSelectedTile:self];
+        
     }
     
     if (!_isPending && !_isSelected && !_isStartingTile) {
