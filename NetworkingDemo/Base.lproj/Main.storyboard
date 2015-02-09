@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Lobby View Controller-->
@@ -176,22 +177,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pW-9D-7Ka">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Restart">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="578" y="723" width="50" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="619" y="735" width="50" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="restartButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yad-ET-tPl"/>
-                                    <segue destination="Ti6-2w-sDr" kind="show" id="cyW-oc-bDF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -219,8 +204,6 @@
                             <constraint firstItem="IxI-rr-9IA" firstAttribute="top" secondItem="U8X-4K-xSW" secondAttribute="bottom" constant="13" id="kEC-US-X65"/>
                             <constraint firstAttribute="bottom" secondItem="Pcs-GD-Fhj" secondAttribute="bottom" constant="20" symbolic="YES" id="keZ-fB-0HO"/>
                             <constraint firstItem="Mbl-rH-m8c" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lLN-X6-6KY"/>
-                            <constraint firstItem="IxI-rr-9IA" firstAttribute="top" secondItem="8pW-9D-7Ka" secondAttribute="bottom" constant="6" id="mDF-sb-QTp"/>
-                            <constraint firstItem="8pW-9D-7Ka" firstAttribute="leading" secondItem="U8X-4K-xSW" secondAttribute="trailing" constant="8" id="n7l-g7-SL2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QcI-Ye-S9P" secondAttribute="trailing" constant="-36" id="pDb-48-dua"/>
                             <constraint firstItem="QcI-Ye-S9P" firstAttribute="trailing" secondItem="wfy-db-euE" secondAttribute="trailing" id="pjR-SI-xhz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GBG-WR-4Rf" secondAttribute="bottom" constant="8" symbolic="YES" id="pnj-8w-rrl"/>
@@ -232,11 +215,9 @@
                             <mask key="subviews">
                                 <exclude reference="fmC-TU-d7z"/>
                                 <exclude reference="U8X-4K-xSW"/>
-                                <exclude reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="W3e-JD-GV2"/>
-                                <exclude reference="n7l-g7-SL2"/>
                                 <exclude reference="drq-KN-wlM"/>
                                 <exclude reference="9Rb-aC-UPC"/>
                                 <exclude reference="lLN-X6-6KY"/>
@@ -250,7 +231,6 @@
                                 <exclude reference="9UO-Ww-ptd"/>
                                 <exclude reference="YCl-Sn-lmk"/>
                                 <exclude reference="kEC-US-X65"/>
-                                <exclude reference="mDF-sb-QTp"/>
                                 <exclude reference="pDb-48-dua"/>
                             </mask>
                         </variation>
@@ -258,15 +238,12 @@
                             <mask key="subviews">
                                 <include reference="fmC-TU-d7z"/>
                                 <include reference="U8X-4K-xSW"/>
-                                <include reference="8pW-9D-7Ka"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="W3e-JD-GV2"/>
-                                <include reference="n7l-g7-SL2"/>
                                 <include reference="drq-KN-wlM"/>
                                 <include reference="9UO-Ww-ptd"/>
                                 <include reference="kEC-US-X65"/>
-                                <include reference="mDF-sb-QTp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -298,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="393"/>
+            <point key="canvasLocation" x="427.5" y="393"/>
         </scene>
     </scenes>
 </document>

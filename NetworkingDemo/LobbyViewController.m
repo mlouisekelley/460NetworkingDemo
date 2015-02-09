@@ -73,7 +73,7 @@ static bool first = YES;
     [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
     [sender setEnabled:NO];
     
-    //[self performSegueWithIdentifier:@"BeginGame" sender:self];
+    //
     
 }
 
@@ -81,10 +81,7 @@ static bool first = YES;
     if(joined){
         return;
     }
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Test"];
-    [self presentViewController:vc animated:YES completion:nil];
+    [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
     [NetworkUtils sendJoinedGame];
     joined = YES;
 }
