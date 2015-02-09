@@ -85,10 +85,12 @@
         }
 
         if ([message[0] isEqualToString:@"finalLetter"]) {
-            indexPath = [NSIndexPath indexPathForItem:[message[1] integerValue]
+            for (int i = 1; i < [message count]; i += 2) {
+            indexPath = [NSIndexPath indexPathForItem:[message[i] integerValue]
                                             inSection:0];
-            [[ViewController sharedViewController] placeEnemyFinalLetter:message[2]
+            [[ViewController sharedViewController] placeEnemyFinalLetter:message[i+1]
                                                              atIndexPath:indexPath forEnemy:chatEvent.sender];
+            }
             return;
             
         }

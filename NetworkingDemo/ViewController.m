@@ -623,12 +623,13 @@ int TILE_HEIGHT;
 }
 
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
+    NSMutableString *finalLetterMessage = @"finalLetter";
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
+        
         if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
             cellDTO.isPending = NO;
-            NSString* message = [NSString stringWithFormat:@"finalLetter:%ld:%@", (long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
-            [NetworkUtils sendFinalLetterPlayed:message];
+            [finalLetterMessage appendFormat:@"%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [cellDTO.tvc makeFinalized];
         }
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
@@ -639,6 +640,7 @@ int TILE_HEIGHT;
 
         }
     }
+    [NetworkUtils sendFinalLetterPlayed:finalLetterMessage];
     [self.boardCollectionView reloadData];
 }
 
