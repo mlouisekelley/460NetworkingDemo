@@ -98,7 +98,6 @@
                 }
             }
             return;
-            
         }
         [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
                                                            atIndexPath:indexPath forEnemy:chatEvent.sender];

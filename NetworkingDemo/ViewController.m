@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
 @property (strong, nonatomic) TileViewCell *selectedTile;
 @property (strong, nonatomic) BoardChecker *boardChecker;
+@property (strong, nonatomic) NSDictionary *stringToColor;
+@property (strong, nonatomic) NSMutableDictionary *playerColors;
 @end
 
 @implementation ViewController
@@ -86,6 +88,20 @@ int TILE_HEIGHT;
         _playerScores = [[NSMutableDictionary alloc] init];
     }
     return _playerScores;
+}
+
+- (NSDictionary *)stringToColor {
+    if (!_stringToColor) {
+        _stringToColor = @{@"blue": [UIColor blueColor], @"orange": [UIColor orangeColor]};
+    }
+    return _stringToColor;
+}
+
+- (NSMutableDictionary *)playerColors {
+    if (!_playerColors) {
+        _playerColors = [[NSMutableDictionary alloc] init];
+    }
+    return _playerColors;
 }
 
 - (BoardChecker *) boardChecker {
