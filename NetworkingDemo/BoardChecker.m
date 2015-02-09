@@ -121,12 +121,12 @@
                 BoardCellDTO *currentDTO = cellDTO;
                 int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
-                    if (currentDTO.tvc.isPending || ![currentDTO.tvc.pid isEqualToString:player]) {
+                    if (currentDTO.isPending || ![currentDTO.tvc.pid isEqualToString:player]) {
                         if (![self isStartingTile:currentDTO]) {
                             shouldScoreWord = NO;
                         }
                     }
-                    if (!currentDTO.tvc.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
+                    if (!currentDTO.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
                         numLettersToScore++;
                     }
                     currLetterIndex += 10;
@@ -144,12 +144,12 @@
                 BoardCellDTO *currentDTO = cellDTO;
                 int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
-                    if (currentDTO.tvc.isPending || ![currentDTO.tvc.pid isEqualToString:player]) {
+                    if (currentDTO.isPending || ![currentDTO.tvc.pid isEqualToString:player]) {
                         if (![self isStartingTile:currentDTO]) {
                             shouldScoreWord = NO;
                         }
                     }
-                    if (!currentDTO.tvc.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
+                    if (!currentDTO.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
                         numLettersToScore++;
                     }
                     currLetterIndex++;
@@ -184,7 +184,7 @@
         return YES;
     }
 
-    if ([cell.tvc.pid isEqualToString:myUserName] || !cell.tvc.isPending) {
+    if ([cell.tvc.pid isEqualToString:myUserName] || !cell.isPending) {
         return YES;
     }
     

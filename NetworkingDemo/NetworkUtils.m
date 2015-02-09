@@ -13,7 +13,10 @@
 {
     [[WarpClient getInstance] sendChat:theUpdate];
 }
-
++(void)sendFinalLetterPlayed:(NSString *)theUpdate
+{
+    [[WarpClient getInstance] sendChat:theUpdate];
+}
 +(void)sendWordPlayed
 {
     NSString* message = [NSString stringWithFormat:@"wp"];
@@ -26,6 +29,10 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
++(void)sendLetterFinalRemoved:(NSString *)update
+{
+    [[WarpClient getInstance] sendChat:update];
+}
 +(void)sendPlayerScore:(NSString *)score {
     NSString* message = [NSString stringWithFormat:@"score:%@", score];
     [[WarpClient getInstance] sendChat:message];

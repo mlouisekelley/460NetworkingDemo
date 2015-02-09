@@ -56,16 +56,6 @@ ViewController *superview;
     [self addGestureRecognizer:tapGesture];
 }
 
--(void) makePending {
-    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
-    _isPending = YES;
-}
-
--(void) makeFinalized {
-    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
-    _isPending = NO;
-}
-
 -(void) makeSelected {
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
     _isSelected = YES;
@@ -74,6 +64,11 @@ ViewController *superview;
 -(void) makeUnselected {
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1.0]];
     _isSelected = NO;
+}
+
+
+-(void) makeFinalized {
+    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -89,7 +84,7 @@ ViewController *superview;
         
     }
     
-    if (!_isPending && !_isSelected && !_isStartingTile) {
+    if (!_isSelected && !_isStartingTile) {
         [super touchesBegan:touches withEvent:event];
         UITouch *aTouch = [touches anyObject];
         offset = [aTouch locationInView: self];
@@ -103,7 +98,7 @@ ViewController *superview;
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending && !_isSelected && !_isStartingTile) {
+    if (!_isSelected && !_isStartingTile) {
         UITouch *aTouch = [touches anyObject];
         CGPoint location = [aTouch locationInView:self.superview];
         
@@ -117,7 +112,7 @@ ViewController *superview;
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_isPending && !_isSelected && !_isStartingTile) {
+    if (!_isSelected && !_isStartingTile) {
 
         [[self superVC] tileDidFinishMoving:self];
         

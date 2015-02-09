@@ -15,14 +15,12 @@
 @property (nonatomic) CGPoint startPoint;
 @property (nonatomic) BOOL isOnRack;
 @property (nonatomic) NSIndexPath *indexPath;
-@property (nonatomic) BOOL isPending;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic) BOOL isStartingTile;
 @property (nonatomic, strong) NSString *pid;
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
--(void) makePending;
 -(void) makeFinalized;
 -(void) makeSelected;
 -(void) makeUnselected;
