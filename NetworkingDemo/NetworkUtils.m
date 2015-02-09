@@ -29,6 +29,10 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
++(void)sendLetterFinalRemoved:(NSString *)update
+{
+    [[WarpClient getInstance] sendChat:update];
+}
 +(void)sendPlayerScore:(NSString *)score {
     NSString* message = [NSString stringWithFormat:@"score:%@", score];
     [[WarpClient getInstance] sendChat:message];

@@ -27,6 +27,7 @@
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
 -(void)placeEnemyFinalLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath;
+-(void)removeEnemyFinalLetterAtIndexPath:(NSIndexPath *)indexPath;
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player;
 -(void)addPlayer:(NSString *)playerUserName;
 -(void)updatePlayerList:(NSArray *)currentPlayers;

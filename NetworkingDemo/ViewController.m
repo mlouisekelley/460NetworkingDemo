@@ -279,7 +279,7 @@ int TILE_HEIGHT;
         text = @"";
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
         if (dto.isPending) {
-            cell.backgroundColor = [UIColor yellowColor];
+            cell.backgroundColor = [UIColor redColor];
         }
         else {
             cell.backgroundColor = [UIColor lightGrayColor];
@@ -379,14 +379,13 @@ int TILE_HEIGHT;
             
         } else {
             
-            if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-                int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-                for (int i = 0; i < num; i++) {
-                    [self createTileInRack];
+            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+            for (int i = 0; i < num; i++) {
+                [self createTileInRack];
             }
             [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
             [self updateSelfScore];
-        }
+        
     }
 }
 
@@ -428,8 +427,7 @@ int TILE_HEIGHT;
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
-    dto.isPending = NO;
-
+    dto.tileWasHere = YES;
 }
 
 -(void)placeStartingWord{
@@ -516,10 +514,6 @@ int TILE_HEIGHT;
     }
     else {
         [self removeTileFromBoard:tile];
-        
-        //send removed tile update
-        NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
-        [NetworkUtils sendLetterRemoved:message];
     }
 }
 
@@ -625,10 +619,17 @@ int TILE_HEIGHT;
         BoardCellDTO *cellDTO = self.board[i];
         if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
             cellDTO.isPending = NO;
-            NSString* message = [NSString stringWithFormat:@"finalLetter:%ld:%@", cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
+            NSString* message = [NSString stringWithFormat:@"finalLetter:%ld:%@", (long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [NetworkUtils sendFinalLetterPlayed:message];
             [cellDTO.tvc makeFinalized];
-        } 
+        }
+        if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
+            cellDTO.tileWasHere = NO;
+            //send removed tile update
+            NSString* message = [NSString stringWithFormat:@"removeLetter:%ld", (long)cellDTO.tvc.indexPath.item];
+            [NetworkUtils sendLetterFinalRemoved:message];
+
+        }
     }
     [self.boardCollectionView reloadData];
 }
@@ -636,6 +637,13 @@ int TILE_HEIGHT;
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
     dto.isPending = NO;
+    
+    [self.boardCollectionView reloadData];
+}
+
+-(void)removeEnemyFinalLetterAtIndexPath:(NSIndexPath *)indexPath {
+    BoardCellDTO *dto =self.board[indexPath.item];
+    [self destroyTile:dto.tvc];
     
     [self.boardCollectionView reloadData];
 }

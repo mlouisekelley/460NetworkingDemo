@@ -15,6 +15,7 @@
 +(void)sendLetterPlayed:(NSString *)update;
 +(void)sendFinalLetterPlayed:(NSString *)update;
 +(void)sendWordPlayed;
++(void)sendLetterFinalRemoved:(NSString *)update;
 +(void)sendLetterRemoved:(NSString *)update;
 +(void)sendJoinedGame;
 +(void)sendPlayerScore:(NSString *)score;

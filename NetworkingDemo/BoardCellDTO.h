@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSString* text;
 @property (nonatomic) TileViewCell* tvc;
 @property (nonatomic) BOOL isPending;
-@end  
+@property (nonatomic) BOOL tileWasHere;
+
+@end
