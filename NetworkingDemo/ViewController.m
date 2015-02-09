@@ -248,15 +248,15 @@ int TILE_HEIGHT;
 }
 
 -(void)restart {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Lobby"];
-    [self presentViewController:vc animated:YES completion:nil];
-    [self leaveGame];
+    
+//    for (int i = 0; i<[[self board] count]; i++) {
+//        BoardCellDTO *cellDTO = [self board][i];
+//        cellDTO.tvc = nil;
+//    }
 }
 
 - (IBAction)restartButtonHit:(id)sender {
-    [self restart];
+    //[self restart];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -555,8 +555,8 @@ int TILE_HEIGHT;
 -(void) updateSelfScore {
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
     NSUInteger oldScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue];
-    NSUInteger newScore = pointsEarned + oldScore;
-    NSLog(@"SCORE: %ld", newScore);
+    //NSUInteger newScore = pointsEarned + oldScore;
+    NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
     [self refreshScoresText];
     [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", newScore]];
