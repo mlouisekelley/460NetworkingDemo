@@ -635,7 +635,7 @@ int TILE_HEIGHT;
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
             //send removed tile update
-            [finalLetterMessage appendFormat:@":r:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
+            [finalLetterMessage appendFormat:@":r:%ld:%@",(long)i, @"-"];
 
         }
     }
@@ -652,7 +652,10 @@ int TILE_HEIGHT;
 
 -(void)removeEnemyFinalLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
-    [self destroyTile:dto.tvc];
+    [dto.tvc removeFromSuperview];
+    
+    dto.tvc = nil;
+    dto.text = @"-";
     dto.isPending = NO;
     [self.boardCollectionView reloadData];
 }
