@@ -500,6 +500,8 @@ int TILE_HEIGHT;
     BoardCellDTO *dto = self.board[tile.indexPath.item];
     dto.text = @"-";
     dto.tvc = nil;
+    NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
+    [NetworkUtils sendLetterRemoved:message];
 }
 
 -(void) removeTileFromRack:(TileViewCell *)tile {
@@ -514,6 +516,7 @@ int TILE_HEIGHT;
     }
     else {
         [self removeTileFromBoard:tile];
+        
     }
 }
 
