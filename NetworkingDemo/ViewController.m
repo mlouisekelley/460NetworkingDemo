@@ -234,12 +234,17 @@ int TILE_HEIGHT;
 }
 
 -(BOOL) didCurrentPlayerWin {
+    Player *maxPlayer = nil;
     for (Player *player in self.players) {
-        if (currentPlayer.score < player.score) {
-            return NO;
+        
+        if (maxPlayer == nil || maxPlayer.score < player.score) {
+            maxPlayer = player;
         }
     }
-    return YES;
+    if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
+        return YES;
+    }
+    return NO;
 }
 
 -(void)restart {
