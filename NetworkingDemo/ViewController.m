@@ -450,6 +450,7 @@ int TILE_HEIGHT;
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
     dto.tileWasHere = YES;
+    dto.tvc.isUnsent = YES;
 }
 
 -(void)placeStartingWord{
@@ -634,6 +635,7 @@ int TILE_HEIGHT;
     tvc.indexPath = indexPath;
     [tvc makeFinalized];
     
+    
     if (dto.tvc != nil) {
         [self takeTileFromBoard:dto.tvc];
     }
@@ -646,8 +648,9 @@ int TILE_HEIGHT;
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         
-        if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
+        if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid] && cellDTO.tvc.isUnsent) {
             cellDTO.isPending = NO;
+            cellDTO.tvc.isUnsent = NO;
             NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [cellDTO.tvc makeFinalized];
