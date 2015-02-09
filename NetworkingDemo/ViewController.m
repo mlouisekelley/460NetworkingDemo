@@ -423,6 +423,7 @@ int TILE_HEIGHT;
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
+    [dto.tvc makePending];
 }
 
 -(void)placeStartingWord{
@@ -448,18 +449,20 @@ int TILE_HEIGHT;
 
 -(void) takeTileFromBoard:(UIView *)tile {
     TileViewCell *theTile = ((TileViewCell *)tile);
-    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES && !theTile.isPending) {
-        [UIView animateWithDuration:0.1 animations:^{
-            tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
-        }];
-        
-        
-        [_tileSpaces removeObjectAtIndex:0];
-        [self removeTileFromCurrentSpot:theTile];
-        currentPlayer.numberOfTiles++;
-        theTile.isOnRack = YES;
-        [theTile makeUnselected];
-        theTile.startPoint = tile.frame.origin;
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+        if ((theTile.isPending && [theTile.pid isEqualToString:[GameConstants getUserName]]) || !theTile.isPending) {
+            [UIView animateWithDuration:0.1 animations:^{
+                tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
+            }];
+            
+            
+            [_tileSpaces removeObjectAtIndex:0];
+            [self removeTileFromCurrentSpot:theTile];
+            currentPlayer.numberOfTiles++;
+            theTile.isOnRack = YES;
+            [theTile makeUnselected];
+            theTile.startPoint = tile.frame.origin;
+        }
     }
 }
 

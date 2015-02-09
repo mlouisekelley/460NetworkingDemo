@@ -115,17 +115,18 @@
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
-                BOOL shouldScoreWord = NO;
+                BOOL shouldScoreWord = YES;
                 int currLetterIndex = i;
                 
                 BoardCellDTO *currentDTO = cellDTO;
                 int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     if (currentDTO.tvc.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
-                        shouldScoreWord = NO;
+                        if (![self isStartingTile:currentDTO]) {
+                            shouldScoreWord = NO;
+                        }
                     }
-                    if ([currentDTO.tvc.pid isEqualToString:player]) {
-                        shouldScoreWord = YES;
+                    if (currentDTO.tvc.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
                         numLettersToScore++;
                     }
                     currLetterIndex += 10;
@@ -137,17 +138,18 @@
             }
             
             if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
-                BOOL shouldScoreWord = NO;
+                BOOL shouldScoreWord = YES;
                 int currLetterIndex = i;
                 
                 BoardCellDTO *currentDTO = cellDTO;
                 int numLettersToScore = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     if (currentDTO.tvc.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
-                        shouldScoreWord = NO;
+                        if (![self isStartingTile:currentDTO]) {
+                            shouldScoreWord = NO;
+                        }
                     }
-                    if ([currentDTO.tvc.pid isEqualToString:player]) {
-                        shouldScoreWord = YES;
+                    if (currentDTO.tvc.isPending && [currentDTO.tvc.pid isEqualToString:player]) {
                         numLettersToScore++;
                     }
                     currLetterIndex++;
@@ -163,6 +165,13 @@
     return count;
 }
 
+-(BOOL) isStartingTile: (BoardCellDTO *)cell {
+    if ([cell.tvc.pid isEqualToString:@"stone"]) {
+        return YES;
+    }
+    return NO;
+}
+
 -(BOOL)shouldCheckCellDTO:(BoardCellDTO *)cell {
     NSString *myUserName = [GameConstants getUserName];
     if (!cell) {
@@ -170,6 +179,9 @@
     }
     if ([self isBlank: cell.text]) {
         return NO;
+    }
+    if ([cell.tvc.pid isEqualToString:@"stone"]) {
+        return YES;
     }
 
     if ([cell.tvc.pid isEqualToString:myUserName] || !cell.tvc.isPending) {
