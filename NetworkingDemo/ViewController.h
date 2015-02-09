@@ -25,7 +25,8 @@
 -(void)tossWasTouched:(UITouch *)touch;
 - (IBAction)touchUpSubmit:(id)sender;
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
--(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath;
+-(void)placeEnemyFinalLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID;
+-(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath;
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player;
 -(void)addPlayer:(NSString *)playerUserName;
 -(void)updatePlayerList:(NSArray *)currentPlayers;

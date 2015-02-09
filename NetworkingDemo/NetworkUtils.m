@@ -13,7 +13,10 @@
 {
     [[WarpClient getInstance] sendChat:theUpdate];
 }
-
++(void)sendFinalLetterPlayed:(NSString *)theUpdate
+{
+    [[WarpClient getInstance] sendChat:theUpdate];
+}
 +(void)sendWordPlayed
 {
     NSString* message = [NSString stringWithFormat:@"wp"];

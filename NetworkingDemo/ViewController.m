@@ -112,6 +112,7 @@ int TILE_HEIGHT;
             for (int j = 0; j < 10; j++) {
                 BoardCellDTO *cell = [[BoardCellDTO alloc] init];
                 cell.text = @"-";
+                cell.isPending = NO;
                 [_board addObject:cell];
             }
         }
@@ -276,8 +277,13 @@ int TILE_HEIGHT;
         NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
        
         text = @"";
-        cell.backgroundColor = [UIColor lightGrayColor];
-        
+        BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
+        if (dto.isPending) {
+            cell.backgroundColor = [UIColor yellowColor];
+        }
+        else {
+            cell.backgroundColor = [UIColor lightGrayColor];
+        }
         cell.layer.borderWidth=1.0f;
         
         cell.layer.borderColor=[UIColor whiteColor].CGColor;
@@ -379,7 +385,6 @@ int TILE_HEIGHT;
                     [self createTileInRack];
             }
             [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
-            [NetworkUtils sendWordPlayed];
             [self updateSelfScore];
         }
     }
@@ -423,7 +428,8 @@ int TILE_HEIGHT;
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
-    [dto.tvc makePending];
+    dto.isPending = NO;
+
 }
 
 -(void)placeStartingWord{
@@ -450,7 +456,6 @@ int TILE_HEIGHT;
 -(void) takeTileFromBoard:(UIView *)tile {
     TileViewCell *theTile = ((TileViewCell *)tile);
     if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-        if ((theTile.isPending && [theTile.pid isEqualToString:[GameConstants getUserName]]) || !theTile.isPending) {
             [UIView animateWithDuration:0.1 animations:^{
                 tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
             }];
@@ -462,7 +467,6 @@ int TILE_HEIGHT;
             theTile.isOnRack = YES;
             [theTile makeUnselected];
             theTile.startPoint = tile.frame.origin;
-        }
     }
 }
 
@@ -595,18 +599,24 @@ int TILE_HEIGHT;
 }
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
-    [self placeEnemyLetter:letter atIndexPath:indexPath forEnemy:(NSString *)enemyID];
+    BoardCellDTO *dto = 	self.board[indexPath.item];
+    dto.isPending = YES;
+    [self.boardCollectionView reloadData];
 }
 
--(void)placeEnemyLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
+-(void)placeEnemyFinalLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID{
 
     UICollectionViewCell *cell = [self.boardCollectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:enemyID];
     tvc.indexPath = indexPath;
-    [tvc makePending];
+    [tvc makeFinalized];
+    
+    BoardCellDTO *dto = self.board[indexPath.item];
+    if (dto.tvc != nil) {
+        [self takeTileFromBoard:dto.tvc];
+    }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
-
     [self.view addSubview:tvc];
 }
 
@@ -614,20 +624,18 @@ int TILE_HEIGHT;
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
+            cellDTO.isPending = NO;
+            NSString* message = [NSString stringWithFormat:@"finalLetter:%ld:%@", cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
+            [NetworkUtils sendFinalLetterPlayed:message];
             [cellDTO.tvc makeFinalized];
-        }
+        } 
     }
     [self.boardCollectionView reloadData];
 }
 
--(void)removeEnemyLetterAtIndexPath:(NSIndexPath *)indexPath {
-   
+-(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
-    
-    if(dto.tvc != nil){
-        [dto.tvc removeFromSuperview];
-        [self removeTileFromBoard:dto.tvc];
-    }
+    dto.isPending = NO;
     
     [self.boardCollectionView reloadData];
 }

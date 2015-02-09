@@ -13,6 +13,7 @@
 @interface NetworkUtils : NSObject
 
 +(void)sendLetterPlayed:(NSString *)update;
++(void)sendFinalLetterPlayed:(NSString *)update;
 +(void)sendWordPlayed;
 +(void)sendLetterRemoved:(NSString *)update;
 +(void)sendJoinedGame;
