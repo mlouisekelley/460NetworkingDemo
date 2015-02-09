@@ -623,24 +623,25 @@ int TILE_HEIGHT;
 }
 
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
-    NSMutableString *finalLetterMessage = [[NSMutableString alloc] initWithString:@"finalLetter" ];
+    NSMutableString *finalLetterMessage = [[NSMutableString alloc] initWithString:@"f" ];
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         
         if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {
             cellDTO.isPending = NO;
+            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [cellDTO.tvc makeFinalized];
         }
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
+            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             //send removed tile update
             [finalLetterMessage appendFormat:@":r:%ld:%@",(long)i, @"-"];
 
         }
     }
     [NetworkUtils sendFinalLetterPlayed:finalLetterMessage];
-    [self.boardCollectionView reloadData];
 }
 
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
