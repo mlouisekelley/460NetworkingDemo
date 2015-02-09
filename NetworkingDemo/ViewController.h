@@ -33,5 +33,6 @@
 -(void)setSelectedTile:(TileViewCell *)tile;
 -(void)clearSelectedTile;
 -(void)takeTileFromBoard:(UIView *)tile;
+-(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName;
 @end
 

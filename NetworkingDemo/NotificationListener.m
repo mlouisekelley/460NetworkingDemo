@@ -45,7 +45,7 @@
     if([chatEvent.message isEqualToString:@"joined"]){
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
             NSLog(@"I JOINED");
-            //[[LobbyViewController sharedViewController] beginGame];
+            [[LobbyViewController sharedViewController] beginGame];
             return;
         }
         NSLog(@"SOMEONE ELSE JOINED THE ROOM");
@@ -53,7 +53,7 @@
         return;
     }
     
-    NSArray *message = [chatEvent.message componentsSeparatedByString:@","];
+    NSArray *message = [chatEvent.message componentsSeparatedByString:@":"];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
                                             inSection:0];
 
@@ -69,6 +69,10 @@
                 return;
             }
             [[ViewController sharedViewController]removeEnemyLetterAtIndexPath:indexPath];
+            return;
+        }
+        if([message[0] isEqualToString:@"score"]){
+            [[ViewController sharedViewController] updateScore:[message[1] intValue] forPlayer:chatEvent.sender];
             return;
         }
         [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]

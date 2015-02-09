@@ -62,10 +62,7 @@ int TILE_HEIGHT;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
     
-    [self updateScoresForPlayer:currentPlayer.userName];
-
-    
-    
+    [self updateSelfScore];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -383,6 +380,7 @@ int TILE_HEIGHT;
             }
             [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
             [NetworkUtils sendWordPlayed];
+            [self updateSelfScore];
         }
     }
 }
@@ -472,7 +470,7 @@ int TILE_HEIGHT;
     if (dto.tvc == nil) {
         
         //send update packet
-        NSString* message = [NSString stringWithFormat:@"%ld,%@", (long)indexPath.item, currentSelectedLetter];
+        NSString* message = [NSString stringWithFormat:@"%ld:%@", (long)indexPath.item, currentSelectedLetter];
         [NetworkUtils sendLetterPlayed:message];
         
         //update the board
@@ -544,10 +542,16 @@ int TILE_HEIGHT;
 }
 
 #pragma mark - scoring
--(void) updateScoresForPlayer:(NSString *)player {
-    NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:player];
+-(void) updateSelfScore {
+    NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
     NSUInteger newScore = pointsEarned;
-    [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:player];
+    [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
+    [self refreshScoresText];
+    [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", newScore]];
+}
+
+-(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
+    [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
     [self refreshScoresText];
 }
 
@@ -602,8 +606,6 @@ int TILE_HEIGHT;
 }
 
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
-    [self updateScoresForPlayer:player];
-    
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid]) {

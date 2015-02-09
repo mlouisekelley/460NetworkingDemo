@@ -26,6 +26,11 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
++(void)sendPlayerScore:(NSString *)score {
+    NSString* message = [NSString stringWithFormat:@"score:%@", score];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)sendJoinedGame
 {
     NSString* message = [NSString stringWithFormat:@"joined"];
