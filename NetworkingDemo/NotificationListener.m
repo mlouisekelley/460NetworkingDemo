@@ -45,7 +45,7 @@
     if([chatEvent.message isEqualToString:@"joined"]){
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
             NSLog(@"I JOINED");
-            //[[LobbyViewController sharedViewController] beginGame];
+            [[LobbyViewController sharedViewController] beginGame];
             return;
         }
         NSLog(@"SOMEONE ELSE JOINED THE ROOM");

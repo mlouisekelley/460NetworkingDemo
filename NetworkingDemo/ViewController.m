@@ -405,8 +405,8 @@ int TILE_HEIGHT;
             for (int i = 0; i < num; i++) {
                 [self createTileInRack];
             }
-            [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
             [self updateSelfScore];
+            [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
 }
@@ -572,8 +572,8 @@ int TILE_HEIGHT;
 -(void) updateSelfScore {
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
     NSUInteger oldScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue];
-    //NSUInteger newScore = pointsEarned + oldScore;
-    NSUInteger newScore = pointsEarned;
+    NSUInteger newScore = pointsEarned + oldScore;
+    //NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
     [self refreshScoresText];
     [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", newScore]];
