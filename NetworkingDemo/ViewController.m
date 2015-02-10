@@ -79,7 +79,6 @@ int TILE_HEIGHT;
     
     [self placeStartingWord];
     [self refreshScoresText];
-    
 }
 
 #pragma mark Lazy Instantiations

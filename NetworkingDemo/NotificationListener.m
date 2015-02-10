@@ -44,11 +44,9 @@
     
     if([chatEvent.message isEqualToString:@"joined"]){
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
-            NSLog(@"I JOINED");
             [[LobbyViewController sharedViewController] beginGame];
             return;
         }
-        NSLog(@"SOMEONE ELSE JOINED THE ROOM");
         [[LobbyViewController sharedViewController] beginGame];
         return;
     }
@@ -57,13 +55,11 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
                                             inSection:0];
 
-    
-    if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
-        NSLog(@"Chat successfully sent");
-    } else {
-        NSLog(@"Recieved chat");
+    //only look at chats from other players
+    if(![chatEvent.sender isEqualToString:[GameConstants getUserName]]){
         //letter removed
         if(message.count == 1){
+            //word has been played
             if([message[0] isEqualToString:@"wp"]){
                 [[ViewController sharedViewController] placeEnemyFinalLetter:message[1]
                                                                    atIndexPath:indexPath forEnemy:chatEvent.sender];
