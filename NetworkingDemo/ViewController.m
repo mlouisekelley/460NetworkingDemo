@@ -256,7 +256,7 @@ int displayScore = 0;
             displayScore += incAmnt;
         }
     }
-    self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%07d", displayScore];
+    self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%08d", displayScore];
 }
 -(void) gameOver {
     isGameOver = YES;

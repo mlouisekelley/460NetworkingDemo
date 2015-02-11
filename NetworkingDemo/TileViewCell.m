@@ -86,7 +86,12 @@ ViewController *superview;
             particleView.frame = CGRectMake(self.frame.size.width, arc4random_uniform(self.frame.size.height), particleSize, particleSize);
         float num = ((double)arc4random() / 0x100000000); // idiom for getting random numbers between 0 and 1
         if ([_pid isEqualToString:[GameConstants getUserName]]) {
-            particleView.backgroundColor = [UIColor colorWithRed:0 green:num blue:0 alpha:1];
+            CGFloat hue, saturation, brightness, alpha ;
+            float randHue = ((double)arc4random() / 0x100000000);
+            [ [UIColor orangeColor ] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha ] ;
+            
+            UIColor * newColor = [ UIColor colorWithHue:hue saturation:randHue brightness:brightness alpha:alpha ] ;
+            particleView.backgroundColor = newColor;
         }
         else {
             particleView.backgroundColor = [UIColor colorWithRed:num green:0 blue:0 alpha:1];
