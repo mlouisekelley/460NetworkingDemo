@@ -66,6 +66,13 @@ BOOL isFirst = YES;
         [self refreshBoard];
     }
     
+    UIImage *img = [UIImage imageNamed:@"trash-64.png"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+    
+    [self.tossView addSubview:imageView ];
+    [self.tossView sendSubviewToBack:imageView ];
+    
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];

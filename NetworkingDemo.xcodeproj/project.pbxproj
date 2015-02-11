@@ -26,6 +26,7 @@
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A38B9DA91A8479D300F1F59A /* scrabble_words.txt */; };
+		A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1A1A8BBC690037B370 /* trash-64.png */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = F07943071A6D97EA002849ED /* BoardCellDTO.m */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		A38B9DA91A8479D300F1F59A /* scrabble_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrabble_words.txt; sourceTree = "<group>"; };
+		A3CABF1A1A8BBC690037B370 /* trash-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-64.png"; sourceTree = "<group>"; };
 		F04428EF1A68302600D7B02E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F07943071A6D97EA002849ED /* BoardCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardCellDTO.m; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		A30ADC891A4CFBD200047201 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3CABF1A1A8BBC690037B370 /* trash-64.png */,
 				A38B9DA91A8479D300F1F59A /* scrabble_words.txt */,
 				A30ADC8D1A4CFBD200047201 /* AppDelegate.h */,
 				A30ADC8E1A4CFBD200047201 /* AppDelegate.m */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */,
+				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,
 				A30ADC951A4CFBD200047201 /* Main.storyboard in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,
 				A30ADC971A4CFBD200047201 /* Images.xcassets in Resources */,
