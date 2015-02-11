@@ -249,14 +249,16 @@ int TILE_HEIGHT;
 }
 
 -(BOOL) didCurrentPlayerWin {
-    Player *maxPlayer = nil;
-    for (Player *player in self.players) {
-        
-        if (maxPlayer == nil || maxPlayer.score < player.score) {
-            maxPlayer = player;
+    NSString *maxPlayer = nil;
+    NSNumber *maxNumber = 0;
+    for (NSString *playerName in self.playerScores.allKeys) {
+        NSNumber *num = [self.playerScores valueForKey:playerName];
+        if (num > maxNumber) {
+            maxNumber = num;
+            maxPlayer = playerName;
         }
     }
-    if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
+    if([maxPlayer isEqualToString:[GameConstants getUserName]]){
         return YES;
     }
     return NO;
