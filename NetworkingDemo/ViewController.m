@@ -263,7 +263,7 @@ int TILE_HEIGHT;
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  isGameOver = NO;
-                                 _timer = nil;
+                                 [_timer invalidate];
                                  _board = nil;
                                  [self restart];
                              }];
