@@ -72,6 +72,12 @@
             [[ViewController sharedViewController] updateScore:[message[1] intValue] forPlayer:chatEvent.sender];
             return;
         }
+        if([message[0] isEqualToString:@"pendingRemove"]){
+            indexPath = [NSIndexPath indexPathForItem:[message[1] integerValue]
+                                            inSection:0];
+            [[ViewController sharedViewController] removeEnemyPendingLetterAtIndexPath:indexPath];
+            return;
+        }
         if ([message[0] isEqualToString:@"removeLetter"]) {
             indexPath = [NSIndexPath indexPathForItem:[message[1] integerValue]
                                             inSection:0];

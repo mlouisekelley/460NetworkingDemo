@@ -522,7 +522,7 @@ int TILE_HEIGHT;
     BoardCellDTO *dto = self.board[tile.indexPath.item];
     dto.text = @"-";
     dto.tvc = nil;
-    NSString* message = [NSString stringWithFormat:@"%ld", (long)tile.indexPath.item];
+    NSString* message = [NSString stringWithFormat:@"pendingRemove:%ld", (long)tile.indexPath.item];
     [NetworkUtils sendLetterRemoved:message];
 }
 
@@ -617,8 +617,18 @@ int TILE_HEIGHT;
     [self refreshScoresText];
 }
 
+-(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath  {
+    BoardCellDTO *dto = self.board[indexPath.item];
+    [dto.tvc makeBeingMovedByOtherPlayer];
+}
+
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
-    BoardCellDTO *dto = 	self.board[indexPath.item];
+    BoardCellDTO *dto = self.board[indexPath.item];
+    if (dto.tvc != nil && dto.tvc.isBeingMovedByOtherPlayer && [dto.tvc.letterLabel.text isEqualToString: letter]) {
+        // For when someone was going to move a tile but moved it back
+        [dto.tvc unMakeBeingMovedByOtherPlayer];
+    }
+
     dto.isPending = YES;
     [self.boardCollectionView reloadData];
 }

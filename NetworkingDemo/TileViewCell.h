@@ -19,9 +19,13 @@
 @property (nonatomic) BOOL isStartingTile;
 @property (nonatomic, strong) NSString *pid;
 @property (nonatomic) BOOL isUnsent;
+@property (nonatomic) BOOL isBeingMovedByOtherPlayer;
+
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
 -(void) makeFinalized;
 -(void) makeSelected;
 -(void) makeUnselected;
+-(void) makeBeingMovedByOtherPlayer;
+-(void) unMakeBeingMovedByOtherPlayer;
 @end

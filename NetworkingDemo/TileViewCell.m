@@ -71,6 +71,15 @@ ViewController *superview;
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
 }
 
+-(void) makeBeingMovedByOtherPlayer {
+    _isBeingMovedByOtherPlayer = YES;
+    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:0.3]];
+}
+-(void) unMakeBeingMovedByOtherPlayer {
+    _isBeingMovedByOtherPlayer = NO;
+    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if([[self superVC] touchToPlay] && !_isStartingTile){
