@@ -35,6 +35,7 @@ static ViewController *vc;
 Player *currentPlayer;
 int minutes;
 int seconds;
+int milliseconds;
 BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
@@ -75,7 +76,8 @@ int displayScore = 0;
     
     minutes = 2;
     seconds = 0;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    milliseconds = 0;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
     _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -87,7 +89,7 @@ int displayScore = 0;
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    self.progressView.progress = 1.0f;
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 20), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
@@ -224,7 +226,11 @@ int displayScore = 0;
 
 #pragma mark End Game stuff
 - (void)updateCounter:(NSTimer *)theTimer {
-    if (seconds > 0) {
+    if (milliseconds > 0) {
+        milliseconds -= 10;
+    }
+    else if (seconds > 0) {
+        milliseconds = 1000;
         seconds--;
     }
     else if (minutes > 0) {
@@ -234,6 +240,9 @@ int displayScore = 0;
     else if (!isGameOver) {
         [self gameOver];
     }
+    self.progressView.progress = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+
+   
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 

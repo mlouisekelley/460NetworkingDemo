@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIView *tossView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic) BOOL touchToPlay;
 
 +(ViewController *)sharedViewController;
