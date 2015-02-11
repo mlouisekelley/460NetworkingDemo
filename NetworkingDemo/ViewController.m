@@ -580,6 +580,9 @@ BOOL isFirst = YES;
 -(void) tossTile:(TileViewCell *)tile {
     [self destroyTile:tile];
     [self createTileInRack];
+    NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
+    [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
+    [self refreshScoresText];
 }
 
 #pragma mark - scoring
