@@ -257,7 +257,6 @@ int TILE_HEIGHT;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 NSLog(@"CLEAR");
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  isGameOver = NO;
                                  _timer = nil;
@@ -294,10 +293,6 @@ int TILE_HEIGHT;
 
 -(void)restart {
     [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
-}
-
-- (IBAction)restartButtonHit:(id)sender {
-    //[self restart];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -474,7 +469,6 @@ int TILE_HEIGHT;
 #pragma mark - placing tiles
 
 -(void) placeTileOnBoard:(TileViewCell *)tile atIndexPath:(NSIndexPath *) indexPath {
-    NSLog(@"PLACE: %ld", (long)indexPath.item);
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
@@ -680,7 +674,7 @@ int TILE_HEIGHT;
     BoardCellDTO *dto =self.board[indexPath.item];
     UICollectionViewCell *cell = dto.cell;
     if (cell == nil) {
-        NSLog(@"Something bad happened! %ld", indexPath.item);
+        NSLog(@"Something bad happened! %ld", (long)indexPath.item);
     }
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:enemyID];
