@@ -69,6 +69,52 @@ ViewController *superview;
 
 -(void) makeFinalized {
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
+    int numParticles = 15;
+    int particleSize = 4;
+    for (int i = 0; i < numParticles; i++) {
+        float particleLength = ((double)arc4random() / 0x100000000) + .5 ;
+        int edge = i % 4;
+        UIView *particleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, particleSize, particleSize)];
+        if (edge == 0)
+            particleView.frame = CGRectMake(arc4random_uniform(self.frame.size.width), 0, particleSize, particleSize);
+        if (edge == 1)
+            particleView.frame = CGRectMake(0, arc4random_uniform(self.frame.size.height), particleSize, particleSize);
+        if (edge == 2)
+            particleView.frame = CGRectMake(arc4random_uniform(self.frame.size.width), self.frame.size.height, particleSize, particleSize);
+        if (edge == 3)
+            particleView.frame = CGRectMake(self.frame.size.width, arc4random_uniform(self.frame.size.height), particleSize, particleSize);
+        float num = ((double)arc4random() / 0x100000000); // idiom for getting random numbers between 0 and 1
+        if ([_pid isEqualToString:[GameConstants getUserName]]) {
+            particleView.backgroundColor = [UIColor colorWithRed:0 green:num blue:0 alpha:1];
+        }
+        else {
+            particleView.backgroundColor = [UIColor colorWithRed:num green:0 blue:0 alpha:1];
+        }
+        [self addSubview:particleView];
+
+        [UIView animateWithDuration:particleLength animations:^{
+            
+            [particleView setAlpha:0.0f];
+            int maxDist = 100;
+            int xDist = arc4random_uniform(maxDist * 2) - maxDist;
+            int yDist = arc4random_uniform(maxDist * 2) - maxDist;
+            if (edge == 0) {
+                yDist = -1 * arc4random_uniform(maxDist);
+            }
+            if (edge == 1) {
+                xDist = -1 * arc4random_uniform(maxDist);
+            }
+            if (edge == 2) {
+                yDist = arc4random_uniform(maxDist);
+            }
+            if (edge == 3) {
+                xDist = arc4random_uniform(maxDist);
+            }
+            [particleView setFrame:CGRectMake(particleView.frame.origin.x + xDist, particleView.frame.origin.y + yDist, particleView.frame.size.width, particleView.frame.size.height)];
+        } completion:^(BOOL finished) {
+            [particleView removeFromSuperview];
+            }];
+    }
 }
 
 -(void) makeBeingMovedByOtherPlayer {
