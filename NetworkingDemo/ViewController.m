@@ -40,32 +40,34 @@ int TILE_HEIGHT;
 BOOL isFirst = YES;
 
 - (void)viewDidLoad {
+
+    [self refreshBoard];
+    isGameOver = NO;
     
     _touchToPlay = true;
     
-    if(isFirst){
-        [super viewDidLoad];
-        [self.boardCollectionView setTag:1];
-        [self.tileCollectionView setTag:2];
-        
-        [self.boardCollectionView reloadData];
-        self.boardCollectionView.dataSource = self;
-        self.boardCollectionView.delegate = self;
-        self.boardCollectionView.minimumZoomScale = .01;
-        self.boardCollectionView.zoomScale = 10;
-        
-        
-        [self.tileCollectionView reloadData];
-        self.tileCollectionView.dataSource = self;
-        self.tileCollectionView.delegate = self;
-        
-        vc = self;
-        currentPlayer = [[Player alloc] init];
-        currentPlayer.userName = [GameConstants getUserName];
-    } else {
-        [self refreshBoard];
-    }
+    [super viewDidLoad];
+    [self.boardCollectionView setTag:1];
+    [self.tileCollectionView setTag:2];
     
+    [self.boardCollectionView reloadData];
+    self.boardCollectionView.dataSource = self;
+    self.boardCollectionView.delegate = self;
+    self.boardCollectionView.minimumZoomScale = .01;
+    self.boardCollectionView.zoomScale = 10;
+    
+    
+    [self.tileCollectionView reloadData];
+    self.tileCollectionView.dataSource = self;
+    self.tileCollectionView.delegate = self;
+    
+    vc = self;
+    currentPlayer = [[Player alloc] init];
+    currentPlayer.userName = [GameConstants getUserName];
+    
+    minutes = 0;
+    seconds = 30;
+
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
@@ -95,10 +97,30 @@ BOOL isFirst = YES;
     
     [self placeStartingWord];
     [self refreshScoresText];
+    isFirst = NO;
 }
 
 -(void)refreshBoard {
-    _board = nil;
+    NSLog(@"REFRESH");
+//    _board = [[NSMutableArray alloc] init];
+//    for (int i = 0; i < 10; i++) {
+//        for (int j = 0; j < 10; j++) {
+//            BoardCellDTO *cell = [[BoardCellDTO alloc] init];
+//            cell.text = @"-";
+//            cell.isPending = NO;
+//            [_board addObject:cell];
+//        }
+//    }
+
+    for (int i = 0; i<[_board count]; i++) {
+        BoardCellDTO *cell = [self board][i];
+//        cell.tvc = nil;
+//        cell.text = @"-";
+//        cell.isPending = NO;
+        if(cell.tvc){
+            NSLog(@"NOT NIL: %@", cell.tvc.letterLabel);
+        }
+    }
 }
 
 #pragma mark Lazy Instantiations
@@ -253,7 +275,11 @@ BOOL isFirst = YES;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
+                                 NSLog(@"CLEAR");
                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                 isGameOver = NO;
+                                 _timer = nil;
+                                 _board = nil;
                                  [self restart];
                              }];
         
@@ -339,6 +365,9 @@ BOOL isFirst = YES;
     CGPoint someLocation = [touch locationInView: self.view];
     UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x, someLocation.y, 1, 1)];
     BoardViewCell *cell = [self findClosestCellToView:tempView];
+    if(!cell){
+        NSLog(@"CELL IS NIL");
+    }
     
     NSIndexPath *indexPath = [self.boardCollectionView indexPathForCell:cell];
     
@@ -469,6 +498,7 @@ BOOL isFirst = YES;
 #pragma mark - placing tiles
 
 -(void) placeTileOnBoard:(TileViewCell *)tile atIndexPath:(NSIndexPath *) indexPath {
+    NSLog(@"PLACE: %ld", (long)indexPath.item);
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.text = tile.letterLabel.text;
     dto.tvc = tile;
@@ -536,6 +566,8 @@ BOOL isFirst = YES;
         tile.isOnRack = NO;
         
         return NO;
+    } else {
+        NSLog(@"TVC WAS NOT NIL");
     }
     return NO;
 }
