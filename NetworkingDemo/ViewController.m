@@ -632,6 +632,8 @@ int TILE_HEIGHT;
             scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
         }
     }
+    self.scores.font = [UIFont fontWithName:@"orange juice" size:32];
+
     self.scores.text = scoresString;
 }
 
