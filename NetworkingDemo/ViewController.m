@@ -77,6 +77,9 @@ BOOL isFirst = YES;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    [self.bkgView addGestureRecognizer:tapGesture];
+    
     [self updateSelfScore];
 }
 
@@ -373,6 +376,12 @@ BOOL isFirst = YES;
         [self takeTileFromBoard:tileCell];
     }
     return NO;
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if ([self tileIsSelected]) {
+        [self takeTileFromBoard:[self selectedTile]];
+    }
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
