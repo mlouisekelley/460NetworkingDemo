@@ -619,7 +619,13 @@ int TILE_HEIGHT;
 
 -(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath  {
     BoardCellDTO *dto = self.board[indexPath.item];
-    [dto.tvc makeBeingMovedByOtherPlayer];
+    if (!dto.isPending) {
+        [dto.tvc makeBeingMovedByOtherPlayer];
+    }
+    else {
+        [dto.tvc unMakeBeingMovedByOtherPlayer];
+        [self removeEnemyPendingLetterAtIndexPath:indexPath];
+    }
 }
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
@@ -627,9 +633,11 @@ int TILE_HEIGHT;
     if (dto.tvc != nil && dto.tvc.isBeingMovedByOtherPlayer && [dto.tvc.letterLabel.text isEqualToString: letter]) {
         // For when someone was going to move a tile but moved it back
         [dto.tvc unMakeBeingMovedByOtherPlayer];
+        dto.tvc.isUnsent = NO;
     }
-
-    dto.isPending = YES;
+    else {
+        dto.isPending = YES;
+    }
     [self.boardCollectionView reloadData];
 }
 
@@ -649,6 +657,8 @@ int TILE_HEIGHT;
         [self takeTileFromBoard:dto.tvc];
     }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
+    dto.isPending = NO;
+    dto.tvc.isUnsent = NO;
     [self.view addSubview:tvc];
 }
 

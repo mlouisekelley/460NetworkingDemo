@@ -36,5 +36,7 @@
 -(void)clearSelectedTile;
 -(void)takeTileFromBoard:(UIView *)tile;
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName;
+-(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
