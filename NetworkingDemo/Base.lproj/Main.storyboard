@@ -296,6 +296,7 @@
                         <outlet property="scores" destination="GBG-WR-4Rf" id="0u6-o8-WNL"/>
                         <outlet property="timerLabel" destination="QcI-Ye-S9P" id="Fh4-Mg-6OM"/>
                         <outlet property="tossView" destination="IxI-rr-9IA" id="VT3-8z-F7U"/>
+                        <segue destination="Ti6-2w-sDr" kind="show" identifier="ReturnToLobby" id="AlX-Ox-Ng0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

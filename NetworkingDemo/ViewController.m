@@ -37,29 +37,35 @@ int seconds;
 BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
+BOOL isFirst = YES;
 
 - (void)viewDidLoad {
     
     _touchToPlay = true;
     
-    [super viewDidLoad];
-    [self.boardCollectionView setTag:1];
-    [self.tileCollectionView setTag:2];
+    if(isFirst){
+        [super viewDidLoad];
+        [self.boardCollectionView setTag:1];
+        [self.tileCollectionView setTag:2];
+        
+        [self.boardCollectionView reloadData];
+        self.boardCollectionView.dataSource = self;
+        self.boardCollectionView.delegate = self;
+        self.boardCollectionView.minimumZoomScale = .01;
+        self.boardCollectionView.zoomScale = 10;
+        
+        
+        [self.tileCollectionView reloadData];
+        self.tileCollectionView.dataSource = self;
+        self.tileCollectionView.delegate = self;
+        
+        vc = self;
+        currentPlayer = [[Player alloc] init];
+        currentPlayer.userName = [GameConstants getUserName];
+    } else {
+        [self refreshBoard];
+    }
     
-    [self.boardCollectionView reloadData];
-    self.boardCollectionView.dataSource = self;
-    self.boardCollectionView.delegate = self;   
-    self.boardCollectionView.minimumZoomScale = .01;
-    self.boardCollectionView.zoomScale = 10;
-
-    
-    [self.tileCollectionView reloadData];
-    self.tileCollectionView.dataSource = self;
-    self.tileCollectionView.delegate = self;
-    
-    vc = self;
-    currentPlayer = [[Player alloc] init];
-    currentPlayer.userName = [GameConstants getUserName];
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
@@ -79,6 +85,10 @@ int TILE_HEIGHT;
     
     [self placeStartingWord];
     [self refreshScoresText];
+}
+
+-(void)refreshBoard {
+    _board = nil;
 }
 
 #pragma mark Lazy Instantiations
@@ -265,11 +275,7 @@ int TILE_HEIGHT;
 }
 
 -(void)restart {
-    
-//    for (int i = 0; i<[[self board] count]; i++) {
-//        BoardCellDTO *cellDTO = [self board][i];
-//        cellDTO.tvc = nil;
-//    }
+    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
 }
 
 - (IBAction)restartButtonHit:(id)sender {
