@@ -78,7 +78,7 @@ BOOL isFirst = YES;
     [super viewDidAppear:animated];
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + self.boardCollectionView.bounds.size.height, TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 20), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
