@@ -653,7 +653,7 @@ int TILE_HEIGHT;
     [tvc makeFinalized];
     
     
-    if (dto.tvc != nil) {
+    if (dto.tvc != nil && dto.tvc.isUnsent) {
         [self takeTileFromBoard:dto.tvc];
     }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
