@@ -13,6 +13,7 @@
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIView *bkgView;
+@property (weak, nonatomic) IBOutlet UILabel *currentPlayerScoreLabel;
 @property (weak, nonatomic) IBOutlet UITextView *scores;
 @property (strong, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;

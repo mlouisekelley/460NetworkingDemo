@@ -162,7 +162,7 @@
             
         }
     }
-    return count;
+    return count * 100;
 }
 
 -(BOOL) isStartingTile: (BoardCellDTO *)cell {

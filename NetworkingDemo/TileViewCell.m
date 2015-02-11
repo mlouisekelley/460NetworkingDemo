@@ -33,7 +33,7 @@ ViewController *superview;
         }
         self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, 64, 64)];
         self.letterLabel.text = letter;
-        self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:64];
+        self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:54];
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
         _pid = playerID;

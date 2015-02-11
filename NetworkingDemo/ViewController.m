@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *scoreTimer;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
 @property (strong, nonatomic) TileViewCell *selectedTile;
@@ -37,6 +38,7 @@ int seconds;
 BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
+int displayScore = 0;
 
 - (void)viewDidLoad {
 
@@ -74,6 +76,7 @@ int TILE_HEIGHT;
     minutes = 2;
     seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self.bkgView addGestureRecognizer:tapGesture];
@@ -234,6 +237,18 @@ int TILE_HEIGHT;
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
+- (void)updateScoreDisplay:(NSTimer *)theTimer {
+    if (displayScore < currentPlayer.score) {
+        int incAmnt = (currentPlayer.score - displayScore) / 9 + 1;
+        if (displayScore + incAmnt > currentPlayer.score) {
+            displayScore = currentPlayer.score;
+        }
+        else {
+            displayScore += incAmnt;
+        }
+    }
+    self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%07d", displayScore];
+}
 -(void) gameOver {
     isGameOver = YES;
     NSString *alertMessage = @"";
@@ -603,6 +618,7 @@ int TILE_HEIGHT;
     [self createTileInRack];
     NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
+    currentPlayer.score = (int)newScore;
     [self refreshScoresText];
 }
 
@@ -611,6 +627,7 @@ int TILE_HEIGHT;
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
     NSUInteger oldScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue];
     NSUInteger newScore = pointsEarned + oldScore;
+    currentPlayer.score = (int)newScore;
     //NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
     [self refreshScoresText];
