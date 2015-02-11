@@ -67,6 +67,16 @@ BOOL isFirst = YES;
     
     minutes = 0;
     seconds = 30;
+
+    UIImage *img = [UIImage imageNamed:@"trash-64.png"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+    
+    [self.tossView addSubview:imageView ];
+    [self.tossView sendSubviewToBack:imageView ];
+    
+    minutes = 2;
+    seconds = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
     
     [self updateSelfScore];
@@ -602,6 +612,9 @@ BOOL isFirst = YES;
 -(void) tossTile:(TileViewCell *)tile {
     [self destroyTile:tile];
     [self createTileInRack];
+    NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
+    [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
+    [self refreshScoresText];
 }
 
 #pragma mark - scoring
