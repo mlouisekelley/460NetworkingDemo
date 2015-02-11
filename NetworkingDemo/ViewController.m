@@ -104,6 +104,7 @@ int TILE_HEIGHT;
             cell.text = @"-";
             cell.isPending = NO;
             [_board addObject:cell];
+            cell.tvc = nil;
         }
     }
 }
