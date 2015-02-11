@@ -37,7 +37,6 @@ int seconds;
 BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
-BOOL isFirst = YES;
 
 - (void)viewDidLoad {
 
@@ -64,9 +63,6 @@ BOOL isFirst = YES;
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
-    
-    minutes = 0;
-    seconds = 30;
 
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
@@ -94,28 +90,17 @@ BOOL isFirst = YES;
     
     [self placeStartingWord];
     [self refreshScoresText];
-    isFirst = NO;
 }
 
 -(void)refreshBoard {
     NSLog(@"REFRESH");
-//    _board = [[NSMutableArray alloc] init];
-//    for (int i = 0; i < 10; i++) {
-//        for (int j = 0; j < 10; j++) {
-//            BoardCellDTO *cell = [[BoardCellDTO alloc] init];
-//            cell.text = @"-";
-//            cell.isPending = NO;
-//            [_board addObject:cell];
-//        }
-//    }
-
-    for (int i = 0; i<[_board count]; i++) {
-        BoardCellDTO *cell = [self board][i];
-//        cell.tvc = nil;
-//        cell.text = @"-";
-//        cell.isPending = NO;
-        if(cell.tvc){
-            NSLog(@"NOT NIL: %@", cell.tvc.letterLabel);
+    _board = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            BoardCellDTO *cell = [[BoardCellDTO alloc] init];
+            cell.text = @"-";
+            cell.isPending = NO;
+            [_board addObject:cell];
         }
     }
 }
