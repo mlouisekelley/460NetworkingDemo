@@ -12,6 +12,7 @@
 #import "TileViewCell.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UIView *bkgView;
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayerScoreLabel;
 @property (weak, nonatomic) IBOutlet UITextView *scores;

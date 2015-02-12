@@ -240,6 +240,13 @@ int displayScore = 0;
     else if (!isGameOver) {
         [self gameOver];
     }
+    if (seconds <= 5) {
+        self.countDownLabel.text = [NSString stringWithFormat:@"%d", seconds];
+        self.countDownLabel.alpha = 0.5 * (milliseconds) / 1000.0 + .2;
+    }
+    else {
+        self.countDownLabel.text = @"";
+    }
     self.progressView.progress = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
 
    
