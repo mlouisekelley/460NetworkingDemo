@@ -240,7 +240,7 @@ int displayScore = 0;
     else if (!isGameOver) {
         [self gameOver];
     }
-    if (seconds <= 5) {
+    if (seconds <= 5 && minutes == 0) {
         self.countDownLabel.text = [NSString stringWithFormat:@"%d", seconds];
         self.countDownLabel.alpha = 0.5 * (milliseconds) / 1000.0 + .2;
     }
@@ -262,6 +262,9 @@ int displayScore = 0;
         else {
             displayScore += incAmnt;
         }
+    }
+    else {
+        displayScore = currentPlayer.score;
     }
     self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%08d", displayScore];
 }
@@ -375,7 +378,7 @@ int displayScore = 0;
 #pragma mark - touch controller methods
 -(void)boardWasTouched:(UITouch *)touch {
     CGPoint someLocation = [touch locationInView: self.view];
-    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x, someLocation.y, 1, 1)];
+    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(someLocation.x - TILE_WIDTH / 2.0, someLocation.y - TILE_HEIGHT/2.0, TILE_WIDTH, TILE_HEIGHT)];
     BoardViewCell *cell = [self findClosestCellToView:tempView];
     if(!cell){
         NSLog(@"CELL IS NIL");
@@ -630,12 +633,14 @@ int displayScore = 0;
 }
 
 -(void) tossTile:(TileViewCell *)tile {
-    [self destroyTile:tile];
-    [self createTileInRack];
-    NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
-    [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
-    currentPlayer.score = (int)newScore;
-    [self refreshScoresText];
+    if (!tile.isFinalized) {
+        [self destroyTile:tile];
+        [self createTileInRack];
+        NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
+        [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
+        currentPlayer.score = (int)newScore;
+        [self refreshScoresText];
+    }
 }
 
 #pragma mark - scoring
@@ -787,7 +792,7 @@ int displayScore = 0;
     BoardViewCell *closestCell = nil;
     for (BoardViewCell *cell in _boardCollectionView.visibleCells) {
         float curDist = [self view:view DistanceToView:cell];
-        if (curDist < view.frame.size.height / 2 + cell.frame.size.height / 2 + 2) {
+        if (curDist < view.frame.size.height / 2 + cell.frame.size.height / 2) {
             if (curDist < minDist || minDist == -1) {
                 minDist = curDist;
                 closestCell = cell;

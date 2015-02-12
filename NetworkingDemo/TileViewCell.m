@@ -72,6 +72,7 @@ ViewController *superview;
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
     int numParticles = 15;
     int particleSize = 4;
+    _isFinalized = YES;
     for (int i = 0; i < numParticles; i++) {
         float particleLength = ((double)arc4random() / 0x100000000) + .5 ;
         int edge = i % 4;

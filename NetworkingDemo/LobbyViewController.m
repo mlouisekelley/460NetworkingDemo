@@ -73,8 +73,6 @@ static bool first = YES;
     [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
     [sender setEnabled:NO];
     
-    //
-    
 }
 
 -(void)beginGame {

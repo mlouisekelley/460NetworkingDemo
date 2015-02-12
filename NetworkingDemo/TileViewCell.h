@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL isOnRack;
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL isFinalized;
 @property (nonatomic) BOOL isStartingTile;
 @property (nonatomic, strong) NSString *pid;
 @property (nonatomic) BOOL isUnsent;
