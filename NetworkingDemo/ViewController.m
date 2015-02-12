@@ -91,7 +91,7 @@ int displayScore = 0;
     [super viewDidAppear:animated];
     self.progressView.progress = 1.0f;
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 20) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 20), TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
@@ -555,6 +555,8 @@ int displayScore = 0;
             theTile.isOnRack = YES;
             [theTile makeUnselected];
             theTile.startPoint = tile.frame.origin;
+        
+            [self clearSelectedTile];
     }
 }
 
