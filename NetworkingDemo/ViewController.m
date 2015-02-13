@@ -94,6 +94,13 @@ NSMutableArray *colorArray;
     minutes = 2;
     seconds = 0;
     milliseconds = 0;
+    
+    redScore = 0;
+    blueScore = 0;
+    purpleScore = 0;
+    
+    currentPlayer.numberOfTiles = 0;
+    
     self.progressView.progress = 1.0f;
     for (TileViewCell *cell in self.allTiles) {
         [cell removeFromSuperview];
