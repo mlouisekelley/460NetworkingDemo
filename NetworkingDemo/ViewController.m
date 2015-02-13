@@ -40,6 +40,9 @@ BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
 int displayScore = 0;
+int redScore = 0;
+int blueScore = 0;
+int purpleScore = 0;
 NSMutableArray *colorArray;
 
 - (void)viewDidLoad {
@@ -270,7 +273,66 @@ NSMutableArray *colorArray;
         displayScore = currentPlayer.score;
     }
     self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%08d", displayScore];
+    [self updateEnemyScores];
 }
+
+-(void)updateEnemyScores{
+    for(Player *player in [self players]){
+
+        //red player
+        if([player.color isEqual:[UIColor redColor]]){
+            if (redScore < player.score) {
+                int incAmnt = (player.score - redScore) / 9 + 1;
+                if (redScore + incAmnt > player.score) {
+                    redScore = player.score;
+                }
+                else {
+                    redScore += incAmnt;
+                }
+            }
+            else {
+                redScore = player.score;
+            }
+            self.redPlayerScore.text = [NSString stringWithFormat:@"%08d", redScore];
+        }
+        
+        //blue player
+        if([player.color isEqual:[UIColor blueColor]]){
+            if (blueScore < player.score) {
+                int incAmnt = (player.score - blueScore) / 9 + 1;
+                if (blueScore + incAmnt > player.score) {
+                    blueScore = player.score;
+                }
+                else {
+                    blueScore += incAmnt;
+                }
+            }
+            else {
+                blueScore = player.score;
+            }
+            self.bluePlayerScore.text = [NSString stringWithFormat:@"%08d", blueScore];
+        }
+        
+        //purple player
+        if([player.color isEqual:[UIColor purpleColor]]){
+            if (purpleScore < player.score) {
+                int incAmnt = (player.score - purpleScore) / 9 + 1;
+                if (purpleScore + incAmnt > player.score) {
+                    purpleScore = player.score;
+                }
+                else {
+                    purpleScore += incAmnt;
+                }
+            }
+            else {
+                purpleScore = player.score;
+            }
+            self.purplePlayerScore.text = [NSString stringWithFormat:@"%08d", purpleScore];
+        }
+    }
+}
+
+
 -(void) gameOver {
     isGameOver = YES;
     NSString *alertMessage = @"";
@@ -662,7 +724,7 @@ NSMutableArray *colorArray;
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
     [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
-    [self getPlayerByUsername:userName].score = (int)score;
+    [self getPlayerByUsername:userName].score = (int)score*100;
     [self refreshScoresText];
 }
 
@@ -699,6 +761,7 @@ NSMutableArray *colorArray;
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
     player.color = [colorArray objectAtIndex:0];
+    [colorArray removeObjectAtIndex:0];
     [self.players addObject:player];
     [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
     [self refreshScoresText];
