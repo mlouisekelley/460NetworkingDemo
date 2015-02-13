@@ -638,7 +638,7 @@ int displayScore = 0;
     if (!tile.isFinalized) {
         [self destroyTile:tile];
         [self createTileInRack];
-        NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 1;
+        NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 100;
         [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
         currentPlayer.score = (int)newScore;
         [self refreshScoresText];
