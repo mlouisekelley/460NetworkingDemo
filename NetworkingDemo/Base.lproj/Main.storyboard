@@ -29,22 +29,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyM-Wa-vdX">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Play 2 Players"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="263" y="385" width="74" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                    <rect key="frame" x="284" y="440" width="232" height="105"/>
-                                </variation>
-                                <connections>
-                                    <action selector="joinGame:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="QGP-jD-Ccb"/>
-                                    <action selector="playTwoPlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="9W6-cf-aHL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WordPlay" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJt-mh-gKH">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="60"/>
@@ -54,40 +38,46 @@
                                     <rect key="frame" x="199" y="136" width="403" height="181"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iml-OZ-eAe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wid-SP-9np">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Play 3 Players"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="263" y="385" width="74" height="30"/>
-                                </variation>
+                                <state key="normal" title="Play 2 Players">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                    <rect key="frame" x="284" y="573" width="232" height="105"/>
+                                    <rect key="frame" x="290" y="461" width="220" height="105"/>
                                 </variation>
                                 <connections>
-                                    <action selector="joinGame:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="ZuE-0r-AKv"/>
-                                    <action selector="playThreePlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="H9g-6x-N1T"/>
+                                    <action selector="playTwoPlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="FeX-Id-KIb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tU5-Fm-YYd">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Play 3 Players">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="295" y="590" width="210" height="88"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playThreePlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="5gi-Zm-TfW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="wyM-Wa-vdX"/>
                                 <exclude reference="BJt-mh-gKH"/>
-                                <exclude reference="iml-OZ-eAe"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="subviews">
-                                <include reference="wyM-Wa-vdX"/>
+                                <exclude reference="wid-SP-9np"/>
+                                <exclude reference="tU5-Fm-YYd"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="BJt-mh-gKH"/>
-                                <include reference="iml-OZ-eAe"/>
+                                <include reference="wid-SP-9np"/>
+                                <include reference="tU5-Fm-YYd"/>
                             </mask>
                         </variation>
                     </view>
