@@ -541,10 +541,10 @@ NSMutableArray *colorArray;
             
             [alert addAction:ok]; // add action to uialertcontroller
             
-            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-            for (int i = 0; i < num; i++) {
-                [self createTileInRack];
-            }
+//            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+//            for (int i = 0; i < num; i++) {
+//                [self createTileInRack];
+//            }
             [self updateSelfScore];
             
         }
@@ -874,7 +874,7 @@ NSMutableArray *colorArray;
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         
-        if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid] && cellDTO.tvc.isUnsent) {
+        if (!cellDTO.tvc.isStartingTile && cellDTO.tvc.isUnsent) {
             cellDTO.isPending = NO;
             cellDTO.tvc.isUnsent = NO;
             NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
