@@ -21,6 +21,8 @@
 static LobbyViewController *vc;
 static bool joined = NO;
 static bool first = YES;
+static int numPlayers = 0;
+static int joinsRecieved = 0;
 
 +(LobbyViewController *)sharedViewController
 {
@@ -42,8 +44,24 @@ static bool first = YES;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)joinGame:(id)sender {
+
+- (IBAction)playTwoPlayers:(id)sender {
+    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
+    [sender setEnabled:NO];
     
+    numPlayers = 2;
+    [self joinGame];
+}
+
+- (IBAction)playThreePlayers:(id)sender {
+    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
+    [sender setEnabled:NO];
+    
+    numPlayers = 3;
+    [self joinGame];
+}
+
+-(void)joinGame {
     vc = self;
     
     if(first){
@@ -70,24 +88,22 @@ static bool first = YES;
         [NetworkUtils sendJoinedGame];
     }
     
-    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
-    [sender setEnabled:NO];
-    
 }
 
 -(void)beginGame {
     if(joined){
         return;
     }
-    [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
-    
+    joinsRecieved++;
+    if(joinsRecieved + 1 == numPlayers){
+        [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
+        [NetworkUtils sendJoinedGame];
+        joined = YES;
+    }
 //    NSString * storyboardName = @"Main";
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
 //    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Test"];
 //    [self presentViewController:vc animated:YES completion:nil];
-    
-    [NetworkUtils sendJoinedGame];
-    joined = YES;
 }
 
 /*
