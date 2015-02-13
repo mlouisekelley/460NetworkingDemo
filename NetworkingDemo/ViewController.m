@@ -40,11 +40,14 @@ BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
 int displayScore = 0;
+NSMutableArray *colorArray;
 
 - (void)viewDidLoad {
 
     [self refreshBoard];
     isGameOver = NO;
+    
+    colorArray = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor purpleColor], nil];
     
     _touchToPlay = true;
     
@@ -359,7 +362,7 @@ int displayScore = 0;
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
         dto.cell = cell;
         if (dto.isPending) {
-            cell.backgroundColor = [UIColor redColor];
+            cell.backgroundColor = dto.player.color;
         }
         else {
             cell.backgroundColor = [UIColor lightGrayColor];
@@ -659,6 +662,7 @@ int displayScore = 0;
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
     [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
+    [self getPlayerByUsername:userName].score = (int)score;
     [self refreshScoresText];
 }
 
@@ -677,11 +681,24 @@ int displayScore = 0;
     self.scores.text = scoresString;
 }
 
+-(Player *)getPlayerByUsername:(NSString * )userName {
+    for(Player *player in [self players]){
+        if([player.userName isEqualToString:userName]){
+            return player;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Networking Calls
 
 -(void)addPlayer:(NSString *)playerUserName {
+    if([self getPlayerByUsername:playerUserName]){
+        return;
+    }
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
+    player.color = [colorArray objectAtIndex:0];
     [self.players addObject:player];
     [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
     [self refreshScoresText];
@@ -711,6 +728,7 @@ int displayScore = 0;
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
     BoardCellDTO *dto = self.board[indexPath.item];
+    dto.player = [self getPlayerByUsername:enemyID];
     if (dto.tvc != nil && dto.tvc.isBeingMovedByOtherPlayer && [dto.tvc.letterLabel.text isEqualToString: letter]) {
         // For when someone was going to move a tile but moved it back
         [dto.tvc unMakeBeingMovedByOtherPlayer];

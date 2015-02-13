@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TileViewCell.h"
+#import "Player.h"
 @interface BoardCellDTO : NSObject
 
 @property (strong, nonatomic) NSString* text;
@@ -15,5 +16,6 @@
 @property (strong, nonatomic) UICollectionViewCell *cell;
 @property (nonatomic) BOOL isPending;
 @property (nonatomic) BOOL tileWasHere;
+@property (nonatomic) Player *player;
 
 @end

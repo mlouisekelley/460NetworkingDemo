@@ -13,4 +13,5 @@
 @property (nonatomic) int numberOfTiles;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic) int score;
+@property (nonatomic) UIColor *color;
 @end

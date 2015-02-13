@@ -439,10 +439,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bluePlayerScore" destination="8zu-Hp-ALG" id="UcM-Ah-O1w"/>
                         <outlet property="boardCollectionView" destination="Mbl-rH-m8c" id="aus-6a-ioL"/>
                         <outlet property="countDownLabel" destination="tO8-Gg-9nh" id="FIv-cx-hT8"/>
                         <outlet property="currentPlayerScoreLabel" destination="foc-hA-JKb" id="oah-9B-Fmg"/>
                         <outlet property="progressView" destination="qKD-Ig-OtT" id="YU4-2z-rau"/>
+                        <outlet property="purplePlayerScore" destination="KUJ-Tr-6Lo" id="moH-EQ-KGK"/>
+                        <outlet property="redPlayerScore" destination="Jf7-ZJ-Ebh" id="uHE-fL-izS"/>
                         <outlet property="tossView" destination="IxI-rr-9IA" id="VT3-8z-F7U"/>
                         <segue destination="Ti6-2w-sDr" kind="show" identifier="ReturnToLobby" id="AlX-Ox-Ng0"/>
                     </connections>

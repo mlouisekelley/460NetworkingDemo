@@ -32,7 +32,7 @@
 -(void)onUserJoinedRoom:(RoomData*)roomData username:(NSString*)username
 {
    //[[AppWarpHelper sharedAppWarpHelper] getAllUsers];
-    [[ViewController sharedViewController] addPlayer:username];
+    //[[ViewController sharedViewController] addPlayer:username];
 }
 -(void)onUserLeftLobby:(LobbyData*)lobbyData username:(NSString*)username{
     
@@ -50,6 +50,8 @@
         [[LobbyViewController sharedViewController] beginGame];
         return;
     }
+    
+    [[ViewController sharedViewController] addPlayer:chatEvent.sender];
     
     NSArray *message = [chatEvent.message componentsSeparatedByString:@":"];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
