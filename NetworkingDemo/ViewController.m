@@ -91,8 +91,8 @@ NSMutableArray *colorArray;
 }
 
 -(void) setUpGame {
-    minutes = 0;
-    seconds = 15;
+    minutes = 2;
+    seconds = 0;
     milliseconds = 0;
     self.progressView.progress = 1.0f;
     for (TileViewCell *cell in self.allTiles) {
@@ -102,10 +102,6 @@ NSMutableArray *colorArray;
     
     [self resetBoard];
     [self.boardCollectionView reloadData];
-    
-    
-    
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
