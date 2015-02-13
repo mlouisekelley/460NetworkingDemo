@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSTimer *scoreTimer;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
+@property (strong, nonatomic) NSMutableArray *allTiles;
 @property (strong, nonatomic) TileViewCell *selectedTile;
 @property (strong, nonatomic) BoardChecker *boardChecker;
 @property (strong, nonatomic) NSDictionary *stringToColor;
@@ -46,8 +47,7 @@ int purpleScore = 0;
 NSMutableArray *colorArray;
 
 - (void)viewDidLoad {
-
-    [self refreshBoard];
+    
     isGameOver = NO;
     
     colorArray = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor purpleColor], nil];
@@ -72,7 +72,7 @@ NSMutableArray *colorArray;
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
-
+    _allTiles = [[NSMutableArray alloc] init];
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
@@ -80,34 +80,50 @@ NSMutableArray *colorArray;
     [self.tossView addSubview:imageView ];
     [self.tossView sendSubviewToBack:imageView ];
     
-    minutes = 2;
-    seconds = 0;
-    milliseconds = 0;
+    
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
     _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self.bkgView addGestureRecognizer:tapGesture];
-    
-    [self updateSelfScore];
 }
 
+-(void) setUpGame {
+    minutes = 0;
+    seconds = 15;
+    milliseconds = 0;
+    self.progressView.progress = 1.0f;
+    for (TileViewCell *cell in self.allTiles) {
+        [cell removeFromSuperview];
+    }
+    [self resetScores];
+    
+    [self resetBoard];
+    [self.boardCollectionView reloadData];
+    
+    
+    
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setUpGame];
+    
+}
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.progressView.progress = 1.0f;
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
-    
     [self placeStartingWord];
     [self refreshScoresText];
 }
 
--(void)refreshBoard {
-    NSLog(@"REFRESH");
+-(void)resetBoard {
     _board = [[NSMutableArray alloc] init];
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
@@ -213,7 +229,7 @@ NSMutableArray *colorArray;
 -(void)clearSelectedTile
 {
     if(_selectedTile){
-        [_selectedTile makeUnselected];        
+        [_selectedTile makeUnselected];
     }
     _selectedTile = nil;
 }
@@ -254,8 +270,8 @@ NSMutableArray *colorArray;
         self.countDownLabel.text = @"";
     }
     self.progressView.progress = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-
-   
+    
+    
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
@@ -278,7 +294,7 @@ NSMutableArray *colorArray;
 
 -(void)updateEnemyScores{
     for(Player *player in [self players]){
-
+        
         //red player
         if([player.color isEqual:[UIColor redColor]]){
             if (redScore < player.score) {
@@ -356,14 +372,12 @@ NSMutableArray *colorArray;
         
         //create ok action for alert
         UIAlertAction* ok = [UIAlertAction
-                             actionWithTitle:@"OK"
+                             actionWithTitle:@"Again!"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                 isGameOver = NO;
-                                 [_timer invalidate];
-                                 _board = nil;
+                                 
                                  [self restart];
                              }];
         
@@ -395,7 +409,17 @@ NSMutableArray *colorArray;
 }
 
 -(void)restart {
-    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+    //    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+    isGameOver = NO;
+    [self setUpGame];
+    for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
+        [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        [self createTileInRack];
+    }
+    
+    //    [self placeStartingWord];
+    [self refreshScoresText];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -419,7 +443,7 @@ NSMutableArray *colorArray;
         //use self.board to determine how the board looks
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
         NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
-       
+        
         text = @"";
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
         dto.cell = cell;
@@ -494,51 +518,51 @@ NSMutableArray *colorArray;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-        NSArray *invalidWordsOnBoard = [self.boardChecker checkBoardState:self.board];
-        if ([invalidWordsOnBoard count] > 0) {
+    NSArray *invalidWordsOnBoard = [self.boardChecker checkBoardState:self.board];
+    if ([invalidWordsOnBoard count] > 0) {
+        
+        NSString *alertMessage = @"Found the following invalid words: ";
+        alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
+        
+        if (objc_getClass("UIAlertController") != nil){
             
-            NSString *alertMessage = @"Found the following invalid words: ";
-            alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
+            //create an alert
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Invalid Board"
+                                          message:alertMessage
+                                          preferredStyle:UIAlertControllerStyleAlert];
             
-            if (objc_getClass("UIAlertController") != nil){
-                
-                //create an alert
-                UIAlertController * alert=   [UIAlertController
-                                              alertControllerWithTitle:@"Invalid Board"
-                                              message:alertMessage
-                                              preferredStyle:UIAlertControllerStyleAlert];
-                
-                [self presentViewController:alert animated:YES completion:nil];
-                
-                //create ok action for alert
-                UIAlertAction* ok = [UIAlertAction
-                                     actionWithTitle:@"OK"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * action)
-                                     {
-                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                         
-                                     }];
-                
-                [alert addAction:ok]; // add action to uialertcontroller
-                
-            }
-            else {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Board" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                
-            }
+            [self presentViewController:alert animated:YES completion:nil];
             
+            //create ok action for alert
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
             
-        } else {
+            [alert addAction:ok]; // add action to uialertcontroller
             
-            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-            for (int i = 0; i < num; i++) {
-                [self createTileInRack];
-            }
-            [self updateSelfScore];
-            [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
+        }
+        else {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Board" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+        
+        
+    } else {
+        
+        int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+        for (int i = 0; i < num; i++) {
+            [self createTileInRack];
+        }
+        [self updateSelfScore];
+        [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
 }
@@ -547,7 +571,7 @@ NSMutableArray *colorArray;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     TILE_WIDTH = self.boardCollectionView.bounds.size.width/10;
     TILE_HEIGHT = self.boardCollectionView.bounds.size.width/10;
-
+    
     return CGSizeMake(TILE_WIDTH, TILE_HEIGHT);
 }
 
@@ -567,6 +591,7 @@ NSMutableArray *colorArray;
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
+    [self.allTiles addObject:newTile];
     currentPlayer.numberOfTiles++;
 }
 
@@ -597,7 +622,7 @@ NSMutableArray *colorArray;
         NSString *letter = [NSString stringWithFormat:@"%c" , [starting_word characterAtIndex:i]];
         TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:@"stone"];
         [self.view addSubview:tvc];
-        
+        [self.allTiles addObject:tvc];
         [self placeTileOnBoard:tvc atIndexPath:indexPath];
     }
     
@@ -609,19 +634,19 @@ NSMutableArray *colorArray;
 -(void) takeTileFromBoard:(UIView *)tile {
     TileViewCell *theTile = ((TileViewCell *)tile);
     if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
-            [UIView animateWithDuration:0.1 animations:^{
-                tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
-            }];
-            
-            
-            [_tileSpaces removeObjectAtIndex:0];
-            [self removeTileFromCurrentSpot:theTile];
-            currentPlayer.numberOfTiles++;
-            theTile.isOnRack = YES;
-            [theTile makeUnselected];
-            theTile.startPoint = tile.frame.origin;
+        [UIView animateWithDuration:0.1 animations:^{
+            tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
+        }];
         
-            [self clearSelectedTile];
+        
+        [_tileSpaces removeObjectAtIndex:0];
+        [self removeTileFromCurrentSpot:theTile];
+        currentPlayer.numberOfTiles++;
+        theTile.isOnRack = YES;
+        [theTile makeUnselected];
+        theTile.startPoint = tile.frame.origin;
+        
+        [self clearSelectedTile];
     }
 }
 
@@ -728,6 +753,13 @@ NSMutableArray *colorArray;
     [self refreshScoresText];
 }
 
+-(void) resetScores {
+    for (NSString *playerName in self.playerScores.allKeys) {
+        [self.playerScores setValue:0 forKey:playerName];
+    }
+}
+
+
 -(void) refreshScoresText {
     NSString *scoresString = @"SCORES:\n";
     for (NSString *playerName in self.playerScores.allKeys) {
@@ -739,7 +771,7 @@ NSMutableArray *colorArray;
         }
     }
     self.scores.font = [UIFont fontWithName:@"orange juice" size:32];
-
+    
     self.scores.text = scoresString;
 }
 
@@ -822,6 +854,7 @@ NSMutableArray *colorArray;
     dto.isPending = NO;
     dto.tvc.isUnsent = NO;
     [self.view addSubview:tvc];
+    [self.allTiles addObject:tvc];
 }
 
 -(void)finalizePendingEnemyTilesForPlayer:(NSString *)player {
@@ -841,7 +874,7 @@ NSMutableArray *colorArray;
             NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             //send removed tile update
             [finalLetterMessage appendFormat:@":r:%ld:%@",(long)i, @"-"];
-
+            
         }
     }
     [NetworkUtils sendFinalLetterPlayed:finalLetterMessage];
@@ -873,6 +906,7 @@ NSMutableArray *colorArray;
 -(BoardViewCell *) findClosestCellToView:(UIView *)view {
     float minDist = -1;
     BoardViewCell *closestCell = nil;
+    NSLog(@"visible %@", _boardCollectionView.visibleCells);
     for (BoardViewCell *cell in _boardCollectionView.visibleCells) {
         float curDist = [self view:view DistanceToView:cell];
         if (curDist < view.frame.size.height / 2 + cell.frame.size.height / 2) {
