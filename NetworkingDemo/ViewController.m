@@ -545,7 +545,7 @@ NSMutableArray *colorArray;
 //            for (int i = 0; i < num; i++) {
 //                [self createTileInRack];
 //            }
-            [self updateSelfScore];
+            //[self updateSelfScore];
             
         }
         else {
@@ -761,7 +761,7 @@ NSMutableArray *colorArray;
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
     [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
-    [self getPlayerByUsername:userName].score = (int)score*100;
+    [self getPlayerByUsername:userName].score = (int)score;
     [self refreshScoresText];
 }
 
