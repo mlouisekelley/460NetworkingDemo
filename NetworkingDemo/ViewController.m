@@ -379,16 +379,13 @@ NSMutableArray *colorArray;
 }
 
 -(BOOL) didCurrentPlayerWin {
-    NSString *maxPlayer = nil;
-    NSNumber *maxNumber = 0;
-    for (NSString *playerName in self.playerScores.allKeys) {
-        NSNumber *num = [self.playerScores valueForKey:playerName];
-        if (num > maxNumber) {
-            maxNumber = num;
-            maxPlayer = playerName;
-        }
+    Player *maxPlayer = nil;
+    for (Player *player in self.players) {
+       if (maxPlayer == nil || maxPlayer.score < player.score) {
+           maxPlayer = player;
+       }
     }
-    if([maxPlayer isEqualToString:[GameConstants getUserName]]){
+    if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
         return YES;
     }
     return NO;
