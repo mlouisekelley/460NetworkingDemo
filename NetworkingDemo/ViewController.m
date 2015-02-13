@@ -12,6 +12,8 @@
 #import "BoardChecker.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
@@ -476,6 +478,19 @@ NSMutableArray *colorArray;
                 [self createTileInRack];
             }
             [self updateSelfScore];
+            
+            NSString *path  = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"m4a"];
+            NSURL *pathURL = [NSURL fileURLWithPath : path];
+            
+            //Play a sound
+            SystemSoundID audioEffect;
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+            AudioServicesPlaySystemSound(audioEffect);
+            
+            // Using GCD, we can use a block to dispose of the audio effect without using a NSTimer or something else to figure out when it'll be finished playing.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AudioServicesDisposeSystemSoundID(audioEffect);
+            });
             [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
