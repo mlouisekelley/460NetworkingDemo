@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "324"
             endingLineNumber = "324"
-            landmarkName = "-tileDidFinishMoving:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "322"
             endingLineNumber = "322"
-            landmarkName = "-tileDidMove:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "337"
             endingLineNumber = "337"
-            landmarkName = "-tileDidFinishMoving:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,7 +205,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "-tileIsSelected"
+            landmarkName = "-playerScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -221,7 +221,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "190"
             endingLineNumber = "190"
-            landmarkName = "-updateCounter:"
+            landmarkName = "-board"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -237,7 +237,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
-            landmarkName = "-updateCounter:"
+            landmarkName = "+sharedViewController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -253,7 +253,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "374"
             endingLineNumber = "374"
-            landmarkName = "-touchUpSubmit:"
+            landmarkName = "-gameOver"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -269,7 +269,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
             endingLineNumber = "369"
-            landmarkName = "-touchUpSubmit:"
+            landmarkName = "-gameOver"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -301,7 +301,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
             endingLineNumber = "305"
-            landmarkName = "-boardWasTouched:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -317,7 +317,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "323"
             endingLineNumber = "323"
-            landmarkName = "-tileDidFinishMoving:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -333,7 +333,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "474"
             endingLineNumber = "474"
-            landmarkName = "-playTile:atIndexPath:onCell:"
+            landmarkName = "-boardWasTouched:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -349,7 +349,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "325"
             endingLineNumber = "325"
-            landmarkName = "-tileDidFinishMoving:"
+            landmarkName = "-updateEnemyScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -365,7 +365,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "602"
             endingLineNumber = "602"
-            landmarkName = "-placeEnemyPendingLetter:atIndexPath:forEnemy:"
+            landmarkName = "-collectionView:layout:insetForSectionAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -381,7 +381,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "637"
             endingLineNumber = "637"
-            landmarkName = "-removeEnemyPendingLetterAtIndexPath:"
+            landmarkName = "-placeStartingWord"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

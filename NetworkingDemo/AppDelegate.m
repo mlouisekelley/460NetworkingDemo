@@ -11,8 +11,11 @@
 #import "NotificationListener.h"
 #import "ConnectionListener.h"
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
 @interface AppDelegate ()
+
+@property (nonatomic, retain) AVAudioPlayer *myAudioPlayer;
 
 @end
 
@@ -20,8 +23,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //start a background sound
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"background_music" ofType: @"m4a"];
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
+    self.myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+    self.myAudioPlayer.numberOfLoops = -1; //infinite loop
+    [self.myAudioPlayer play];
     
+    
+    // Override point for customization after application launch.
     return YES;
 }
 

@@ -12,6 +12,8 @@
 #import "BoardChecker.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
@@ -93,6 +95,12 @@ NSMutableArray *colorArray;
     seconds = 0;
     milliseconds = 0;
     
+    redScore = 0;
+    blueScore = 0;
+    purpleScore = 0;
+    
+    currentPlayer.numberOfTiles = 0;
+    
     for (TileViewCell *cell in self.allTiles) {
         [cell removeFromSuperview];
     }
@@ -100,10 +108,6 @@ NSMutableArray *colorArray;
     
     [self resetBoard];
     [self.boardCollectionView reloadData];
-    
-    
-    
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -395,16 +399,13 @@ NSMutableArray *colorArray;
 }
 
 -(BOOL) didCurrentPlayerWin {
-    NSString *maxPlayer = nil;
-    NSNumber *maxNumber = 0;
-    for (NSString *playerName in self.playerScores.allKeys) {
-        NSNumber *num = [self.playerScores valueForKey:playerName];
-        if (num > maxNumber) {
-            maxNumber = num;
-            maxPlayer = playerName;
-        }
+    Player *maxPlayer = nil;
+    for (Player *player in self.players) {
+       if (maxPlayer == nil || maxPlayer.score < player.score) {
+           maxPlayer = player;
+       }
     }
-    if([maxPlayer isEqualToString:[GameConstants getUserName]]){
+    if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
         return YES;
     }
     return NO;
@@ -548,6 +549,12 @@ NSMutableArray *colorArray;
             
             [alert addAction:ok]; // add action to uialertcontroller
             
+//            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+//            for (int i = 0; i < num; i++) {
+//                [self createTileInRack];
+//            }
+            //[self updateSelfScore];
+            
         }
         else {
             
@@ -556,7 +563,6 @@ NSMutableArray *colorArray;
             
         }
         
-        
     } else {
         
         int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
@@ -564,6 +570,18 @@ NSMutableArray *colorArray;
             [self createTileInRack];
         }
         [self updateSelfScore];
+        NSString *path  = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"m4a"];
+        NSURL *pathURL = [NSURL fileURLWithPath : path];
+        
+        //Play a sound
+        SystemSoundID audioEffect;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+        AudioServicesPlaySystemSound(audioEffect);
+        
+        // Using GCD, we can use a block to dispose of the audio effect without using a NSTimer or something else to figure out when it'll be finished playing.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            AudioServicesDisposeSystemSoundID(audioEffect);
+        });
         [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
@@ -751,7 +769,7 @@ NSMutableArray *colorArray;
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
     [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
-    [self getPlayerByUsername:userName].score = (int)score*100;
+    [self getPlayerByUsername:userName].score = (int)score;
     [self refreshScoresText];
 }
 
@@ -864,7 +882,7 @@ NSMutableArray *colorArray;
     for (int i = 0; i < [self.board count]; i++) {
         BoardCellDTO *cellDTO = self.board[i];
         
-        if (!cellDTO.tvc.isStartingTile && [player isEqualToString:cellDTO.tvc.pid] && cellDTO.tvc.isUnsent) {
+        if (!cellDTO.tvc.isStartingTile && cellDTO.tvc.isUnsent) {
             cellDTO.isPending = NO;
             cellDTO.tvc.isUnsent = NO;
             NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
