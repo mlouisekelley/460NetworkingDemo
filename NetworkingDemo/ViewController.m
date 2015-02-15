@@ -83,7 +83,6 @@ NSMutableArray *colorArray;
     [self.tossView addSubview:imageView ];
     [self.tossView sendSubviewToBack:imageView ];
     
-    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter)];
     _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -125,6 +124,8 @@ NSMutableArray *colorArray;
     }
     [self placeStartingWord];
     [self refreshScoresText];
+    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter)];
+    
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 
 }
@@ -258,19 +259,27 @@ NSMutableArray *colorArray;
     NSLog (@"%f", timeSince);
     int mil = 1000 * (timeSince - floor(timeSince));
     int sec = floor(timeSince);
-    seconds -= sec;
-    if (milliseconds > 0) {
-        milliseconds -= mil;
-    }
-    else if (seconds > 0) {
-        milliseconds = 1000;
+    
+    milliseconds -= mil;
+    
+    if (milliseconds < 0) {
         seconds--;
+        milliseconds = 1000 + milliseconds;
     }
-    else if (minutes > 0) {
-        seconds = 59;
+    
+    seconds -= sec;
+    if (seconds < 0) {
         minutes--;
+        seconds = 60 + seconds;
     }
-    else if (!isGameOver) {
+    
+    if (sec > 60) {
+        minutes-= sec / 60;
+        sec = sec % 60;
+    }
+    
+
+    if (minutes <= 0 && seconds <= 0 && milliseconds <= 0 && !isGameOver) {
         [self gameOver];
     }
     if (seconds <= 5 && minutes == 0) {
