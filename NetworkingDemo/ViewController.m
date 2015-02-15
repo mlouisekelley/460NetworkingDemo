@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSMutableArray *board;
 @property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) CADisplayLink *displayLink;
 @property (strong, nonatomic) NSTimer *scoreTimer;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSMutableDictionary *playerScores;
@@ -83,8 +83,7 @@ NSMutableArray *colorArray;
     [self.tossView addSubview:imageView ];
     [self.tossView sendSubviewToBack:imageView ];
     
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter)];
     _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -126,6 +125,8 @@ NSMutableArray *colorArray;
     }
     [self placeStartingWord];
     [self refreshScoresText];
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+
 }
 
 -(void)resetBoard {
@@ -252,9 +253,14 @@ NSMutableArray *colorArray;
 }
 
 #pragma mark End Game stuff
-- (void)updateCounter:(NSTimer *)theTimer {
+- (void)updateCounter {
+    NSTimeInterval timeSince = [displayLink duration];
+    NSLog (@"%f", timeSince);
+    int mil = 1000 * (timeSince - floor(timeSince));
+    int sec = floor(timeSince);
+    seconds -= sec;
     if (milliseconds > 0) {
-        milliseconds -= 10;
+        milliseconds -= mil;
     }
     else if (seconds > 0) {
         milliseconds = 1000;
@@ -673,7 +679,6 @@ NSMutableArray *colorArray;
 }
 
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
-    NSLog(@"%ld", (long)indexPath.item);
     BoardCellDTO *dto = ((BoardCellDTO *)self.board[indexPath.item]);
     NSString *currentSelectedLetter = tile.letterLabel.text;
     if (dto.tvc == nil) {
@@ -695,7 +700,7 @@ NSMutableArray *colorArray;
         
         return NO;
     } else {
-        NSLog(@"TVC WAS NOT NIL");
+//        NSLog(@"TVC WAS NOT NIL");
     }
     return NO;
 }
@@ -887,13 +892,13 @@ NSMutableArray *colorArray;
         if (!cellDTO.tvc.isStartingTile && cellDTO.tvc.isUnsent) {
             cellDTO.isPending = NO;
             cellDTO.tvc.isUnsent = NO;
-            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
+//            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [cellDTO.tvc makeFinalized];
         }
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
-            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
+//            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             //send removed tile update
             [finalLetterMessage appendFormat:@":r:%ld:%@",(long)i, @"-"];
             
@@ -928,7 +933,7 @@ NSMutableArray *colorArray;
 -(BoardViewCell *) findClosestCellToView:(UIView *)view {
     float minDist = -1;
     BoardViewCell *closestCell = nil;
-    NSLog(@"visible %@", _boardCollectionView.visibleCells);
+//    NSLog(@"visible %@", _boardCollectionView.visibleCells);
     for (BoardViewCell *cell in _boardCollectionView.visibleCells) {
         float curDist = [self view:view DistanceToView:cell];
         if (curDist < view.frame.size.height / 2 + cell.frame.size.height / 2) {
