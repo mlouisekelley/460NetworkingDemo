@@ -61,7 +61,7 @@
 		27C7599D1A699BAA0004DB59 /* NetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtils.h; sourceTree = "<group>"; };
 		27C759A61A69AAEF0004DB59 /* NetworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtils.m; sourceTree = "<group>"; };
 		27C759A81A69AB1A0004DB59 /* GameConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.m; sourceTree = "<group>"; };
-		A30ADC861A4CFBD200047201 /* NetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A30ADC861A4CFBD200047201 /* WordPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30ADC8A1A4CFBD200047201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30ADC8B1A4CFBD200047201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A30ADC8D1A4CFBD200047201 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		A30ADC941A4CFBD200047201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A30ADC961A4CFBD200047201 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A30ADC991A4CFBD200047201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A30ADC9F1A4CFBD200047201 /* NetworkingDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A30ADC9F1A4CFBD200047201 /* WordPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30ADCA41A4CFBD200047201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30ADCA51A4CFBD200047201 /* NetworkingDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkingDemoTests.m; sourceTree = "<group>"; };
 		A30ADCB21A4D0CAD00047201 /* TileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileViewCell.h; sourceTree = "<group>"; };
@@ -124,8 +124,8 @@
 		A30ADC871A4CFBD200047201 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A30ADC861A4CFBD200047201 /* NetworkingDemo.app */,
-				A30ADC9F1A4CFBD200047201 /* NetworkingDemoTests.xctest */,
+				A30ADC861A4CFBD200047201 /* WordPlay.app */,
+				A30ADC9F1A4CFBD200047201 /* WordPlayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,9 +212,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A30ADC851A4CFBD200047201 /* NetworkingDemo */ = {
+		A30ADC851A4CFBD200047201 /* WordPlay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A30ADCA91A4CFBD200047201 /* Build configuration list for PBXNativeTarget "NetworkingDemo" */;
+			buildConfigurationList = A30ADCA91A4CFBD200047201 /* Build configuration list for PBXNativeTarget "WordPlay" */;
 			buildPhases = (
 				A30ADC821A4CFBD200047201 /* Sources */,
 				A30ADC831A4CFBD200047201 /* Frameworks */,
@@ -224,14 +224,14 @@
 			);
 			dependencies = (
 			);
-			name = NetworkingDemo;
+			name = WordPlay;
 			productName = NetworkingDemo;
-			productReference = A30ADC861A4CFBD200047201 /* NetworkingDemo.app */;
+			productReference = A30ADC861A4CFBD200047201 /* WordPlay.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A30ADC9E1A4CFBD200047201 /* NetworkingDemoTests */ = {
+		A30ADC9E1A4CFBD200047201 /* WordPlayTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A30ADCAC1A4CFBD200047201 /* Build configuration list for PBXNativeTarget "NetworkingDemoTests" */;
+			buildConfigurationList = A30ADCAC1A4CFBD200047201 /* Build configuration list for PBXNativeTarget "WordPlayTests" */;
 			buildPhases = (
 				A30ADC9B1A4CFBD200047201 /* Sources */,
 				A30ADC9C1A4CFBD200047201 /* Frameworks */,
@@ -242,9 +242,9 @@
 			dependencies = (
 				A30ADCA11A4CFBD200047201 /* PBXTargetDependency */,
 			);
-			name = NetworkingDemoTests;
+			name = WordPlayTests;
 			productName = NetworkingDemoTests;
-			productReference = A30ADC9F1A4CFBD200047201 /* NetworkingDemoTests.xctest */;
+			productReference = A30ADC9F1A4CFBD200047201 /* WordPlayTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -266,7 +266,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A30ADC811A4CFBD200047201 /* Build configuration list for PBXProject "NetworkingDemo" */;
+			buildConfigurationList = A30ADC811A4CFBD200047201 /* Build configuration list for PBXProject "WordPlay" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -279,8 +279,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A30ADC851A4CFBD200047201 /* NetworkingDemo */,
-				A30ADC9E1A4CFBD200047201 /* NetworkingDemoTests */,
+				A30ADC851A4CFBD200047201 /* WordPlay */,
+				A30ADC9E1A4CFBD200047201 /* WordPlayTests */,
 			);
 		};
 /* End PBXProject section */
@@ -347,7 +347,7 @@
 /* Begin PBXTargetDependency section */
 		A30ADCA11A4CFBD200047201 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A30ADC851A4CFBD200047201 /* NetworkingDemo */;
+			target = A30ADC851A4CFBD200047201 /* WordPlay */;
 			targetProxy = A30ADCA01A4CFBD200047201 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -465,7 +465,7 @@
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordPlay;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -486,7 +486,7 @@
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordPlay;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -506,7 +506,7 @@
 				);
 				INFOPLIST_FILE = NetworkingDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordPlayTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkingDemo.app/NetworkingDemo";
 			};
 			name = Debug;
@@ -521,7 +521,7 @@
 				);
 				INFOPLIST_FILE = NetworkingDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordPlayTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkingDemo.app/NetworkingDemo";
 			};
 			name = Release;
@@ -529,7 +529,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A30ADC811A4CFBD200047201 /* Build configuration list for PBXProject "NetworkingDemo" */ = {
+		A30ADC811A4CFBD200047201 /* Build configuration list for PBXProject "WordPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A30ADCA71A4CFBD200047201 /* Debug */,
@@ -538,7 +538,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A30ADCA91A4CFBD200047201 /* Build configuration list for PBXNativeTarget "NetworkingDemo" */ = {
+		A30ADCA91A4CFBD200047201 /* Build configuration list for PBXNativeTarget "WordPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A30ADCAA1A4CFBD200047201 /* Debug */,
@@ -547,7 +547,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A30ADCAC1A4CFBD200047201 /* Build configuration list for PBXNativeTarget "NetworkingDemoTests" */ = {
+		A30ADCAC1A4CFBD200047201 /* Build configuration list for PBXNativeTarget "WordPlayTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A30ADCAD1A4CFBD200047201 /* Debug */,
