@@ -49,7 +49,7 @@
     
     if([chatEvent.message isEqualToString:@"joined"]){
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
-            [[LobbyViewController sharedViewController] playerJoinedLobby];
+            //[[LobbyViewController sharedViewController] startGame];
             return;
         }
         [[LobbyViewController sharedViewController] playerJoinedLobby];
