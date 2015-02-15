@@ -36,7 +36,9 @@
     NSLog(@"items = %d", [listArray count]);
     
     for (NSString *word in listArray) {
-        [wordDict setValue:@"" forKey:word];
+        if ([word length] > 1) {
+            [wordDict setValue:@"" forKey:word];
+        }
     }
     
     self.scrabbleDict = wordDict;
