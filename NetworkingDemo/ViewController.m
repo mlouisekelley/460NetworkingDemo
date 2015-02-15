@@ -46,6 +46,7 @@ int displayScore = 0;
 int redScore = 0;
 int blueScore = 0;
 int purpleScore = 0;
+double frameTimestamp;
 NSMutableArray *colorArray;
 
 - (void)viewDidLoad {
@@ -99,7 +100,8 @@ NSMutableArray *colorArray;
     purpleScore = 0;
     
     currentPlayer.numberOfTiles = 0;
-    
+    frameTimestamp = CACurrentMediaTime();
+
     for (TileViewCell *cell in self.allTiles) {
         [cell removeFromSuperview];
     }
@@ -124,7 +126,7 @@ NSMutableArray *colorArray;
     }
     [self placeStartingWord];
     [self refreshScoresText];
-    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter)];
+    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter:)];
     
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 
@@ -254,23 +256,24 @@ NSMutableArray *colorArray;
 }
 
 #pragma mark End Game stuff
-- (void)updateCounter {
-    NSTimeInterval timeSince = [_displayLink duration];
-    NSLog (@"%f", timeSince);
+- (void)updateCounter:(CADisplayLink *)displayLink {
+    double currentTime = [displayLink timestamp];
+    double timeSince = currentTime - frameTimestamp;
+    frameTimestamp = currentTime;
+    
     int mil = 1000 * (timeSince - floor(timeSince));
     int sec = floor(timeSince);
-    
     milliseconds -= mil;
     
     if (milliseconds < 0) {
-        seconds--;
-        milliseconds = 1000 + milliseconds;
+        seconds += -1 + (milliseconds / 1000);
+        milliseconds = 1000 + milliseconds % 1000;
     }
     
     seconds -= sec;
     if (seconds < 0) {
-        minutes--;
-        seconds = 60 + seconds;
+        minutes += -1 + (seconds / 60) ;
+        seconds = 60 + seconds % 60;
     }
     
     if (sec > 60) {
