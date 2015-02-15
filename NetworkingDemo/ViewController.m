@@ -254,7 +254,7 @@ NSMutableArray *colorArray;
 
 #pragma mark End Game stuff
 - (void)updateCounter {
-    NSTimeInterval timeSince = [displayLink duration];
+    NSTimeInterval timeSince = [_displayLink duration];
     NSLog (@"%f", timeSince);
     int mil = 1000 * (timeSince - floor(timeSince));
     int sec = floor(timeSince);
