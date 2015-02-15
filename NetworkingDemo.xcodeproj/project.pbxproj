@@ -32,6 +32,7 @@
 		F02422931A8C0485003F2B67 /* oj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02422911A8C0466003F2B67 /* oj.ttf */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = F07943071A6D97EA002849ED /* BoardCellDTO.m */; };
+		F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC56731A905B6500D8E953 /* CircleTimerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F07943071A6D97EA002849ED /* BoardCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardCellDTO.m; sourceTree = "<group>"; };
 		F07943091A6D97F5002849ED /* BoardCellDTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardCellDTO.h; sourceTree = "<group>"; };
+		F0AC56721A905B6500D8E953 /* CircleTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTimerView.h; sourceTree = "<group>"; };
+		F0AC56731A905B6500D8E953 /* CircleTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleTimerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 		A30ADC881A4CFBD200047201 /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F0AC56721A905B6500D8E953 /* CircleTimerView.h */,
+				F0AC56731A905B6500D8E953 /* CircleTimerView.m */,
 				F02422911A8C0466003F2B67 /* oj.ttf */,
 				F061ED0C1A8C004C00C66223 /* Resources */,
 				A36C3C151A670DF0000BF0B0 /* BoardChecker.h */,
@@ -320,6 +325,7 @@
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,
 				27C759A91A69AB1A0004DB59 /* GameConstants.m in Sources */,
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
+				F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */,
 				A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */,
 				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
 				27C759A71A69AAEF0004DB59 /* NetworkUtils.m in Sources */,
