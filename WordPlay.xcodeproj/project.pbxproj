@@ -26,6 +26,7 @@
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A38B9DA91A8479D300F1F59A /* scrabble_words.txt */; };
+		A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A39C06B41A912D8E00D1B8B8 /* play-100.png */; };
 		A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1A1A8BBC690037B370 /* trash-64.png */; };
 		A3CABF1D1A8E6E4F0037B370 /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1C1A8E6CA80037B370 /* success.m4a */; };
 		F02422921A8C0478003F2B67 /* oj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02422911A8C0466003F2B67 /* oj.ttf */; };
@@ -81,6 +82,7 @@
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		A38B9DA91A8479D300F1F59A /* scrabble_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrabble_words.txt; sourceTree = "<group>"; };
+		A39C06B41A912D8E00D1B8B8 /* play-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-100.png"; sourceTree = "<group>"; };
 		A3CABF1A1A8BBC690037B370 /* trash-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-64.png"; sourceTree = "<group>"; };
 		A3CABF1C1A8E6CA80037B370 /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		F02422911A8C0466003F2B67 /* oj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = oj.ttf; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		A30ADC891A4CFBD200047201 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A39C06B41A912D8E00D1B8B8 /* play-100.png */,
 				A3CABF1C1A8E6CA80037B370 /* success.m4a */,
 				A3CABF1A1A8BBC690037B370 /* trash-64.png */,
 				A38B9DA91A8479D300F1F59A /* scrabble_words.txt */,
@@ -293,6 +296,7 @@
 				A3CABF1D1A8E6E4F0037B370 /* success.m4a in Resources */,
 				A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */,
 				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,
+				A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */,
 				A30ADC951A4CFBD200047201 /* Main.storyboard in Resources */,
 				F02422921A8C0478003F2B67 /* oj.ttf in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,

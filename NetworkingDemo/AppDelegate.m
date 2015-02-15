@@ -24,11 +24,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //start a background sound
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"background_music" ofType: @"m4a"];
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
-    self.myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-    self.myAudioPlayer.numberOfLoops = -1; //infinite loop
-    [self.myAudioPlayer play];
+//    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"background_music" ofType: @"m4a"];
+//    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
+//    self.myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+//    self.myAudioPlayer.numberOfLoops = -1; //infinite loop
+//    [self.myAudioPlayer play];
     
     
     // Override point for customization after application launch.
