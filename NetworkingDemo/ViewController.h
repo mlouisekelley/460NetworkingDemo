@@ -10,6 +10,7 @@
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 #import "NetworkUtils.h"
 #import "TileViewCell.h"
+#import "CircleTimerView.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
@@ -22,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIView *tossView;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet CircleTimerView *circleTimerView;
 @property (nonatomic) BOOL touchToPlay;
 
 +(ViewController *)sharedViewController;

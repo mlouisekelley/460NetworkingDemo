@@ -89,10 +89,10 @@ NSMutableArray *colorArray;
 }
 
 -(void) setUpGame {
-    minutes = 0;
-    seconds = 15;
+    minutes = 2;
+    seconds = 0;
     milliseconds = 0;
-    self.progressView.progress = 1.0f;
+    
     for (TileViewCell *cell in self.allTiles) {
         [cell removeFromSuperview];
     }
@@ -269,9 +269,11 @@ NSMutableArray *colorArray;
     else {
         self.countDownLabel.text = @"";
     }
-    self.progressView.progress = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-    
-    
+    self.circleTimerView.percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+    self.circleTimerView.seconds = seconds + minutes * 60;
+    self.circleTimerView.milliseconds = milliseconds;
+    [self.circleTimerView setNeedsDisplay];
+    [self.view bringSubviewToFront:self.circleTimerView];
     self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
