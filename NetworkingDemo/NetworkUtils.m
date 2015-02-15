@@ -39,9 +39,15 @@
 }
 
 
-+(void)sendJoinedGame
++(void)sendJoinedLobby
 {
     NSString* message = [NSString stringWithFormat:@"joined"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
++(void)sendStartGame
+{
+    NSString* message = [NSString stringWithFormat:@"start"];
     [[WarpClient getInstance] sendChat:message];
 }
 

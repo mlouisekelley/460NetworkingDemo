@@ -11,6 +11,7 @@
 @interface LobbyViewController : UIViewController
 
 +(LobbyViewController *)sharedViewController;
--(void)beginGame;
+-(void)playerJoinedLobby;
+-(void)startGame;
 
 @end

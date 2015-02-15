@@ -42,12 +42,17 @@
 }
 -(void)onChatReceived:(ChatEvent*)chatEvent{
     
+    if([chatEvent.message isEqualToString:@"start"]){
+        [[LobbyViewController sharedViewController] startGame];
+        return;
+    }
+    
     if([chatEvent.message isEqualToString:@"joined"]){
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
-//            [[LobbyViewController sharedViewController] beginGame];
+            [[LobbyViewController sharedViewController] playerJoinedLobby];
             return;
         }
-        [[LobbyViewController sharedViewController] beginGame];
+        [[LobbyViewController sharedViewController] playerJoinedLobby];
         return;
     }
     

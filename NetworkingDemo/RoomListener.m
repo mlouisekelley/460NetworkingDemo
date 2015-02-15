@@ -36,7 +36,7 @@
     {
         //[[WarpClient getInstance]setCustomRoomData:roomEvent.roomData.roomId roomData:@"custom room data set"];
         NSLog(@"onSubscribeRoomDone  SUCCESS");
-        [NetworkUtils sendJoinedGame];
+        [NetworkUtils sendJoinedLobby];
     }
     else
     {

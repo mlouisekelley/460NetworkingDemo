@@ -86,25 +86,24 @@ static int joinsRecieved = 0;
         [warpClient connectWithUserName:[GameConstants getUserName]];
         first = NO;
     } else {
-        [NetworkUtils sendJoinedGame];
+        [NetworkUtils sendJoinedLobby];
     }
     
 }
 
--(void)beginGame {
+-(void)playerJoinedLobby {
     if(joined){
         return;
     }
     joinsRecieved++;
     if(joinsRecieved + 1 == numPlayers){
-        [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
-        [NetworkUtils sendJoinedGame];
+        [NetworkUtils sendStartGame];
         joined = YES;
     }
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-//    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"Test"];
-//    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)startGame {
+    [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
 }
 
 /*
