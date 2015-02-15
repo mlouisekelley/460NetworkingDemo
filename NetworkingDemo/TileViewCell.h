@@ -29,4 +29,5 @@
 -(void) makeUnselected;
 -(void) makeBeingMovedByOtherPlayer;
 -(void) unMakeBeingMovedByOtherPlayer;
+-(void) setColorOfTile:(UIColor *)color;
 @end

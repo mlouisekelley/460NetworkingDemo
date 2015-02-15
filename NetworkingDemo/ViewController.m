@@ -74,6 +74,7 @@ NSMutableArray *colorArray;
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
+    currentPlayer.color = [UIColor orangeColor];
     _allTiles = [[NSMutableArray alloc] init];
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
@@ -664,6 +665,7 @@ NSMutableArray *colorArray;
         currentPlayer.numberOfTiles++;
         theTile.isOnRack = YES;
         [theTile makeUnselected];
+        [theTile setColorOfTile:currentPlayer.color];
         theTile.startPoint = tile.frame.origin;
         
         [self clearSelectedTile];

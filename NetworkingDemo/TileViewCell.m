@@ -132,6 +132,9 @@ ViewController *superview;
     _isBeingMovedByOtherPlayer = NO;
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
 }
+-(void) setColorOfTile:(UIColor *)color {
+    [self setBackgroundColor:color];
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
