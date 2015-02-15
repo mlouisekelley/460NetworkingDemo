@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "LobbyViewController.h"
 #import "GameConstants.h"
+#import "GameHost.h"
 
 @interface NotificationListener : NSObject<NotifyListener>
 

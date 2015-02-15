@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270711811A9143AF00591493 /* GameHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 270711801A9143AF00591493 /* GameHost.m */; };
 		273F70611A61C60E005103BA /* ConnectionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70601A61C60E005103BA /* ConnectionListener.m */; };
 		273F70661A61C68C005103BA /* RoomListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70631A61C68C005103BA /* RoomListener.m */; };
 		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270711801A9143AF00591493 /* GameHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHost.m; sourceTree = "<group>"; };
+		270711821A9143BE00591493 /* GameHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHost.h; sourceTree = "<group>"; };
 		273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../Downloads/AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		273F705F1A61C60E005103BA /* ConnectionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionListener.h; sourceTree = "<group>"; };
 		273F70601A61C60E005103BA /* ConnectionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListener.m; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
 				273F70711A66F5D7005103BA /* GameConstants.h */,
 				27C759A81A69AB1A0004DB59 /* GameConstants.m */,
+				270711821A9143BE00591493 /* GameHost.h */,
+				270711801A9143AF00591493 /* GameHost.m */,
 				27C7599D1A699BAA0004DB59 /* NetworkUtils.h */,
 				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
 				273F70621A61C68C005103BA /* RoomListener.h */,
@@ -322,6 +327,7 @@
 				A30ADC921A4CFBD200047201 /* ViewController.m in Sources */,
 				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
 				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
+				270711811A9143AF00591493 /* GameHost.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */,

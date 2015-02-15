@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "BoardViewCell.h"
 #import "GameConstants.h"
+#import "GameHost.h"
 #import "BoardChecker.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
@@ -46,13 +47,10 @@ int displayScore = 0;
 int redScore = 0;
 int blueScore = 0;
 int purpleScore = 0;
-NSMutableArray *colorArray;
 
 - (void)viewDidLoad {
     
     isGameOver = NO;
-    
-    colorArray = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor purpleColor], nil];
     
     _touchToPlay = true;
     
@@ -74,7 +72,7 @@ NSMutableArray *colorArray;
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
-    currentPlayer.color = [UIColor orangeColor];
+    currentPlayer.color = [[GameHost sharedGameHost] getColorForPlayer:currentPlayer.userName];
     _allTiles = [[NSMutableArray alloc] init];
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
@@ -565,12 +563,6 @@ NSMutableArray *colorArray;
             
             [alert addAction:ok]; // add action to uialertcontroller
             
-//            int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-//            for (int i = 0; i < num; i++) {
-//                [self createTileInRack];
-//            }
-            //[self updateSelfScore];
-            
         }
         else {
             
@@ -623,7 +615,7 @@ NSMutableArray *colorArray;
 
 -(void) createTileInRack {
     TileViewCell *newTile = [[TileViewCell alloc] initWithFrame:[[_tileSpaces objectAtIndex:0] CGRectValue] playerID:[GameConstants getUserName]];
-    
+    [newTile setColorOfTile:currentPlayer.color];
     [_tileSpaces removeObjectAtIndex:0];
     
     [self.view addSubview:newTile];
@@ -828,8 +820,7 @@ NSMutableArray *colorArray;
     }
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
-    player.color = [colorArray objectAtIndex:0];
-    [colorArray removeObjectAtIndex:0];
+    player.color = [[GameHost sharedGameHost] getColorForPlayer:player.userName];
     [self.players addObject:player];
     [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
     [self refreshScoresText];

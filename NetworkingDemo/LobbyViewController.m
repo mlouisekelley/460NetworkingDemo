@@ -62,7 +62,6 @@ static int joinsRecieved = 0;
 }
 
 -(void)joinGame {
-    NSLog(@"HERE");
     vc = self;
     
     if(first){
