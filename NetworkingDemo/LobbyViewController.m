@@ -113,16 +113,16 @@ static int joinsRecieved = 0;
         for (NSString* key in colors) {
             UIColor *color = [colors objectForKey:key];
             if([color isEqual:[UIColor orangeColor]]){
-                [NetworkUtils sendUpdateColor:@"orange" forPlayer:[GameConstants getUserName]];
+                [NetworkUtils sendUpdateColor:@"orange" forPlayer:key];
             }
             if([color isEqual:[UIColor purpleColor]]){
-                [NetworkUtils sendUpdateColor:@"purple" forPlayer:[GameConstants getUserName]];
+                [NetworkUtils sendUpdateColor:@"purple" forPlayer:key];
             }
             if([color isEqual:[UIColor greenColor]]){
-                [NetworkUtils sendUpdateColor:@"green" forPlayer:[GameConstants getUserName]];
+                [NetworkUtils sendUpdateColor:@"green" forPlayer:key];
             }
             if([color isEqual:[UIColor blueColor]]){
-                [NetworkUtils sendUpdateColor:@"blue" forPlayer:[GameConstants getUserName]];
+                [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
             }
         }
         NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
