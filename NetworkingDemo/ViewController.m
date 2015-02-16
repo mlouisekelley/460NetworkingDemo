@@ -83,8 +83,8 @@ int playerNumber = 2;
 }
 
 -(void) setUpGame {
-    minutes = 2;
-    seconds = 0;
+    minutes = 0;
+    seconds = 15;
     milliseconds = 0;
     
     playerTwoScore = 0;
@@ -95,7 +95,9 @@ int playerNumber = 2;
     frameTimestamp = CACurrentMediaTime();
 
     for (TileViewCell *cell in self.allTiles) {
-        [cell removeFromSuperview];
+        if(![cell isStartingTile]){
+           [cell removeFromSuperview];
+        }
     }
     [self resetScores];
     
@@ -438,7 +440,7 @@ int playerNumber = 2;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
-    //    [self placeStartingWord];
+    //[self placeStartingWord];
     [self clearScores];
 }
 
