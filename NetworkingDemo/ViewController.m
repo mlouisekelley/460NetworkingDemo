@@ -43,10 +43,11 @@ BOOL isGameOver = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
 int displayScore = 0;
-int redScore = 0;
-int blueScore = 0;
-int purpleScore = 0;
+int playerTwoScore = 0;
+int playerThreeScore = 0;
+int playerFourScore = 0;
 double frameTimestamp;
+int playerNumber = 2;
 
 - (void)viewDidLoad {
     
@@ -64,6 +65,7 @@ double frameTimestamp;
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
+    currentPlayer.playerNumber = 1;
     currentPlayer.color = [[GameHost sharedGameHost] getColorForPlayer:currentPlayer.userName];
     self.currentPlayerScoreLabel.textColor = currentPlayer.color;
     _allTiles = [[NSMutableArray alloc] init];
@@ -85,9 +87,9 @@ double frameTimestamp;
     seconds = 0;
     milliseconds = 0;
     
-    redScore = 0;
-    blueScore = 0;
-    purpleScore = 0;
+    playerTwoScore = 0;
+    playerThreeScore = 0;
+    playerFourScore = 0;
     
     currentPlayer.numberOfTiles = 0;
     frameTimestamp = CACurrentMediaTime();
@@ -316,54 +318,57 @@ double frameTimestamp;
     for(Player *player in [self players]){
         
         //red player
-        if([player.color isEqual:[UIColor redColor]]){
-            if (redScore < player.score) {
-                int incAmnt = (player.score - redScore) / 9 + 1;
-                if (redScore + incAmnt > player.score) {
-                    redScore = player.score;
+        if(player.playerNumber == 2){
+            if (playerTwoScore < player.score) {
+                int incAmnt = (player.score - playerTwoScore) / 9 + 1;
+                if (playerTwoScore + incAmnt > player.score) {
+                    playerTwoScore = player.score;
                 }
                 else {
-                    redScore += incAmnt;
+                    playerTwoScore += incAmnt;
                 }
             }
             else {
-                redScore = player.score;
+                playerTwoScore = player.score;
             }
-            self.redPlayerScore.text = [NSString stringWithFormat:@"%d", redScore];
+            self.playerTwoScoreLabel.textColor = player.color;
+            self.playerTwoScoreLabel.text = [NSString stringWithFormat:@"%d", playerTwoScore];
         }
         
         //blue player
-        if([player.color isEqual:[UIColor blueColor]]){
-            if (blueScore < player.score) {
-                int incAmnt = (player.score - blueScore) / 9 + 1;
-                if (blueScore + incAmnt > player.score) {
-                    blueScore = player.score;
+        if(player.playerNumber == 3){
+            if (playerThreeScore < player.score) {
+                int incAmnt = (player.score - playerThreeScore) / 9 + 1;
+                if (playerThreeScore + incAmnt > player.score) {
+                    playerThreeScore = player.score;
                 }
                 else {
-                    blueScore += incAmnt;
+                    playerThreeScore += incAmnt;
                 }
             }
             else {
-                blueScore = player.score;
+                playerThreeScore = player.score;
             }
-            self.bluePlayerScore.text = [NSString stringWithFormat:@"%d", blueScore];
+            self.playerThreeScoreLabel.textColor = player.color;
+            self.playerThreeScoreLabel.text = [NSString stringWithFormat:@"%d", playerThreeScore];
         }
         
         //purple player
-        if([player.color isEqual:[UIColor purpleColor]]){
-            if (purpleScore < player.score) {
-                int incAmnt = (player.score - purpleScore) / 9 + 1;
-                if (purpleScore + incAmnt > player.score) {
-                    purpleScore = player.score;
+        if(player.playerNumber == 4){
+            if (playerFourScore < player.score) {
+                int incAmnt = (player.score - playerFourScore) / 9 + 1;
+                if (playerFourScore + incAmnt > player.score) {
+                    playerFourScore = player.score;
                 }
                 else {
-                    purpleScore += incAmnt;
+                    playerFourScore += incAmnt;
                 }
             }
             else {
-                purpleScore = player.score;
+                playerFourScore = player.score;
             }
-            self.purplePlayerScore.text = [NSString stringWithFormat:@"%d", purpleScore];
+            self.playerFourScoreLabel.textColor = player.color;
+            self.playerFourScoreLabel.text = [NSString stringWithFormat:@"%d", playerFourScore];
         }
     }
 }
@@ -820,6 +825,8 @@ double frameTimestamp;
     Player *player = [[Player alloc] init];
     player.userName = playerUserName;
     player.color = [[GameHost sharedGameHost] getColorForPlayer:player.userName];
+    player.playerNumber = playerNumber;
+    playerNumber = playerNumber + 1;
     [self.players addObject:player];
     [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
     [self refreshScoresText];

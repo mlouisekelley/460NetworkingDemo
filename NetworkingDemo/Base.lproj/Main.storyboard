@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -281,25 +281,6 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zu-Hp-ALG">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="r2q-0j-kcf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="42"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="r2q-0j-kcf"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="r2q-0j-kcf"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUJ-Tr-6Lo">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="42"/>
@@ -361,6 +342,25 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zu-Hp-ALG">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="r2q-0j-kcf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="42"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="r2q-0j-kcf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="r2q-0j-kcf"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -419,11 +419,11 @@
                                 <exclude reference="U8X-4K-xSW"/>
                                 <exclude reference="aPX-eG-T0Y"/>
                                 <exclude reference="foc-hA-JKb"/>
-                                <exclude reference="8zu-Hp-ALG"/>
                                 <exclude reference="KUJ-Tr-6Lo"/>
                                 <exclude reference="b0i-mj-9Xn"/>
                                 <exclude reference="tO8-Gg-9nh"/>
                                 <exclude reference="Jf7-ZJ-Ebh"/>
+                                <exclude reference="8zu-Hp-ALG"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="5uo-we-dhu"/>
@@ -484,11 +484,11 @@
                             <mask key="subviews">
                                 <include reference="aPX-eG-T0Y"/>
                                 <include reference="foc-hA-JKb"/>
-                                <include reference="8zu-Hp-ALG"/>
                                 <include reference="KUJ-Tr-6Lo"/>
                                 <include reference="b0i-mj-9Xn"/>
                                 <include reference="tO8-Gg-9nh"/>
                                 <include reference="Jf7-ZJ-Ebh"/>
+                                <include reference="8zu-Hp-ALG"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="5uo-we-dhu"/>
@@ -543,13 +543,13 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="bluePlayerScore" destination="8zu-Hp-ALG" id="UcM-Ah-O1w"/>
                         <outlet property="boardCollectionView" destination="Mbl-rH-m8c" id="aus-6a-ioL"/>
                         <outlet property="circleTimerView" destination="aPX-eG-T0Y" id="2q9-ph-PdL"/>
                         <outlet property="countDownLabel" destination="tO8-Gg-9nh" id="FIv-cx-hT8"/>
                         <outlet property="currentPlayerScoreLabel" destination="foc-hA-JKb" id="oah-9B-Fmg"/>
-                        <outlet property="purplePlayerScore" destination="KUJ-Tr-6Lo" id="moH-EQ-KGK"/>
-                        <outlet property="redPlayerScore" destination="Jf7-ZJ-Ebh" id="uHE-fL-izS"/>
+                        <outlet property="playerFourScoreLabel" destination="KUJ-Tr-6Lo" id="Es3-qC-cag"/>
+                        <outlet property="playerThreeScoreLabel" destination="8zu-Hp-ALG" id="NDL-EI-dNa"/>
+                        <outlet property="playerTwoScoreLabel" destination="Jf7-ZJ-Ebh" id="vLN-8S-xwi"/>
                         <outlet property="tossView" destination="IxI-rr-9IA" id="VT3-8z-F7U"/>
                         <segue destination="Ti6-2w-sDr" kind="show" identifier="ReturnToLobby" id="AlX-Ox-Ng0"/>
                     </connections>

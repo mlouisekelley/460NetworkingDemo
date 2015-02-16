@@ -16,9 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UIView *bkgView;
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayerScoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *redPlayerScore;
-@property (weak, nonatomic) IBOutlet UILabel *bluePlayerScore;
-@property (weak, nonatomic) IBOutlet UILabel *purplePlayerScore;
+@property (weak, nonatomic) IBOutlet UILabel *playerTwoScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerThreeScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerFourScoreLabel;
 @property (weak, nonatomic) IBOutlet UITextView *scores;
 @property (weak, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;

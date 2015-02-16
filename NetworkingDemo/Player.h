@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic) int score;
 @property (nonatomic) UIColor *color;
+@property (nonatomic) int playerNumber;
 @end
