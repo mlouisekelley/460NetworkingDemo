@@ -117,7 +117,6 @@ int playerNumber = 2;
         [self createTileInRack];
     }
     [self placeStartingWord];
-    [self refreshScoresText];
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCounter:)];
     
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -439,9 +438,28 @@ int playerNumber = 2;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
-    
     //    [self placeStartingWord];
-    [self refreshScoresText];
+    [self clearScores];
+}
+
+-(void)clearScores{
+    displayScore = 0;
+    playerTwoScore = 0;
+    playerThreeScore = 0;
+    playerFourScore = 0;
+    
+    for(Player *player in [self players]){
+        player.score = 0;
+        if(player.playerNumber == 2){
+            self.playerTwoScoreLabel.text = 0;
+        }
+        if(player.playerNumber == 3){
+            self.playerThreeScoreLabel.text = 0;
+        }
+        if(player.playerNumber == 4){
+            self.playerFourScoreLabel.text = 0;
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -763,7 +781,6 @@ int playerNumber = 2;
         NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 100;
         [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
         currentPlayer.score = (int)newScore;
-        [self refreshScoresText];
     }
 }
 
@@ -775,36 +792,18 @@ int playerNumber = 2;
     currentPlayer.score = (int)newScore;
     //NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
-    [self refreshScoresText];
     [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", newScore]];
 }
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
     [self.playerScores setValue:[NSNumber numberWithLong:score] forKey:userName];
     [self getPlayerByUsername:userName].score = (int)score;
-    [self refreshScoresText];
 }
 
 -(void) resetScores {
     for (NSString *playerName in self.playerScores.allKeys) {
         [self.playerScores setValue:0 forKey:playerName];
     }
-}
-
-
--(void) refreshScoresText {
-    NSString *scoresString = @"SCORES:\n";
-    for (NSString *playerName in self.playerScores.allKeys) {
-        NSNumber *num = [self.playerScores valueForKey:playerName];
-        if([playerName isEqualToString:[GameConstants getUserName]]){
-            scoresString = [scoresString stringByAppendingFormat:@"Me: %d\n", [num intValue]];
-        } else {
-            scoresString = [scoresString stringByAppendingFormat:@"%@: %d\n", playerName, [num intValue]];
-        }
-    }
-    self.scores.font = [UIFont fontWithName:@"orange juice" size:32];
-    
-    self.scores.text = scoresString;
 }
 
 -(Player *)getPlayerByUsername:(NSString * )userName {
@@ -829,7 +828,6 @@ int playerNumber = 2;
     playerNumber = playerNumber + 1;
     [self.players addObject:player];
     [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerUserName];
-    [self refreshScoresText];
 }
 
 -(void)updatePlayerList:(NSArray *)currentPlayers {
@@ -840,7 +838,6 @@ int playerNumber = 2;
         [self.players addObject:newPlayer];
         [self.playerScores setValue:[NSNumber numberWithInt:0] forKey:playerName];
     }
-    [self refreshScoresText];
 }
 
 -(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath  {
