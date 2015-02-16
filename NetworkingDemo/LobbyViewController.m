@@ -107,7 +107,6 @@ static int joinsRecieved = 0;
         return;
     }
     joinsRecieved++;
-    NSLog(@"SOMEONE JOINED");
     if(joinsRecieved + 1 == numPlayers){
         [NetworkUtils sendStartGame];
         NSMutableDictionary *colors = [[GameHost sharedGameHost] playerColors];
