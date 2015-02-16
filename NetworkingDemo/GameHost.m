@@ -8,6 +8,12 @@
 
 #import "GameHost.h"
 
+@interface GameHost ()
+
+@property (strong, nonatomic) NSString *startingWord;
+
+@end
+
 @implementation GameHost
 
 static GameHost *gh;
@@ -21,8 +27,20 @@ static GameHost *gh;
     [self.playerColors setObject:color forKey:userName];
 }
 
+-(void)overrideColor:(UIColor *)color forPlayer:(NSString *)userName {
+    [self.playerColors setObject:color forKey:userName];
+}
+
 -(UIColor *)getColorForPlayer:(NSString *)userName {
     return [self.playerColors objectForKey:userName];
+}
+
+-(void)setStartingWord:(NSString *)startingWord {
+    _startingWord = startingWord;
+}
+
+-(NSString *)getStartingWord {
+    return self.startingWord;
 }
 
 +(GameHost *)sharedGameHost

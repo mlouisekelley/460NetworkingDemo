@@ -102,6 +102,9 @@ static int joinsRecieved = 0;
 }
 
 -(void)startGame {
+    NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
+    NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
+    [NetworkUtils sendStartingWord:starting_word];
     [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
 }
 

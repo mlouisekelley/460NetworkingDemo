@@ -17,6 +17,8 @@
 +(GameHost *)sharedGameHost;
 -(void)addColorforPlayer:(NSString *)userName;
 -(UIColor *)getColorForPlayer:(NSString *)userName;
+-(void)setStartingWord:(NSString *)startingWord;
+-(NSString *)getStartingWord;
 
 
 @end

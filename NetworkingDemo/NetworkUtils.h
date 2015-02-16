@@ -20,6 +20,7 @@
 +(void)sendJoinedLobby;
 +(void)sendStartGame;
 +(void)sendPlayerScore:(NSString *)score;
++(void)sendStartingWord:(NSString *)word;
 
 
 @end

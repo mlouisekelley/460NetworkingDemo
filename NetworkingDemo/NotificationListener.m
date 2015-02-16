@@ -62,6 +62,11 @@
     NSArray *message = [chatEvent.message componentsSeparatedByString:@":"];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[message[0] integerValue]
                                             inSection:0];
+    
+    if ([message[0] isEqualToString:@"startingWord"]){
+        [[GameHost sharedGameHost] setStartingWord:message[1]];
+        return;
+    }
 
     //only look at chats from other players
     if(![chatEvent.sender isEqualToString:[GameConstants getUserName]]){

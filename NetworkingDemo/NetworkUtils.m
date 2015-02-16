@@ -45,6 +45,11 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)sendStartingWord:(NSString *)word {
+    NSString* message = [NSString stringWithFormat:@"startingWord:%@", word];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)sendStartGame
 {
     NSString* message = [NSString stringWithFormat:@"start"];
