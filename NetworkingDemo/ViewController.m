@@ -259,43 +259,48 @@ double frameTimestamp;
     double timeSince = currentTime - frameTimestamp;
     frameTimestamp = currentTime;
     
-    int mil = 1000 * (timeSince - floor(timeSince));
-    int sec = floor(timeSince);
-    milliseconds -= mil;
-    
-    if (milliseconds < 0) {
-        seconds += -1 + (milliseconds / 1000);
-        milliseconds = 1000 + milliseconds % 1000;
+    if (!isGameOver) {
+        int mil = 1000 * (timeSince - floor(timeSince));
+        int sec = floor(timeSince);
+        
+        milliseconds -= mil;
+        
+        if (milliseconds < 0) {
+            seconds += -1 + (milliseconds / 1000);
+            milliseconds = 1000 + milliseconds % 1000;
+        }
+        
+        seconds -= sec;
+        if (seconds < 0) {
+            minutes += -1 + (seconds / 60) ;
+            seconds = 60 + seconds % 60;
+        }
+        
+        if (sec > 60) {
+            minutes-= sec / 60;
+            sec = sec % 60;
+        }
+        
+        
+        if (seconds <= 5 && minutes == 0) {
+            self.countDownLabel.text = [NSString stringWithFormat:@"%d", seconds];
+            self.countDownLabel.alpha = 0.5 * (milliseconds) / 1000.0 + .2;
+        }
+        else {
+            self.countDownLabel.text = @"";
+        }
+        
+        if (minutes < 0  && !isGameOver) {
+            [self gameOver];
+        }
+        
+        self.circleTimerView.percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+        self.circleTimerView.seconds = seconds + minutes * 60;
+        self.circleTimerView.milliseconds = milliseconds;
+        [self.circleTimerView setNeedsDisplay];
+        [self.view bringSubviewToFront:self.circleTimerView];
+        self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
     }
-    
-    seconds -= sec;
-    if (seconds < 0) {
-        minutes += -1 + (seconds / 60) ;
-        seconds = 60 + seconds % 60;
-    }
-    
-    if (sec > 60) {
-        minutes-= sec / 60;
-        sec = sec % 60;
-    }
-    
-
-    if (minutes <= 0 && seconds <= 0 && milliseconds <= 0 && !isGameOver) {
-        [self gameOver];
-    }
-    if (seconds <= 5 && minutes == 0) {
-        self.countDownLabel.text = [NSString stringWithFormat:@"%d", seconds];
-        self.countDownLabel.alpha = 0.5 * (milliseconds) / 1000.0 + .2;
-    }
-    else {
-        self.countDownLabel.text = @"";
-    }
-    self.circleTimerView.percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-    self.circleTimerView.seconds = seconds + minutes * 60;
-    self.circleTimerView.milliseconds = milliseconds;
-    [self.circleTimerView setNeedsDisplay];
-    [self.view bringSubviewToFront:self.circleTimerView];
-    self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
 - (void)updateScoreDisplay:(NSTimer *)theTimer {
