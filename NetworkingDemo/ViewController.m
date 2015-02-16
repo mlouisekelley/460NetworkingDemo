@@ -65,6 +65,7 @@ double frameTimestamp;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
     currentPlayer.color = [[GameHost sharedGameHost] getColorForPlayer:currentPlayer.userName];
+    self.currentPlayerScoreLabel.textColor = currentPlayer.color;
     _allTiles = [[NSMutableArray alloc] init];
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     

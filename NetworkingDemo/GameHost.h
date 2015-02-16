@@ -19,6 +19,7 @@
 -(UIColor *)getColorForPlayer:(NSString *)userName;
 -(void)setStartingWord:(NSString *)startingWord;
 -(NSString *)getStartingWord;
+-(void)overrideColor:(UIColor *)color forPlayer:(NSString *)userName;
 
 
 @end

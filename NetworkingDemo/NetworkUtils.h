@@ -21,6 +21,7 @@
 +(void)sendStartGame;
 +(void)sendPlayerScore:(NSString *)score;
 +(void)sendStartingWord:(NSString *)word;
++(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;
 
 
 @end

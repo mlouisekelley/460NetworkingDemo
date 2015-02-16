@@ -50,6 +50,11 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player {
+    NSString* message = [NSString stringWithFormat:@"colorUpdate:%@:%@", color, player];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)sendStartGame
 {
     NSString* message = [NSString stringWithFormat:@"start"];

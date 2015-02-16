@@ -48,7 +48,7 @@ static GameHost *gh;
     if(gh == nil){
         gh = [[self alloc] init];
         gh.playerColors = [[NSMutableDictionary alloc] init];
-        gh.colorArray = [[NSMutableArray alloc] initWithObjects:[UIColor redColor],[UIColor purpleColor],[UIColor greenColor],[UIColor blueColor], nil];
+        gh.colorArray = [[NSMutableArray alloc] initWithObjects:[UIColor orangeColor],[UIColor purpleColor],[UIColor greenColor],[UIColor blueColor], nil];
     }
     return gh;
 }

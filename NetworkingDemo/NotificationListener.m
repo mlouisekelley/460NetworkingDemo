@@ -67,6 +67,11 @@
         [[GameHost sharedGameHost] setStartingWord:message[1]];
         return;
     }
+    
+    if ([message[0] isEqualToString:@"colorUpdate"]){
+        [self updateColor:message[1] forPlayer:message[2]];
+        return;
+    }
 
     //only look at chats from other players
     if(![chatEvent.sender isEqualToString:[GameConstants getUserName]]){
@@ -116,6 +121,21 @@
         }
         [[ViewController sharedViewController] placeEnemyPendingLetter:message[1]
                                                            atIndexPath:indexPath forEnemy:chatEvent.sender];
+    }
+}
+
+-(void)updateColor:(NSString *)color forPlayer:(NSString *)userName {
+    if([color isEqualToString:@"orange"]){
+        [[GameHost sharedGameHost] overrideColor:[UIColor orangeColor] forPlayer:userName];
+    }
+    if([color isEqualToString:@"purple"]){
+        [[GameHost sharedGameHost] overrideColor:[UIColor purpleColor] forPlayer:userName];
+    }
+    if([color isEqualToString:@"green"]){
+        [[GameHost sharedGameHost] overrideColor:[UIColor greenColor] forPlayer:userName];
+    }
+    if([color isEqualToString:@"blue"]){
+        [[GameHost sharedGameHost] overrideColor:[UIColor blueColor] forPlayer:userName];
     }
 }
 
