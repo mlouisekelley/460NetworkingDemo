@@ -136,7 +136,7 @@ double frameTimestamp;
         for (int j = 0; j < 10; j++) {
             BoardCellDTO *cell = [[BoardCellDTO alloc] init];
             cell.text = @"-";
-            cell.isPending = NO;
+            cell.isPending = 0;
             [_board addObject:cell];
             cell.tvc = nil;
         }
@@ -189,7 +189,7 @@ double frameTimestamp;
             for (int j = 0; j < 10; j++) {
                 BoardCellDTO *cell = [[BoardCellDTO alloc] init];
                 cell.text = @"-";
-                cell.isPending = NO;
+                cell.isPending = 0;
                 [_board addObject:cell];
             }
         }
@@ -467,7 +467,7 @@ double frameTimestamp;
         text = @"";
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
         dto.cell = cell;
-        if (dto.isPending) {
+        if (dto.isPending > 0) {
             cell.backgroundColor = dto.player.color;
         }
         else {
@@ -842,7 +842,7 @@ double frameTimestamp;
 
 -(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath  {
     BoardCellDTO *dto = self.board[indexPath.item];
-    if (!dto.isPending) {
+    if (dto.isPending == 0) {
         [dto.tvc makeBeingMovedByOtherPlayer];
     }
     else {
@@ -860,7 +860,7 @@ double frameTimestamp;
         dto.tvc.isUnsent = NO;
     }
     else {
-        dto.isPending = YES;
+        dto.isPending++;
     }
     [self.boardCollectionView reloadData];
 }
@@ -881,7 +881,7 @@ double frameTimestamp;
         [self takeTileFromBoard:dto.tvc];
     }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
-    dto.isPending = NO;
+    dto.isPending = 0;
     dto.tvc.isUnsent = NO;
     [self.view addSubview:tvc];
     [self.allTiles addObject:tvc];
@@ -893,7 +893,7 @@ double frameTimestamp;
         BoardCellDTO *cellDTO = self.board[i];
         
         if (!cellDTO.tvc.isStartingTile && cellDTO.tvc.isUnsent) {
-            cellDTO.isPending = NO;
+            cellDTO.isPending = 0;
             cellDTO.tvc.isUnsent = NO;
 //            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
@@ -912,7 +912,7 @@ double frameTimestamp;
 
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto =self.board[indexPath.item];
-    dto.isPending = NO;
+    dto.isPending--;
     
     [self.boardCollectionView reloadData];
 }
@@ -923,7 +923,7 @@ double frameTimestamp;
     
     dto.tvc = nil;
     dto.text = @"-";
-    dto.isPending = NO;
+    dto.isPending = 0;
     [self.boardCollectionView reloadData];
 }
 
