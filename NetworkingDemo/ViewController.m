@@ -18,7 +18,6 @@
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UICollectionView *tileCollectionView;
 @property (strong, nonatomic) NSMutableArray *board;
 @property (strong, nonatomic) NSMutableArray *tileSpaces;
 @property (nonatomic) NSInteger selectedIndex;
@@ -57,18 +56,12 @@ double frameTimestamp;
     
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
-    [self.tileCollectionView setTag:2];
     
     [self.boardCollectionView reloadData];
     self.boardCollectionView.dataSource = self;
     self.boardCollectionView.delegate = self;
     self.boardCollectionView.minimumZoomScale = .01;
     self.boardCollectionView.zoomScale = 10;
-    
-    
-    [self.tileCollectionView reloadData];
-    self.tileCollectionView.dataSource = self;
-    self.tileCollectionView.delegate = self;
     
     vc = self;
     currentPlayer = [[Player alloc] init];
@@ -316,7 +309,7 @@ double frameTimestamp;
     else {
         displayScore = currentPlayer.score;
     }
-    self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%08d", displayScore];
+    self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%d", displayScore];
     [self updateEnemyScores];
 }
 
@@ -337,7 +330,7 @@ double frameTimestamp;
             else {
                 redScore = player.score;
             }
-            self.redPlayerScore.text = [NSString stringWithFormat:@"%08d", redScore];
+            self.redPlayerScore.text = [NSString stringWithFormat:@"%d", redScore];
         }
         
         //blue player
@@ -354,7 +347,7 @@ double frameTimestamp;
             else {
                 blueScore = player.score;
             }
-            self.bluePlayerScore.text = [NSString stringWithFormat:@"%08d", blueScore];
+            self.bluePlayerScore.text = [NSString stringWithFormat:@"%d", blueScore];
         }
         
         //purple player
@@ -371,7 +364,7 @@ double frameTimestamp;
             else {
                 purpleScore = player.score;
             }
-            self.purplePlayerScore.text = [NSString stringWithFormat:@"%08d", purpleScore];
+            self.purplePlayerScore.text = [NSString stringWithFormat:@"%d", purpleScore];
         }
     }
 }
