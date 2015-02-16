@@ -108,32 +108,32 @@ static int joinsRecieved = 0;
     }
     joinsRecieved++;
     if(joinsRecieved + 1 == numPlayers){
-        [NetworkUtils sendStartGame];
         joined = YES;
+        NSMutableDictionary *colors = [[GameHost sharedGameHost] playerColors];
+        for (NSString *key in colors) {
+            UIColor *color = [colors objectForKey:key];
+            if([color isEqual:[UIColor orangeColor]]){
+                [NetworkUtils sendUpdateColor:@"orange" forPlayer:key];
+            }
+            if([color isEqual:[UIColor purpleColor]]){
+                [NetworkUtils sendUpdateColor:@"purple" forPlayer:key];
+            }
+            if([color isEqual:[UIColor greenColor]]){
+                [NetworkUtils sendUpdateColor:@"green" forPlayer:key];
+            }
+            if([color isEqual:[UIColor blueColor]]){
+                [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
+            }
+        }
+        NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
+        NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
+        [NetworkUtils sendStartingWord:starting_word];
+        [NetworkUtils sendStartGame];
     }
 }
 
 -(void)startGame {
     [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
-    NSMutableDictionary *colors = [[GameHost sharedGameHost] playerColors];
-    for (NSString *key in colors) {
-        UIColor *color = [colors objectForKey:key];
-        if([color isEqual:[UIColor orangeColor]]){
-            [NetworkUtils sendUpdateColor:@"orange" forPlayer:key];
-        }
-        if([color isEqual:[UIColor purpleColor]]){
-            [NetworkUtils sendUpdateColor:@"purple" forPlayer:key];
-        }
-        if([color isEqual:[UIColor greenColor]]){
-            [NetworkUtils sendUpdateColor:@"green" forPlayer:key];
-        }
-        if([color isEqual:[UIColor blueColor]]){
-            [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
-        }
-    }
-    NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
-    NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
-    [NetworkUtils sendStartingWord:starting_word];
 }
 
 

@@ -126,9 +126,15 @@
 
 -(void)updateColor:(NSString *)color forPlayer:(NSString *)userName {
     if([color isEqualToString:@"orange"]){
+        NSLog(@"ORANGE");
+        NSLog(@"MY USERNAME: %@", [GameConstants getUserName]);
+        NSLog(@"SENT USERNAME: %@", userName);
         [[GameHost sharedGameHost] overrideColor:[UIColor orangeColor] forPlayer:userName];
     }
     if([color isEqualToString:@"purple"]){
+        NSLog(@"PURPLE");
+        NSLog(@"MY USERNAME: %@", [GameConstants getUserName]);
+        NSLog(@"SENT USERNAME: %@", userName);
         [[GameHost sharedGameHost] overrideColor:[UIColor purpleColor] forPlayer:userName];
     }
     if([color isEqualToString:@"green"]){
