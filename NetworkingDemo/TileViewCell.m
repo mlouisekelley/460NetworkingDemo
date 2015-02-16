@@ -126,11 +126,13 @@ ViewController *superview;
 
 -(void) makeBeingMovedByOtherPlayer {
     _isBeingMovedByOtherPlayer = YES;
-    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:0.3]];
+    UIColor *color = self.backgroundColor;
+    [self setBackgroundColor:[color colorWithAlphaComponent:0.3]];
 }
 -(void) unMakeBeingMovedByOtherPlayer {
     _isBeingMovedByOtherPlayer = NO;
-    [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
+    UIColor *color = self.backgroundColor;
+    [self setBackgroundColor:[color colorWithAlphaComponent:1]];
 }
 -(void) setColorOfTile:(UIColor *)color {
     [self setBackgroundColor:color];
