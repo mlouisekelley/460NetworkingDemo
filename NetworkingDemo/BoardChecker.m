@@ -71,29 +71,45 @@
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
+                BOOL wordIsConnected = NO;
+                if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
+                    wordIsConnected = YES;
+                }
                 NSString *word = space;
                 int currLetterIndex = i + 10;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     word = [word stringByAppendingString:currentDTO.text];
+                    if (currentDTO.tvc.isFinalized || [currentDTO.tvc.pid isEqualToString:@"stone"]) {
+                        wordIsConnected = YES;
+                    }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
+                    
                 }
-                if (![self isValid:word] || [word length] == 1) {
+                if (![self isValid:word] || [word length] == 1 || !wordIsConnected) {
                     [incorrectWords addObject:word];
                 }
             }
             
             else if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
+                BOOL wordIsConnected = NO;
+                if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
+                    wordIsConnected = YES;
+                }
                 NSString *word = space;
                 int currLetterIndex = i + 1;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     word = [word stringByAppendingString:currentDTO.text];
+                    if (currentDTO.tvc.isFinalized || [currentDTO.tvc.pid isEqualToString:@"stone"]) {
+                        wordIsConnected = YES;
+                    }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
+                    
                 }
-                if (![self isValid:word]) {
+                if (![self isValid:word] || [word length] == 1 || !wordIsConnected) {
                     [incorrectWords addObject:word];
                 }
             }
