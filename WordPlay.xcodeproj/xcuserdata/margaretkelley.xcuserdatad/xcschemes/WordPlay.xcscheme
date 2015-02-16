@@ -7,34 +7,6 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A30ADC851A4CFBD200047201"
-               BuildableName = "NetworkingDemo.app"
-               BlueprintName = "NetworkingDemo"
-               ReferencedContainer = "container:NetworkingDemo.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A30ADC9E1A4CFBD200047201"
-               BuildableName = "NetworkingDemoTests.xctest"
-               BlueprintName = "NetworkingDemoTests"
-               ReferencedContainer = "container:NetworkingDemo.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
@@ -56,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A30ADC9E1A4CFBD200047201"
-               BuildableName = "NetworkingDemoTests.xctest"
-               BlueprintName = "NetworkingDemoTests"
-               ReferencedContainer = "container:NetworkingDemo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A30ADC851A4CFBD200047201"
-            BuildableName = "NetworkingDemo.app"
-            BlueprintName = "NetworkingDemo"
-            ReferencedContainer = "container:NetworkingDemo.xcodeproj">
+            BuildableName = "WordPlay.app"
+            BlueprintName = "WordPlay"
+            ReferencedContainer = "container:WordPlay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -90,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A30ADC851A4CFBD200047201"
-            BuildableName = "NetworkingDemo.app"
-            BlueprintName = "NetworkingDemo"
-            ReferencedContainer = "container:NetworkingDemo.xcodeproj">
+            BuildableName = "WordPlay.app"
+            BlueprintName = "WordPlay"
+            ReferencedContainer = "container:WordPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -108,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A30ADC851A4CFBD200047201"
-            BuildableName = "NetworkingDemo.app"
-            BlueprintName = "NetworkingDemo"
-            ReferencedContainer = "container:NetworkingDemo.xcodeproj">
+            BuildableName = "WordPlay.app"
+            BlueprintName = "WordPlay"
+            ReferencedContainer = "container:WordPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

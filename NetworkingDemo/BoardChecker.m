@@ -70,7 +70,6 @@
             BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
-            
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
                 NSString *word = space;
                 int currLetterIndex = i + 10;
@@ -80,12 +79,12 @@
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                 }
-                if (![self isValid:word]) {
+                if (![self isValid:word] || [word length] == 1) {
                     [incorrectWords addObject:word];
                 }
             }
             
-            if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
+            else if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
                 NSString *word = space;
                 int currLetterIndex = i + 1;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
@@ -97,6 +96,10 @@
                 if (![self isValid:word]) {
                     [incorrectWords addObject:word];
                 }
+            }
+            
+            else if ([self isBlank:up.text] && [self isBlank:left.text] && [self isBlank:right.text] && [self isBlank:down.text] && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
+                [incorrectWords addObject:cellDTO.text];
             }
             
         }
