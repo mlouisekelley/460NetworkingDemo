@@ -52,8 +52,6 @@ double frameTimestamp;
     
     isGameOver = NO;
     
-    _touchToPlay = true;
-    
     [super viewDidLoad];
     [self.boardCollectionView setTag:1];
     

@@ -14,6 +14,8 @@
 
 @interface LobbyViewController ()
 
+@property (nonatomic) BOOL touchToPlay;
+
 @end
 
 @implementation LobbyViewController
@@ -33,9 +35,19 @@ static int joinsRecieved = 0;
     return vc;
 }
 
+- (IBAction)switchStateChanged:(UISwitch *)switchState{
+    if ([switchState isOn]) {
+        self.touchToPlay = YES;
+    } else {
+        self.touchToPlay = NO;
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     joined = NO;
+    self.touchToPlay = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -108,14 +120,22 @@ static int joinsRecieved = 0;
     [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"BeginGame"])
+    {
+        // Get reference to the destination view controller
+        ViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        vc.touchToPlay = self.touchToPlay;
+    }
 }
-*/
+
 
 @end
