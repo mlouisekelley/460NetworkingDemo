@@ -28,6 +28,9 @@ static GameHost *gh;
 }
 
 -(void)overrideColor:(UIColor *)color forPlayer:(NSString *)userName {
+    if(![self getColorForPlayer:userName]){
+        NSLog(@"PLAYER NOT HERE");
+    }
     [self.playerColors setObject:color forKey:userName];
 }
 
