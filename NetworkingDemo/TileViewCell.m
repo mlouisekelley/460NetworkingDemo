@@ -9,6 +9,7 @@
 #import "TileViewCell.h"
 #import "ViewController.h"
 #import "GameConstants.h"
+#import "GameHost.h"
 
 @implementation TileViewCell
 
@@ -89,7 +90,9 @@ ViewController *superview;
         if ([_pid isEqualToString:[GameConstants getUserName]]) {
             CGFloat hue, saturation, brightness, alpha ;
             float randHue = ((double)arc4random() / 0x100000000);
-            [ [UIColor orangeColor ] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha ] ;
+            
+            UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:[GameConstants getUserName]];
+            [ ourColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha ] ;
             
             UIColor * newColor = [ UIColor colorWithHue:hue saturation:randHue brightness:brightness alpha:alpha ] ;
             particleView.backgroundColor = newColor;
