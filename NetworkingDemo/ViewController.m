@@ -583,6 +583,9 @@ int playerNumber = 2;
                                  handler:^(UIAlertAction * action)
                                  {
                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                     if (isGameOver) {
+                                         [self gameOver];
+                                     }
                                      
                                  }];
             
