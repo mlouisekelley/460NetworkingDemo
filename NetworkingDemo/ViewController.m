@@ -30,6 +30,7 @@
 @property (strong, nonatomic) BoardChecker *boardChecker;
 @property (strong, nonatomic) NSDictionary *stringToColor;
 @property (strong, nonatomic) NSMutableDictionary *playerColors;
+@property (strong, nonatomic) NSMutableArray* startingWordTiles;
 @end
 
 @implementation ViewController
@@ -83,8 +84,8 @@ int playerNumber = 2;
 }
 
 -(void) setUpGame {
-    minutes = 2;
-    seconds = 0;
+    minutes = 0;
+    seconds = 15;
     milliseconds = 0;
     
     playerTwoScore = 0;
@@ -93,10 +94,15 @@ int playerNumber = 2;
     
     currentPlayer.numberOfTiles = 0;
     frameTimestamp = CACurrentMediaTime();
+    
+    self.startingWordTiles = [[NSMutableArray alloc] init];
 
     for (TileViewCell *cell in self.allTiles) {
         if(![cell isStartingTile]){
            [cell removeFromSuperview];
+        } else {
+            [cell removeFromSuperview];
+            [self.startingWordTiles addObject:cell];
         }
     }
     [self resetScores];
@@ -440,7 +446,7 @@ int playerNumber = 2;
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
-    //[self placeStartingWord];
+    [self placeStartingWord];
     [self clearScores];
 }
 
@@ -666,6 +672,17 @@ int playerNumber = 2;
 -(void)placeStartingWord{
 
     NSString *starting_word = [[GameHost sharedGameHost] getStartingWord];
+    
+    if([self.startingWordTiles count] > 0){
+        for(int i = 0; i < [self.startingWordTiles count]; i++){
+            NSLog(@"PLACE WORD");
+            TileViewCell *tvc = [self.startingWordTiles objectAtIndex:i];
+            [self.view addSubview:tvc];
+            [self.allTiles addObject:tvc];
+            [self placeTileOnBoard:tvc  atIndexPath:[NSIndexPath indexPathForItem:(43 + i) inSection:0]];
+        }
+        return;
+    }
     
     for(int i = 0; i < starting_word.length; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(43 + i) inSection:0];
