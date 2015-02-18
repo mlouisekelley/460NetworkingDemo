@@ -84,8 +84,8 @@ int playerNumber = 2;
 }
 
 -(void) setUpGame {
-    minutes = 0;
-    seconds = 15;
+    minutes = 2;
+    seconds = 0;
     milliseconds = 0;
     
     playerTwoScore = 0;
