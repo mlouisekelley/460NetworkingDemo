@@ -589,6 +589,9 @@ int playerNumber = 2;
                                  handler:^(UIAlertAction * action)
                                  {
                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                     if (isGameOver) {
+                                         [self gameOver];
+                                     }
                                      
                                  }];
             
@@ -702,7 +705,7 @@ int playerNumber = 2;
 
 -(void) takeTileFromBoard:(UIView *)tile {
     TileViewCell *theTile = ((TileViewCell *)tile);
-    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES) {
+    if (currentPlayer.numberOfTiles < STARTING_NUMBER_OF_TILES && !theTile.isFinalized && ![theTile.pid isEqualToString:@"stone"]) {
         [UIView animateWithDuration:0.1 animations:^{
             tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
         }];
