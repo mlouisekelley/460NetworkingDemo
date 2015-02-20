@@ -80,7 +80,7 @@
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     word = [word stringByAppendingString:currentDTO.text];
-                    if (currentDTO.tvc.isFinalized || [currentDTO.tvc.pid isEqualToString:@"stone"]) {
+                    if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
                     }
                     currLetterIndex += 10;
@@ -102,7 +102,7 @@
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     word = [word stringByAppendingString:currentDTO.text];
-                    if (currentDTO.tvc.isFinalized || [currentDTO.tvc.pid isEqualToString:@"stone"]) {
+                    if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
                     }
                     currLetterIndex++;
@@ -121,6 +121,45 @@
         }
     }
     return incorrectWords;
+}
+
+-(BOOL)cellIsConnected:(BoardCellDTO *)cellDTO index:(int)i board:(NSArray *)board
+{
+    BoardCellDTO *up = (i - 10) >= 0 ? board[i - 10] : nil;
+    BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
+    BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
+    BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
+    
+    if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
+        return YES;
+    }
+    
+    if (up != nil) {
+        if (up.tvc.isFinalized || [up.tvc.pid isEqualToString:@"stone"]) {
+            return YES;
+        }
+    }
+    
+    if (left != nil) {
+        if (left.tvc.isFinalized || [left.tvc.pid isEqualToString:@"stone"]) {
+            return YES;
+        }
+    }
+    
+    if (right != nil) {
+        if (right.tvc.isFinalized || [right.tvc.pid isEqualToString:@"stone"]) {
+            return YES;
+        }
+    }
+    
+    if (down != nil) {
+        if (down.tvc.isFinalized || [down.tvc.pid isEqualToString:@"stone"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+    
 }
 
 -(NSUInteger)calculateScoreForBoard:(NSArray *)board andPlayer:(NSString *)player {
