@@ -566,11 +566,22 @@ int playerNumber = 2;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-    NSArray *invalidWordsOnBoard = [self.boardChecker checkBoardState:self.board];
-    if ([invalidWordsOnBoard count] > 0) {
+    NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
+    NSArray *invalidWordsOnBoard = boardCheckerResults[0];
+    NSArray *notConnectedWordsOnBoard = boardCheckerResults[1];
+    if ([invalidWordsOnBoard count] > 0 || [notConnectedWordsOnBoard count] > 0) {
         
-        NSString *alertMessage = @"Found the following invalid words: ";
-        alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
+        NSString *alertMessage = @"";
+        
+        if ([invalidWordsOnBoard count] > 0)  {
+            alertMessage = [alertMessage stringByAppendingString: @"Found the following invalid words: "];
+            alertMessage = [alertMessage stringByAppendingString:[invalidWordsOnBoard componentsJoinedByString:@", "]];
+        }
+        
+        if ([notConnectedWordsOnBoard count] > 0) {
+            alertMessage = [alertMessage stringByAppendingString:@"\n Found the following not connected words: "];
+            alertMessage = [alertMessage stringByAppendingString:[notConnectedWordsOnBoard componentsJoinedByString:@", "]];
+        }
         
         if (objc_getClass("UIAlertController") != nil){
             

@@ -62,6 +62,7 @@
 -(NSArray *)checkBoardState:(NSArray *)board {
     
     NSMutableArray *incorrectWords = [[NSMutableArray alloc] init];
+    NSMutableArray *notConnectedWords = [[NSMutableArray alloc] init];
     for (int i = 0; i<[board count]; i++) {
         BoardCellDTO *cellDTO = board[i];
         NSString *space = cellDTO.text;
@@ -87,7 +88,10 @@
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                     
                 }
-                if (![self isValid:word] || [word length] == 1 || !wordIsConnected) {
+                if (!wordIsConnected) {
+                    [notConnectedWords addObject:word];
+                }
+                if (![self isValid:word] || [word length] == 1) {
                     [incorrectWords addObject:word];
                 }
             }
@@ -109,7 +113,10 @@
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
                     
                 }
-                if (![self isValid:word] || [word length] == 1 || !wordIsConnected) {
+                if (!wordIsConnected) {
+                    [notConnectedWords addObject:word];
+                }
+                if (![self isValid:word] || [word length] == 1) {
                     [incorrectWords addObject:word];
                 }
             }
@@ -120,7 +127,10 @@
             
         }
     }
-    return incorrectWords;
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    [returnArray addObject:incorrectWords];
+    [returnArray addObject:notConnectedWords];
+    return returnArray;
 }
 
 -(BOOL)cellIsConnected:(BoardCellDTO *)cellDTO index:(int)i board:(NSArray *)board
