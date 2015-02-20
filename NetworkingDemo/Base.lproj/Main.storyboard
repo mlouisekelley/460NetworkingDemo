@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -58,7 +58,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="295" y="406" width="210" height="88"/>
+                                    <rect key="frame" x="295" y="393" width="210" height="88"/>
                                 </variation>
                                 <connections>
                                     <action selector="playThreePlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="5gi-Zm-TfW"/>
@@ -70,13 +70,13 @@
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="353" y="502" width="106" height="42"/>
+                                    <rect key="frame" x="353" y="594" width="106" height="42"/>
                                 </variation>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfr-sH-Fyn">
                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="471" y="552" width="51" height="31"/>
+                                    <rect key="frame" x="471" y="644" width="51" height="31"/>
                                 </variation>
                                 <connections>
                                     <action selector="switchStateChanged:" destination="Ti6-2w-sDr" eventType="valueChanged" id="rqW-Cy-s0b"/>
@@ -88,9 +88,22 @@
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="292" y="557" width="144" height="21"/>
+                                    <rect key="frame" x="292" y="649" width="144" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUj-nt-GW9">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Play 4 Players">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="288" y="506" width="224" height="43"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playFourPlayers:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="P7T-hh-AM8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -101,6 +114,7 @@
                                 <exclude reference="8mo-L8-Ls3"/>
                                 <exclude reference="Tfr-sH-Fyn"/>
                                 <exclude reference="ag5-f1-nmL"/>
+                                <exclude reference="PUj-nt-GW9"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -111,6 +125,7 @@
                                 <include reference="8mo-L8-Ls3"/>
                                 <include reference="Tfr-sH-Fyn"/>
                                 <include reference="ag5-f1-nmL"/>
+                                <include reference="PUj-nt-GW9"/>
                             </mask>
                         </variation>
                     </view>

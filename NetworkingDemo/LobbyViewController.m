@@ -73,6 +73,14 @@ static int joinsRecieved = 0;
     [self joinGame];
 }
 
+- (IBAction)playFourPlayers:(id)sender {
+    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
+    [sender setEnabled:NO];
+    
+    numPlayers = 4;
+    [self joinGame];
+}
+
 -(void)joinGame {
     vc = self;
     
