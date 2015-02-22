@@ -907,7 +907,7 @@ int playerNumber = 2;
     CGRect frame = CGRectMake(cell.frame.origin.x + self.boardCollectionView.frame.origin.x, cell.frame.origin.y + self.boardCollectionView.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     TileViewCell *tvc = [[TileViewCell alloc] initWithFrame:frame letter:letter playerUserName:enemyID];
     tvc.indexPath = indexPath;
-    [tvc makeFinalized];
+    [tvc makeFinalized:100];
     
     
     if (dto.tvc != nil && dto.tvc.isUnsent) {
@@ -930,7 +930,7 @@ int playerNumber = 2;
             cellDTO.tvc.isUnsent = NO;
 //            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
-            [cellDTO.tvc makeFinalized];
+            [cellDTO.tvc makeFinalized:100];
         }
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
@@ -983,7 +983,8 @@ int playerNumber = 2;
 }
 
 -(float) view:(UIView *)view DistanceToView:(UIView *)otherView {
-    return sqrt(pow(view.center.x - otherView.center.x - _boardCollectionView.frame.origin.x, 2) + pow(view.center.y - otherView.center.y - _boardCollectionView.frame.origin.y, 2));
+    return sqrt(pow(view.center.x - otherView.center.x - _boardCollectionView.frame.origin.x, 2) +
+                pow(view.center.y - otherView.center.y - _boardCollectionView.frame.origin.y, 2));
 }
 
 -(void) unhighlightAllCells {

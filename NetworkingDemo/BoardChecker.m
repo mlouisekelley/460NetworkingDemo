@@ -197,7 +197,7 @@
                         }
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
-                        scoreForWord += [self getScoreForLetter:currentDTO.text];
+                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.text];
                     }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
@@ -220,7 +220,7 @@
                         }
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
-                        scoreForWord += [self getScoreForLetter:currentDTO.text];
+                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.text];
                     }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
@@ -235,7 +235,7 @@
     return count * 100;
 }
 
--(NSInteger)getScoreForLetter:(NSString *)letter {
++(NSInteger)getScoreForLetter:(NSString *)letter {
     NSDictionary *scoreDict = @{@"A":[NSNumber numberWithInt:1],
                                 @"B":[NSNumber numberWithInt:3],
                                 @"C":[NSNumber numberWithInt:3],

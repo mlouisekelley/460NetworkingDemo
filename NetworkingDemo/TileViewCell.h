@@ -24,7 +24,7 @@
 
 -(id)initWithFrame:(CGRect)frame letter:(NSString*)letter playerUserName:(NSString *)playerID;
 -(id)initWithFrame:(CGRect)frame playerID:(NSString *)playerID;
--(void) makeFinalized;
+-(void) makeFinalized:(int) multiplier;
 -(void) makeSelected;
 -(void) makeUnselected;
 -(void) makeBeingMovedByOtherPlayer;
