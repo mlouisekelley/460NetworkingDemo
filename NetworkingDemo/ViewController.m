@@ -49,7 +49,7 @@ int playerThreeScore = 0;
 int playerFourScore = 0;
 double frameTimestamp;
 int playerNumber = 2;
-
+double initBarTimerWidth;
 - (void)viewDidLoad {
     
     isGameOver = NO;
@@ -81,6 +81,9 @@ int playerNumber = 2;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self.bkgView addGestureRecognizer:tapGesture];
+
+    [self.barTimerViewBoarder.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.barTimerViewBoarder.layer setBorderWidth: 2.0];
 }
 
 -(void) setUpGame {
@@ -95,6 +98,7 @@ int playerNumber = 2;
     currentPlayer.numberOfTiles = 0;
     frameTimestamp = CACurrentMediaTime();
     
+
     self.startingWordTiles = [[NSMutableArray alloc] init];
 
     for (TileViewCell *cell in self.allTiles) {
@@ -119,6 +123,8 @@ int playerNumber = 2;
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    initBarTimerWidth = self.barTimerView.frame.size.width;
+
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
@@ -295,10 +301,15 @@ int playerNumber = 2;
             [self gameOver];
         }
         
-        self.circleTimerView.percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+        NSLog(@"Percent %f", percent);
+        self.circleTimerView.percent = percent;
         self.circleTimerView.seconds = seconds + minutes * 60;
         self.circleTimerView.milliseconds = milliseconds;
         [self.circleTimerView setNeedsDisplay];
+        
+        self.barTimerView.frame = CGRectMake(self.barTimerView.frame.origin.x, self.barTimerView.frame.origin.y, initBarTimerWidth * percent, self.barTimerView.frame.size.height);
+        
         [self.view bringSubviewToFront:self.circleTimerView];
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
     }

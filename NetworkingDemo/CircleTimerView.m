@@ -33,38 +33,38 @@ float endAngle = (3.5 * M_PI);
     self.userInteractionEnabled = NO;
     NSString* textContentSeconds = [NSString stringWithFormat:@"%d", self.seconds];
     NSString* textContentMilliseconds = [NSString stringWithFormat:@"%d", self.milliseconds/10];
+//
+//    UIBezierPath* bezierPath = [UIBezierPath bezierPath];
+//    
+//    [bezierPath addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
+//                          radius:120
+//                      startAngle:startAngle
+//                        endAngle:endAngle
+//                       clockwise:YES];
+//    bezierPath.lineWidth = 20;
+//    [[UIColor whiteColor] setStroke];
+//    [bezierPath stroke];
+//    UIBezierPath* bezierPath2 = [UIBezierPath bezierPath];
+//    
+//    [bezierPath2 addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
+//                          radius:120
+//                      startAngle:startAngle
+//                        endAngle:(endAngle - startAngle) * (self.percent) + startAngle
+//                       clockwise:YES];
+//    
+//    bezierPath2.lineWidth = 20;
+//    [[UIColor blackColor] setStroke];
+//    [bezierPath2 stroke];
     
-    UIBezierPath* bezierPath = [UIBezierPath bezierPath];
-    
-    [bezierPath addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
-                          radius:120
-                      startAngle:startAngle
-                        endAngle:endAngle
-                       clockwise:YES];
-    bezierPath.lineWidth = 20;
-    [[UIColor whiteColor] setStroke];
-    [bezierPath stroke];
-    UIBezierPath* bezierPath2 = [UIBezierPath bezierPath];
-    
-    [bezierPath2 addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
-                          radius:120
-                      startAngle:startAngle
-                        endAngle:(endAngle - startAngle) * (self.percent) + startAngle
-                       clockwise:YES];
-    
-    bezierPath2.lineWidth = 20;
-    [[UIColor blackColor] setStroke];
-    [bezierPath2 stroke];
-    
-    if (self.seconds > 5) {
-        CGRect textRect = CGRectMake((rect.size.width / 2.0) - 71/2.0, (rect.size.height / 2.0) - 45/2.0, 71, 45);
+//    if (self.seconds > 5) {
+        CGRect textRect = CGRectMake((rect.size.width / 2.0), (rect.size.height / 2.0), 71, 45);
         [[UIColor blackColor] setFill];
         [textContentSeconds drawInRect: textRect withFont: [UIFont fontWithName: @"Helvetica-Bold" size: 42.5] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
         
-        CGRect textRectMS = CGRectMake((rect.size.width / 2.0) - 51/2.0 + 48, (rect.size.height / 2.0) - 25/2.0 - 24, 51, 25);
+        CGRect textRectMS = CGRectMake((rect.size.width / 2.0)+ 48, (rect.size.height / 2.0)- 24, 51, 25);
         [[UIColor blackColor] setFill];
         [textContentMilliseconds drawInRect: textRectMS withFont: [UIFont fontWithName: @"Helvetica-Bold" size: 24] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
-    }
+//    }
 }
 
 @end

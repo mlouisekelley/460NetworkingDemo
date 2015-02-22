@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIView *tossView;
 @property (weak, nonatomic) IBOutlet CircleTimerView *circleTimerView;
+@property (weak, nonatomic) IBOutlet UIImageView *barTimerView;
+@property (weak, nonatomic) IBOutlet UIImageView *barTimerViewBoarder;
 @property (nonatomic) BOOL touchToPlay;
 
 +(ViewController *)sharedViewController;
