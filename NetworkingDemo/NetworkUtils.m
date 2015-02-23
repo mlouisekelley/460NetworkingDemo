@@ -29,6 +29,11 @@
     [[WarpClient getInstance] sendChat:update];
 }
 
++(void)sendLetterReturned:(NSString *)update
+{
+    [[WarpClient getInstance] sendChat:update];
+}
+
 +(void)sendLetterFinalRemoved:(NSString *)update
 {
     [[WarpClient getInstance] sendChat:update];

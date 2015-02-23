@@ -96,6 +96,12 @@
             [[ViewController sharedViewController] setLetterBeingMovedAtIndexPath:indexPath];
             return;
         }
+        if([message[0] isEqualToString:@"letterReturned"]){
+            indexPath = [NSIndexPath indexPathForItem:[message[1] integerValue]
+                                            inSection:0];
+            [[ViewController sharedViewController] removeEnemyPendingLetterAtIndexPath:indexPath];
+            return;
+        }
         if ([message[0] isEqualToString:@"removeLetter"]) {
             indexPath = [NSIndexPath indexPathForItem:[message[1] integerValue]
                                             inSection:0];

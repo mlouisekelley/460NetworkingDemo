@@ -673,19 +673,23 @@ NSURL *successNoisePathURL;
         
     } else {
         
+        //RACE AVOIDANCE
+        NSMutableDictionary *lockProperties = [[NSMutableDictionary alloc] init];
+        for (int i = 0; i<[self.board count]; i++) {
+            BoardCellDTO *cellDTO = self.board[i];
+            TileViewCell *tvc = cellDTO.tvc;
+            if(tvc.isUnsent){
+                [lockProperties setObject:@"-" forKey:[NSString stringWithFormat:@"%d",i]];
+            }
+        }
+        
         int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
         for (int i = 0; i < num; i++) {
             [self createTileInRack];
         }
         [self updateSelfScore];
         
-//        for (int i = 0; i<[self.board count]; i++) {
-//            BoardCellDTO *cellDTO = self.board[i];
-//            TileViewCell *tvc = cellDTO.tvc;
-//            if(tvc.isUnsent){
-//                //get a lock for the tile
-//            }
-//        }
+        //TODO: Need to move this to a seperate callable method
         
         //Play a sound
         SystemSoundID audioEffect;
@@ -699,6 +703,18 @@ NSURL *successNoisePathURL;
         [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
+}
+
+-(void)submitWasSuccessful {
+    
+}
+
+-(void)submitWasUnSuccessful {
+    //What behavior do we want?
+}
+
+-(void)releaseLocks {
+    
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
@@ -782,6 +798,9 @@ NSURL *successNoisePathURL;
             tile.frame =[[_tileSpaces objectAtIndex:0] CGRectValue];
         }];
         
+        //send update packet
+        NSString* message = [NSString stringWithFormat:@"letterReturned:%ld", (long)theTile.indexPath.item];
+        [NetworkUtils sendLetterReturned:message];
         
         [_tileSpaces removeObjectAtIndex:0];
         [self removeTileFromCurrentSpot:theTile];
@@ -808,6 +827,8 @@ NSURL *successNoisePathURL;
         [self removeTileFromCurrentSpot:tile];
         [self placeTileOnBoard:tile atIndexPath:indexPath];
         [self.boardCollectionView reloadData];
+        
+        //dto.player = [self getPlayerByUsername:[GameConstants getUserName]];
         
         CGRect newFrame = CGRectMake(bvc.frame.origin.x + self.boardCollectionView.frame.origin.x, bvc.frame.origin.y+ self.boardCollectionView.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
         tile.frame = newFrame;
@@ -1005,7 +1026,7 @@ NSURL *successNoisePathURL;
 }
 
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
-    BoardCellDTO *dto =self.board[indexPath.item];
+    BoardCellDTO *dto = self.board[indexPath.item];
     dto.isPending--;
     
     [self.boardCollectionView reloadData];

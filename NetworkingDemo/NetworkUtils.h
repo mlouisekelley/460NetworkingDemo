@@ -25,6 +25,7 @@
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;
 +(void)joinRoom;
 +(void)createRoom;
++(void)sendLetterReturned:(NSString *)update;
 
 
 @end
