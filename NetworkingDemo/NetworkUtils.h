@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 #import "ViewController.h"
+#import "GameConstants.h"
 
 @interface NetworkUtils : NSObject
 
@@ -22,6 +23,7 @@
 +(void)sendPlayerScore:(NSString *)score;
 +(void)sendStartingWord:(NSString *)word;
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;
++(void)joinRoom;
 
 
 @end

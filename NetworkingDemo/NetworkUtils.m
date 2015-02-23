@@ -61,4 +61,19 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)joinRoom
+{
+    [[WarpClient getInstance] joinRoom:ROOM_ID];
+}
+
++(void)createRoom
+{
+    //[[WarpClient getInstance] joinRoom:ROOM_ID];
+    NSDictionary *properties = [[NSDictionary alloc] init];
+    for(int i = 0; i < 100; i++){
+        [properties setValue:@"-" forKey:[NSString stringWithFormat:@"%d",i]];
+    }
+    [[WarpClient getInstance] createRoomWithRoomName:@"propertyRoom" roomOwner:@"admin" properties:properties maxUsers:4];
+}
+
 @end
