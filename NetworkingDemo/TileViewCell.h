@@ -12,6 +12,7 @@
 @interface TileViewCell : UIView
 
 @property (strong, nonatomic) IBOutlet UILabel *letterLabel;
+@property (strong, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (nonatomic) CGPoint startPoint;
 @property (nonatomic) BOOL isOnRack;
 @property (nonatomic) NSIndexPath *indexPath;
