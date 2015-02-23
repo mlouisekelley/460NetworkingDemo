@@ -803,6 +803,7 @@ NSURL *successNoisePathURL;
         [NetworkUtils sendLetterReturned:message];
         
         [_tileSpaces removeObjectAtIndex:0];
+        [self clearOutlingColor:theTile];
         [self removeTileFromCurrentSpot:theTile];
         currentPlayer.numberOfTiles++;
         theTile.isOnRack = YES;
@@ -817,6 +818,7 @@ NSURL *successNoisePathURL;
 -(BOOL) playTile: (TileViewCell *)tile atIndexPath:(NSIndexPath *)indexPath onCell:(BoardViewCell*)bvc{
     BoardCellDTO *dto = ((BoardCellDTO *)self.board[indexPath.item]);
     NSString *currentSelectedLetter = tile.letterLabel.text;
+    
     if (dto.tvc == nil) {
         
         //send update packet
@@ -828,7 +830,10 @@ NSURL *successNoisePathURL;
         [self placeTileOnBoard:tile atIndexPath:indexPath];
         [self.boardCollectionView reloadData];
         
-        //dto.player = [self getPlayerByUsername:[GameConstants getUserName]];
+        if(dto.player != currentPlayer && dto.player != nil){
+            [dto.tvc.layer setBorderColor:[[GameHost sharedGameHost] getColorForPlayer:dto.player.userName].CGColor];
+            [dto.tvc.layer setBorderWidth:2.0f];
+        }
         
         CGRect newFrame = CGRectMake(bvc.frame.origin.x + self.boardCollectionView.frame.origin.x, bvc.frame.origin.y+ self.boardCollectionView.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
         tile.frame = newFrame;
@@ -843,12 +848,20 @@ NSURL *successNoisePathURL;
     return NO;
 }
 
+#pragma mark - coloring
+
+-(void)clearOutlingColor:(TileViewCell *)tvc{
+    [tvc.layer setBorderColor:[UIColor clearColor].CGColor];
+    [tvc.layer setBorderWidth:2.0f];
+}
+
 #pragma mark - remove tiles
 
 -(void) removeTileFromBoard:(TileViewCell *)tile {
     BoardCellDTO *dto = self.board[tile.indexPath.item];
     dto.text = @"-";
     dto.tvc = nil;
+    [self clearOutlingColor:dto.tvc];
     NSString* message = [NSString stringWithFormat:@"pendingRemove:%ld", (long)tile.indexPath.item];
     [NetworkUtils sendLetterRemoved:message];
 }
@@ -907,7 +920,7 @@ NSURL *successNoisePathURL;
     currentPlayer.score = (int)newScore;
     //NSUInteger newScore = pointsEarned;
     [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
-    [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", newScore]];
+    [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", (unsigned long)newScore]];
 }
 
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName {
@@ -968,6 +981,10 @@ NSURL *successNoisePathURL;
 
 -(void)placeEnemyPendingLetter:(NSString *)letter atIndexPath:(NSIndexPath *)indexPath forEnemy:(NSString *)enemyID {
     BoardCellDTO *dto = self.board[indexPath.item];
+    if(dto.tvc != nil && [dto.tvc.pid isEqualToString:currentPlayer.userName]){
+        [dto.tvc.layer setBorderColor:[[GameHost sharedGameHost] getColorForPlayer:enemyID].CGColor];
+        [dto.tvc.layer setBorderWidth:2.0f];
+    }
     dto.player = [self getPlayerByUsername:enemyID];
     if (dto.tvc != nil && dto.tvc.isBeingMovedByOtherPlayer && [dto.tvc.letterLabel.text isEqualToString: letter]) {
         // For when someone was going to move a tile but moved it back
@@ -1028,6 +1045,10 @@ NSURL *successNoisePathURL;
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.isPending--;
+    
+    if(dto.tvc != nil && [dto.tvc.pid isEqualToString:currentPlayer.userName]){
+        [self clearOutlingColor:dto.tvc];
+    }
     
     [self.boardCollectionView reloadData];
 }
