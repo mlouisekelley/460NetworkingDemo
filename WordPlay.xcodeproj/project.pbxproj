@@ -35,6 +35,7 @@
 		F02422931A8C0485003F2B67 /* oj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02422911A8C0466003F2B67 /* oj.ttf */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = F07943071A6D97EA002849ED /* BoardCellDTO.m */; };
+		F08950151A9A6214004EA816 /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = F08950141A9A6214004EA816 /* trophy.png */; };
 		F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC56731A905B6500D8E953 /* CircleTimerView.m */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F07943071A6D97EA002849ED /* BoardCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardCellDTO.m; sourceTree = "<group>"; };
 		F07943091A6D97F5002849ED /* BoardCellDTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardCellDTO.h; sourceTree = "<group>"; };
+		F08950141A9A6214004EA816 /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
 		F0AC56721A905B6500D8E953 /* CircleTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTimerView.h; sourceTree = "<group>"; };
 		F0AC56731A905B6500D8E953 /* CircleTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleTimerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +157,7 @@
 				A30ADC901A4CFBD200047201 /* ViewController.h */,
 				A30ADC911A4CFBD200047201 /* ViewController.m */,
 				277E15ED1A8292F4009BD072 /* LobbyViewController.h */,
+				F08950141A9A6214004EA816 /* trophy.png */,
 				277E15EE1A8292F4009BD072 /* LobbyViewController.m */,
 				A30ADCB21A4D0CAD00047201 /* TileViewCell.h */,
 				A30ADCB31A4D0CAD00047201 /* TileViewCell.m */,
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CABF1D1A8E6E4F0037B370 /* success.m4a in Resources */,
+				F08950151A9A6214004EA816 /* trophy.png in Resources */,
 				A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */,
 				A330496D1A928B70002BA6EB /* background_music.mp3 in Resources */,
 				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,

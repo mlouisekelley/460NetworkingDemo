@@ -302,7 +302,6 @@ double initBarTimerWidth;
         }
         
         double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-        NSLog(@"Percent %f", percent);
         self.circleTimerView.percent = percent;
         self.circleTimerView.seconds = seconds + minutes * 60;
         self.circleTimerView.milliseconds = milliseconds;
@@ -329,7 +328,21 @@ double initBarTimerWidth;
         displayScore = currentPlayer.score;
     }
     self.currentPlayerScoreLabel.text = [NSString stringWithFormat:@"%d", displayScore];
+    if ([self isCurrentWinner:currentPlayer]) {
+        [self.p1TrophyImageView setImage:[UIImage imageNamed:@"Trophy"]];
+        [self.p2TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+        [self.p3TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+        [self.p4TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+    }
     [self updateEnemyScores];
+}
+
+-(BOOL) isCurrentWinner:(Player *)player {
+    Player* maxPlayer = [self getMaxPlayer];
+    if (maxPlayer.playerNumber == player.playerNumber) {
+        return YES;
+    }
+    return NO;
 }
 
 -(void)updateEnemyScores{
@@ -351,6 +364,13 @@ double initBarTimerWidth;
             }
             self.playerTwoScoreLabel.textColor = player.color;
             self.playerTwoScoreLabel.text = [NSString stringWithFormat:@"%d", playerTwoScore];
+            
+            if ([self isCurrentWinner:player]) {
+                [self.p1TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p2TrophyImageView setImage:[UIImage imageNamed:@"Trophy"]];
+                [self.p3TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p4TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+            }
         }
         
         //blue player
@@ -369,6 +389,13 @@ double initBarTimerWidth;
             }
             self.playerThreeScoreLabel.textColor = player.color;
             self.playerThreeScoreLabel.text = [NSString stringWithFormat:@"%d", playerThreeScore];
+            if ([self isCurrentWinner:player]) {
+                [self.p1TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p2TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p3TrophyImageView setImage:[UIImage imageNamed:@"Trophy"]];
+                [self.p4TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+            }
+
         }
         
         //purple player
@@ -387,6 +414,13 @@ double initBarTimerWidth;
             }
             self.playerFourScoreLabel.textColor = player.color;
             self.playerFourScoreLabel.text = [NSString stringWithFormat:@"%d", playerFourScore];
+            if ([self isCurrentWinner:player]) {
+                [self.p1TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p2TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p3TrophyImageView setImage:[UIImage imageNamed:@"Trophy2"]];
+                [self.p4TrophyImageView setImage:[UIImage imageNamed:@"Trophy"]];
+            }
+
         }
     }
 }
@@ -435,13 +469,18 @@ double initBarTimerWidth;
     }
 }
 
--(BOOL) didCurrentPlayerWin {
+-(Player *)getMaxPlayer {
     Player *maxPlayer = nil;
     for (Player *player in self.players) {
-       if (maxPlayer == nil || maxPlayer.score < player.score) {
-           maxPlayer = player;
-       }
+        if (maxPlayer == nil || maxPlayer.score < player.score) {
+            maxPlayer = player;
+        }
     }
+    return maxPlayer;
+}
+
+-(BOOL) didCurrentPlayerWin {
+    Player *maxPlayer = [self getMaxPlayer];
     if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
         return YES;
     }
