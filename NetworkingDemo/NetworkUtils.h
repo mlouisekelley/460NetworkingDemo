@@ -24,6 +24,7 @@
 +(void)sendStartingWord:(NSString *)word;
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;
 +(void)joinRoom;
++(void)createRoom;
 
 
 @end

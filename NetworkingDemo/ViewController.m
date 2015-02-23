@@ -50,6 +50,9 @@ int playerFourScore = 0;
 double frameTimestamp;
 int playerNumber = 2;
 double initBarTimerWidth;
+NSString *successNoisePath;
+NSURL *successNoisePathURL;
+
 - (void)viewDidLoad {
     
     isGameOver = NO;
@@ -73,6 +76,8 @@ double initBarTimerWidth;
     UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+    successNoisePath  = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"m4a"];
+    successNoisePathURL = [NSURL fileURLWithPath : successNoisePath];
     
     [self.tossView addSubview:imageView ];
     [self.tossView sendSubviewToBack:imageView ];
@@ -673,12 +678,18 @@ double initBarTimerWidth;
             [self createTileInRack];
         }
         [self updateSelfScore];
-        NSString *path  = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"m4a"];
-        NSURL *pathURL = [NSURL fileURLWithPath : path];
+        
+//        for (int i = 0; i<[self.board count]; i++) {
+//            BoardCellDTO *cellDTO = self.board[i];
+//            TileViewCell *tvc = cellDTO.tvc;
+//            if(tvc.isUnsent){
+//                //get a lock for the tile
+//            }
+//        }
         
         //Play a sound
         SystemSoundID audioEffect;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) successNoisePathURL, &audioEffect);
         AudioServicesPlaySystemSound(audioEffect);
         
         // Using GCD, we can use a block to dispose of the audio effect without using a NSTimer or something else to figure out when it'll be finished playing.
