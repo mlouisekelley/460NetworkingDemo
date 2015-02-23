@@ -89,20 +89,16 @@ ViewController *superview;
             particleView.frame = CGRectMake(arc4random_uniform(self.frame.size.width), self.frame.size.height, particleSize, particleSize);
         if (edge == 3)
             particleView.frame = CGRectMake(self.frame.size.width, arc4random_uniform(self.frame.size.height), particleSize, particleSize);
-        float num = ((double)arc4random() / 0x100000000); // idiom for getting random numbers between 0 and 1
-        if ([_pid isEqualToString:[GameConstants getUserName]]) {
-            CGFloat hue, saturation, brightness, alpha ;
-            float randHue = ((double)arc4random() / 0x100000000);
-            
-            UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:[GameConstants getUserName]];
-            [ ourColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha ] ;
-            
-            UIColor * newColor = [ UIColor colorWithHue:hue saturation:randHue brightness:brightness alpha:alpha ] ;
-            particleView.backgroundColor = newColor;
-        }
-        else {
-            particleView.backgroundColor = [UIColor colorWithRed:num green:0 blue:0 alpha:1];
-        }
+
+        CGFloat hue, saturation, brightness, alpha ;
+        float randHue = ((double)arc4random() / 0x100000000);
+        
+        UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
+        [ ourColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha ] ;
+        
+        UIColor * newColor = [ UIColor colorWithHue:hue saturation:randHue brightness:brightness alpha:alpha ] ;
+        particleView.backgroundColor = newColor;
+
         [self addSubview:particleView];
 
         [UIView animateWithDuration:particleLength animations:^{
