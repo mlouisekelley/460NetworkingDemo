@@ -13,5 +13,6 @@
 +(LobbyViewController *)sharedViewController;
 -(void)playerJoinedLobby;
 -(void)startGame;
+- (IBAction)playButtonTouched:(id)sender;
 
 @end

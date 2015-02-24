@@ -46,6 +46,7 @@ ViewController *superview;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         tapGesture.numberOfTapsRequired = 2;
         [self addGestureRecognizer:tapGesture];
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -61,20 +62,30 @@ ViewController *superview;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
     [self addGestureRecognizer:tapGesture];
+    self.userInteractionEnabled = YES;
 }
 
 -(void) makeSelected {
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.5]];
+    UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
+    if ([ourColor isEqual:[UIColor orangeColor]]) {
+        [self setImage:[UIImage imageNamed:@"TilePressed"]];
+    }
     _isSelected = YES;
 }
 
 -(void) makeUnselected {
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1.0]];
+    UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
+    if ([ourColor isEqual:[UIColor orangeColor]]) {
+        [self setImage:[UIImage imageNamed:@"Tile"]];
+    }
     _isSelected = NO;
 }
 
 
 -(void) makeFinalized:(int) multiplier {
+    [self setImage:[UIImage imageNamed:@""]];
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
     int numParticles = 15;
     int particleSize = 4;
@@ -166,6 +177,9 @@ ViewController *superview;
 }
 -(void) setColorOfTile:(UIColor *)color {
     [self setBackgroundColor:color];
+    if ([color isEqual:[UIColor orangeColor]]) {
+        [self setImage:[UIImage imageNamed:@"Tile"]];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

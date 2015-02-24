@@ -56,6 +56,14 @@ static int joinsRecieved = 0;
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)playOnePlayers:(id)sender {
+    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
+    [sender setEnabled:NO];
+    
+    numPlayers = 1;
+    [self joinGame];
+}
+
 
 - (IBAction)playTwoPlayers:(id)sender {
     [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
@@ -142,6 +150,56 @@ static int joinsRecieved = 0;
 
 -(void)startGame {
     [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
+}
+
+- (IBAction)playButtonTouched:(id)sender {
+    //create an alert
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Number of players"
+                                  message:@"Choose how many players there are"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    //create ok action for alert
+    UIAlertAction* p1 = [UIAlertAction
+                         actionWithTitle:@"1"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [self playOnePlayers:p1];
+                         }];
+    UIAlertAction* p2 = [UIAlertAction
+                         actionWithTitle:@"2"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [self playTwoPlayers:p2];
+                         }];
+    UIAlertAction* p3 = [UIAlertAction
+                         actionWithTitle:@"3"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [self playThreePlayers:p3];
+                         }];
+    UIAlertAction* p4 = [UIAlertAction
+                         actionWithTitle:@"4"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [self playFourPlayers:p4];
+                         }];
+    
+    [alert addAction:p1]; // add action to uialertcontroller
+    [alert addAction:p2]; // add action to uialertcontroller
+    [alert addAction:p3]; // add action to uialertcontroller
+    [alert addAction:p4]; // add action to uialertcontroller
 }
 
 
