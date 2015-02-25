@@ -35,6 +35,10 @@ static int joinsRecieved = 0;
     return vc;
 }
 
+-(int)getNumPlayers {
+    return numPlayers;
+}
+
 - (IBAction)switchStateChanged:(UISwitch *)switchState{
     if ([switchState isOn]) {
         self.touchToPlay = YES;
@@ -141,11 +145,15 @@ static int joinsRecieved = 0;
                 [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
             }
         }
-        NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
-        NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
-        [NetworkUtils sendStartingWord:starting_word];
-        [NetworkUtils sendStartGame];
+        [self startGameHelper];
     }
+}
+
+-(void)startGameHelper {
+    NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
+    NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
+    [NetworkUtils sendStartingWord:starting_word];
+    [NetworkUtils sendStartGame];
 }
 
 -(void)startGame {

@@ -50,7 +50,9 @@
     if([chatEvent.message isEqualToString:@"joined"]){
         [[GameHost sharedGameHost] addColorforPlayer:chatEvent.sender];
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
-            //[[LobbyViewController sharedViewController] startGame];
+            if([[LobbyViewController sharedViewController] getNumPlayers] == 1){
+                [[LobbyViewController sharedViewController] startGameHelper];
+            }
             return;
         }
         [[LobbyViewController sharedViewController] playerJoinedLobby];

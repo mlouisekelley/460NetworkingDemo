@@ -14,5 +14,7 @@
 -(void)playerJoinedLobby;
 -(void)startGame;
 - (IBAction)playButtonTouched:(id)sender;
+-(int)getNumPlayers;
+-(void)startGameHelper ;
 
 @end
