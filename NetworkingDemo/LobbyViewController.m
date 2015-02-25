@@ -47,7 +47,7 @@ static int joinsRecieved = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     joined = NO;
-    self.touchToPlay = YES;
+    self.touchToPlay = NO;
     // Do any additional setup after loading the view.
 }
 
