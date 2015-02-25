@@ -833,6 +833,8 @@ NSURL *successNoisePathURL;
         if(dto.player != currentPlayer && dto.player != nil){
             [dto.tvc.layer setBorderColor:[[GameHost sharedGameHost] getColorForPlayer:dto.player.userName].CGColor];
             [dto.tvc.layer setBorderWidth:2.0f];
+        } else {
+            [self clearOutlingColor:dto.tvc];
         }
         
         CGRect newFrame = CGRectMake(bvc.frame.origin.x + self.boardCollectionView.frame.origin.x, bvc.frame.origin.y+ self.boardCollectionView.frame.origin.y, tile.frame.size.width, tile.frame.size.height);
@@ -1045,6 +1047,7 @@ NSURL *successNoisePathURL;
 -(void)removeEnemyPendingLetterAtIndexPath:(NSIndexPath *)indexPath {
     BoardCellDTO *dto = self.board[indexPath.item];
     dto.isPending--;
+    dto.player = nil;
     
     if(dto.tvc != nil && [dto.tvc.pid isEqualToString:currentPlayer.userName]){
         [self clearOutlingColor:dto.tvc];
