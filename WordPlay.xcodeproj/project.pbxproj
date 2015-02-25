@@ -26,6 +26,7 @@
 		A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB31A4D0CAD00047201 /* TileViewCell.m */; };
 		A30ADCB71A4D0CCC00047201 /* BoardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */; };
 		A330496D1A928B70002BA6EB /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A330496C1A928B70002BA6EB /* background_music.mp3 */; };
+		A330496F1A9E63D1002BA6EB /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A330496E1A9E63D1002BA6EB /* tile2.png */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A38B9DA91A8479D300F1F59A /* scrabble_words.txt */; };
 		A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A39C06B41A912D8E00D1B8B8 /* play-100.png */; };
@@ -88,6 +89,7 @@
 		A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewCell.h; sourceTree = "<group>"; };
 		A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewCell.m; sourceTree = "<group>"; };
 		A330496C1A928B70002BA6EB /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
+		A330496E1A9E63D1002BA6EB /* tile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile2.png; sourceTree = "<group>"; };
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		A38B9DA91A8479D300F1F59A /* scrabble_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrabble_words.txt; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				273F70711A66F5D7005103BA /* GameConstants.h */,
 				27C759A81A69AB1A0004DB59 /* GameConstants.m */,
 				270711821A9143BE00591493 /* GameHost.h */,
+				A330496E1A9E63D1002BA6EB /* tile2.png */,
 				270711801A9143AF00591493 /* GameHost.m */,
 				27C7599D1A699BAA0004DB59 /* NetworkUtils.h */,
 				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
@@ -323,6 +326,7 @@
 				F08B23D71A9CE9BA0051C3AF /* tilePressed.png in Resources */,
 				A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */,
 				A30ADC951A4CFBD200047201 /* Main.storyboard in Resources */,
+				A330496F1A9E63D1002BA6EB /* tile2.png in Resources */,
 				F02422921A8C0478003F2B67 /* oj.ttf in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,
 				A30ADC971A4CFBD200047201 /* Images.xcassets in Resources */,

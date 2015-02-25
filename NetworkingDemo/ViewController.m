@@ -561,6 +561,8 @@ NSURL *successNoisePathURL;
         cell.layer.borderColor=[UIColor whiteColor].CGColor;
         cell.textLabel.text = text;
         cell.textLabel.textColor = [UIColor blackColor];
+       // UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+      //  [cell addSubview:tempImgView];
         return cell;
     }
     
