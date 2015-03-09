@@ -707,6 +707,27 @@ NSURL *successNoisePathURL;
     }
 }
 
+-(void)recallTiles {
+    for (TileViewCell *cell in self.allTiles) {
+        if ([cell.pid isEqualToString:[GameConstants getUserName]]) {
+            [self takeTileFromBoard:cell];
+        }
+    }
+}
+
+-(void)shuffleTiles {
+    
+}
+
+-(NSMutableArray *)shuffleArray:(NSMutableArray *) inputArray{
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<inputArray.count; i++) {
+        int rndValue = arc4random() % inputArray.count;
+        [returnArray addObject:inputArray[rndValue]];
+    }
+    return returnArray;
+}
+
 -(void)submitWasSuccessful {
     
 }
