@@ -707,7 +707,8 @@ NSURL *successNoisePathURL;
     }
 }
 
--(void)recallTiles {
+
+- (IBAction)recallTiles:(id)sender {
     for (TileViewCell *cell in self.allTiles) {
         if ([cell.pid isEqualToString:[GameConstants getUserName]]) {
             [self takeTileFromBoard:cell];
@@ -715,9 +716,10 @@ NSURL *successNoisePathURL;
     }
 }
 
--(void)shuffleTiles {
+- (IBAction)shuffleTiles:(id)sender {
     
 }
+
 
 -(NSMutableArray *)shuffleArray:(NSMutableArray *) inputArray{
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
