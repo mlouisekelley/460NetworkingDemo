@@ -561,6 +561,8 @@ NSURL *successNoisePathURL;
         cell.layer.borderColor=[UIColor whiteColor].CGColor;
         cell.textLabel.text = text;
         cell.textLabel.textColor = [UIColor blackColor];
+       // UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+      //  [cell addSubview:tempImgView];
         return cell;
     }
     
@@ -703,6 +705,29 @@ NSURL *successNoisePathURL;
         [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
+}
+
+
+- (IBAction)recallTiles:(id)sender {
+    for (TileViewCell *cell in self.allTiles) {
+        if ([cell.pid isEqualToString:[GameConstants getUserName]]) {
+            [self takeTileFromBoard:cell];
+        }
+    }
+}
+
+- (IBAction)shuffleTiles:(id)sender {
+    
+}
+
+
+-(NSMutableArray *)shuffleArray:(NSMutableArray *) inputArray{
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<inputArray.count; i++) {
+        int rndValue = arc4random() % inputArray.count;
+        [returnArray addObject:inputArray[rndValue]];
+    }
+    return returnArray;
 }
 
 -(void)submitWasSuccessful {

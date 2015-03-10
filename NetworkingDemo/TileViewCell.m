@@ -78,7 +78,10 @@ ViewController *superview;
     [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:1.0]];
     UIColor *ourColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
     if ([ourColor isEqual:[UIColor orangeColor]]) {
-        [self setImage:[UIImage imageNamed:@"Tile"]];
+        [self setImage:[UIImage imageNamed:@"tile.png"]];
+    }
+    if ([ourColor isEqual:[UIColor purpleColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile2.png"]];
     }
     _isSelected = NO;
 }
@@ -178,8 +181,13 @@ ViewController *superview;
 -(void) setColorOfTile:(UIColor *)color {
     [self setBackgroundColor:color];
     if ([color isEqual:[UIColor orangeColor]]) {
-        [self setImage:[UIImage imageNamed:@"Tile"]];
+        UIImage *tileImg = [UIImage imageNamed:@"tile.png"];
+        [self setImage:tileImg];
     }
+    if ([color isEqual:[UIColor purpleColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile2.png"]];
+    }
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
