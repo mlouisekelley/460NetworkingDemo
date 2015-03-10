@@ -61,34 +61,22 @@ static int joinsRecieved = 0;
 }
 
 - (IBAction)playOnePlayers:(id)sender {
-    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
-    [sender setEnabled:NO];
-    
     numPlayers = 1;
     [self joinGame];
 }
 
 
 - (IBAction)playTwoPlayers:(id)sender {
-    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
-    [sender setEnabled:NO];
-    
     numPlayers = 2;
     [self joinGame];
 }
 
 - (IBAction)playThreePlayers:(id)sender {
-    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
-    [sender setEnabled:NO];
-    
     numPlayers = 3;
     [self joinGame];
 }
 
 - (IBAction)playFourPlayers:(id)sender {
-    [sender setTitle:@"Waiting..." forState:UIControlStateNormal];
-    [sender setEnabled:NO];
-    
     numPlayers = 4;
     [self joinGame];
 }
@@ -150,10 +138,14 @@ static int joinsRecieved = 0;
 }
 
 -(void)startGameHelper {
-    NSArray *starting_words = @[@"START", @"WORDS", @"PLAY", @"BEGIN"];
+    NSArray *starting_words = @[@"ABOUT", @"ABOVE", @"AFTER", @"AGAIN", @"ALONG", @"BEGAN", @"BEGIN", @"BEING", @"BELOW",  @"BIRDS", @"BLACK", @"CARRY", @"CLOSE", @"COLOR", @"COULD", @"EARLY", @"EARTH", @"EVERY", @"FACET", @"FIRST", @"FOUND", @"GREAT", @"GROUP", @"HEARD", @"HORSE", @"HOURS", @"HOUSE", @"LARGE", @"LEARN", @"leave", @"LIGHT", @"MIGHT", @"MUSIC", @"NEVER", @"NIGHT", @"OFTEN", @"ORDER", @"OTHER", @"PAPER", @"PIECE", @"PLACE", @"PLANT", @"POINT", @"RIGHT", @"RIVER", @"SHORT", @"SINCE", @"SMALL", @"SOUND", @"SPELL", @"STAND", @"START", @"STATE", @"STILL", @"STORY", @"STUDY", @"THEIR", @"THERE", @"THESE", @"THING", @"THINK", @"THOSE", @"THREE", @"TODAY", @"UNDER", @"UNTIL", @"WAVES", @"WHERE", @"WHICH", @"WHILE", @"WHITE", @"WHOLE", @"WORLD", @"WOULD", @"WRITE", @"YOUNG"];
     NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
     [NetworkUtils sendStartingWord:starting_word];
-    [NetworkUtils sendStartGame];
+    if(numPlayers == 1){
+        [self startGame];
+    } else {
+        [NetworkUtils sendStartGame];
+    }
 }
 
 -(void)startGame {
