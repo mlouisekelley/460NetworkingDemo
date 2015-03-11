@@ -28,7 +28,7 @@
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
     self.myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
     self.myAudioPlayer.numberOfLoops = -1; //infinite loop
-    //[self.myAudioPlayer play];
+    [self.myAudioPlayer play];
     
     
     // Override point for customization after application launch.
