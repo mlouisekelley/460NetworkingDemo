@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
@@ -354,6 +354,7 @@
                         <outlet property="playerThreeScoreLabel" destination="0f5-8j-bun" id="umX-we-DHF"/>
                         <outlet property="playerTwoScoreLabel" destination="Z7c-x7-OLg" id="fDa-QW-sCD"/>
                         <outlet property="timerLabel" destination="9M5-yH-YZc" id="EWm-MW-ynO"/>
+                        <outlet property="tossView" destination="nfM-0g-U8t" id="KEZ-Le-sya"/>
                         <segue destination="Ti6-2w-sDr" kind="show" identifier="ReturnToLobby" id="AlX-Ox-Ng0"/>
                     </connections>
                 </viewController>

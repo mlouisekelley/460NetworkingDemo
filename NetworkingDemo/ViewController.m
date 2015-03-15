@@ -503,7 +503,7 @@ UIAlertController * waitingAlert;
     isGameOver = NO;
     [self setUpGame];
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 10), TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 40), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
@@ -946,8 +946,11 @@ UIAlertController * waitingAlert;
 }
 
 -(BOOL) isThrowingAway:(TileViewCell *)tile {
-    float curDist = [self view:tile DistanceToView:_tossView];
-    if (tile.isOnRack && curDist < tile.frame.size.height/2 + _tossView.frame.size.height/2) {
+    float curDist = [self view:tile DistanceToView:_tossView] - 50;
+    float a =  tile.frame.size.height + _tossView.frame.size.height;
+    float b = tile.frame.size.height/2 + _tossView.frame.size.height/2;
+    
+    if (tile.isOnRack && curDist < tile.frame.size.height + _tossView.frame.size.height) {
         return YES;
     }
     return NO;
