@@ -1,17 +1,16 @@
 {
   "images" : [
     {
+      "idiom" : "universal"
+    },
+    {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tilePressed.png"
+      "filename" : "tile1Pressed.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
     }
   ],
   "info" : {

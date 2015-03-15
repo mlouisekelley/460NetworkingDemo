@@ -252,7 +252,7 @@
                                 @"N":[NSNumber numberWithInt:1],
                                 @"O":[NSNumber numberWithInt:1],
                                 @"P":[NSNumber numberWithInt:3],
-                                @"Q":[NSNumber numberWithInt:10],
+                                @"Q":[NSNumber numberWithInt:9],
                                 @"R":[NSNumber numberWithInt:1],
                                 @"S":[NSNumber numberWithInt:1],
                                 @"T":[NSNumber numberWithInt:1],
@@ -261,7 +261,7 @@
                                 @"W":[NSNumber numberWithInt:4],
                                 @"X":[NSNumber numberWithInt:8],
                                 @"Y":[NSNumber numberWithInt:4],
-                                @"Z":[NSNumber numberWithInt:10]
+                                @"Z":[NSNumber numberWithInt:9]
                                 };
     NSNumber *val = [scoreDict valueForKey:letter];
     return [val integerValue];

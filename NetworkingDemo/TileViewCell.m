@@ -88,8 +88,9 @@ ViewController *superview;
 
 
 -(void) makeFinalized:(int) multiplier {
-    [self setImage:[UIImage imageNamed:@""]];
+//    [self setImage:[UIImage imageNamed:@""]];
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
+    [self setImage:[UIImage imageNamed:@"TileFinal"]];
     int numParticles = 15;
     int particleSize = 4;
     _isFinalized = YES;

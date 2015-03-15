@@ -1,12 +1,9 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tile1.png"
+      "filename" : "tile.png"
     },
     {
       "idiom" : "universal",

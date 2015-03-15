@@ -44,7 +44,9 @@
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F04498961AB0B5F90020F01A /* unplayedTile.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498931AB0B5F90020F01A /* unplayedTile.png */; };
 		F04498971AB0B5F90020F01A /* gamebkg2.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498941AB0B5F90020F01A /* gamebkg2.png */; };
-		F04498981AB0B5F90020F01A /* gamebkg.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498951AB0B5F90020F01A /* gamebkg.png */; };
+		F051CEA11AB54B850013AAC7 /* gamebkg.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CE9E1AB54B850013AAC7 /* gamebkg.png */; };
+		F051CEA21AB54B850013AAC7 /* tile1.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CE9F1AB54B850013AAC7 /* tile1.png */; };
+		F051CEA31AB54B850013AAC7 /* tile1Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CEA01AB54B850013AAC7 /* tile1Pressed.png */; };
 		F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = F07943071A6D97EA002849ED /* BoardCellDTO.m */; };
 		F08950151A9A6214004EA816 /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = F08950141A9A6214004EA816 /* trophy.png */; };
 		F08B23D61A9CE9BA0051C3AF /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = F08B23D31A9CE9BA0051C3AF /* tile.png */; };
@@ -119,7 +121,9 @@
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F04498931AB0B5F90020F01A /* unplayedTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unplayedTile.png; sourceTree = "<group>"; };
 		F04498941AB0B5F90020F01A /* gamebkg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg2.png; sourceTree = "<group>"; };
-		F04498951AB0B5F90020F01A /* gamebkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg.png; sourceTree = "<group>"; };
+		F051CE9E1AB54B850013AAC7 /* gamebkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg.png; sourceTree = "<group>"; };
+		F051CE9F1AB54B850013AAC7 /* tile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1.png; sourceTree = "<group>"; };
+		F051CEA01AB54B850013AAC7 /* tile1Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1Pressed.png; sourceTree = "<group>"; };
 		F07943071A6D97EA002849ED /* BoardCellDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardCellDTO.m; sourceTree = "<group>"; };
 		F07943091A6D97F5002849ED /* BoardCellDTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardCellDTO.h; sourceTree = "<group>"; };
 		F08950141A9A6214004EA816 /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
@@ -171,10 +175,12 @@
 		A30ADC881A4CFBD200047201 /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F051CE9E1AB54B850013AAC7 /* gamebkg.png */,
+				F051CE9F1AB54B850013AAC7 /* tile1.png */,
+				F051CEA01AB54B850013AAC7 /* tile1Pressed.png */,
 				F04498931AB0B5F90020F01A /* unplayedTile.png */,
 				F04498941AB0B5F90020F01A /* gamebkg2.png */,
 				F0221D681AB514D700245C38 /* Screen Shot 2015-03-14 at 8.15.56 PM.png */,
-				F04498951AB0B5F90020F01A /* gamebkg.png */,
 				F0221D6A1AB517FE00245C38 /* trophy.png */,
 				F08B23D31A9CE9BA0051C3AF /* tile.png */,
 				F08B23D41A9CE9BA0051C3AF /* tilePressed.png */,
@@ -355,9 +361,12 @@
 				F08950151A9A6214004EA816 /* trophy.png in Resources */,
 				A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */,
 				F08B23D61A9CE9BA0051C3AF /* tile.png in Resources */,
+				F051CEA11AB54B850013AAC7 /* gamebkg.png in Resources */,
 				F0221D731AB51ED200245C38 /* fuel_blue_2.png in Resources */,
 				A330496D1A928B70002BA6EB /* background_music.mp3 in Resources */,
 				F0221D6B1AB517FE00245C38 /* trophy.png in Resources */,
+				F051CEA31AB54B850013AAC7 /* tile1Pressed.png in Resources */,
+				F051CEA21AB54B850013AAC7 /* tile1.png in Resources */,
 				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,
 				F08B23D71A9CE9BA0051C3AF /* tilePressed.png in Resources */,
 				A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */,
@@ -369,7 +378,6 @@
 				F0221D691AB514D700245C38 /* Screen Shot 2015-03-14 at 8.15.56 PM.png in Resources */,
 				A30ADC971A4CFBD200047201 /* Images.xcassets in Resources */,
 				F04498971AB0B5F90020F01A /* gamebkg2.png in Resources */,
-				F04498981AB0B5F90020F01A /* gamebkg.png in Resources */,
 				F00FF5F01AB539FA00D3C75E /* unplayedTile3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
