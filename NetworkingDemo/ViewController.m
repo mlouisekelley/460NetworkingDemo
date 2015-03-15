@@ -52,6 +52,7 @@ int playerNumber = 2;
 NSString *successNoisePath;
 NSURL *successNoisePathURL;
 int waitsRecieved = 0;
+UIAlertController * waitingAlert;
 
 - (void)viewDidLoad {
     
@@ -456,8 +457,14 @@ int waitsRecieved = 0;
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
-                                 //[self restart];
                                  [NetworkUtils sendWaitingForRematch];
+                                 
+                                 waitingAlert=   [UIAlertController
+                                                               alertControllerWithTitle:@"WAITING"
+                                                               message:alertMessage
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+                                 
+                                 [self presentViewController:waitingAlert animated:YES completion:nil];
                              }];
         
         [alert addAction:ok]; // add action to uialertcontroller
@@ -491,6 +498,8 @@ int waitsRecieved = 0;
 
 -(void)restart {
     //    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+    [waitingAlert dismissViewControllerAnimated:YES completion:nil];
+    waitsRecieved = 0;
     isGameOver = NO;
     [self setUpGame];
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
