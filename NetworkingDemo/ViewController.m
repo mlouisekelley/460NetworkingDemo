@@ -505,7 +505,7 @@ int waitsRecieved = 0;
 -(void)playerWaitingForRematch {
     waitsRecieved++;
     if(waitsRecieved == _numPlayers){
-        [NetworkUtils sendRematch];
+        [NetworkUtils sendStartRematch];
     }
 }
 
