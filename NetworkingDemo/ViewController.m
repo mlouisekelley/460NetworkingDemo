@@ -49,7 +49,6 @@ int playerThreeScore = 0;
 int playerFourScore = 0;
 double frameTimestamp;
 int playerNumber = 2;
-double initBarTimerWidth;
 NSString *successNoisePath;
 NSURL *successNoisePathURL;
 
@@ -73,14 +72,10 @@ NSURL *successNoisePathURL;
     currentPlayer.color = [[GameHost sharedGameHost] getColorForPlayer:currentPlayer.userName];
     self.currentPlayerScoreLabel.textColor = currentPlayer.color;
     _allTiles = [[NSMutableArray alloc] init];
-    UIImage *img = [UIImage imageNamed:@"trash-64.png"];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
     successNoisePath  = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"m4a"];
     successNoisePathURL = [NSURL fileURLWithPath : successNoisePath];
     
-    [self.tossView addSubview:imageView ];
-    [self.tossView sendSubviewToBack:imageView ];
     
     _scoreTimer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(updateScoreDisplay:) userInfo:nil repeats:YES];
     
@@ -128,8 +123,6 @@ NSURL *successNoisePathURL;
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    initBarTimerWidth = self.barTimerView.frame.size.width;
-
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 40), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
@@ -312,7 +305,7 @@ NSURL *successNoisePathURL;
 //        self.circleTimerView.seconds = seconds + minutes * 60;
 //        self.circleTimerView.milliseconds = milliseconds;
 //        [self.circleTimerView setNeedsDisplay];
-        
+        NSLog(@"BarTimerWidth %@ %f", self.barTimerView, self.barTimerView.percent);
         self.barTimerView.percent = percent;
         [self.barTimerView setNeedsDisplay];
         
