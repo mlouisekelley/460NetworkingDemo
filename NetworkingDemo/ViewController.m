@@ -88,8 +88,8 @@ int waitsRecieved = 0;
 }
 
 -(void) setUpGame {
-    minutes = 2;
-    seconds = 0;
+    minutes = 0;
+    seconds = 15;
     milliseconds = 0;
     
     playerTwoScore = 0;
