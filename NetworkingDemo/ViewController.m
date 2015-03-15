@@ -89,8 +89,8 @@ UIAlertController * waitingAlert;
 }
 
 -(void) setUpGame {
-    minutes = 3;
-    seconds = 0;
+    minutes = 0;
+    seconds = 15;
     milliseconds = 0;
     
     playerTwoScore = 0;
