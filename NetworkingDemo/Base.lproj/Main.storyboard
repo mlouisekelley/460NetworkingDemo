@@ -51,6 +51,30 @@
                                     <rect key="frame" x="390" y="439" width="20" height="20"/>
                                 </variation>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-d8-mCx">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="83" y="662" width="633" height="93"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="lPu-0u-Pgm" kind="show" id="zVK-E2-vSg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-AQ-ubE">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="634" y="921" width="98" height="95"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="IF6-Sh-vro" kind="show" id="IHe-Md-d5e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -58,6 +82,8 @@
                                 <exclude reference="p72-if-KEn"/>
                                 <exclude reference="sFT-9s-LJM"/>
                                 <exclude reference="Qq4-kn-as6"/>
+                                <exclude reference="GAv-d8-mCx"/>
+                                <exclude reference="gdJ-AQ-ubE"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -65,9 +91,13 @@
                                 <include reference="p72-if-KEn"/>
                                 <include reference="sFT-9s-LJM"/>
                                 <include reference="Qq4-kn-as6"/>
+                                <include reference="GAv-d8-mCx"/>
+                                <include reference="gdJ-AQ-ubE"/>
                             </mask>
                         </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="800" height="1800"/>
                     <connections>
                         <outlet property="waitingIndicator" destination="Qq4-kn-as6" id="L6F-5Z-CUX"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="BeginGame" id="As8-Oz-X3g"/>
@@ -76,6 +106,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54w-I1-NoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-282.75" y="377.25"/>
+        </scene>
+        <!--Scores View Controller-->
+        <scene sceneID="2cd-De-rHK">
+            <objects>
+                <viewController id="lPu-0u-Pgm" customClass="ScoresViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15R-Nw-rCV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ozr-LL-4b0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y6T-5l-jyZ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCc-Bb-nYf">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="233" y="20" width="334" height="77"/>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="High scores will go here" translatesAutoresizingMaskIntoConstraints="NO" id="2VH-G4-3NU">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="105" width="577" height="489"/>
+                                </variation>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iah-7k-NSK">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="38" y="45" width="55" height="28"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Ti6-2w-sDr" kind="show" id="SbG-Jb-CUi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="uCc-Bb-nYf"/>
+                                <exclude reference="2VH-G4-3NU"/>
+                                <exclude reference="iah-7k-NSK"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="uCc-Bb-nYf"/>
+                                <include reference="2VH-G4-3NU"/>
+                                <include reference="iah-7k-NSK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="highScoresTextView" destination="2VH-G4-3NU" id="t3K-Ng-pMI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BId-z6-XL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="371.25" y="618.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -286,6 +382,18 @@
                                     <rect key="frame" x="557" y="924" width="42" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="688" y="40" width="34" height="36"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="IF6-Sh-vro" kind="show" id="0OY-zl-CYX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -310,6 +418,7 @@
                                 <exclude reference="kZK-yJ-WHM"/>
                                 <exclude reference="nfM-0g-U8t"/>
                                 <exclude reference="JiL-GT-ghm"/>
+                                <exclude reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -334,6 +443,7 @@
                                 <include reference="kZK-yJ-WHM"/>
                                 <include reference="nfM-0g-U8t"/>
                                 <include reference="JiL-GT-ghm"/>
+                                <include reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                     </view>
@@ -360,24 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771.75" y="411.75"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="4W2-mj-P9g">
-            <objects>
-                <viewController id="tK5-Cq-AAY" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qOa-Fk-As8"/>
-                        <viewControllerLayoutGuide type="bottom" id="CCz-cK-7nn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rsU-Fw-6a6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zp9-mh-H5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
+            <point key="canvasLocation" x="1134" y="386.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LMC-di-kKT">
@@ -390,11 +483,47 @@
                     <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t66-y0-JMN">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="274" y="20" width="253" height="59"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCA-Bk-W08">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="81" y="35" width="63" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="RK8-te-Rwd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="t66-y0-JMN"/>
+                                <exclude reference="iCA-Bk-W08"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="t66-y0-JMN"/>
+                                <include reference="iCA-Bk-W08"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mh2-zF-dcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="355.5" y="-514.5"/>
         </scene>
     </scenes>
     <resources>
@@ -407,4 +536,9 @@
         <image name="trash-64.png" width="64" height="64"/>
         <image name="trophy.png" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="RK8-te-Rwd"/>
+        <segue reference="IHe-Md-d5e"/>
+        <segue reference="SbG-Jb-CUi"/>
+    </inferredMetricsTieBreakers>
 </document>
