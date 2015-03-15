@@ -87,10 +87,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="PyN-gL-VoF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="55" y="929" width="64" height="64"/>
+                                    <rect key="frame" x="55" y="930" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="GZs-7H-TM7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="Nbu-JA-86H">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="670" y="930" width="64" height="64"/>
@@ -151,6 +151,15 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="109" y="864" width="100" height="42"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7c-x7-OLg">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="30"/>
+                                <color key="textColor" red="0.99607849120000003" green="0.56078433989999998" blue="0.0039215688589999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="261" y="864" width="100" height="42"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f5-8j-bun">
@@ -226,16 +235,9 @@
                                     <rect key="frame" x="207" y="933" width="304" height="29"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fuel_blue_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="GmF-K8-Ek5" customClass="BarTimerView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="207" y="933" width="304" height="29"/>
-                                </variation>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9M5-yH-YZc">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -251,19 +253,26 @@
                                     <rect key="frame" x="335" y="268" width="250" height="288"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="09d-lH-2cO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZK-yJ-WHM" customClass="BarTimerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.9960784912109375" green="0.058823533356189728" blue="0.0078431377187371254" alpha="1" colorSpace="deviceRGB"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="207" y="933" width="304" height="29"/>
+                                </variation>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfM-0g-U8t">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="677" y="937" width="51" height="51"/>
+                                    <rect key="frame" x="676" y="937" width="53" height="50"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7c-x7-OLg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiL-GT-ghm">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="30"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.56078433989999998" blue="0.0039215688589999999" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="261" y="864" width="100" height="42"/>
+                                    <rect key="frame" x="557" y="924" width="42" height="21"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -272,9 +281,10 @@
                             <mask key="subviews">
                                 <exclude reference="vDz-pH-CGh"/>
                                 <exclude reference="PyN-gL-VoF"/>
-                                <exclude reference="GZs-7H-TM7"/>
+                                <exclude reference="Nbu-JA-86H"/>
                                 <exclude reference="zER-DT-BbT"/>
                                 <exclude reference="wZd-F0-WTd"/>
+                                <exclude reference="Z7c-x7-OLg"/>
                                 <exclude reference="0f5-8j-bun"/>
                                 <exclude reference="7Xu-Jy-Ucn"/>
                                 <exclude reference="9cr-me-NlN"/>
@@ -284,20 +294,21 @@
                                 <exclude reference="pha-Av-TTh"/>
                                 <exclude reference="TEi-oR-lP4"/>
                                 <exclude reference="dLO-iC-DpK"/>
-                                <exclude reference="GmF-K8-Ek5"/>
                                 <exclude reference="9M5-yH-YZc"/>
                                 <exclude reference="EcF-Hd-KOJ"/>
-                                <exclude reference="09d-lH-2cO"/>
-                                <exclude reference="Z7c-x7-OLg"/>
+                                <exclude reference="kZK-yJ-WHM"/>
+                                <exclude reference="nfM-0g-U8t"/>
+                                <exclude reference="JiL-GT-ghm"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="vDz-pH-CGh"/>
                                 <include reference="PyN-gL-VoF"/>
-                                <include reference="GZs-7H-TM7"/>
+                                <include reference="Nbu-JA-86H"/>
                                 <include reference="zER-DT-BbT"/>
                                 <include reference="wZd-F0-WTd"/>
+                                <include reference="Z7c-x7-OLg"/>
                                 <include reference="0f5-8j-bun"/>
                                 <include reference="7Xu-Jy-Ucn"/>
                                 <include reference="9cr-me-NlN"/>
@@ -307,22 +318,23 @@
                                 <include reference="pha-Av-TTh"/>
                                 <include reference="TEi-oR-lP4"/>
                                 <include reference="dLO-iC-DpK"/>
-                                <include reference="GmF-K8-Ek5"/>
                                 <include reference="9M5-yH-YZc"/>
                                 <include reference="EcF-Hd-KOJ"/>
-                                <include reference="09d-lH-2cO"/>
-                                <include reference="Z7c-x7-OLg"/>
+                                <include reference="kZK-yJ-WHM"/>
+                                <include reference="nfM-0g-U8t"/>
+                                <include reference="JiL-GT-ghm"/>
                             </mask>
                         </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="800" height="1810"/>
                     <connections>
-                        <outlet property="barTimerView" destination="GmF-K8-Ek5" id="3nM-rH-fv8"/>
+                        <outlet property="barTimerView" destination="kZK-yJ-WHM" id="fTw-QN-1yA"/>
                         <outlet property="bkgView" destination="vDz-pH-CGh" id="1ba-eW-oVY"/>
                         <outlet property="boardCollectionView" destination="zER-DT-BbT" id="b1X-0N-bdV"/>
                         <outlet property="countDownLabel" destination="EcF-Hd-KOJ" id="C0N-nX-gj5"/>
                         <outlet property="currentPlayerScoreLabel" destination="wZd-F0-WTd" id="eXn-IX-ck5"/>
+                        <outlet property="msLabel" destination="JiL-GT-ghm" id="akZ-U1-dA0"/>
                         <outlet property="p1TrophyImageView" destination="QvI-SA-zZu" id="9Yd-jV-OUC"/>
                         <outlet property="p2TrophyImageView" destination="pha-Av-TTh" id="bpe-1y-KTR"/>
                         <outlet property="p3TrophyImageView" destination="KPB-SA-Q2f" id="mNd-Jv-sXl"/>
@@ -336,14 +348,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="412"/>
+            <point key="canvasLocation" x="771.75" y="411.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4W2-mj-P9g">
+            <objects>
+                <viewController id="tK5-Cq-AAY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qOa-Fk-As8"/>
+                        <viewControllerLayoutGuide type="bottom" id="CCz-cK-7nn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rsU-Fw-6a6">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zp9-mh-H5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
         <image name="Screen Shot 2015-03-14 at 8.15.56 PM.png" width="103" height="102"/>
         <image name="TileFinal" width="212" height="212"/>
         <image name="bkg.png" width="1575" height="2088"/>
-        <image name="fuel_blue_2.png" width="419" height="21"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg.png" width="1574" height="2084"/>
         <image name="play-100.png" width="100" height="100"/>

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface BarTimerView : UIImageView
+@interface BarTimerView : UIView
 @property (nonatomic) float percent;
 @end

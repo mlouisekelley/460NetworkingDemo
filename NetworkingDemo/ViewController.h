@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *p2TrophyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *p3TrophyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *p4TrophyImageView;
+@property (weak, nonatomic) IBOutlet UILabel *msLabel;
 
 @property (nonatomic) BOOL touchToPlay;
 
