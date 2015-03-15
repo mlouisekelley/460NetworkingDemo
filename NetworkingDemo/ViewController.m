@@ -87,8 +87,8 @@ NSURL *successNoisePathURL;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self.bkgView addGestureRecognizer:tapGesture];
 
-    [self.barTimerViewBoarder.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [self.barTimerViewBoarder.layer setBorderWidth: 2.0];
+//    [self.barTimerViewBoarder.layer setBorderColor: [[UIColor blackColor] CGColor]];
+//    [self.barTimerViewBoarder.layer setBorderWidth: 2.0];
 }
 
 -(void) setUpGame {
@@ -131,7 +131,7 @@ NSURL *successNoisePathURL;
     initBarTimerWidth = self.barTimerView.frame.size.width;
 
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 40), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
@@ -305,17 +305,18 @@ NSURL *successNoisePathURL;
         if (minutes < 0  && !isGameOver) {
             [self gameOver];
         }
-        
-        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-        self.circleTimerView.percent = percent;
-        self.circleTimerView.seconds = seconds + minutes * 60;
-        self.circleTimerView.milliseconds = milliseconds;
-        [self.circleTimerView setNeedsDisplay];
-        
-        self.barTimerView.frame = CGRectMake(self.barTimerView.frame.origin.x, self.barTimerView.frame.origin.y, initBarTimerWidth * percent, self.barTimerView.frame.size.height);
-        
-        [self.view bringSubviewToFront:self.circleTimerView];
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+
+        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+//        self.circleTimerView.percent = percent;
+//        self.circleTimerView.seconds = seconds + minutes * 60;
+//        self.circleTimerView.milliseconds = milliseconds;
+//        [self.circleTimerView setNeedsDisplay];
+        
+        self.barTimerView.percent = percent;
+        [self.barTimerView setNeedsDisplay];
+        
+//        [self.view bringSubviewToFront:self.circleTimerView];
     }
 }
 
@@ -497,7 +498,7 @@ NSURL *successNoisePathURL;
     isGameOver = NO;
     [self setUpGame];
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
-        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height - TILE_HEIGHT - 30), TILE_WIDTH, TILE_HEIGHT);
+        CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x + 15, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 10), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
@@ -529,10 +530,7 @@ NSURL *successNoisePathURL;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (collectionView.tag == 1) {
-        return 100;
-    }
-    return 0;
+      return 100;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -542,7 +540,7 @@ NSURL *successNoisePathURL;
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (collectionView.tag == 1) {
+//    if (collectionView.tag == 1) {
         //use self.board to determine how the board looks
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
         NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
@@ -556,17 +554,16 @@ NSURL *successNoisePathURL;
         else {
             cell.backgroundColor = [UIColor lightGrayColor];
         }
-        cell.layer.borderWidth=1.0f;
+        cell.layer.borderWidth=2.0f;
         
-        cell.layer.borderColor=[UIColor whiteColor].CGColor;
+        cell.layer.borderColor=[UIColor blackColor].CGColor;
         cell.textLabel.text = text;
-        cell.textLabel.textColor = [UIColor blackColor];
-       // UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
-      //  [cell addSubview:tempImgView];
-        return cell;
-    }
+        cell.textLabel.textColor = [UIColor whiteColor];
     
-    return nil;
+        return cell;
+//    }
+    
+//    return nil;
 }
 
 #pragma mark - touch controller methods
@@ -752,10 +749,7 @@ NSURL *successNoisePathURL;
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    if (collectionView.tag == 1) {
-        return UIEdgeInsetsMake(0, 0, 0, 0);
-    }
-    else return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 #pragma mark - Creation and Destruction of tiles
@@ -1121,12 +1115,12 @@ NSURL *successNoisePathURL;
 -(void) unhighlightAllCells {
     for (UICollectionViewCell *cell in _boardCollectionView.visibleCells) {
         cell.layer.borderWidth = 1.0f;
-        cell.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.layer.borderColor = [UIColor blackColor].CGColor;
     }
 }
 
 -(void) highlightCell:(BoardViewCell *)bvc {
     bvc.layer.borderWidth = 2.0f;
-    bvc.layer.borderColor = [UIColor blackColor].CGColor;
+    bvc.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 @end

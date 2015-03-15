@@ -11,6 +11,7 @@
 #import "NetworkUtils.h"
 #import "TileViewCell.h"
 #import "CircleTimerView.h"
+#import "BarTimerView.h"
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
@@ -19,12 +20,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *playerTwoScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerThreeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerFourScoreLabel;
-@property (weak, nonatomic) IBOutlet UITextView *scores;
 @property (weak, nonatomic) IBOutlet UICollectionView *boardCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIView *tossView;
 @property (weak, nonatomic) IBOutlet CircleTimerView *circleTimerView;
-@property (weak, nonatomic) IBOutlet UIImageView *barTimerView;
+@property (weak, nonatomic) IBOutlet BarTimerView *barTimerView;
 @property (weak, nonatomic) IBOutlet UIImageView *barTimerViewBoarder;
 
 @property (weak, nonatomic) IBOutlet UIImageView *p1TrophyImageView;

@@ -32,13 +32,13 @@ ViewController *superview;
                 [self setBackgroundColor:[UIColor blueColor]];
             }
         }
-        self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 10, 64, 64)];
+        self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 4, 64, 64)];
         self.letterLabel.text = letter;
         self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:54];
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
         
-        self.pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 50, 24, 24)];
+        self.pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 40, 24, 24)];
         self.pointsLabel.text = [NSString stringWithFormat:@"%d", [BoardChecker getScoreForLetter:self.letterLabel.text]];
         [self addSubview:self.pointsLabel];
         

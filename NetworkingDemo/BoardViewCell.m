@@ -12,6 +12,22 @@
 
 ViewController *superview;
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+        tempImgView.frame = CGRectMake(0, 0, 64, 64);
+        [self addSubview:tempImgView];
+    }
+    return self;
+}
+-(id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+        tempImgView.frame = self.frame;
+        [self addSubview:tempImgView];
+    }
+    return self;
+}
 - (void) touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
 {
     [[self superVC] boardWasTouched: [touches anyObject]];
