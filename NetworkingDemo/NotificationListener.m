@@ -47,6 +47,16 @@
         return;
     }
     
+    if([chatEvent.message isEqualToString:@"rematch"]){
+        [[ViewController sharedViewController] rematch];
+        return;
+    }
+    
+    if([chatEvent.message isEqualToString:@"rematchPending"]){
+        [[ViewController sharedViewController] playerWaitingForRematch];
+        return;
+    }
+    
     if([chatEvent.message isEqualToString:@"joined"]){
         [[GameHost sharedGameHost] addColorforPlayer:chatEvent.sender];
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){

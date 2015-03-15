@@ -20,6 +20,8 @@
 +(void)sendLetterRemoved:(NSString *)update;
 +(void)sendJoinedLobby;
 +(void)sendStartGame;
++(void)sendWaitingForRematch;
++(void)sendRematch;
 +(void)sendPlayerScore:(NSString *)score;
 +(void)sendStartingWord:(NSString *)word;
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;

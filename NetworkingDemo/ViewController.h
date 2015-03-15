@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *msLabel;
 
 @property (nonatomic) BOOL touchToPlay;
+@property (nonatomic) int numPlayers;
 
 +(ViewController *)sharedViewController;
 -(void)tileDidMove:(UIView *)tile;
@@ -54,6 +55,8 @@
 -(void)takeTileFromBoard:(UIView *)tile;
 -(void)updateScore:(NSUInteger)score forPlayer:(NSString *)userName;
 -(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath;
+-(void)rematch;
+-(void)playerWaitingForRematch;
 
 @end
 

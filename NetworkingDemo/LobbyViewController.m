@@ -216,6 +216,7 @@ static int joinsRecieved = 0;
         
         // Pass any objects to the view controller here, like...
         vc.touchToPlay = self.touchToPlay;
+        vc.numPlayers = numPlayers;
     }
 }
 

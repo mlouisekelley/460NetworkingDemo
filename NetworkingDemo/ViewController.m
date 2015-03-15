@@ -51,6 +51,7 @@ double frameTimestamp;
 int playerNumber = 2;
 NSString *successNoisePath;
 NSURL *successNoisePathURL;
+int waitsRecieved = 0;
 
 - (void)viewDidLoad {
     
@@ -455,7 +456,8 @@ NSURL *successNoisePathURL;
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
-                                 [self restart];
+                                 //[self restart];
+                                 [NetworkUtils sendWaitingForRematch];
                              }];
         
         [alert addAction:ok]; // add action to uialertcontroller
@@ -498,6 +500,17 @@ NSURL *successNoisePathURL;
     }
     [self placeStartingWord];
     [self clearScores];
+}
+
+-(void)playerWaitingForRematch {
+    waitsRecieved++;
+    if(waitsRecieved == _numPlayers){
+        [NetworkUtils sendRematch];
+    }
+}
+
+-(void)rematch {
+    [self restart];
 }
 
 -(void)clearScores{

@@ -66,6 +66,18 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)sendWaitingForRematch
+{
+    NSString* message = [NSString stringWithFormat:@"rematchPending"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
++(void)sendStartRematch
+{
+    NSString* message = [NSString stringWithFormat:@"rematch"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)joinRoom
 {
     [[WarpClient getInstance] joinRoom:ROOM_ID];
