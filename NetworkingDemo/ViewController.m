@@ -89,8 +89,8 @@ UIAlertController * waitingAlert;
 }
 
 -(void) setUpGame {
-    minutes = 0;
-    seconds = 15;
+    minutes = 3;
+    seconds = 0;
     milliseconds = 0;
     
     playerTwoScore = 0;
@@ -303,7 +303,7 @@ UIAlertController * waitingAlert;
         self.msLabel.text = [NSString stringWithFormat:@"%d",milliseconds / 10];
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 
-        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (180 * 1000.0);
 //        self.circleTimerView.percent = percent;
 //        self.circleTimerView.seconds = seconds + minutes * 60;
 //        self.circleTimerView.milliseconds = milliseconds;

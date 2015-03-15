@@ -93,7 +93,6 @@ ViewController *superview;
     [self setImage:[UIImage imageNamed:@"TileFinal"]];
     int numParticles = 15;
     int particleSize = 4;
-    _isFinalized = YES;
     
     // Particle effects
     
@@ -146,26 +145,31 @@ ViewController *superview;
     }
     
     // Score Increaser
-    double scoreXLabel = self.frame.origin.x + arc4random_uniform(self.frame.size.width);
-    double scoreYLabel = self.frame.origin.y;
-    UILabel *scoreIncreasedLabel = [[UILabel alloc] initWithFrame:CGRectMake(scoreXLabel, scoreYLabel, self.frame.size.width, self.frame.size.height)];
-    scoreIncreasedLabel.font = [UIFont fontWithName:@"orange juice" size:32];
-    scoreIncreasedLabel.text = [NSString stringWithFormat:@"+ %d", [BoardChecker getScoreForLetter:self.letterLabel.text]* multiplier];
-    scoreIncreasedLabel.textColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
-    [[self superVC].view addSubview:scoreIncreasedLabel];
-    double scoreFadeLength = 1.0;
-//    double scoreXDist = arc4random_uniform(20)-10;
-//    double scoreYDist = arc4random_uniform(20)-10;
-        double scoreXDist = 0;
-        double scoreYDist = -20;
-//    NSLog(scoreXDist)
-    [UIView animateWithDuration:scoreFadeLength animations:^{
-        
-        [scoreIncreasedLabel setAlpha:0.0f];
-        [scoreIncreasedLabel setFrame:CGRectMake(scoreIncreasedLabel.frame.origin.x + scoreXDist, scoreIncreasedLabel.frame.origin.y + scoreYDist, scoreIncreasedLabel.frame.size.width, scoreIncreasedLabel.frame.size.height)];
-    } completion:^(BOOL finished) {
-        [scoreIncreasedLabel removeFromSuperview];
-    }];
+    if (!_isFinalized) {
+        double scoreXLabel = self.frame.origin.x + arc4random_uniform(self.frame.size.width);
+        double scoreYLabel = self.frame.origin.y;
+        UILabel *scoreIncreasedLabel = [[UILabel alloc] initWithFrame:CGRectMake(scoreXLabel, scoreYLabel, self.frame.size.width, self.frame.size.height)];
+        scoreIncreasedLabel.font = [UIFont fontWithName:@"orange juice" size:32];
+        scoreIncreasedLabel.text = [NSString stringWithFormat:@"+ %d", [BoardChecker getScoreForLetter:self.letterLabel.text]* multiplier];
+        scoreIncreasedLabel.textColor = [[GameHost sharedGameHost] getColorForPlayer:_pid];
+        [[self superVC].view addSubview:scoreIncreasedLabel];
+        double scoreFadeLength = 1.0;
+    //    double scoreXDist = arc4random_uniform(20)-10;
+    //    double scoreYDist = arc4random_uniform(20)-10;
+            double scoreXDist = 0;
+            double scoreYDist = -20;
+    //    NSLog(scoreXDist)
+        [UIView animateWithDuration:scoreFadeLength animations:^{
+            
+            [scoreIncreasedLabel setAlpha:0.0f];
+            [scoreIncreasedLabel setFrame:CGRectMake(scoreIncreasedLabel.frame.origin.x + scoreXDist, scoreIncreasedLabel.frame.origin.y + scoreYDist, scoreIncreasedLabel.frame.size.width, scoreIncreasedLabel.frame.size.height)];
+        } completion:^(BOOL finished) {
+            [scoreIncreasedLabel removeFromSuperview];
+        }];
+    }
+    
+    _isFinalized = YES;
+
 
 }
 
