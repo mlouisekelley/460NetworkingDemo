@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
@@ -43,22 +43,33 @@
                                     <action selector="playButtonTouched:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="icN-j3-lbD"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qq4-kn-as6">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="390" y="439" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="p72-if-KEn"/>
                                 <exclude reference="sFT-9s-LJM"/>
+                                <exclude reference="Qq4-kn-as6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="p72-if-KEn"/>
                                 <include reference="sFT-9s-LJM"/>
+                                <include reference="Qq4-kn-as6"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="waitingIndicator" destination="Qq4-kn-as6" id="L6F-5Z-CUX"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="BeginGame" id="As8-Oz-X3g"/>
                     </connections>
                 </viewController>
@@ -359,11 +370,28 @@
                         <viewControllerLayoutGuide type="bottom" id="CCz-cK-7nn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rsU-Fw-6a6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zp9-mh-H5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LMC-di-kKT">
+            <objects>
+                <viewController id="IF6-Sh-vro" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nWX-e7-Xb1"/>
+                        <viewControllerLayoutGuide type="bottom" id="RFE-Jx-9gr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mh2-zF-dcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>

@@ -15,6 +15,7 @@
 @interface LobbyViewController ()
 
 @property (nonatomic) BOOL touchToPlay;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
 
 @end
 
@@ -83,6 +84,7 @@ static int joinsRecieved = 0;
 
 -(void)joinGame {
     vc = self;
+    [self.waitingIndicator startAnimating];
     
     if(first){
         //appwarp configuration
@@ -133,6 +135,7 @@ static int joinsRecieved = 0;
                 [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
             }
         }
+        [self.waitingIndicator stopAnimating];
         [self startGameHelper];
     }
 }
