@@ -13,5 +13,5 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *textLabel;
 @property (nonatomic) int player;
-
+@property (strong, nonatomic)  UIImageView *tempImgView;
 @end

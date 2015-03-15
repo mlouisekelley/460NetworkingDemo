@@ -14,17 +14,17 @@ ViewController *superview;
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
-        tempImgView.frame = CGRectMake(0, 0, 64, 64);
-        [self addSubview:tempImgView];
+        _tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+        _tempImgView.frame = CGRectMake(0, 0, 64, 64);
+        [self addSubview:_tempImgView];
     }
     return self;
 }
 -(id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        UIImageView *tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
-        tempImgView.frame = self.frame;
-        [self addSubview:tempImgView];
+        _tempImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EmptyCell"]];
+        _tempImgView.frame = self.frame;
+        [self addSubview:_tempImgView];
     }
     return self;
 }

@@ -557,8 +557,22 @@ int waitsRecieved = 0;
         dto.cell = cell;
         if (dto.isPending > 0) {
             cell.backgroundColor = dto.player.color;
+            if (cell.backgroundColor == [UIColor orangeColor] ) {
+                [cell.tempImgView setImage:[UIImage imageNamed:@"Unplayed1"]];
+            }
+            else if (cell.backgroundColor == [UIColor purpleColor] ) {
+                [cell.tempImgView setImage:[UIImage imageNamed:@"Unplayed2"]];
+            }
+            else if (cell.backgroundColor == [UIColor greenColor] ) {
+                [cell.tempImgView setImage:[UIImage imageNamed:@"Unplayed3"]];
+            }
+            else if (cell.backgroundColor == [UIColor blueColor] ) {
+                [cell.tempImgView setImage:[UIImage imageNamed:@"Unplayed4"]];
+            }
         }
         else {
+                [cell.tempImgView setImage:[UIImage imageNamed:@"EmptyCell"]];
+
             cell.backgroundColor = [UIColor lightGrayColor];
         }
         cell.layer.borderWidth=2.0f;
