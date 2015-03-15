@@ -89,8 +89,8 @@ UIAlertController * waitingAlert;
 }
 
 -(void) setUpGame {
-    minutes = 3;
-    seconds = 0;
+    minutes = 0;
+    seconds = 10;
     milliseconds = 0;
     
     playerTwoScore = 0;
@@ -100,6 +100,7 @@ UIAlertController * waitingAlert;
     currentPlayer.numberOfTiles = 0;
     frameTimestamp = CACurrentMediaTime();
     
+    _tileSpaces = [[NSMutableArray alloc] init];
 
     self.startingWordTiles = [[NSMutableArray alloc] init];
 
@@ -308,7 +309,6 @@ UIAlertController * waitingAlert;
 //        self.circleTimerView.seconds = seconds + minutes * 60;
 //        self.circleTimerView.milliseconds = milliseconds;
 //        [self.circleTimerView setNeedsDisplay];
-        NSLog(@"BarTimerWidth %@ %f", self.barTimerView, self.barTimerView.percent);
         self.barTimerView.percent = percent;
         [self.barTimerView setNeedsDisplay];
         
@@ -818,7 +818,9 @@ UIAlertController * waitingAlert;
             NSLog(@"PLACE WORD");
             TileViewCell *tvc = [self.startingWordTiles objectAtIndex:i];
             [self.view addSubview:tvc];
-            [self.allTiles addObject:tvc];
+            if (![self.allTiles containsObject:tvc]) {
+                [self.allTiles addObject:tvc];
+            }
             [self placeTileOnBoard:tvc  atIndexPath:[NSIndexPath indexPathForItem:(43 + i) inSection:0]];
         }
         return;

@@ -72,7 +72,7 @@
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
-                BOOL wordIsConnected = NO;
+                 BOOL wordIsConnected = NO;
                 if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
                     wordIsConnected = YES;
                 }
