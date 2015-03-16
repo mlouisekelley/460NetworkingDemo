@@ -72,9 +72,13 @@
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
             BoardCellDTO *down = (i + 10) < 100 ? board[i + 10] : nil;
             if (![self shouldCheckCellDTO:up] && [self shouldCheckCellDTO:down]) {
-                 BOOL wordIsConnected = NO;
+                BOOL wordIsConnected = NO;
+                BOOL isNewWord = NO;
                 if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
                     wordIsConnected = YES;
+                }
+                if (cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
+                    isNewWord = YES;
                 }
                 NSString *word = space;
                 int currLetterIndex = i + 10;
@@ -89,17 +93,25 @@
                     
                 }
                 if (!wordIsConnected) {
-                    [notConnectedWords addObject:word];
+                    if(isNewWord){
+                        [notConnectedWords addObject:word];
+                    }
                 }
                 if (![self isValid:word] || [word length] == 1) {
-                    [incorrectWords addObject:word];
+                    if(isNewWord){
+                        [incorrectWords addObject:word];
+                    }
                 }
             }
             
             else if (![self shouldCheckCellDTO:left] && [self shouldCheckCellDTO:right]) {
                 BOOL wordIsConnected = NO;
+                BOOL isNewWord = NO;
                 if (cellDTO.tvc.isFinalized || [cellDTO.tvc.pid isEqualToString:@"stone"]) {
                     wordIsConnected = YES;
+                }
+                if (cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
+                    isNewWord = YES;
                 }
                 NSString *word = space;
                 int currLetterIndex = i + 1;
@@ -113,11 +125,13 @@
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
                     
                 }
-                if (!wordIsConnected) {
-                    [notConnectedWords addObject:word];
-                }
-                if (![self isValid:word] || [word length] == 1) {
-                    [incorrectWords addObject:word];
+                if(isNewWord){
+                    if (!wordIsConnected) {
+                        [notConnectedWords addObject:word];
+                    }
+                    if (![self isValid:word] || [word length] == 1) {
+                        [incorrectWords addObject:word];
+                    }
                 }
             }
             
