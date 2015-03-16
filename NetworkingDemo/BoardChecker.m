@@ -88,6 +88,9 @@
                     if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
                     }
+                    if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
+                        isNewWord = YES;
+                    }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                     
@@ -120,6 +123,9 @@
                     word = [word stringByAppendingString:currentDTO.text];
                     if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
+                    }
+                    if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
+                        isNewWord = YES;
                     }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
