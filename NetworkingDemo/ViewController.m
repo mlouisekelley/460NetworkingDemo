@@ -89,8 +89,8 @@ UIAlertController * waitingAlert;
 }
 
 -(void) setUpGame {
-    minutes = 0;
-    seconds = 10;
+    minutes = 2;
+    seconds = 0;
     milliseconds = 0;
     
     playerTwoScore = 0;
@@ -1064,9 +1064,16 @@ UIAlertController * waitingAlert;
     tvc.indexPath = indexPath;
     [tvc makeFinalized:100];
     
-    
+    //case where we have unsent tiles that are being written over
     if (dto.tvc != nil && dto.tvc.isUnsent) {
         [self takeTileFromBoard:dto.tvc];
+    }
+    //case where there is a tile still there so we want to remove it
+    if(dto.tvc != nil){
+        TileViewCell *tile = dto.tvc;
+        dto.tvc = nil;
+        [tile removeFromSuperview];
+        dto.text = @"-";
     }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
     dto.isPending = 0;
