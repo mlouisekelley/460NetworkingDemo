@@ -514,6 +514,7 @@ UIAlertController * waitingAlert;
 -(void)playerWaitingForRematch {
     waitsRecieved++;
     if(waitsRecieved == _numPlayers){
+        //[NetworkUtils generateAndSendStartingWord];
         [NetworkUtils sendStartRematch];
     }
 }
@@ -965,6 +966,7 @@ UIAlertController * waitingAlert;
         NSUInteger newScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue] - 100;
         [self.playerScores setValue:[NSNumber numberWithLong:newScore] forKey:currentPlayer.userName];
         currentPlayer.score = (int)newScore;
+        [NetworkUtils sendPlayerScore:[NSString stringWithFormat:@"%ld", (unsigned long)newScore]];
     }
 }
 

@@ -23,11 +23,11 @@
 +(void)sendWaitingForRematch;
 +(void)sendStartRematch;
 +(void)sendPlayerScore:(NSString *)score;
-+(void)sendStartingWord:(NSString *)word;
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;
 +(void)joinRoom;
 +(void)createRoom;
 +(void)sendLetterReturned:(NSString *)update;
++(void)generateAndSendStartingWord;
 
 
 @end
