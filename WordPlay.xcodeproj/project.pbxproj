@@ -33,6 +33,10 @@
 		A330496D1A928B70002BA6EB /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A330496C1A928B70002BA6EB /* background_music.mp3 */; };
 		A330496F1A9E63D1002BA6EB /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A330496E1A9E63D1002BA6EB /* tile2.png */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
+		A38645351ABA05F90032CF8C /* Shuffle-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645341ABA05F90032CF8C /* Shuffle-50.png */; };
+		A38645371ABA06000032CF8C /* Reload Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645361ABA06000032CF8C /* Reload Filled-50.png */; };
+		A38645391ABA06110032CF8C /* gamebkg4.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645381ABA06110032CF8C /* gamebkg4.png */; };
+		A386453B1ABA080D0032CF8C /* Shuffle-50 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A386453A1ABA080D0032CF8C /* Shuffle-50 (1).png */; };
 		A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A38B9DA91A8479D300F1F59A /* scrabble_words.txt */; };
 		A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A39C06B41A912D8E00D1B8B8 /* play-100.png */; };
 		A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1A1A8BBC690037B370 /* trash-64.png */; };
@@ -115,6 +119,10 @@
 		A330496E1A9E63D1002BA6EB /* tile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile2.png; sourceTree = "<group>"; };
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
+		A38645341ABA05F90032CF8C /* Shuffle-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shuffle-50.png"; sourceTree = "<group>"; };
+		A38645361ABA06000032CF8C /* Reload Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reload Filled-50.png"; sourceTree = "<group>"; };
+		A38645381ABA06110032CF8C /* gamebkg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg4.png; sourceTree = "<group>"; };
+		A386453A1ABA080D0032CF8C /* Shuffle-50 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shuffle-50 (1).png"; sourceTree = "<group>"; };
 		A38B9DA91A8479D300F1F59A /* scrabble_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrabble_words.txt; sourceTree = "<group>"; };
 		A39C06B41A912D8E00D1B8B8 /* play-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-100.png"; sourceTree = "<group>"; };
 		A3CABF1A1A8BBC690037B370 /* trash-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-64.png"; sourceTree = "<group>"; };
@@ -283,6 +291,10 @@
 		F061ED0C1A8C004C00C66223 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A386453A1ABA080D0032CF8C /* Shuffle-50 (1).png */,
+				A38645381ABA06110032CF8C /* gamebkg4.png */,
+				A38645361ABA06000032CF8C /* Reload Filled-50.png */,
+				A38645341ABA05F90032CF8C /* Shuffle-50.png */,
 				F00FF5F11AB53F4900D3C75E /* trash-64.png */,
 				F0221D701AB51ED200245C38 /* fuel_red_2.png */,
 				F0221D711AB51ED200245C38 /* fuel_blue_2.png */,
@@ -372,7 +384,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A30FCE811AB605D60009F82E /* unplayedTile2.png in Resources */,
+				A38645391ABA06110032CF8C /* gamebkg4.png in Resources */,
 				F0221D721AB51ED200245C38 /* fuel_red_2.png in Resources */,
+				A38645351ABA05F90032CF8C /* Shuffle-50.png in Resources */,
 				A30FCE801AB605D60009F82E /* unplayedTile1.png in Resources */,
 				F04498961AB0B5F90020F01A /* unplayedTile.png in Resources */,
 				F08B23D81A9CE9BA0051C3AF /* bkg.png in Resources */,
@@ -397,8 +411,10 @@
 				F02422921A8C0478003F2B67 /* oj.ttf in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,
 				F0221D691AB514D700245C38 /* Screen Shot 2015-03-14 at 8.15.56 PM.png in Resources */,
+				A386453B1ABA080D0032CF8C /* Shuffle-50 (1).png in Resources */,
 				A30ADC971A4CFBD200047201 /* Images.xcassets in Resources */,
 				F04498971AB0B5F90020F01A /* gamebkg2.png in Resources */,
+				A38645371ABA06000032CF8C /* Reload Filled-50.png in Resources */,
 				F00FF5F01AB539FA00D3C75E /* unplayedTile3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
@@ -185,7 +186,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamebkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-pH-CGh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamebkg4.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-pH-CGh">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
@@ -339,7 +340,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="207" y="933" width="304" height="29"/>
+                                    <rect key="frame" x="215" y="931" width="304" height="29"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9M5-yH-YZc">
@@ -364,7 +365,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.9960784912109375" green="0.058823533356189728" blue="0.0078431377187371254" alpha="1" colorSpace="deviceRGB"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="207" y="933" width="304" height="29"/>
+                                    <rect key="frame" x="215" y="932" width="304" height="29"/>
                                 </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfM-0g-U8t">
@@ -382,6 +383,12 @@
                                     <rect key="frame" x="557" y="924" width="42" height="21"/>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="7F4-au-toT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="601" y="935" width="38" height="38"/>
+                                </variation>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -393,6 +400,33 @@
                                 <connections>
                                     <segue destination="IF6-Sh-vro" kind="show" id="0OY-zl-CYX"/>
                                 </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="139" y="932" width="38" height="38"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rko-FW-xV2">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Reload Filled-50.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="603" y="938" width="32" height="32"/>
+                                </variation>
+                                <connections>
+                                    <action selector="recallTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ccK-Z1-H4q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sB-kq-WvK">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Shuffle-50 (1).png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="142" y="935" width="30" height="30"/>
+                                </variation>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -418,7 +452,11 @@
                                 <exclude reference="kZK-yJ-WHM"/>
                                 <exclude reference="nfM-0g-U8t"/>
                                 <exclude reference="JiL-GT-ghm"/>
+                                <exclude reference="7F4-au-toT"/>
                                 <exclude reference="YQ1-UB-pKn"/>
+                                <exclude reference="WQm-aD-wuj"/>
+                                <exclude reference="rko-FW-xV2"/>
+                                <exclude reference="8sB-kq-WvK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -443,7 +481,11 @@
                                 <include reference="kZK-yJ-WHM"/>
                                 <include reference="nfM-0g-U8t"/>
                                 <include reference="JiL-GT-ghm"/>
+                                <include reference="7F4-au-toT"/>
                                 <include reference="YQ1-UB-pKn"/>
+                                <include reference="WQm-aD-wuj"/>
+                                <include reference="rko-FW-xV2"/>
+                                <include reference="8sB-kq-WvK"/>
                             </mask>
                         </variation>
                     </view>
@@ -527,18 +569,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Reload Filled-50.png" width="50" height="50"/>
         <image name="Screen Shot 2015-03-14 at 8.15.56 PM.png" width="103" height="102"/>
+        <image name="Shuffle-50 (1).png" width="50" height="50"/>
         <image name="TileFinal" width="212" height="212"/>
         <image name="bkg.png" width="1575" height="2088"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
-        <image name="gamebkg.png" width="1574" height="2084"/>
+        <image name="gamebkg4.png" width="1593" height="2108"/>
         <image name="play-100.png" width="100" height="100"/>
+        <image name="tile.png" width="212" height="212"/>
         <image name="trash-64.png" width="64" height="64"/>
         <image name="trophy.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="0OY-zl-CYX"/>
         <segue reference="RK8-te-Rwd"/>
-        <segue reference="IHe-Md-d5e"/>
-        <segue reference="SbG-Jb-CUi"/>
+        <segue reference="AlX-Ox-Ng0"/>
     </inferredMetricsTieBreakers>
 </document>
