@@ -11,7 +11,6 @@
 #import "Player.h"
 @interface BoardCellDTO : NSObject
 
-@property (strong, nonatomic) NSString* text;
 @property (nonatomic) TileViewCell* tvc;
 @property (strong, nonatomic) UICollectionViewCell *cell;
 @property (nonatomic) int isPending;

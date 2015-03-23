@@ -143,7 +143,6 @@ UIAlertController * waitingAlert;
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             BoardCellDTO *cell = [[BoardCellDTO alloc] init];
-            cell.text = @"-";
             cell.isPending = 0;
             [_board addObject:cell];
             cell.tvc = nil;
@@ -196,7 +195,7 @@ UIAlertController * waitingAlert;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 BoardCellDTO *cell = [[BoardCellDTO alloc] init];
-                cell.text = @"-";
+                cell.tvc = nil;
                 cell.isPending = 0;
                 [_board addObject:cell];
             }
@@ -560,9 +559,8 @@ UIAlertController * waitingAlert;
 //    if (collectionView.tag == 1) {
         //use self.board to determine how the board looks
         BoardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"board cell" forIndexPath:indexPath];
-        NSString *text = ((BoardCellDTO *)self.board[indexPath.item]).text;
         
-        text = @"";
+        NSString *text = @"";
         BoardCellDTO *dto = (BoardCellDTO *)self.board[indexPath.item];
         dto.cell = cell;
         if (dto.isPending > 0) {
@@ -804,7 +802,6 @@ UIAlertController * waitingAlert;
 
 -(void) placeTileOnBoard:(TileViewCell *)tile atIndexPath:(NSIndexPath *) indexPath {
     BoardCellDTO *dto = self.board[indexPath.item];
-    dto.text = tile.letterLabel.text;
     dto.tvc = tile;
     dto.tileWasHere = YES;
     dto.tvc.isUnsent = YES;
@@ -913,7 +910,6 @@ UIAlertController * waitingAlert;
 
 -(void) removeTileFromBoard:(TileViewCell *)tile {
     BoardCellDTO *dto = self.board[tile.indexPath.item];
-    dto.text = @"-";
     dto.tvc = nil;
     [self clearOutlingColor:dto.tvc];
     NSString* message = [NSString stringWithFormat:@"pendingRemove:%ld", (long)tile.indexPath.item];
@@ -1075,7 +1071,6 @@ UIAlertController * waitingAlert;
         TileViewCell *tile = dto.tvc;
         dto.tvc = nil;
         [tile removeFromSuperview];
-        dto.text = @"-";
     }
     [self placeTileOnBoard:tvc atIndexPath:indexPath];
     dto.isPending = 0;
@@ -1124,7 +1119,6 @@ UIAlertController * waitingAlert;
     [dto.tvc removeFromSuperview];
     
     dto.tvc = nil;
-    dto.text = @"-";
     dto.isPending = 0;
     [self.boardCollectionView reloadData];
 }

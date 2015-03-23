@@ -65,8 +65,7 @@
     NSMutableArray *notConnectedWords = [[NSMutableArray alloc] init];
     for (int i = 0; i<[board count]; i++) {
         BoardCellDTO *cellDTO = board[i];
-        NSString *space = cellDTO.text;
-        if (![self isBlank:space] && [self shouldCheckCellDTO:cellDTO]) {
+        if (![self isBlank:cellDTO] && [self shouldCheckCellDTO:cellDTO]) {
             BoardCellDTO *up = (i - 10) >= 0 ? board[i - 10] : nil;
             BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
@@ -80,11 +79,11 @@
                 if (cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
                     isNewWord = YES;
                 }
-                NSString *word = space;
+                NSString *word = cellDTO.tvc.letterLabel.text;
                 int currLetterIndex = i + 10;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
-                    word = [word stringByAppendingString:currentDTO.text];
+                    word = [word stringByAppendingString:currentDTO.tvc.letterLabel.text];
                     if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
                     }
@@ -116,11 +115,11 @@
                 if (cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]) {
                     isNewWord = YES;
                 }
-                NSString *word = space;
+                NSString *word = cellDTO.tvc.letterLabel.text;
                 int currLetterIndex = i + 1;
                 BoardCellDTO *currentDTO = board[currLetterIndex];
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
-                    word = [word stringByAppendingString:currentDTO.text];
+                    word = [word stringByAppendingString:currentDTO.tvc.letterLabel.text];
                     if ([self cellIsConnected:currentDTO index:currLetterIndex board:board]) {
                         wordIsConnected = YES;
                     }
@@ -141,8 +140,8 @@
                 }
             }
             
-            else if ([self isBlank:up.text] && [self isBlank:left.text] && [self isBlank:right.text] && [self isBlank:down.text] && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
-                [incorrectWords addObject:cellDTO.text];
+            else if ([self isBlank:up] && [self isBlank:left] && [self isBlank:right] && [self isBlank:down] && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
+                [incorrectWords addObject:cellDTO.tvc.letterLabel.text];
             }
             
         }
@@ -197,8 +196,7 @@
     
     for (int i = 0; i<[board count]; i++) {
         BoardCellDTO *cellDTO = board[i];
-        NSString *space = cellDTO.text;
-        if (![self isBlank:space] && [self shouldCheckCellDTO:cellDTO]) {
+        if (![self isBlank:cellDTO] && [self shouldCheckCellDTO:cellDTO]) {
             BoardCellDTO *up = (i - 10) >= 0 ? board[i - 10] : nil;
             BoardCellDTO *left = (i - 1) >= 0 ? board[i - 1] : nil;
             BoardCellDTO *right = (i + 1)%10 > 0 ? board[i + 1] : nil;
@@ -217,7 +215,7 @@
                         }
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
-                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.text];
+                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.tvc.letterLabel.text];
                     }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
@@ -240,7 +238,7 @@
                         }
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
-                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.text];
+                        scoreForWord += [BoardChecker getScoreForLetter:currentDTO.tvc.letterLabel.text];
                     }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
@@ -299,7 +297,7 @@
     if (!cell) {
         return NO;
     }
-    if ([self isBlank: cell.text]) {
+    if ([self isBlank: cell]) {
         return NO;
     }
     if ([cell.tvc.pid isEqualToString:@"stone"]) {
@@ -313,8 +311,8 @@
     return NO;
 }
 
--(BOOL)isBlank:(NSString *)space {
-    if ([space isEqualToString:@"-"]) {
+-(BOOL)isBlank:(BoardCellDTO *)cellDTO {
+    if (cellDTO.tvc == nil) {
         return YES;
     }
     return NO;
