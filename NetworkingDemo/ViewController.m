@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSDictionary *stringToColor;
 @property (strong, nonatomic) NSMutableDictionary *playerColors;
 @property (strong, nonatomic) NSMutableArray* startingWordTiles;
+@property (strong, nonatomic) NSMutableArray *rackTileFrames;
 @end
 
 @implementation ViewController
@@ -129,6 +130,7 @@ UIAlertController * waitingAlert;
     for (int i = 0; i < STARTING_NUMBER_OF_TILES; i++) {
         CGRect rec = CGRectMake(i * (TILE_WIDTH + 30) + self.boardCollectionView.frame.origin.x, self.boardCollectionView.frame.origin.y + (self.boardCollectionView.bounds.size.height + 40), TILE_WIDTH, TILE_HEIGHT);
         [self.tileSpaces addObject:[NSValue valueWithCGRect:rec]];
+        [self.rackTileFrames addObject:[NSValue valueWithCGRect:rec]];
         [self createTileInRack];
     }
     [self placeStartingWord];
@@ -151,6 +153,15 @@ UIAlertController * waitingAlert;
 }
 
 #pragma mark Lazy Instantiations
+
+- (NSMutableArray *)rackTileFrames {
+    if (!_rackTileFrames) {
+        _rackTileFrames = [[NSMutableArray alloc] init];
+    }
+    return _rackTileFrames;
+}
+
+
 - (NSMutableDictionary *)playerScores {
     if (!_playerScores) {
         _playerScores = [[NSMutableDictionary alloc] init];
@@ -771,17 +782,31 @@ UIAlertController * waitingAlert;
 }
 
 - (IBAction)shuffleTiles:(id)sender {
-    
+    NSMutableArray *tileViewCellsOnRack = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.allTiles count]; i++) {
+        if (((TileViewCell *)self.allTiles[i]).isOnRack) {
+            [self removeTileFromRack:((TileViewCell *)self.allTiles[i])];
+            [tileViewCellsOnRack addObject:self.allTiles[i]];
+        }
+    }
+    [self shuffleArray:self.rackTileFrames];
+    for (int i = 0; i < [tileViewCellsOnRack count]; i++) {
+        TileViewCell *cell = (TileViewCell *)tileViewCellsOnRack[i];
+        CGRect rect = [self.rackTileFrames[i] CGRectValue];
+        [UIView animateWithDuration:0.1 animations:^{
+            cell.frame = rect;
+        }];
+    }
 }
 
 
--(NSMutableArray *)shuffleArray:(NSMutableArray *) inputArray{
-    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
-    for (int i=0; i<inputArray.count; i++) {
-        int rndValue = arc4random() % inputArray.count;
-        [returnArray addObject:inputArray[rndValue]];
+-(void)shuffleArray:(NSMutableArray *) inputArray{
+    NSUInteger count = [inputArray count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [inputArray exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
     }
-    return returnArray;
 }
 
 -(void)submitWasSuccessful {
