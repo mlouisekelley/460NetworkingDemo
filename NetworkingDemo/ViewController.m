@@ -448,9 +448,9 @@ UIAlertController * waitingAlert;
         
         [self presentViewController:alert animated:YES completion:nil];
         
-        //create ok action for alert
-        UIAlertAction* ok = [UIAlertAction
-                             actionWithTitle:@"Again!"
+        //create rematch action for alert
+        UIAlertAction* rematch = [UIAlertAction
+                             actionWithTitle:@"Rematch!"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -466,7 +466,21 @@ UIAlertController * waitingAlert;
                                  [self presentViewController:waitingAlert animated:YES completion:nil];
                              }];
         
-        [alert addAction:ok]; // add action to uialertcontroller
+        //create ok action for alert
+        UIAlertAction* home = [UIAlertAction
+                             actionWithTitle:@"Home"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 [NetworkUtils sendWaitingForRematch];
+                                 
+                                 [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+                             }];
+        
+        [alert addAction:home];
+        [alert addAction:rematch]; // add action to uialertcontroller
         
     }
     else {
@@ -496,7 +510,6 @@ UIAlertController * waitingAlert;
 }
 
 -(void)restart {
-    //    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
     [waitingAlert dismissViewControllerAnimated:YES completion:nil];
     waitsRecieved = 0;
     isGameOver = NO;
