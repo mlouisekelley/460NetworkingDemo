@@ -21,6 +21,7 @@
 +(void)sendJoinedLobby;
 +(void)sendStartGame;
 +(void)sendWaitingForRematch;
++(void)sendRematchDenied;
 +(void)sendStartRematch;
 +(void)sendPlayerScore:(NSString *)score;
 +(void)sendUpdateColor:(NSString *)color forPlayer:(NSString *)player;

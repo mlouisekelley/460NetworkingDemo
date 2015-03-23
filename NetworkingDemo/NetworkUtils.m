@@ -67,6 +67,12 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)sendRematchDenied
+{
+    NSString* message = [NSString stringWithFormat:@"rematchDenied"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)sendStartRematch
 {
     NSString* message = [NSString stringWithFormat:@"rematch"];

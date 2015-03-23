@@ -531,6 +531,21 @@ UIAlertController * waitingAlert;
     }
 }
 
+-(void)playerDeniedRematch {
+    [waitingAlert dismissViewControllerAnimated:YES completion:nil];
+    UIAlertController * rematchDeniedAlert=   [UIAlertController
+                                  alertControllerWithTitle:@"A Player Denied Rematch"
+                                  message:@""
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:rematchDeniedAlert animated:YES completion:nil];
+    
+    sleep(2); // wait for two seconds and then return to the main menu
+    [rematchDeniedAlert dismissViewControllerAnimated:YES completion:nil];
+    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+    
+}
+
 -(void)rematch {
     [self restart];
 }

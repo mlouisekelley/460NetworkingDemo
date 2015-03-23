@@ -57,6 +57,7 @@
 -(void)setLetterBeingMovedAtIndexPath:(NSIndexPath *)indexPath;
 -(void)rematch;
 -(void)playerWaitingForRematch;
+-(void)playerDeniedRematch;
 
 @end
 
