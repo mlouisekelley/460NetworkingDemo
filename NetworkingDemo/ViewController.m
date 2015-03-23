@@ -513,7 +513,7 @@ UIAlertController * waitingAlert;
 -(void)playerWaitingForRematch {
     waitsRecieved++;
     if(waitsRecieved == _numPlayers){
-        //[NetworkUtils generateAndSendStartingWord];
+        [NetworkUtils generateAndSendStartingWord];
         [NetworkUtils sendStartRematch];
     }
 }
@@ -813,8 +813,9 @@ UIAlertController * waitingAlert;
     
     if([self.startingWordTiles count] > 0){
         for(int i = 0; i < [self.startingWordTiles count]; i++){
-            NSLog(@"PLACE WORD");
+            NSString *letter = [NSString stringWithFormat:@"%c" , [starting_word characterAtIndex:i]];
             TileViewCell *tvc = [self.startingWordTiles objectAtIndex:i];
+            tvc.letterLabel.text = letter;
             [self.view addSubview:tvc];
             if (![self.allTiles containsObject:tvc]) {
                 [self.allTiles addObject:tvc];
