@@ -485,7 +485,7 @@ UIAlertController * waitingAlert;
                              {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
-                                 [NetworkUtils sendWaitingForRematch];
+                                 [NetworkUtils sendRematchDenied];
                                  
                                  [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
                              }];
@@ -543,9 +543,10 @@ UIAlertController * waitingAlert;
 }
 
 -(void)playerDeniedRematch {
+    NSLog(@"Rematch denied");
     [waitingAlert dismissViewControllerAnimated:YES completion:nil];
     UIAlertController * rematchDeniedAlert=   [UIAlertController
-                                  alertControllerWithTitle:@"A Player Denied Rematch"
+                                  alertControllerWithTitle:@"A Player Denied to Rematch"
                                   message:@""
                                   preferredStyle:UIAlertControllerStyleAlert];
     
