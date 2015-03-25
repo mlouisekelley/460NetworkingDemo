@@ -12,6 +12,7 @@
 #import "ConnectionListener.h"
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -23,6 +24,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"csVfSoNm6NRcJo1oTX5msY9YfXSttMVoLKybBjyk"
+                  clientKey:@"ntlK83NUwHAcYcwVCRBOmuV4MEafaoYbh6NnIWaH"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     //start a background sound
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"background_music" ofType: @"mp3"];
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
