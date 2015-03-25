@@ -29,4 +29,9 @@ NSString *userName = nil;
     return userName;
 }
 
++(void) setUserName:(NSString *)inputuserName
+{
+    userName = inputuserName;
+}
+
 @end

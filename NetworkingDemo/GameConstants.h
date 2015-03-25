@@ -19,5 +19,6 @@
 @interface GameConstants : NSObject
 
 +(NSString *)getUserName;
++(void)setUserName:(NSString *)userName;
 
 @end

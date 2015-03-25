@@ -114,7 +114,6 @@ UIAlertController * waitingAlert;
         }
     }
     [self resetScores];
-    
     [self resetBoard];
     [self.boardCollectionView reloadData];
 }
