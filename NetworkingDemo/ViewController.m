@@ -70,7 +70,6 @@ NSNumber *lowestHighScore;
     self.boardCollectionView.delegate = self;
     self.boardCollectionView.minimumZoomScale = .01;
     self.boardCollectionView.zoomScale = 10;
-    
     vc = self;
     currentPlayer = [[Player alloc] init];
     currentPlayer.userName = [GameConstants getUserName];
@@ -852,10 +851,12 @@ NSNumber *lowestHighScore;
 
 - (IBAction)shuffleTiles:(id)sender {
     NSMutableArray *tileViewCellsOnRack = [[NSMutableArray alloc] init];
+    self.tileSpaces = [[NSMutableArray alloc] init];
+    
     for (int i = 0; i < [self.allTiles count]; i++) {
         if (((TileViewCell *)self.allTiles[i]).isOnRack) {
-            [self removeTileFromRack:((TileViewCell *)self.allTiles[i])];
             [tileViewCellsOnRack addObject:self.allTiles[i]];
+            [self.tileSpaces addObject: [NSValue valueWithCGRect:((TileViewCell *)self.allTiles[i]).frame]];
         }
     }
     [self shuffleArray:self.rackTileFrames];
@@ -865,6 +866,7 @@ NSNumber *lowestHighScore;
         [UIView animateWithDuration:0.1 animations:^{
             cell.frame = rect;
         }];
+        [self.tileSpaces removeObject:[NSValue valueWithCGRect:rect]];
     }
 }
 
