@@ -55,6 +55,7 @@ NSString *successNoisePath;
 NSURL *successNoisePathURL;
 int waitsRecieved = 0;
 UIAlertController * waitingAlert;
+NSNumber *lowestHighScore;
 
 - (void)viewDidLoad {
     
@@ -116,6 +117,7 @@ UIAlertController * waitingAlert;
     }
     [self resetScores];
     [self resetBoard];
+    [self initLowestHighScore];
     [self.boardCollectionView reloadData];
 }
 
@@ -460,11 +462,19 @@ UIAlertController * waitingAlert;
         }
     }];
     
-    if ([self didCurrentPlayerWin]) {
-        alertMessage = @"You Win!";
-    }
-    else {
-        alertMessage = @"You Lose.";
+    if(_numPlayers == 1){
+        if([self didGetHighScore:gameScore[@"score"]]){
+            alertMessage = @"New High Score!";
+        } else {
+            alertMessage = @"You did not get a new high score. Better luck next time!";
+        }
+    } else {
+        if ([self didCurrentPlayerWin]) {
+            alertMessage = @"You Win!";
+        }
+        else {
+            alertMessage = @"You Lose.";
+        }
     }
     
     if (objc_getClass("UIAlertController") != nil){
@@ -533,6 +543,33 @@ UIAlertController * waitingAlert;
 -(BOOL) didCurrentPlayerWin {
     Player *maxPlayer = [self getMaxPlayer];
     if([maxPlayer.userName isEqualToString:[GameConstants getUserName]]){
+        return YES;
+    }
+    return NO;
+}
+
+-(void)initLowestHighScore {
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    query.limit = 20;
+    [query orderByDescending:@"score"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d scores.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                lowestHighScore = object[@"score"];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+-(BOOL)didGetHighScore:(NSNumber*)score {
+    if([score integerValue] >= [lowestHighScore integerValue]){
         return YES;
     }
     return NO;
