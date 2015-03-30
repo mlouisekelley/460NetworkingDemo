@@ -214,10 +214,20 @@ static int joinsRecieved = 0;
                                                             [self playFourPlayers:p4];
                                                         }];
                                    
+                                   UIAlertAction* cancel = [UIAlertAction
+                                                            actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * action)
+                                                            {
+                                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                
+                                                            }];
+                                   
                                    [alert addAction:p1]; // add action to uialertcontroller
                                    [alert addAction:p2]; // add action to uialertcontroller
                                    [alert addAction:p3]; // add action to uialertcontroller
                                    [alert addAction:p4]; // add action to uialertcontroller
+                                   [alert addAction:cancel];
                                }];
     
     
