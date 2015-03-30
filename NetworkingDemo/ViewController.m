@@ -55,6 +55,7 @@ NSString *successNoisePath;
 NSURL *successNoisePathURL;
 int waitsRecieved = 0;
 UIAlertController * waitingAlert;
+UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
 
 - (void)viewDidLoad {
@@ -600,17 +601,24 @@ NSNumber *lowestHighScore;
 -(void)playerDeniedRematch {
     NSLog(@"Rematch denied");
     [waitingAlert dismissViewControllerAnimated:YES completion:nil];
-    UIAlertController * rematchDeniedAlert=   [UIAlertController
+    rematchDeniedAlert =   [UIAlertController
                                   alertControllerWithTitle:@"A Player Denied to Rematch"
                                   message:@""
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     [self presentViewController:rematchDeniedAlert animated:YES completion:nil];
     
-    sleep(2); // wait for two seconds and then return to the main menu
-    [rematchDeniedAlert dismissViewControllerAnimated:YES completion:nil];
-    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
-    
+    [NSTimer scheduledTimerWithTimeInterval:2
+                                     target:self
+                                   selector:@selector(returnToMainMenu)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+-(void)returnToMainMenu {
+    [rematchDeniedAlert dismissViewControllerAnimated:YES completion:^{
+       [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc]; 
+    }];
 }
 
 -(void)rematch {
