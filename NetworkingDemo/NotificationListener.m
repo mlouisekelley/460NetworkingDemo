@@ -57,9 +57,11 @@
         return;
     }
     
-    if([chatEvent.message isEqualToString:@"rematchDenied"]){
-        [[ViewController sharedViewController] playerDeniedRematch];
-        return;
+    if(![chatEvent.sender isEqualToString:[GameConstants getUserName]]){
+        if([chatEvent.message isEqualToString:@"rematchDenied"]){
+            [[ViewController sharedViewController] playerDeniedRematch];
+            return;
+        }
     }
     
     if([chatEvent.message isEqualToString:@"joined"]){
