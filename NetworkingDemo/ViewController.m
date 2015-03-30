@@ -15,6 +15,7 @@
 #import "Player.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import <Parse/Parse.h>
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
@@ -440,6 +441,24 @@ UIAlertController * waitingAlert;
 -(void) gameOver {
     isGameOver = YES;
     NSString *alertMessage = @"";
+    
+    
+    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+    gameScore[@"score"] = @0;
+    for (Player *player in self.players) {
+        if ([player.userName isEqualToString:[GameConstants getUserName]]) {
+            gameScore[@"score"] = [NSNumber numberWithInt:player.score];
+        }
+    }
+    gameScore[@"playerName"] = [GameConstants getUserName];
+    [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // The object has been saved.
+        } else {
+            // There was a problem, check error.description
+            NSLog(@"Error saving game score in background\n");
+        }
+    }];
     
     if ([self didCurrentPlayerWin]) {
         alertMessage = @"You Win!";
