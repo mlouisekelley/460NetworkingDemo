@@ -856,7 +856,6 @@ NSNumber *lowestHighScore;
     for (int i = 0; i < [self.allTiles count]; i++) {
         if (((TileViewCell *)self.allTiles[i]).isOnRack) {
             [tileViewCellsOnRack addObject:self.allTiles[i]];
-            [self.tileSpaces addObject: [NSValue valueWithCGRect:((TileViewCell *)self.allTiles[i]).frame]];
         }
     }
     [self shuffleArray:self.rackTileFrames];
@@ -866,7 +865,10 @@ NSNumber *lowestHighScore;
         [UIView animateWithDuration:0.1 animations:^{
             cell.frame = rect;
         }];
-        [self.tileSpaces removeObject:[NSValue valueWithCGRect:rect]];
+    }
+    for (int j = [tileViewCellsOnRack count]; j < STARTING_NUMBER_OF_TILES; j++) {
+        CGRect rect = [self.rackTileFrames[j] CGRectValue];
+        [self.tileSpaces addObject:[NSValue valueWithCGRect: rect]];
     }
 }
 
