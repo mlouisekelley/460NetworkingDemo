@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "343"
             endingLineNumber = "343"
-            landmarkName = "-isCurrentWinner:"
+            landmarkName = "-updateScoreDisplay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "333"
             endingLineNumber = "333"
-            landmarkName = "-updateScoreDisplay:"
+            landmarkName = "-updateCounter:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "356"
             endingLineNumber = "356"
-            landmarkName = "-updateEnemyScores"
+            landmarkName = "-updateScoreDisplay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -173,7 +173,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "-resetBoard"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -189,7 +189,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "190"
             endingLineNumber = "190"
-            landmarkName = "+sharedViewController"
+            landmarkName = "-playerColors"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,7 +205,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
-            landmarkName = "+sharedViewController"
+            landmarkName = "-stringToColor"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -301,7 +301,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
             endingLineNumber = "519"
-            landmarkName = "-playerWaitingForRematch"
+            landmarkName = "-gameOver"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -317,7 +317,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "344"
             endingLineNumber = "344"
-            landmarkName = "-isCurrentWinner:"
+            landmarkName = "-updateScoreDisplay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -333,7 +333,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "643"
             endingLineNumber = "643"
-            landmarkName = "-tileDidFinishMoving:"
+            landmarkName = "-clearScores"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -349,7 +349,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "678"
             endingLineNumber = "678"
-            landmarkName = "-touchUpSubmit:"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -365,7 +365,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "564"
             endingLineNumber = "564"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkName = "-initLowestHighScore"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -381,7 +381,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "537"
             endingLineNumber = "537"
-            landmarkName = "-clearScores"
+            landmarkName = "-gameOver"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -397,7 +397,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "539"
             endingLineNumber = "539"
-            landmarkName = "-clearScores"
+            landmarkName = "-getMaxPlayer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
