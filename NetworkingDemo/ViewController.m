@@ -93,11 +93,11 @@ NSNumber *lowestHighScore;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 1;
-        seconds = 30;
+        minutes = 0;
+        seconds = 10;
     } else {
-        minutes = 2;
-        seconds = 0;
+        minutes = 0;
+        seconds = 10;
     }
     milliseconds = 0;
     
@@ -458,6 +458,7 @@ NSNumber *lowestHighScore;
         }
     }
     gameScore[@"playerName"] = [GameConstants getUserName];
+    gameScore[@"numPlayers"] = [NSNumber numberWithInteger:[self.players count]];
     [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // The object has been saved.

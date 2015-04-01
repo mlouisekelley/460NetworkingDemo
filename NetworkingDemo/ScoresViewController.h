@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ScoresViewController : UIViewController
+@property (strong, nonatomic) NSMutableArray *scoreStrings;
+- (void)executeQuery; //to be implemented by inheriting classes
+- (void)refreshView;
 
 @end

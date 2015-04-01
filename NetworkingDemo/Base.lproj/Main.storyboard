@@ -60,7 +60,7 @@
                                     <rect key="frame" x="83" y="662" width="633" height="93"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="lPu-0u-Pgm" kind="show" id="zVK-E2-vSg"/>
+                                    <segue destination="bKl-In-zzV" kind="show" id="XcJ-h0-umB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-AQ-ubE">
@@ -105,12 +105,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54w-I1-NoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-317.25" y="446.25"/>
+            <point key="canvasLocation" x="-858" y="479.25"/>
         </scene>
-        <!--Scores View Controller-->
+        <!--Item 1-->
+        <scene sceneID="Kd1-Aa-olI">
+            <objects>
+                <viewController id="YZo-dX-Rfc" customClass="MultiPlayerHighScoresVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B2A-Xe-a8J"/>
+                        <viewControllerLayoutGuide type="bottom" id="tm2-wq-O87"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zsR-o6-jnv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiscorebkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-rn-VzU">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92c-Ac-Jbe">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="77" y="68" width="55" height="28"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Ti6-2w-sDr" kind="show" id="DAE-b2-Flf"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Multi-player High Scores:" translatesAutoresizingMaskIntoConstraints="NO" id="zO1-U1-mrp">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="77" y="247" width="577" height="729"/>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="JDi-rn-VzU"/>
+                                <exclude reference="92c-Ac-Jbe"/>
+                                <exclude reference="zO1-U1-mrp"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="JDi-rn-VzU"/>
+                                <include reference="92c-Ac-Jbe"/>
+                                <include reference="zO1-U1-mrp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="yzg-q7-0ve"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvw-tZ-Mhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="156" y="2868"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="bVq-WX-Hnq">
+            <objects>
+                <tabBarController id="bKl-In-zzV" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="itJ-X8-UGK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="YZo-dX-Rfc" kind="relationship" relationship="viewControllers" id="4pl-hH-3im"/>
+                        <segue destination="lPu-0u-Pgm" kind="relationship" relationship="viewControllers" id="ifw-fF-BBQ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8kv-x8-JxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-967.5" y="2137.5"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="2cd-De-rHK">
             <objects>
-                <viewController id="lPu-0u-Pgm" customClass="ScoresViewController" sceneMemberID="viewController">
+                <viewController id="lPu-0u-Pgm" customClass="SinglePlayerScoresVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="15R-Nw-rCV"/>
                         <viewControllerLayoutGuide type="bottom" id="Ozr-LL-4b0"/>
@@ -125,15 +206,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="High scores will go here" translatesAutoresizingMaskIntoConstraints="NO" id="2VH-G4-3NU">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="68" y="238" width="577" height="729"/>
-                                </variation>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iah-7k-NSK">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Home">
@@ -144,33 +216,43 @@
                                     <rect key="frame" x="83" y="64" width="55" height="28"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="Ti6-2w-sDr" kind="show" id="SbG-Jb-CUi"/>
+                                    <segue destination="Ti6-2w-sDr" kind="show" id="8Zs-wi-qRJ"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Single Player High Scores:" translatesAutoresizingMaskIntoConstraints="NO" id="2VH-G4-3NU">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="83" y="233" width="577" height="729"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="AP7-7z-PGd"/>
-                                <exclude reference="2VH-G4-3NU"/>
                                 <exclude reference="iah-7k-NSK"/>
+                                <exclude reference="2VH-G4-3NU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="AP7-7z-PGd"/>
-                                <include reference="2VH-G4-3NU"/>
                                 <include reference="iah-7k-NSK"/>
+                                <include reference="2VH-G4-3NU"/>
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="zs2-Hw-Iqx"/>
                     <connections>
-                        <outlet property="highScoresTextView" destination="2VH-G4-3NU" id="t3K-Ng-pMI"/>
+                        <outlet property="highScoresTextView" destination="2VH-G4-3NU" id="1HJ-W2-7cr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BId-z6-XL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378.75" y="720"/>
+            <point key="canvasLocation" x="340.5" y="1318.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -513,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="386.25"/>
+            <point key="canvasLocation" x="1893" y="386.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LMC-di-kKT">
@@ -584,8 +666,8 @@
         <image name="trophy.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="As8-Oz-X3g"/>
-        <segue reference="SbG-Jb-CUi"/>
+        <segue reference="DAE-b2-Flf"/>
         <segue reference="IHe-Md-d5e"/>
+        <segue reference="As8-Oz-X3g"/>
     </inferredMetricsTieBreakers>
 </document>
