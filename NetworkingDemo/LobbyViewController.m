@@ -26,6 +26,8 @@ static bool joined = NO;
 static bool first = YES;
 static int numPlayers = 0;
 static int joinsRecieved = 0;
+UIAlertController * waitingForPlayersToJoinAlert;
+NSString *alertMessage;
 
 +(LobbyViewController *)sharedViewController
 {
@@ -84,7 +86,13 @@ static int joinsRecieved = 0;
 
 -(void)joinGame {
     vc = self;
-    [self.waitingIndicator startAnimating];
+    alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
+    waitingForPlayersToJoinAlert=   [UIAlertController
+                                  alertControllerWithTitle:@"Waiting..."
+                                  message:alertMessage
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
     
     if(first){
         //appwarp configuration
@@ -117,6 +125,7 @@ static int joinsRecieved = 0;
         return;
     }
     joinsRecieved++;
+    waitingForPlayersToJoinAlert.message = [NSString stringWithFormat:@"%d/%d players have joined the room.", joinsRecieved+1, numPlayers];
     if(joinsRecieved + 1 == numPlayers){
         joined = YES;
         NSMutableDictionary *colors = [[GameHost sharedGameHost] playerColors];
@@ -164,7 +173,7 @@ static int joinsRecieved = 0;
          textField.placeholder = NSLocalizedString(@"LoginPlaceholder", @"Name");
      }];
     
-    UIAlertAction *okAction = [UIAlertAction
+    UIAlertAction *selectNumberOfPlayers = [UIAlertAction
                                actionWithTitle:NSLocalizedString(@"OK", @"OK action")
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action)
@@ -232,7 +241,7 @@ static int joinsRecieved = 0;
     
     
     [self presentViewController:userNameAlert animated:YES completion:nil];
-    [userNameAlert addAction:okAction];
+    [userNameAlert addAction:selectNumberOfPlayers];
     
     
     
