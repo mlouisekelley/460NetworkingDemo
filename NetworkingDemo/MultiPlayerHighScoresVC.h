@@ -10,4 +10,6 @@
 
 @interface MultiPlayerHighScoresVC : ScoresViewController
 
+@property (strong, nonatomic) IBOutlet UITextView *highScoresTextView;
+
 @end

@@ -208,6 +208,7 @@
                 
                 BoardCellDTO *currentDTO = cellDTO;
                 int scoreForWord = 0;
+                int wordLength = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && currLetterIndex < 100) {
                     if (currentDTO.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
                         if (![self isStartingTile:currentDTO]) {
@@ -216,12 +217,13 @@
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
                         scoreForWord += [BoardChecker getScoreForLetter:currentDTO.tvc.letterLabel.text];
+                        wordLength++;
                     }
                     currLetterIndex += 10;
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                 }
                 if (shouldScoreWord) {
-                    count += scoreForWord * scoreForWord;
+                    count += scoreForWord * wordLength;
                 }
             }
             
@@ -229,8 +231,11 @@
                 BOOL shouldScoreWord = YES;
                 int currLetterIndex = i;
                 
+                
+                
                 BoardCellDTO *currentDTO = cellDTO;
                 int scoreForWord = 0;
+                int wordLength = 0;
                 while ([self shouldCheckCellDTO:currentDTO] && (currLetterIndex%10 > 0)) {
                     if (currentDTO.isPending && ![currentDTO.tvc.pid isEqualToString:player]) {
                         if (![self isStartingTile:currentDTO]) {
@@ -239,12 +244,13 @@
                     }
                     if (currentDTO.tvc.isUnsent && [currentDTO.tvc.pid isEqualToString:player]) {
                         scoreForWord += [BoardChecker getScoreForLetter:currentDTO.tvc.letterLabel.text];
+                        wordLength++;
                     }
                     currLetterIndex++;
                     currentDTO = currLetterIndex%10>0 ? board[currLetterIndex] : nil;
                 }
                 if (shouldScoreWord) {
-                    count += scoreForWord * scoreForWord;
+                    count += scoreForWord * wordLength;
                 }
             }
             

@@ -27,7 +27,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    [self.highScoresTextView setText:[self.highScoresTextView.text stringByAppendingString:@"\n"]];
+    self.highScoresTextView.text = [self.highScoresTextView.text stringByAppendingString:@"\n"];
     
     [self executeQuery];
     
@@ -40,7 +40,7 @@
 
 -(void)refreshView {
     for (NSString *string in self.scoreStrings) {
-        [self.highScoresTextView setText:[self.highScoresTextView.text stringByAppendingString:string]];
+        self.highScoresTextView.text = [self.highScoresTextView.text stringByAppendingString:string]    ;
     }
 }
 
