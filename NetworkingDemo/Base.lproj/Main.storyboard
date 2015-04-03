@@ -87,6 +87,14 @@
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
+            <string>orangejuice</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -687,7 +695,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RFE-Jx-9gr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t66-y0-JMN">
@@ -820,13 +828,13 @@
                                     <rect key="frame" x="681" y="39" width="39" height="36"/>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-tX-eo6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-tX-eo6">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="328" y="437" width="167" height="94"/>
+                                    <rect key="frame" x="319" y="428" width="203" height="103"/>
                                 </variation>
                                 <connections>
                                     <segue destination="Egf-Q8-cPx" kind="show" id="KsO-nn-X8Y"/>
@@ -1357,13 +1365,13 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asw-6m-Dk7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asw-6m-Dk7">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="354" y="643" width="80" height="39"/>
+                                    <rect key="frame" x="299" y="584" width="203" height="103"/>
                                 </variation>
                                 <connections>
                                     <segue destination="Zl4-1e-Hjc" kind="show" id="edq-34-FfN"/>
@@ -1441,7 +1449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T9n-U5-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1463.25" y="-1619.25"/>
+            <point key="canvasLocation" x="1616.25" y="-1463.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NPw-I0-Usv">
@@ -1662,16 +1670,16 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3J-rP-39o">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3J-rP-39o">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="348" y="613" width="129" height="67"/>
+                                    <rect key="frame" x="363" y="581" width="203" height="103"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="m5Z-4h-gYl" kind="show" id="N3N-Fp-Eu6"/>
+                                    <segue destination="lTw-kE-W8j" kind="show" id="Z1D-29-ML4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1746,7 +1754,298 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zd-p6-YwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2134.5" y="-1626.75"/>
+            <point key="canvasLocation" x="1423.5" y="-2292.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="EZ9-gX-7Zc">
+            <objects>
+                <viewController id="lTw-kE-W8j" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lqL-oy-JXC"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Nq-Tt-bqm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s8S-hp-fCm">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t12.png" translatesAutoresizingMaskIntoConstraints="NO" id="3mC-bC-zH3">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-Wm-nf3">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="32"/>
+                                <color key="textColor" red="0.99607849120000003" green="0.56078433989999998" blue="0.0039215688589999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="95" y="864" width="100" height="42"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-Bl-acM">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="Screen Shot 2015-03-14 at 8.15.56 PM.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="681" y="39" width="39" height="36"/>
+                                </variation>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-Mh-MCQ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="54" y="930" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="Zmz-uX-FFl">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="137" y="930" width="42" height="42"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="y6z-W6-h2h">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="594" y="932" width="42" height="42"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="NQa-pA-AaJ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="662" y="930" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83p-oc-zPb">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <inset key="titleEdgeInsets" minX="-69" minY="0.0" maxX="0.0" maxY="15"/>
+                                <state key="normal" image="play-100.png">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="63" y="942" width="55" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="touchUpSubmit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rRz-SB-YGX"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59g-0K-xSC" customClass="BarTimerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.99607849120000003" green="0.058823533359999999" blue="0.0078431377190000002" alpha="1" colorSpace="deviceRGB"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="228" y="932" width="282" height="26"/>
+                                </variation>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="YaT-kQ-Xfu">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="670" y="937" width="53" height="50"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2a-FT-25E">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Reload Filled-50.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="599" y="938" width="32" height="32"/>
+                                </variation>
+                                <connections>
+                                    <action selector="recallTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mIn-4D-F26"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfK-h2-MfJ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Shuffle-50 (1).png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="144" y="937" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="shuffleTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4WW-XD-RJA"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="gRY-3w-TRo">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="172" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vn-XI-jev">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="189" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="TSK-Nx-nQp">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="363" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="S3g-lA-XIh">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="455" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-QY-SP5">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="639" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-W9-0ss">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="476" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkE-Kr-sgr">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="656" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXk-Ng-tJp">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="382" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="VXO-CG-L0j">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="259" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3n-CC-f2F">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="45"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="278" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="n36-WH-dqV">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="76" y="773" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxT-QC-ng3">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="95" y="789" width="36" height="43"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knB-D0-14S">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="513" y="936" width="48" height="18"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="zs0-lr-Bie" customClass="TutorialTile2">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="215" y="329" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01a-E0-ChU">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="234" y="344" width="36" height="43"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3mC-bC-zH3"/>
+                                <exclude reference="0EV-Wm-nf3"/>
+                                <exclude reference="LkG-Bl-acM"/>
+                                <exclude reference="bpL-Mh-MCQ"/>
+                                <exclude reference="Zmz-uX-FFl"/>
+                                <exclude reference="y6z-W6-h2h"/>
+                                <exclude reference="NQa-pA-AaJ"/>
+                                <exclude reference="83p-oc-zPb"/>
+                                <exclude reference="59g-0K-xSC"/>
+                                <exclude reference="YaT-kQ-Xfu"/>
+                                <exclude reference="G2a-FT-25E"/>
+                                <exclude reference="AfK-h2-MfJ"/>
+                                <exclude reference="gRY-3w-TRo"/>
+                                <exclude reference="1Vn-XI-jev"/>
+                                <exclude reference="TSK-Nx-nQp"/>
+                                <exclude reference="S3g-lA-XIh"/>
+                                <exclude reference="JaF-QY-SP5"/>
+                                <exclude reference="fPe-W9-0ss"/>
+                                <exclude reference="dkE-Kr-sgr"/>
+                                <exclude reference="SXk-Ng-tJp"/>
+                                <exclude reference="VXO-CG-L0j"/>
+                                <exclude reference="F3n-CC-f2F"/>
+                                <exclude reference="n36-WH-dqV"/>
+                                <exclude reference="TxT-QC-ng3"/>
+                                <exclude reference="knB-D0-14S"/>
+                                <exclude reference="zs0-lr-Bie"/>
+                                <exclude reference="01a-E0-ChU"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="3mC-bC-zH3"/>
+                                <include reference="0EV-Wm-nf3"/>
+                                <include reference="LkG-Bl-acM"/>
+                                <include reference="bpL-Mh-MCQ"/>
+                                <include reference="Zmz-uX-FFl"/>
+                                <include reference="y6z-W6-h2h"/>
+                                <include reference="NQa-pA-AaJ"/>
+                                <include reference="83p-oc-zPb"/>
+                                <include reference="59g-0K-xSC"/>
+                                <include reference="YaT-kQ-Xfu"/>
+                                <include reference="G2a-FT-25E"/>
+                                <include reference="AfK-h2-MfJ"/>
+                                <include reference="gRY-3w-TRo"/>
+                                <include reference="1Vn-XI-jev"/>
+                                <include reference="TSK-Nx-nQp"/>
+                                <include reference="S3g-lA-XIh"/>
+                                <include reference="JaF-QY-SP5"/>
+                                <include reference="fPe-W9-0ss"/>
+                                <include reference="dkE-Kr-sgr"/>
+                                <include reference="SXk-Ng-tJp"/>
+                                <include reference="VXO-CG-L0j"/>
+                                <include reference="F3n-CC-f2F"/>
+                                <include reference="n36-WH-dqV"/>
+                                <include reference="TxT-QC-ng3"/>
+                                <include reference="knB-D0-14S"/>
+                                <include reference="zs0-lr-Bie"/>
+                                <include reference="01a-E0-ChU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <segue destination="m5Z-4h-gYl" kind="show" identifier="b" id="emz-Hx-cMx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAa-wM-wVp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3459.75" y="34.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="7Zq-mM-U92">
@@ -1967,13 +2266,13 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-Hk-yWD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-Hk-yWD">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="372" y="702" width="46" height="30"/>
+                                    <rect key="frame" x="339" y="681" width="135" height="68"/>
                                 </variation>
                                 <connections>
                                     <segue destination="lgY-wj-Xbw" kind="show" id="rkI-SS-uVr"/>
@@ -2051,7 +2350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjT-Ee-jzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802.75" y="-1626.75"/>
+            <point key="canvasLocation" x="4662" y="58.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="23F-23-viv">
@@ -2138,7 +2437,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="16P-kw-8Ec">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="670" y="937" width="53" height="50"/>
+                                    <rect key="frame" x="668" y="937" width="53" height="50"/>
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fF0-XT-3aJ">
@@ -2272,13 +2571,13 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfa-45-5Bi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfa-45-5Bi">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="435" y="763" width="46" height="30"/>
+                                    <rect key="frame" x="503" y="650" width="128" height="65"/>
                                 </variation>
                                 <connections>
                                     <segue destination="vLc-Zs-QqY" kind="show" id="L25-n7-O7d"/>
@@ -2356,7 +2655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzR-C6-CVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3546" y="-1619.25"/>
+            <point key="canvasLocation" x="4116" y="-1712.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6kK-HR-V8k">
@@ -2577,13 +2876,13 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-BJ-WM7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-BJ-WM7">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="127" y="662" width="161" height="76"/>
+                                    <rect key="frame" x="111" y="648" width="203" height="103"/>
                                 </variation>
                                 <connections>
                                     <segue destination="HVs-eZ-zB8" kind="show" id="aih-bC-dLf"/>
@@ -2661,7 +2960,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmW-lS-t70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3231.75" y="-1759.5"/>
+            <point key="canvasLocation" x="3156.75" y="-2343.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yqR-Fj-a7j">
@@ -2953,7 +3252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Sq-K7-d7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3300" y="-2286"/>
+            <point key="canvasLocation" x="2493" y="-2887.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sB1-kG-VMn">
@@ -2964,7 +3263,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3cE-kj-Vdf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GuS-cM-ZHg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t11.png" translatesAutoresizingMaskIntoConstraints="NO" id="mhc-dn-1NK">
@@ -3174,16 +3473,16 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14c-1g-Vvx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-Xw-yB6">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="nextButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="346" y="364" width="101" height="57"/>
+                                    <rect key="frame" x="320" y="362" width="118" height="60"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="Ti6-2w-sDr" kind="show" id="B1f-R5-vSV"/>
+                                    <segue destination="Ti6-2w-sDr" kind="show" id="Vnf-em-BxD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3217,7 +3516,7 @@
                                 <exclude reference="hVE-Kz-1FC"/>
                                 <exclude reference="QvL-ZZ-9LK"/>
                                 <exclude reference="8L5-cs-1xZ"/>
-                                <exclude reference="14c-1g-Vvx"/>
+                                <exclude reference="Tpe-Xw-yB6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -3249,14 +3548,14 @@
                                 <include reference="hVE-Kz-1FC"/>
                                 <include reference="QvL-ZZ-9LK"/>
                                 <include reference="8L5-cs-1xZ"/>
-                                <include reference="14c-1g-Vvx"/>
+                                <include reference="Tpe-Xw-yB6"/>
                             </mask>
                         </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aT-HE-L44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-344.25" y="234"/>
+            <point key="canvasLocation" x="-145.5" y="171"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3xf-96-TbW">
@@ -3267,7 +3566,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Znu-Bz-nRy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QwM-ml-jqf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t10.png" translatesAutoresizingMaskIntoConstraints="NO" id="S0p-g7-Cf2">
@@ -3546,7 +3845,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEh-tO-bgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3519.75" y="-2388.75"/>
+            <point key="canvasLocation" x="4758.75" y="-2271.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DZG-vg-GpB">
@@ -3557,7 +3856,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FAE-kZ-9GF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TQX-zm-irn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-F6-RT0">
@@ -3860,7 +4159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4O-9s-Gzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="633.75" y="-679.5"/>
+            <point key="canvasLocation" x="-107.25" y="-1453.5"/>
         </scene>
     </scenes>
     <resources>
@@ -3873,10 +4172,12 @@
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg4.png" width="1593" height="2108"/>
         <image name="hiscorebkg.png" width="1593" height="2112"/>
+        <image name="nextButton.png" width="203" height="103"/>
         <image name="play-100.png" width="100" height="100"/>
         <image name="t1.png" width="1609" height="2108"/>
         <image name="t10.png" width="1609" height="2108"/>
         <image name="t11.png" width="1609" height="2108"/>
+        <image name="t12.png" width="1609" height="2108"/>
         <image name="t2.png" width="1609" height="2108"/>
         <image name="t3.png" width="1609" height="2108"/>
         <image name="t4.png" width="1609" height="2108"/>
@@ -3890,9 +4191,9 @@
         <image name="trophy.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="B1f-R5-vSV"/>
-        <segue reference="8vg-oJ-Mwt"/>
+        <segue reference="RK8-te-Rwd"/>
         <segue reference="0OY-zl-CYX"/>
-        <segue reference="As8-Oz-X3g"/>
+        <segue reference="8vg-oJ-Mwt"/>
+        <segue reference="Vnf-em-BxD"/>
     </inferredMetricsTieBreakers>
 </document>
