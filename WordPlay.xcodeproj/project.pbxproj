@@ -69,6 +69,9 @@
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F04498961AB0B5F90020F01A /* unplayedTile.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498931AB0B5F90020F01A /* unplayedTile.png */; };
 		F04498971AB0B5F90020F01A /* gamebkg2.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498941AB0B5F90020F01A /* gamebkg2.png */; };
+		F04F04181ACF1FF2003FEB65 /* endGameDialog.png in Resources */ = {isa = PBXBuildFile; fileRef = F04F04161ACF1FF2003FEB65 /* endGameDialog.png */; };
+		F04F04191ACF1FF2003FEB65 /* endGameDialog2.png in Resources */ = {isa = PBXBuildFile; fileRef = F04F04171ACF1FF2003FEB65 /* endGameDialog2.png */; };
+		F04F041B1ACF212A003FEB65 /* TutorialTile.m in Sources */ = {isa = PBXBuildFile; fileRef = F04F041A1ACF212A003FEB65 /* TutorialTile.m */; };
 		F051CEA11AB54B850013AAC7 /* gamebkg.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CE9E1AB54B850013AAC7 /* gamebkg.png */; };
 		F051CEA21AB54B850013AAC7 /* tile1.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CE9F1AB54B850013AAC7 /* tile1.png */; };
 		F051CEA31AB54B850013AAC7 /* tile1Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F051CEA01AB54B850013AAC7 /* tile1Pressed.png */; };
@@ -185,6 +188,10 @@
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F04498931AB0B5F90020F01A /* unplayedTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unplayedTile.png; sourceTree = "<group>"; };
 		F04498941AB0B5F90020F01A /* gamebkg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg2.png; sourceTree = "<group>"; };
+		F04F04161ACF1FF2003FEB65 /* endGameDialog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameDialog.png; sourceTree = "<group>"; };
+		F04F04171ACF1FF2003FEB65 /* endGameDialog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameDialog2.png; sourceTree = "<group>"; };
+		F04F041A1ACF212A003FEB65 /* TutorialTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialTile.m; sourceTree = "<group>"; };
+		F04F041C1ACF213A003FEB65 /* TutorialTile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TutorialTile.h; sourceTree = "<group>"; };
 		F051CE9E1AB54B850013AAC7 /* gamebkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg.png; sourceTree = "<group>"; };
 		F051CE9F1AB54B850013AAC7 /* tile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1.png; sourceTree = "<group>"; };
 		F051CEA01AB54B850013AAC7 /* tile1Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1Pressed.png; sourceTree = "<group>"; };
@@ -263,6 +270,8 @@
 		A30ADC881A4CFBD200047201 /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F04F04161ACF1FF2003FEB65 /* endGameDialog.png */,
+				F04F04171ACF1FF2003FEB65 /* endGameDialog2.png */,
 				F051CE9E1AB54B850013AAC7 /* gamebkg.png */,
 				A36E23231AC9E9200068F887 /* hiscorebkg.png */,
 				F0F1FD911ACC71EA00F45F3C /* t1.png */,
@@ -295,6 +304,8 @@
 				F061ED0C1A8C004C00C66223 /* Resources */,
 				A36C3C151A670DF0000BF0B0 /* BoardChecker.h */,
 				A36C3C161A670DF0000BF0B0 /* BoardChecker.m */,
+				F04F041C1ACF213A003FEB65 /* TutorialTile.h */,
+				F04F041A1ACF212A003FEB65 /* TutorialTile.m */,
 				A30ADCB51A4D0CCC00047201 /* BoardViewCell.h */,
 				A30ADCB61A4D0CCC00047201 /* BoardViewCell.m */,
 				277E15EA1A7FFFD6009BD072 /* TossTileView.h */,
@@ -496,11 +507,13 @@
 				F0221D721AB51ED200245C38 /* fuel_red_2.png in Resources */,
 				A38645351ABA05F90032CF8C /* Shuffle-50.png in Resources */,
 				A30FCE801AB605D60009F82E /* unplayedTile1.png in Resources */,
+				F04F04181ACF1FF2003FEB65 /* endGameDialog.png in Resources */,
 				F04498961AB0B5F90020F01A /* unplayedTile.png in Resources */,
 				F08B23D81A9CE9BA0051C3AF /* bkg.png in Resources */,
 				A3CABF1D1A8E6E4F0037B370 /* success.m4a in Resources */,
 				F08950151A9A6214004EA816 /* trophy.png in Resources */,
 				A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */,
+				F04F04191ACF1FF2003FEB65 /* endGameDialog2.png in Resources */,
 				F08B23D61A9CE9BA0051C3AF /* tile.png in Resources */,
 				F051CEA11AB54B850013AAC7 /* gamebkg.png in Resources */,
 				A30FCE851AB605F20009F82E /* unplayedTile3.png in Resources */,
@@ -561,6 +574,7 @@
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */,
+				F04F041B1ACF212A003FEB65 /* TutorialTile.m in Sources */,
 				277E15EC1A800035009BD072 /* TossTileView.m in Sources */,
 				F0221D751AB5232F00245C38 /* BarTimerView.m in Sources */,
 				273F70661A61C68C005103BA /* RoomListener.m in Sources */,

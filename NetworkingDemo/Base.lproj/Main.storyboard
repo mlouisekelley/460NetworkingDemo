@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
@@ -676,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1893" y="386.25"/>
+            <point key="canvasLocation" x="1725" y="788.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LMC-di-kKT">
@@ -820,6 +820,18 @@
                                     <rect key="frame" x="681" y="39" width="39" height="36"/>
                                 </variation>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-tX-eo6">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="328" y="437" width="167" height="94"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Egf-Q8-cPx" kind="show" id="KsO-nn-X8Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -839,6 +851,7 @@
                                 <exclude reference="GFf-Xy-iXH"/>
                                 <exclude reference="a0Q-BE-O9X"/>
                                 <exclude reference="Jct-QR-yKU"/>
+                                <exclude reference="Dry-tX-eo6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -858,13 +871,14 @@
                                 <include reference="GFf-Xy-iXH"/>
                                 <include reference="a0Q-BE-O9X"/>
                                 <include reference="Jct-QR-yKU"/>
+                                <include reference="Dry-tX-eo6"/>
                             </mask>
                         </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mh2-zF-dcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="355.5" y="-514.5"/>
+            <point key="canvasLocation" x="-145.5" y="-679.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GbM-eg-dCl">
@@ -929,7 +943,7 @@
                                     <rect key="frame" x="63" y="942" width="55" height="40"/>
                                 </variation>
                                 <connections>
-                                    <action selector="touchUpSubmit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECK-nE-80e"/>
+                                    <segue destination="ErP-LJ-6rp" kind="show" id="8vg-oJ-Mwt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJd-v0-KDR">
@@ -1116,10 +1130,13 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="800" height="1800"/>
+                    <connections>
+                        <segue destination="ErP-LJ-6rp" kind="show" id="2dd-ok-FsP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPh-6n-XP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-839.25"/>
+            <point key="canvasLocation" x="1038" y="-1374.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aJz-UL-PfT">
@@ -1340,6 +1357,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asw-6m-Dk7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="354" y="643" width="80" height="39"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Zl4-1e-Hjc" kind="show" id="edq-34-FfN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -1371,6 +1400,7 @@
                                 <exclude reference="81i-Oa-edN"/>
                                 <exclude reference="TDe-MZ-1Pb"/>
                                 <exclude reference="ceY-K3-r3h"/>
+                                <exclude reference="asw-6m-Dk7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1402,6 +1432,7 @@
                                 <include reference="81i-Oa-edN"/>
                                 <include reference="TDe-MZ-1Pb"/>
                                 <include reference="ceY-K3-r3h"/>
+                                <include reference="asw-6m-Dk7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1410,7 +1441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T9n-U5-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572.75" y="-1240.5"/>
+            <point key="canvasLocation" x="1463.25" y="-1619.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NPw-I0-Usv">
@@ -1631,6 +1662,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3J-rP-39o">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="348" y="613" width="129" height="67"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="m5Z-4h-gYl" kind="show" id="N3N-Fp-Eu6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -1662,6 +1705,7 @@
                                 <exclude reference="oxJ-vD-dmw"/>
                                 <exclude reference="XLp-sT-Pfy"/>
                                 <exclude reference="cv5-b1-z1O"/>
+                                <exclude reference="K3J-rP-39o"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1693,6 +1737,7 @@
                                 <include reference="oxJ-vD-dmw"/>
                                 <include reference="XLp-sT-Pfy"/>
                                 <include reference="cv5-b1-z1O"/>
+                                <include reference="K3J-rP-39o"/>
                             </mask>
                         </variation>
                     </view>
@@ -1701,7 +1746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zd-p6-YwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140.5" y="-1515.75"/>
+            <point key="canvasLocation" x="2134.5" y="-1626.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="7Zq-mM-U92">
@@ -1922,6 +1967,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-Hk-yWD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="372" y="702" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="lgY-wj-Xbw" kind="show" id="rkI-SS-uVr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -1953,6 +2010,7 @@
                                 <exclude reference="Akk-gC-J92"/>
                                 <exclude reference="y4a-vo-XXi"/>
                                 <exclude reference="ZPu-kL-FXL"/>
+                                <exclude reference="CGc-Hk-yWD"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1984,6 +2042,7 @@
                                 <include reference="Akk-gC-J92"/>
                                 <include reference="y4a-vo-XXi"/>
                                 <include reference="ZPu-kL-FXL"/>
+                                <include reference="CGc-Hk-yWD"/>
                             </mask>
                         </variation>
                     </view>
@@ -1992,7 +2051,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjT-Ee-jzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2285.25" y="-1419"/>
+            <point key="canvasLocation" x="2802.75" y="-1626.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="23F-23-viv">
@@ -2213,6 +2272,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfa-45-5Bi">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="435" y="763" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="vLc-Zs-QqY" kind="show" id="L25-n7-O7d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -2244,6 +2315,7 @@
                                 <exclude reference="Xmp-Fw-Egh"/>
                                 <exclude reference="V5f-z5-Bhv"/>
                                 <exclude reference="dqQ-FQ-EcK"/>
+                                <exclude reference="Pfa-45-5Bi"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -2275,6 +2347,7 @@
                                 <include reference="Xmp-Fw-Egh"/>
                                 <include reference="V5f-z5-Bhv"/>
                                 <include reference="dqQ-FQ-EcK"/>
+                                <include reference="Pfa-45-5Bi"/>
                             </mask>
                         </variation>
                     </view>
@@ -2283,7 +2356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzR-C6-CVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2683.5" y="-1473.75"/>
+            <point key="canvasLocation" x="3546" y="-1619.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6kK-HR-V8k">
@@ -2504,6 +2577,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-BJ-WM7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="127" y="662" width="161" height="76"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="HVs-eZ-zB8" kind="show" id="aih-bC-dLf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -2535,6 +2620,7 @@
                                 <exclude reference="MBY-9M-R6K"/>
                                 <exclude reference="TZF-e2-zDW"/>
                                 <exclude reference="XvD-an-0gX"/>
+                                <exclude reference="wbe-BJ-WM7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -2566,6 +2652,7 @@
                                 <include reference="MBY-9M-R6K"/>
                                 <include reference="TZF-e2-zDW"/>
                                 <include reference="XvD-an-0gX"/>
+                                <include reference="wbe-BJ-WM7"/>
                             </mask>
                         </variation>
                     </view>
@@ -2574,7 +2661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmW-lS-t70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2784.75" y="-1725"/>
+            <point key="canvasLocation" x="3231.75" y="-1759.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yqR-Fj-a7j">
@@ -2686,6 +2773,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="shuffleTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S9j-Nf-UYi"/>
+                                    <segue destination="GrY-F5-BIi" kind="show" id="SDe-rF-kRY"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="3c4-jN-hHP">
@@ -2865,7 +2953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Sq-K7-d7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2976.75" y="-1967.25"/>
+            <point key="canvasLocation" x="3300" y="-2286"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sB1-kG-VMn">
@@ -3086,6 +3174,18 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14c-1g-Vvx">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="346" y="364" width="101" height="57"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Ti6-2w-sDr" kind="show" id="B1f-R5-vSV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -3117,6 +3217,7 @@
                                 <exclude reference="hVE-Kz-1FC"/>
                                 <exclude reference="QvL-ZZ-9LK"/>
                                 <exclude reference="8L5-cs-1xZ"/>
+                                <exclude reference="14c-1g-Vvx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -3148,13 +3249,14 @@
                                 <include reference="hVE-Kz-1FC"/>
                                 <include reference="QvL-ZZ-9LK"/>
                                 <include reference="8L5-cs-1xZ"/>
+                                <include reference="14c-1g-Vvx"/>
                             </mask>
                         </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aT-HE-L44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3317.25" y="-2013"/>
+            <point key="canvasLocation" x="-344.25" y="234"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3xf-96-TbW">
@@ -3254,6 +3356,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="recallTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Utm-SO-mDo"/>
+                                    <segue destination="NZ9-2h-icL" kind="show" id="lHe-Be-c1b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ci-Pl-PhW">
@@ -3443,7 +3546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEh-tO-bgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3217.5" y="-2395.5"/>
+            <point key="canvasLocation" x="3519.75" y="-2388.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DZG-vg-GpB">
@@ -3584,13 +3687,13 @@
                                     <action selector="shuffleTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRz-aD-liW"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="6Va-fL-HFl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="6Va-fL-HFl" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="75" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-hA-pBQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-hA-pBQ" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="172" y="773" width="64" height="64"/>
@@ -3604,31 +3707,31 @@
                                     <rect key="frame" x="189" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-4J-Eoz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-4J-Eoz" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="267" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-Yr-xud">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-Yr-xud" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="363" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="ead-RW-Vtn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="ead-RW-Vtn" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="455" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-Mf-IJ0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-Mf-IJ0" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="547" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-w6-Jvq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-w6-Jvq" customClass="TutorialTile">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="639" y="773" width="64" height="64"/>
@@ -3679,7 +3782,7 @@
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="89" y="791" width="36" height="39"/>
+                                    <rect key="frame" x="94" y="789" width="36" height="39"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -3751,10 +3854,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <segue destination="avp-cw-zsu" kind="show" identifier="a" id="fGX-zD-pZG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4O-9s-Gzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1653" y="-712.5"/>
+            <point key="canvasLocation" x="633.75" y="-679.5"/>
         </scene>
     </scenes>
     <resources>
@@ -3784,8 +3890,9 @@
         <image name="trophy.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Zs-wi-qRJ"/>
-        <segue reference="IHe-Md-d5e"/>
+        <segue reference="B1f-R5-vSV"/>
+        <segue reference="8vg-oJ-Mwt"/>
+        <segue reference="0OY-zl-CYX"/>
         <segue reference="As8-Oz-X3g"/>
     </inferredMetricsTieBreakers>
 </document>
