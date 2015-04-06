@@ -22,6 +22,7 @@
     if (event.result==SUCCESS)
     {
         NSLog(@"connection success");
+        [[WarpClient getInstance] getAllRooms];
         [NetworkUtils joinRoom];
     }
     else if (event.result==SUCCESS_RECOVERED)
@@ -86,6 +87,10 @@
 -(void)onGetAllRoomsDone:(AllRoomsEvent*)event{
     if (event.result == SUCCESS) {
         //[[WarpClient getInstance]getOnlineUsers];
+        NSMutableArray *roomIds = event.roomIds;
+        for (NSString *roomId in roomIds) {
+            NSLog(@"ROOM ID: %@", roomId);
+        }
     }
     else {
     }
@@ -131,8 +136,5 @@
         NSLog(@"failed to create room");
     }
 }
-
-
-
 
 @end

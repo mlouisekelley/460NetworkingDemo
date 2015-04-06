@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		270711811A9143AF00591493 /* GameHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 270711801A9143AF00591493 /* GameHost.m */; };
 		273BD35F1AD2261500BFEE65 /* JoinGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 273BD35E1AD2261500BFEE65 /* JoinGameVC.m */; };
-		273BD3621AD2312400BFEE65 /* ZoneListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273BD3611AD2312400BFEE65 /* ZoneListener.m */; };
 		273F70611A61C60E005103BA /* ConnectionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70601A61C60E005103BA /* ConnectionListener.m */; };
 		273F70661A61C68C005103BA /* RoomListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70631A61C68C005103BA /* RoomListener.m */; };
 		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
@@ -114,8 +113,6 @@
 		270711821A9143BE00591493 /* GameHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHost.h; sourceTree = "<group>"; };
 		273BD35D1AD2261500BFEE65 /* JoinGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinGameVC.h; sourceTree = "<group>"; };
 		273BD35E1AD2261500BFEE65 /* JoinGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinGameVC.m; sourceTree = "<group>"; };
-		273BD3601AD230F300BFEE65 /* ZoneListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZoneListener.h; sourceTree = "<group>"; };
-		273BD3611AD2312400BFEE65 /* ZoneListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneListener.m; sourceTree = "<group>"; };
 		273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../Downloads/AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		273F705F1A61C60E005103BA /* ConnectionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionListener.h; sourceTree = "<group>"; };
 		273F70601A61C60E005103BA /* ConnectionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListener.m; sourceTree = "<group>"; };
@@ -348,8 +345,6 @@
 				27C759A61A69AAEF0004DB59 /* NetworkUtils.m */,
 				273F70621A61C68C005103BA /* RoomListener.h */,
 				273F70631A61C68C005103BA /* RoomListener.m */,
-				273BD3601AD230F300BFEE65 /* ZoneListener.h */,
-				273BD3611AD2312400BFEE65 /* ZoneListener.m */,
 				273F70641A61C68C005103BA /* NotificationListener.h */,
 				273F70651A61C68C005103BA /* NotificationListener.m */,
 				273F705F1A61C60E005103BA /* ConnectionListener.h */,
@@ -592,7 +587,6 @@
 				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
 				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
 				A36E232A1ACC3CF10068F887 /* MultiPlayerHighScoresVC.m in Sources */,
-				273BD3621AD2312400BFEE65 /* ZoneListener.m in Sources */,
 				270711811A9143AF00591493 /* GameHost.m in Sources */,
 				A36E23271ACC3AEB0068F887 /* SinglePlayerScoresVC.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
