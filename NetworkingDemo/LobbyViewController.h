@@ -15,6 +15,7 @@
 -(void)startGame;
 - (IBAction)playButtonTouched:(id)sender;
 -(int)getNumPlayers;
--(void)startGameHelper ;
+-(void)startGameHelper;
+-(void)showCurrentGames:(NSMutableArray *)roomIds;
 
 @end

@@ -20,5 +20,7 @@
 
 +(NSString *)getUserName;
 +(void)setUserName:(NSString *)userName;
++(NSString *)getRoomIdToJoin;
++(void)setRoomIdToJoin:(NSString *)roomId;
 
 @end

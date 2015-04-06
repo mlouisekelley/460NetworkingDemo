@@ -96,28 +96,31 @@ NSString *alertMessage;
     
     if(first){
         //appwarp configuration
-        [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
-        
-        WarpClient *warpClient = [WarpClient getInstance];
-        [warpClient setRecoveryAllowance:60];
-        [warpClient enableTrace:YES];
-        
-        ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
-        [warpClient addConnectionRequestListener:connectionListener];
-        [warpClient addZoneRequestListener:connectionListener];
-        
-        RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
-        [warpClient addRoomRequestListener:roomListener];
-        
-        NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
-        [warpClient addNotificationListener:notificationListener];
-        
-        [warpClient connectWithUserName:[GameConstants getUserName]];
+        [self configureAppWarp];
         first = NO;
     } else {
         [NetworkUtils sendJoinedLobby];
     }
     
+}
+
+-(void)configureAppWarp {
+    [WarpClient initWarp:APPWARP_APP_KEY secretKey: APPWARP_SECRET_KEY];
+    
+    WarpClient *warpClient = [WarpClient getInstance];
+    [warpClient setRecoveryAllowance:60];
+    [warpClient enableTrace:YES];
+    
+    ConnectionListener *connectionListener = [[ConnectionListener alloc] initWithHelper:self];
+    [warpClient addConnectionRequestListener:connectionListener];
+    [warpClient addZoneRequestListener:connectionListener];
+    
+    RoomListener *roomListener = [[RoomListener alloc]initWithHelper:self];
+    [warpClient addRoomRequestListener:roomListener];
+    
+    NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
+    [warpClient addNotificationListener:notificationListener];
+    [[WarpClient getInstance] connectWithUserName:[GameConstants getUserName]];
 }
 
 -(void)playerJoinedLobby {
@@ -185,7 +188,55 @@ NSString *alertMessage;
 }
 
 -(void)goToJoinScreen {
-    [vc performSegueWithIdentifier:@"JoinGame" sender:vc];
+    [self configureAppWarp];
+    UIAlertController * userNameAlert = [UIAlertController
+                                         alertControllerWithTitle:@"Username"
+                                         message:@"Please enter player name"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+    
+    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = NSLocalizedString(@"LoginPlaceholder", @"Name");
+     }];
+    
+    //create ok action for alert
+    UIAlertAction* okay = [UIAlertAction
+                           actionWithTitle:@"Enter"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                               [[WarpClient getInstance] getAllRooms];
+                           }];
+    
+    [userNameAlert addAction:okay];
+    [self presentViewController:userNameAlert animated:YES completion:nil];
+}
+
+-(void)showCurrentGames:(NSMutableArray *)roomIds
+{
+    UIAlertController * selectGameAlert = [UIAlertController
+                                         alertControllerWithTitle:@"Open Games"
+                                         message:@"Please select the game you wish to join"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    
+    for (NSString *roomId in roomIds) {
+        UIAlertAction* gameAction = [UIAlertAction
+                             actionWithTitle:roomId
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
+                                 [GameConstants setRoomIdToJoin:roomId];
+                                 [self playFourPlayers:gameAction];
+                             }];
+        [selectGameAlert addAction:gameAction];
+    }
+    
+    NSLog(@"HERE");
+    [self presentViewController:selectGameAlert animated:YES completion:nil];
 }
 
 -(void)createGame {

@@ -69,7 +69,7 @@
     else
     {
         NSLog(@".onJoinRoomDone..on Join room listener called failed");
-        [[WarpClient getInstance] createRoomWithRoomName:@"MyGameRoom" roomOwner:@"admin" properties:nil maxUsers:2];
+        [[WarpClient getInstance] createRoomWithRoomName:[GameConstants getUserName] roomOwner:@"admin" properties:nil maxUsers:10];
     }
     
 }

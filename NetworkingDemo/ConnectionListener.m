@@ -7,6 +7,7 @@
 //
 
 #import "ConnectionListener.h"
+#import "LobbyViewController.h"
 @implementation ConnectionListener
 @synthesize helper;
 
@@ -22,7 +23,6 @@
     if (event.result==SUCCESS)
     {
         NSLog(@"connection success");
-        [[WarpClient getInstance] getAllRooms];
         [NetworkUtils joinRoom];
     }
     else if (event.result==SUCCESS_RECOVERED)
@@ -87,12 +87,12 @@
 -(void)onGetAllRoomsDone:(AllRoomsEvent*)event{
     if (event.result == SUCCESS) {
         //[[WarpClient getInstance]getOnlineUsers];
+        NSLog(@"Got all rooms");
         NSMutableArray *roomIds = event.roomIds;
-        for (NSString *roomId in roomIds) {
-            NSLog(@"ROOM ID: %@", roomId);
-        }
+        [[LobbyViewController sharedViewController] showCurrentGames:roomIds];
     }
     else {
+        NSLog(@"Failed to get all rooms");
     }
 }
 -(void)onGetOnlineUsersDone:(AllUsersEvent*)event{
@@ -131,7 +131,7 @@
 
 -(void)onCreateRoomDone:(RoomEvent *)roomEvent{
     if(roomEvent.result == SUCCESS){
-        NSLog(@"created room");
+        [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
     } else {
         NSLog(@"failed to create room");
     }
