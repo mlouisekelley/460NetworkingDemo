@@ -470,10 +470,17 @@ NSNumber *lowestHighScore;
     
     if(_numPlayers == 1){
         if([self didGetHighScore:gameScore[@"score"]]){
+            
             alertMessage = @"New High Score!";
         } else {
             alertMessage = @"You did not get a new high score. Better luck next time!";
         }
+        UIImageView *endGameDialog = [[UIImageView alloc] initWithFrame:CGRectMake(50,200,720*.9, 613*.9)];
+        endGameDialog.image = [UIImage imageNamed:@"EndGame1"];
+        UIButton *homeBut = [[UIButton alloc] initWithFrame:CGRectMake( 50, 720*.9, 139, 71)];
+        [homeBut setImage:[UIImage imageNamed:@"Home"] forState:UIControlStateNormal];
+        [endGameDialog addSubview:homeBut];
+        [self.view addSubview:endGameDialog];
     } else {
         if ([self didCurrentPlayerWin]) {
             alertMessage = @"You Win!";
@@ -485,7 +492,7 @@ NSNumber *lowestHighScore;
     
     if (objc_getClass("UIAlertController") != nil){
         
-        //create an alert
+//        //create an alert
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"GAME OVER"
                                       message:alertMessage
