@@ -86,8 +86,6 @@
 
 -(void)onGetAllRoomsDone:(AllRoomsEvent*)event{
     if (event.result == SUCCESS) {
-        //[[WarpClient getInstance]getOnlineUsers];
-        NSLog(@"Got all rooms");
         NSMutableArray *roomIds = event.roomIds;
         [[LobbyViewController sharedViewController] showCurrentGames:roomIds];
     }

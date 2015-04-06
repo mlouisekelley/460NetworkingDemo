@@ -64,24 +64,8 @@ NSString *alertMessage;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)playOnePlayers:(id)sender {
-    numPlayers = 1;
-    [self joinGame];
-}
-
-
-- (IBAction)playTwoPlayers:(id)sender {
-    numPlayers = 2;
-    [self joinGame];
-}
-
-- (IBAction)playThreePlayers:(id)sender {
-    numPlayers = 3;
-    [self joinGame];
-}
-
-- (IBAction)playFourPlayers:(id)sender {
-    numPlayers = 4;
+- (void)playWithN:(int)players {
+    numPlayers = players;
     [self joinGame];
 }
 
@@ -107,7 +91,6 @@ NSString *alertMessage;
     [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
     
     if(first){
-        //appwarp configuration
         [self configureAppWarp];
         first = NO;
     } else {
@@ -179,15 +162,15 @@ NSString *alertMessage;
 
 - (IBAction)playButtonTouched:(id)sender {
     UIAlertController *joinOrCreate = [UIAlertController
-                                         alertControllerWithTitle:@"Do you want to join or create a game?"
+                                         alertControllerWithTitle:@"Select an option from below:"
                                          message:nil
                                          preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *joinAction = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *joinAction = [UIAlertAction actionWithTitle:@"Join an exisiting game" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
         [self goToJoinScreen];
     }];
-    UIAlertAction *createAction = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *createAction = [UIAlertAction actionWithTitle:@"Create a new game" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
         [self createGame];
     }];
@@ -233,8 +216,9 @@ NSString *alertMessage;
                                          preferredStyle:UIAlertControllerStyleAlert];
     
     
-    UIAlertAction*  gameAction;
+    UIAlertAction *gameAction;
     for (NSString *roomId in roomIds) {
+        //[[WarpClient getInstance] deleteRoom:roomId];
         gameAction = [UIAlertAction
                              actionWithTitle:roomId
                              style:UIAlertActionStyleDefault
@@ -283,7 +267,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playOnePlayers:p1];
+                                                                         [self playWithN:1];
                                                                      }];
                                                 UIAlertAction* p2 = [UIAlertAction
                                                                      actionWithTitle:@"2"
@@ -291,7 +275,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playTwoPlayers:p2];
+                                                                         [self playWithN:2];
                                                                      }];
                                                 UIAlertAction* p3 = [UIAlertAction
                                                                      actionWithTitle:@"3"
@@ -300,7 +284,7 @@ NSString *alertMessage;
                                                                      {
                                                                          
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playThreePlayers:p3];
+                                                                         [self playWithN:3];
                                                                      }];
                                                 UIAlertAction* p4 = [UIAlertAction
                                                                      actionWithTitle:@"4"
@@ -308,7 +292,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playFourPlayers:p4];
+                                                                         [self playWithN:4];
                                                                      }];
                                                 
                                                 UIAlertAction* cancel = [UIAlertAction
