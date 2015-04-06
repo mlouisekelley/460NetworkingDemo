@@ -46,6 +46,7 @@ ViewController *superview;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         tapGesture.numberOfTapsRequired = 2;
         [self addGestureRecognizer:tapGesture];
+        superview = nil;
         self.userInteractionEnabled = YES;
     }
     return self;
@@ -58,6 +59,7 @@ ViewController *superview;
 
 -(void)awakeFromNib {
     [super awakeFromNib];
+    superview = nil;
     _letterLabel.text = [self getRandomUppercaseLetter];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
