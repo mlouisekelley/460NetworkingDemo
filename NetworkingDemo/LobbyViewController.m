@@ -55,6 +55,7 @@ NSString *alertMessage;
     [super viewDidLoad];
     joined = NO;
     self.touchToPlay = NO;
+    vc = self;
     // Do any additional setup after loading the view.
 }
 
@@ -85,7 +86,6 @@ NSString *alertMessage;
 }
 
 -(void)joinGame {
-    vc = self;
     alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
     waitingForPlayersToJoinAlert=   [UIAlertController
                                   alertControllerWithTitle:@"Waiting..."
@@ -205,7 +205,7 @@ NSString *alertMessage;
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
                            {
-                               [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                               //[userNameAlert dismissViewControllerAnimated:YES completion:nil];
                                [[WarpClient getInstance] getAllRooms];
                            }];
     
@@ -221,9 +221,9 @@ NSString *alertMessage;
                                          preferredStyle:UIAlertControllerStyleAlert];
     
     
-    
+    UIAlertAction*  gameAction;
     for (NSString *roomId in roomIds) {
-        UIAlertAction* gameAction = [UIAlertAction
+        gameAction = [UIAlertAction
                              actionWithTitle:roomId
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
@@ -235,7 +235,6 @@ NSString *alertMessage;
         [selectGameAlert addAction:gameAction];
     }
     
-    NSLog(@"HERE");
     [self presentViewController:selectGameAlert animated:YES completion:nil];
 }
 
