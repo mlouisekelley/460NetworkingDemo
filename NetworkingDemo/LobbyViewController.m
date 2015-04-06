@@ -85,6 +85,18 @@ NSString *alertMessage;
     [self joinGame];
 }
 
+-(void)joinExistingGame
+{
+    alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
+    waitingForPlayersToJoinAlert=   [UIAlertController
+                                     alertControllerWithTitle:@"Waiting..."
+                                     message:alertMessage
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
+    [NetworkUtils joinRoom];
+}
+
 -(void)joinGame {
     alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
     waitingForPlayersToJoinAlert=   [UIAlertController
@@ -230,7 +242,7 @@ NSString *alertMessage;
                              {
                                  [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
                                  [GameConstants setRoomIdToJoin:roomId];
-                                 [self playFourPlayers:gameAction];
+                                 [self joinExistingGame];
                              }];
         [selectGameAlert addAction:gameAction];
     }
