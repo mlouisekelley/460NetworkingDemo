@@ -98,6 +98,44 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Join GameVC-->
+        <scene sceneID="Y1F-RX-zgL">
+            <objects>
+                <viewController id="4YX-ha-c1f" customClass="JoinGameVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PDN-KL-tWe"/>
+                        <viewControllerLayoutGuide type="bottom" id="2eR-Dq-YGf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IwG-Wx-2mv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfV-iw-uug">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="386" y="160" width="32" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="CfV-iw-uug"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="CfV-iw-uug"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUr-aK-Vwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1991.25" y="303"/>
+        </scene>
         <!--Lobby View Controller-->
         <scene sceneID="HfL-ra-gmY">
             <objects>
@@ -186,6 +224,7 @@
                     <connections>
                         <outlet property="waitingIndicator" destination="Qq4-kn-as6" id="L6F-5Z-CUX"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="BeginGame" id="As8-Oz-X3g"/>
+                        <segue destination="4YX-ha-c1f" kind="show" identifier="JoinGame" id="sGa-CT-Bao"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54w-I1-NoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4192,8 +4231,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8vg-oJ-Mwt"/>
-        <segue reference="0OY-zl-CYX"/>
+        <segue reference="IHe-Md-d5e"/>
+        <segue reference="Vnf-em-BxD"/>
         <segue reference="As8-Oz-X3g"/>
-        <segue reference="AlX-Ox-Ng0"/>
     </inferredMetricsTieBreakers>
 </document>
