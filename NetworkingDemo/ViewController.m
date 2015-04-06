@@ -93,8 +93,8 @@ NSNumber *lowestHighScore;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 1;
-        seconds = 30;
+        minutes = 0;
+        seconds = 10;
     } else {
         minutes = 2;
         seconds = 0;
