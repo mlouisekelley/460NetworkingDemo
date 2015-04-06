@@ -11,6 +11,7 @@
 #import "RoomListener.h"
 #import "NotificationListener.h"
 #import "ConnectionListener.h"
+#import "ZoneListener.h"
 
 @interface LobbyViewController ()
 
@@ -111,6 +112,9 @@ NSString *alertMessage;
         
         NotificationListener *notificationListener = [[NotificationListener alloc]initWithHelper:self];
         [warpClient addNotificationListener:notificationListener];
+        
+        ZoneListener *zoneListener = [[ZoneListener alloc]initWithHelper:self];
+        [warpClient addZoneRequestListener:zoneListener];
         
         [warpClient connectWithUserName:[GameConstants getUserName]];
         first = NO;
