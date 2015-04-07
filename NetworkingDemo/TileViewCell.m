@@ -44,7 +44,7 @@ ViewController *superview;
         [self addSubview:self.letterLabel];
         
         self.pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 40, 24, 24)];
-        self.pointsLabel.text = [NSString stringWithFormat:@"%d", [BoardChecker getScoreForLetter:self.letterLabel.text]];
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d", (int)[BoardChecker getScoreForLetter:self.letterLabel.text]];
         [self addSubview:self.pointsLabel];
         
         _pid = playerID;

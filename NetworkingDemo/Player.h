@@ -16,4 +16,6 @@
 @property (nonatomic) UIColor *color;
 @property (nonatomic) int playerNumber;
 @property (nonatomic) int numWords;
+@property (nonatomic) int maxWordScore;
+@property (nonatomic, strong) NSString *maxWord;
 @end
