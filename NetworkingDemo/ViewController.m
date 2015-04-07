@@ -561,7 +561,7 @@ NSString *curWord;
             alertMessage = @"You did not get a new high score. Better luck next time!";
             endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
         }
-        endGameDialog.frame = CGRectMake(100, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+        endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
         endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
         endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
         endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%f", (1.0)* currentPlayer.numWords / numSeconds];
@@ -571,7 +571,7 @@ NSString *curWord;
         [self.view addSubview:shieldView];
         
         [self.view addSubview:endGameDialog];
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.0
                               delay:0
                             options: UIViewAnimationCurveLinear
                          animations:^{
