@@ -99,6 +99,11 @@
     [[WarpClient getInstance] createRoomWithRoomName:@"propertyRoom" roomOwner:@"admin" properties:properties maxUsers:4];
 }
 
++(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players
+{
+    [[WarpClient getInstance] createRoomWithRoomName:name roomOwner:[GameConstants getUserName] properties:nil maxUsers:players];
+}
+
 +(void)generateAndSendStartingWord
 {
     NSArray *starting_words = @[@"ABOUT", @"ABOVE", @"AFTER", @"AGAIN", @"ALONG", @"BEGAN", @"BEGIN", @"BEING", @"BELOW",  @"BIRDS", @"BLACK", @"CARRY", @"CLOSE", @"COLOR", @"COULD", @"EARLY", @"EARTH", @"EVERY", @"FACET", @"FIRST", @"FOUND", @"GREAT", @"GROUP", @"HEARD", @"HORSE", @"HOURS", @"HOUSE", @"LARGE", @"LEARN", @"LEAVE", @"LIGHT", @"MIGHT", @"MUSIC", @"NEVER", @"NIGHT", @"OFTEN", @"ORDER", @"OTHER", @"PAPER", @"PIECE", @"PLACE", @"PLANT", @"POINT", @"RIGHT", @"RIVER", @"SHORT", @"SINCE", @"SMALL", @"SOUND", @"SPELL", @"STAND", @"START", @"STATE", @"STILL", @"STORY", @"STUDY", @"THEIR", @"THERE", @"THESE", @"THING", @"THINK", @"THOSE", @"THREE", @"TODAY", @"UNDER", @"UNTIL", @"WAVES", @"WHERE", @"WHICH", @"WHILE", @"WHITE", @"WHOLE", @"WORLD", @"WOULD", @"WRITE", @"YOUNG"];

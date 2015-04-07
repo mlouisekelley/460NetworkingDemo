@@ -29,6 +29,7 @@
 +(void)createRoom;
 +(void)sendLetterReturned:(NSString *)update;
 +(void)generateAndSendStartingWord;
++(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players;
 
 
 @end

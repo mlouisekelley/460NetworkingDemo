@@ -23,7 +23,6 @@
     if (event.result==SUCCESS)
     {
         NSLog(@"connection success");
-        [NetworkUtils joinRoom];
     }
     else if (event.result==SUCCESS_RECOVERED)
     {

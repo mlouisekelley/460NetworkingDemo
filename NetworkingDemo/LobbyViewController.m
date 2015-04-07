@@ -56,7 +56,7 @@ NSString *alertMessage;
     joined = NO;
     self.touchToPlay = NO;
     vc = self;
-    // Do any additional setup after loading the view.
+    [self configureAppWarp];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,9 +64,16 @@ NSString *alertMessage;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)playWithNPlayers:(int)players {
+- (void)createAndJoinGameWithName:(NSString *)name andNumPlayers:(int)players {
     numPlayers = players;
-    [self joinGame];
+    [NetworkUtils createRoomWithName:name andNumPlayers:players];
+    alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
+    waitingForPlayersToJoinAlert=   [UIAlertController
+                                     alertControllerWithTitle:@"Waiting..."
+                                     message:alertMessage
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
 }
 
 -(void)joinExistingGame
@@ -79,24 +86,6 @@ NSString *alertMessage;
     
     [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
     [NetworkUtils joinRoom];
-}
-
--(void)joinGame {
-    alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
-    waitingForPlayersToJoinAlert=   [UIAlertController
-                                  alertControllerWithTitle:@"Waiting..."
-                                  message:alertMessage
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
-    
-    if(first){
-        [self configureAppWarp];
-        first = NO;
-    } else {
-        [NetworkUtils sendJoinedLobby];
-    }
-    
 }
 
 -(void)configureAppWarp {
@@ -235,14 +224,14 @@ NSString *alertMessage;
 }
 
 -(void)createGame {
-    UIAlertController * userNameAlert = [UIAlertController
-                                         alertControllerWithTitle:@"Username"
-                                         message:@"Please enter player name"
+    UIAlertController * roomNameAlert = [UIAlertController
+                                         alertControllerWithTitle:@"Room Name"
+                                         message:@"Please enter the display name for this room:"
                                          preferredStyle:UIAlertControllerStyleAlert];
     
-    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+    [roomNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
      {
-         textField.placeholder = NSLocalizedString(@"LoginPlaceholder", @"Name");
+         textField.placeholder = NSLocalizedString(@"Room Name", @"Name");
      }];
     
     UIAlertAction *selectNumberOfPlayers = [UIAlertAction
@@ -250,12 +239,12 @@ NSString *alertMessage;
                                             style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction *action)
                                             {
-                                                UITextField *login = userNameAlert.textFields.firstObject;
-                                                [GameConstants setUserName:login.text];
+                                                UITextField *login = roomNameAlert.textFields.firstObject;
+                                                NSString *gameName = login.text;
                                                 //create an alert
                                                 UIAlertController * alert=   [UIAlertController
                                                                               alertControllerWithTitle:@"Number of players"
-                                                                              message:@"Choose how many players there are"
+                                                                              message:@"Choose how many players for this game"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
                                                 
                                                 [self presentViewController:alert animated:YES completion:nil];
@@ -267,7 +256,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithNPlayers:1];
+                                                                         [self createAndJoinGameWithName:gameName andNumPlayers:1];
                                                                      }];
                                                 UIAlertAction* p2 = [UIAlertAction
                                                                      actionWithTitle:@"2"
@@ -275,7 +264,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithNPlayers:2];
+                                                                         [self createAndJoinGameWithName:gameName andNumPlayers:2];
                                                                      }];
                                                 UIAlertAction* p3 = [UIAlertAction
                                                                      actionWithTitle:@"3"
@@ -284,7 +273,7 @@ NSString *alertMessage;
                                                                      {
                                                                          
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithNPlayers:3];
+                                                                         [self createAndJoinGameWithName:gameName andNumPlayers:3];
                                                                      }];
                                                 UIAlertAction* p4 = [UIAlertAction
                                                                      actionWithTitle:@"4"
@@ -292,7 +281,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithNPlayers:4];
+                                                                         [self createAndJoinGameWithName:gameName andNumPlayers:4];
                                                                      }];
                                                 
                                                 UIAlertAction* cancel = [UIAlertAction
@@ -312,8 +301,8 @@ NSString *alertMessage;
                                             }];
     
     
-    [self presentViewController:userNameAlert animated:YES completion:nil];
-    [userNameAlert addAction:selectNumberOfPlayers];
+    [self presentViewController:roomNameAlert animated:YES completion:nil];
+    [roomNameAlert addAction:selectNumberOfPlayers];
 }
 
 
