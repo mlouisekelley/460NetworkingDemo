@@ -98,6 +98,7 @@ ViewController *superview;
 //    [self setImage:[UIImage imageNamed:@""]];
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
     [self setImage:[UIImage imageNamed:@"TileFinal"]];
+    self.userInteractionEnabled = NO;
     int numParticles = 15;
     int particleSize = 4;
     

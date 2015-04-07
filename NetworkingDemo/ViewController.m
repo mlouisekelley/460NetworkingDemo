@@ -564,7 +564,7 @@ NSString *curWord;
         endGameDialog.frame = CGRectMake(100, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
         endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
         endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
-        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.numWords / numSeconds];
+        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%f", (1.0)* currentPlayer.numWords / numSeconds];
         endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
         shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
         shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
