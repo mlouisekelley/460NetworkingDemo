@@ -1562,7 +1562,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t5.png" translatesAutoresizingMaskIntoConstraints="NO" id="vYV-YO-jMA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t12.png" translatesAutoresizingMaskIntoConstraints="NO" id="vYV-YO-jMA">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
@@ -1853,7 +1853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zd-p6-YwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423.5" y="-2292.75"/>
+            <point key="canvasLocation" x="1357.5" y="-3096.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EZ9-gX-7Zc">
@@ -1867,7 +1867,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t12.png" translatesAutoresizingMaskIntoConstraints="NO" id="3mC-bC-zH3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t5.png" translatesAutoresizingMaskIntoConstraints="NO" id="3mC-bC-zH3">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
@@ -2755,7 +2755,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzR-C6-CVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4116" y="-1712.25"/>
+            <point key="canvasLocation" x="3990" y="-3002.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6kK-HR-V8k">
@@ -3060,7 +3060,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmW-lS-t70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3156.75" y="-2343.75"/>
+            <point key="canvasLocation" x="3192.75" y="-3015.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yqR-Fj-a7j">
@@ -4086,13 +4086,7 @@
                                     <action selector="shuffleTiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRz-aD-liW"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="6Va-fL-HFl" customClass="TutorialTile">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="75" y="773" width="64" height="64"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-hA-pBQ" customClass="TutorialTile">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-hA-pBQ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="172" y="773" width="64" height="64"/>
@@ -4112,25 +4106,25 @@
                                     <rect key="frame" x="267" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-Yr-xud" customClass="TutorialTile">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-Yr-xud">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="363" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="ead-RW-Vtn" customClass="TutorialTile">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="ead-RW-Vtn">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="455" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-Mf-IJ0" customClass="TutorialTile">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-Mf-IJ0">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="547" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-w6-Jvq" customClass="TutorialTile">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-w6-Jvq">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="639" y="773" width="64" height="64"/>
@@ -4176,6 +4170,12 @@
                                     <rect key="frame" x="656" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="6Va-fL-HFl" customClass="TutorialTile">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="772" width="64" height="64"/>
+                                </variation>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbf-tl-JGw">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
@@ -4203,7 +4203,6 @@
                                 <exclude reference="Ee0-i1-0MY"/>
                                 <exclude reference="2FF-hl-lis"/>
                                 <exclude reference="g9J-1j-60F"/>
-                                <exclude reference="6Va-fL-HFl"/>
                                 <exclude reference="fYQ-hA-pBQ"/>
                                 <exclude reference="Xpa-Eu-WNs"/>
                                 <exclude reference="PGa-4J-Eoz"/>
@@ -4216,6 +4215,7 @@
                                 <exclude reference="0b9-kW-wR6"/>
                                 <exclude reference="dfs-t2-thw"/>
                                 <exclude reference="chy-QM-mb3"/>
+                                <exclude reference="6Va-fL-HFl"/>
                                 <exclude reference="qbf-tl-JGw"/>
                             </mask>
                         </variation>
@@ -4236,7 +4236,6 @@
                                 <include reference="Ee0-i1-0MY"/>
                                 <include reference="2FF-hl-lis"/>
                                 <include reference="g9J-1j-60F"/>
-                                <include reference="6Va-fL-HFl"/>
                                 <include reference="fYQ-hA-pBQ"/>
                                 <include reference="Xpa-Eu-WNs"/>
                                 <include reference="PGa-4J-Eoz"/>
@@ -4249,6 +4248,7 @@
                                 <include reference="0b9-kW-wR6"/>
                                 <include reference="dfs-t2-thw"/>
                                 <include reference="chy-QM-mb3"/>
+                                <include reference="6Va-fL-HFl"/>
                                 <include reference="qbf-tl-JGw"/>
                             </mask>
                         </variation>
