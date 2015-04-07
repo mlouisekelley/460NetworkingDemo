@@ -966,7 +966,7 @@ EndGameDialog *endGameDialog;
 
 - (IBAction)recallTiles:(id)sender {
     for (TileViewCell *cell in self.allTiles) {
-        if ([cell.pid isEqualToString:[GameConstants getUserName]]) {
+        if ([cell.pid isEqualToString:[GameConstants getUserName]] && !cell.isOnRack) {
             [self takeTileFromBoard:cell];
         }
     }
