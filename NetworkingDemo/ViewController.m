@@ -284,6 +284,45 @@ EndGameDialog *endGameDialog;
 }
 
 #pragma mark End Game stuff
+- (void) getTopScore {
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    [query orderByDescending:@"score"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void) getAverageScore {
+    PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            PFObject *object = objects[0];
+            double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 - (void)updateCounter:(CADisplayLink *)displayLink {
     double currentTime = [displayLink timestamp];
     double timeSince = currentTime - frameTimestamp;
@@ -472,6 +511,40 @@ EndGameDialog *endGameDialog;
             NSLog(@"Error saving game score in background\n");
         }
     }];
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            if ([objects count] > 0) {
+                for (PFObject *object in objects) {
+                    [object incrementKey:@"totalScore" byAmount:gameScore[@"score"]];
+                    [object incrementKey:@"numGames"];
+                    [object saveInBackground];
+                }
+            } else {
+                PFObject *newStats = [PFObject objectWithClassName:@"Stats"];
+                newStats[@"playerName"] = [GameConstants getUserName];
+                newStats[@"totalScore"] = gameScore[@"score"];
+                newStats[@"numGames"] = @1;
+                [newStats saveInBackground];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    [gameScore incrementKey:@"score" byAmount:[NSNumber numberWithDouble:20.0]];
+    [gameScore saveInBackground];
+    
+    
+    //PFObject *
     
     if(_numPlayers == 1){
         if([self didGetHighScore:gameScore[@"score"]]){
