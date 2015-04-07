@@ -64,7 +64,7 @@ NSString *alertMessage;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)playWithN:(int)players {
+- (void)playWithNPlayers:(int)players {
     numPlayers = players;
     [self joinGame];
 }
@@ -267,7 +267,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithN:1];
+                                                                         [self playWithNPlayers:1];
                                                                      }];
                                                 UIAlertAction* p2 = [UIAlertAction
                                                                      actionWithTitle:@"2"
@@ -275,7 +275,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithN:2];
+                                                                         [self playWithNPlayers:2];
                                                                      }];
                                                 UIAlertAction* p3 = [UIAlertAction
                                                                      actionWithTitle:@"3"
@@ -284,7 +284,7 @@ NSString *alertMessage;
                                                                      {
                                                                          
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithN:3];
+                                                                         [self playWithNPlayers:3];
                                                                      }];
                                                 UIAlertAction* p4 = [UIAlertAction
                                                                      actionWithTitle:@"4"
@@ -292,7 +292,7 @@ NSString *alertMessage;
                                                                      handler:^(UIAlertAction * action)
                                                                      {
                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self playWithN:4];
+                                                                         [self playWithNPlayers:4];
                                                                      }];
                                                 
                                                 UIAlertAction* cancel = [UIAlertAction
