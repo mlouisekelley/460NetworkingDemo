@@ -13,6 +13,7 @@
 #import "BoardChecker.h"
 #import "BoardCellDTO.h"
 #import "Player.h"
+#import "EndGameDialog.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVAudioPlayer.h>
 #import <Parse/Parse.h>
@@ -49,6 +50,7 @@ int displayScore = 0;
 int playerTwoScore = 0;
 int playerThreeScore = 0;
 int playerFourScore = 0;
+int numSeconds = 0;
 double frameTimestamp;
 int playerNumber = 2;
 NSString *successNoisePath;
@@ -57,7 +59,8 @@ int waitsRecieved = 0;
 UIAlertController * waitingAlert;
 UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
-
+UIView *shieldView;
+EndGameDialog *endGameDialog;
 - (void)viewDidLoad {
     
     isGameOver = NO;
@@ -75,6 +78,7 @@ NSNumber *lowestHighScore;
     currentPlayer.userName = [GameConstants getUserName];
     currentPlayer.playerNumber = 1;
     currentPlayer.color = [[GameHost sharedGameHost] getColorForPlayer:currentPlayer.userName];
+    currentPlayer.numWords = 0;
     self.currentPlayerScoreLabel.textColor = currentPlayer.color;
     _allTiles = [[NSMutableArray alloc] init];
     
@@ -93,18 +97,19 @@ NSNumber *lowestHighScore;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 1;
-        seconds = 30;
+        minutes = 0;
+        seconds = 10;
     } else {
         minutes = 2;
         seconds = 0;
     }
+    numSeconds = seconds + minutes * 60;
     milliseconds = 0;
     
     playerTwoScore = 0;
     playerThreeScore = 0;
     playerFourScore = 0;
-    
+    currentPlayer.numWords = 0;
     currentPlayer.numberOfTiles = 0;
     frameTimestamp = CACurrentMediaTime();
     
@@ -279,6 +284,45 @@ NSNumber *lowestHighScore;
 }
 
 #pragma mark End Game stuff
+- (void) getTopScore {
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    [query orderByDescending:@"score"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void) getAverageScore {
+    PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            PFObject *object = objects[0];
+            double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 - (void)updateCounter:(CADisplayLink *)displayLink {
     double currentTime = [displayLink timestamp];
     double timeSince = currentTime - frameTimestamp;
@@ -468,12 +512,67 @@ NSNumber *lowestHighScore;
         }
     }];
     
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
+    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    query.limit = 1;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            if ([objects count] > 0) {
+                for (PFObject *object in objects) {
+                    [object incrementKey:@"totalScore" byAmount:gameScore[@"score"]];
+                    [object incrementKey:@"numGames"];
+                    [object saveInBackground];
+                }
+            } else {
+                PFObject *newStats = [PFObject objectWithClassName:@"Stats"];
+                newStats[@"playerName"] = [GameConstants getUserName];
+                newStats[@"totalScore"] = gameScore[@"score"];
+                newStats[@"numGames"] = @1;
+                [newStats saveInBackground];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    [gameScore incrementKey:@"score" byAmount:[NSNumber numberWithDouble:20.0]];
+    [gameScore saveInBackground];
+    
+    
+    //PFObject *
+    
     if(_numPlayers == 1){
         if([self didGetHighScore:gameScore[@"score"]]){
+            
             alertMessage = @"New High Score!";
+            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog2" owner:self options:nil] objectAtIndex:0];
+            
         } else {
             alertMessage = @"You did not get a new high score. Better luck next time!";
+            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
         }
+        endGameDialog.frame = CGRectMake(100, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+        endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
+        endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
+        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.numWords / numSeconds];
+        shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
+        shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+        [self.view addSubview:shieldView];
+        
+        [self.view addSubview:endGameDialog];
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options: UIViewAnimationCurveLinear
+                         animations:^{
+                             endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+                         }
+                         completion:^(BOOL finished){
+                         }];
     } else {
         if ([self didCurrentPlayerWin]) {
             alertMessage = @"You Win!";
@@ -485,13 +584,13 @@ NSNumber *lowestHighScore;
     
     if (objc_getClass("UIAlertController") != nil){
         
-        //create an alert
+//        //create an alert
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"GAME OVER"
                                       message:alertMessage
                                       preferredStyle:UIAlertControllerStyleAlert];
         
-        [self presentViewController:alert animated:YES completion:nil];
+       // [self presentViewController:alert animated:YES completion:nil];
         
         //create rematch action for alert
         UIAlertAction* rematch = [UIAlertAction
@@ -536,6 +635,28 @@ NSNumber *lowestHighScore;
     }
 }
 
+-(void) goHome {
+    [shieldView removeFromSuperview];
+    [endGameDialog removeFromSuperview];
+    
+    [NetworkUtils sendRematchDenied];
+    
+    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+}
+
+-(void) goRematch {
+    [shieldView removeFromSuperview];
+    [endGameDialog removeFromSuperview];
+    
+    [NetworkUtils sendWaitingForRematch];
+    
+    waitingAlert=   [UIAlertController
+                     alertControllerWithTitle:@"WAITING"
+                     message:@""
+                     preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:waitingAlert animated:YES completion:nil];
+}
 -(Player *)getMaxPlayer {
     Player *maxPlayer = nil;
     for (Player *player in self.players) {
@@ -575,6 +696,7 @@ NSNumber *lowestHighScore;
 }
 
 -(BOOL)didGetHighScore:(NSNumber*)score {
+    
     if([score integerValue] >= [lowestHighScore integerValue]){
         return YES;
     }
@@ -824,7 +946,7 @@ NSNumber *lowestHighScore;
             [self createTileInRack];
         }
         [self updateSelfScore];
-        
+        currentPlayer.numWords++;
         //TODO: Need to move this to a seperate callable method
         
         //Play a sound

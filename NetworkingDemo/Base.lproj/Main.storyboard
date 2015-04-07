@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
+            <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
@@ -107,6 +107,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2eR-Dq-YGf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IwG-Wx-2mv">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfV-iw-uug">
@@ -188,11 +189,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-AQ-ubE">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="83"/>
+                                <state key="normal" title="?">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="634" y="921" width="98" height="95"/>
+                                    <rect key="frame" x="633" y="921" width="98" height="95"/>
                                 </variation>
                                 <connections>
                                     <segue destination="IF6-Sh-vro" kind="show" id="IHe-Md-d5e"/>
@@ -229,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54w-I1-NoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-858" y="479.25"/>
+            <point key="canvasLocation" x="-1299" y="1070.25"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="Kd1-Aa-olI">
@@ -520,25 +523,25 @@
                                     <rect key="frame" x="570" y="865" width="114" height="32"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.png" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-SA-Q2f">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trophy" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-SA-Q2f">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="398" y="869" width="24" height="24"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.png" translatesAutoresizingMaskIntoConstraints="NO" id="QvI-SA-zZu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trophy" translatesAutoresizingMaskIntoConstraints="NO" id="QvI-SA-zZu">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="85" y="869" width="24" height="24"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.png" translatesAutoresizingMaskIntoConstraints="NO" id="pha-Av-TTh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trophy" translatesAutoresizingMaskIntoConstraints="NO" id="pha-Av-TTh">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="236" y="869" width="24" height="24"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.png" translatesAutoresizingMaskIntoConstraints="NO" id="TEi-oR-lP4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trophy" translatesAutoresizingMaskIntoConstraints="NO" id="TEi-oR-lP4">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="551" y="869" width="24" height="24"/>
@@ -591,7 +594,7 @@
                                     <rect key="frame" x="557" y="924" width="42" height="21"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="7F4-au-toT">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="7F4-au-toT">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="601" y="935" width="38" height="38"/>
@@ -609,7 +612,7 @@
                                     <segue destination="IF6-Sh-vro" kind="show" id="0OY-zl-CYX"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="139" y="932" width="38" height="38"/>
@@ -1804,6 +1807,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7Nq-Tt-bqm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="s8S-hp-fCm">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t12.png" translatesAutoresizingMaskIntoConstraints="NO" id="3mC-bC-zH3">
@@ -4207,7 +4211,8 @@
         <image name="Shuffle-50 (1).png" width="50" height="50"/>
         <image name="Tile2" width="212" height="212"/>
         <image name="TileFinal" width="212" height="212"/>
-        <image name="bkg.png" width="1575" height="2088"/>
+        <image name="Trophy" width="50" height="50"/>
+        <image name="bkg.png" width="1042" height="1381"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg4.png" width="1593" height="2108"/>
         <image name="hiscorebkg.png" width="1593" height="2112"/>
@@ -4225,14 +4230,12 @@
         <image name="t7.png" width="1609" height="2108"/>
         <image name="t8.png" width="1609" height="2108"/>
         <image name="t9.png" width="1609" height="2108"/>
-        <image name="tile.png" width="212" height="212"/>
         <image name="trash-64.png" width="64" height="64"/>
-        <image name="trophy.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8vg-oJ-Mwt"/>
-        <segue reference="IHe-Md-d5e"/>
-        <segue reference="Vnf-em-BxD"/>
         <segue reference="As8-Oz-X3g"/>
+        <segue reference="AlX-Ox-Ng0"/>
+        <segue reference="IHe-Md-d5e"/>
+        <segue reference="8vg-oJ-Mwt"/>
     </inferredMetricsTieBreakers>
 </document>
