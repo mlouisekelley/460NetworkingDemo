@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -794,7 +793,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RFE-Jx-9gr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t66-y0-JMN">
@@ -3956,7 +3955,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FAE-kZ-9GF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TQX-zm-irn">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-F6-RT0">

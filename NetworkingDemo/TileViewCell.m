@@ -34,12 +34,17 @@ ViewController *superview;
         }
         self.letterLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 4, 64, 64)];
         self.letterLabel.text = letter;
-        self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:54];
+        if ([letter isEqualToString:@"W"]) {
+            self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:42];
+        }
+        else {
+            self.letterLabel.font = [UIFont fontWithName:@"orange juice" size:54];
+        }
         _startPoint = self.frame.origin;
         [self addSubview:self.letterLabel];
         
         self.pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 40, 24, 24)];
-        self.pointsLabel.text = [NSString stringWithFormat:@"%d", [BoardChecker getScoreForLetter:self.letterLabel.text]];
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d", (int)[BoardChecker getScoreForLetter:self.letterLabel.text]];
         [self addSubview:self.pointsLabel];
         
         _pid = playerID;
@@ -93,6 +98,7 @@ ViewController *superview;
 //    [self setImage:[UIImage imageNamed:@""]];
     [self setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:1]];
     [self setImage:[UIImage imageNamed:@"TileFinal"]];
+    self.userInteractionEnabled = NO;
     int numParticles = 15;
     int particleSize = 4;
     

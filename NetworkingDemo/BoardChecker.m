@@ -63,6 +63,7 @@
     
     NSMutableArray *incorrectWords = [[NSMutableArray alloc] init];
     NSMutableArray *notConnectedWords = [[NSMutableArray alloc] init];
+    NSMutableString *newWords = [[NSMutableString alloc] init];
     for (int i = 0; i<[board count]; i++) {
         BoardCellDTO *cellDTO = board[i];
         if (![self isBlank:cellDTO] && [self shouldCheckCellDTO:cellDTO]) {
@@ -94,6 +95,11 @@
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                     
                 }
+                if ([newWords length] > 0) {
+                    [newWords appendString:@", "];
+                }
+                [newWords appendString:word];
+                
                 if (!wordIsConnected) {
                     if(isNewWord){
                         [notConnectedWords addObject:word];
@@ -149,6 +155,7 @@
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     [returnArray addObject:incorrectWords];
     [returnArray addObject:notConnectedWords];
+    [returnArray addObject:newWords];
     return returnArray;
 }
 

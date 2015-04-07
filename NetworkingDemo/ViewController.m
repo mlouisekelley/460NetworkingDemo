@@ -61,6 +61,8 @@ UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
 UIView *shieldView;
 EndGameDialog *endGameDialog;
+NSString *curWord;
+
 - (void)viewDidLoad {
     
     isGameOver = NO;
@@ -111,6 +113,9 @@ EndGameDialog *endGameDialog;
     playerFourScore = 0;
     currentPlayer.numWords = 0;
     currentPlayer.numberOfTiles = 0;
+    currentPlayer.maxWordScore = 0;
+    currentPlayer.maxWord = @"";
+    
     frameTimestamp = CACurrentMediaTime();
     
     _tileSpaces = [[NSMutableArray alloc] init];
@@ -559,7 +564,8 @@ EndGameDialog *endGameDialog;
         endGameDialog.frame = CGRectMake(100, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
         endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
         endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
-        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.numWords / numSeconds];
+        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%f", (1.0)* currentPlayer.numWords / numSeconds];
+        endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
         shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
         shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
         [self.view addSubview:shieldView];
@@ -882,6 +888,7 @@ EndGameDialog *endGameDialog;
     NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
     NSArray *invalidWordsOnBoard = boardCheckerResults[0];
     NSArray *notConnectedWordsOnBoard = boardCheckerResults[1];
+    NSString *newWords = boardCheckerResults[2];
     if ([invalidWordsOnBoard count] > 0 || [notConnectedWordsOnBoard count] > 0) {
         
         NSString *alertMessage = @"";
@@ -945,7 +952,7 @@ EndGameDialog *endGameDialog;
         for (int i = 0; i < num; i++) {
             [self createTileInRack];
         }
-        [self updateSelfScore];
+        [self updateSelfScore:newWords];
         currentPlayer.numWords++;
         //TODO: Need to move this to a seperate callable method
         
@@ -1218,8 +1225,16 @@ EndGameDialog *endGameDialog;
 }
 
 #pragma mark - scoring
--(void) updateSelfScore {
+-(void) updateSelfScore:(NSString *)newWords {
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
+    if (pointsEarned > currentPlayer.maxWordScore) {
+        currentPlayer.maxWord = newWords;
+    }
+    if ([newWords containsString:@","]) {
+        currentPlayer.numWords++;
+    }
+    currentPlayer.numWords++;
+    
     NSUInteger oldScore = [[self.playerScores valueForKey:currentPlayer.userName] integerValue];
     NSUInteger newScore = pointsEarned + oldScore;
     currentPlayer.score = (int)newScore;
@@ -1338,9 +1353,10 @@ EndGameDialog *endGameDialog;
         if (!cellDTO.tvc.isStartingTile && cellDTO.tvc.isUnsent) {
             cellDTO.isPending = 0;
             cellDTO.tvc.isUnsent = NO;
-//            NSLog(@"i %ld, j %ld\n", (long)i, (long)cellDTO.tvc.indexPath.item);
+            
             [finalLetterMessage appendFormat:@":a:%ld:%@",(long)cellDTO.tvc.indexPath.item, cellDTO.tvc.letterLabel.text];
             [cellDTO.tvc makeFinalized:100];
+            
         }
         else if (cellDTO.tvc == nil && cellDTO.tileWasHere) {
             cellDTO.tileWasHere = NO;
