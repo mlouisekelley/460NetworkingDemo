@@ -58,6 +58,10 @@
 -(void)rematch;
 -(void)playerWaitingForRematch;
 -(void)playerDeniedRematch;
+-(void)goRematch;
+-(void)goHome;
+
+
 
 @end
 

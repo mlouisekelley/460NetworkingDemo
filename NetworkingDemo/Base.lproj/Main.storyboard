@@ -94,6 +94,7 @@
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
+            <string>orangejuice</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -188,11 +189,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-AQ-ubE">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="83"/>
+                                <state key="normal" title="?">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="634" y="921" width="98" height="95"/>
+                                    <rect key="frame" x="633" y="921" width="98" height="95"/>
                                 </variation>
                                 <connections>
                                     <segue destination="IF6-Sh-vro" kind="show" id="IHe-Md-d5e"/>
@@ -734,7 +737,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RFE-Jx-9gr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t66-y0-JMN">
@@ -3896,7 +3899,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FAE-kZ-9GF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TQX-zm-irn">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-F6-RT0">
@@ -4209,7 +4212,7 @@
         <image name="Tile2" width="212" height="212"/>
         <image name="TileFinal" width="212" height="212"/>
         <image name="Trophy" width="50" height="50"/>
-        <image name="bkg.png" width="1575" height="2088"/>
+        <image name="bkg.png" width="1042" height="1381"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg4.png" width="1593" height="2108"/>
         <image name="hiscorebkg.png" width="1593" height="2112"/>
@@ -4230,9 +4233,9 @@
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AlX-Ox-Ng0"/>
         <segue reference="As8-Oz-X3g"/>
-        <segue reference="0OY-zl-CYX"/>
+        <segue reference="AlX-Ox-Ng0"/>
+        <segue reference="IHe-Md-d5e"/>
         <segue reference="8vg-oJ-Mwt"/>
     </inferredMetricsTieBreakers>
 </document>

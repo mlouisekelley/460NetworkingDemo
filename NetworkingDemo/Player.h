@@ -15,4 +15,5 @@
 @property (nonatomic) int score;
 @property (nonatomic) UIColor *color;
 @property (nonatomic) int playerNumber;
+@property (nonatomic) int numWords;
 @end

@@ -93,6 +93,12 @@
 		F08B23D61A9CE9BA0051C3AF /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = F08B23D31A9CE9BA0051C3AF /* tile.png */; };
 		F08B23D71A9CE9BA0051C3AF /* tilePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F08B23D41A9CE9BA0051C3AF /* tilePressed.png */; };
 		F08B23D81A9CE9BA0051C3AF /* bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = F08B23D51A9CE9BA0051C3AF /* bkg.png */; };
+		F0965A531AD3566300348DB0 /* bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = F0965A501AD3566300348DB0 /* bkg.png */; };
+		F0965A541AD3566300348DB0 /* endGameDialog.png in Resources */ = {isa = PBXBuildFile; fileRef = F0965A511AD3566300348DB0 /* endGameDialog.png */; };
+		F0965A551AD3566300348DB0 /* endGameDialog2.png in Resources */ = {isa = PBXBuildFile; fileRef = F0965A521AD3566300348DB0 /* endGameDialog2.png */; };
+		F0965A571AD3590700348DB0 /* EndGameDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0965A561AD3590700348DB0 /* EndGameDialog.xib */; };
+		F0965A5A1AD35DDD00348DB0 /* EndGameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0965A591AD35DDD00348DB0 /* EndGameDialog.m */; };
+		F0965A5C1AD366DC00348DB0 /* EndGameDialog2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */; };
 		F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC56731A905B6500D8E953 /* CircleTimerView.m */; };
 		F0F1FD9C1ACC71EA00F45F3C /* t1.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1FD911ACC71EA00F45F3C /* t1.png */; };
 		F0F1FD9D1ACC71EA00F45F3C /* t2.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1FD921ACC71EA00F45F3C /* t2.png */; };
@@ -229,6 +235,13 @@
 		F08B23D31A9CE9BA0051C3AF /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		F08B23D41A9CE9BA0051C3AF /* tilePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tilePressed.png; sourceTree = "<group>"; };
 		F08B23D51A9CE9BA0051C3AF /* bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkg.png; sourceTree = "<group>"; };
+		F0965A501AD3566300348DB0 /* bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkg.png; sourceTree = "<group>"; };
+		F0965A511AD3566300348DB0 /* endGameDialog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameDialog.png; sourceTree = "<group>"; };
+		F0965A521AD3566300348DB0 /* endGameDialog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameDialog2.png; sourceTree = "<group>"; };
+		F0965A561AD3590700348DB0 /* EndGameDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameDialog.xib; sourceTree = "<group>"; };
+		F0965A581AD35DD200348DB0 /* EndGameDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndGameDialog.h; sourceTree = "<group>"; };
+		F0965A591AD35DDD00348DB0 /* EndGameDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGameDialog.m; sourceTree = "<group>"; };
+		F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameDialog2.xib; sourceTree = "<group>"; };
 		F0AC56721A905B6500D8E953 /* CircleTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTimerView.h; sourceTree = "<group>"; };
 		F0AC56731A905B6500D8E953 /* CircleTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleTimerView.m; sourceTree = "<group>"; };
 		F0F1FD911ACC71EA00F45F3C /* t1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = t1.png; sourceTree = "<group>"; };
@@ -298,6 +311,9 @@
 		A30ADC881A4CFBD200047201 /* NetworkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F0965A501AD3566300348DB0 /* bkg.png */,
+				F0965A511AD3566300348DB0 /* endGameDialog.png */,
+				F0965A521AD3566300348DB0 /* endGameDialog2.png */,
 				F04C7EEA1AD330A1001AE62E /* icon40x2.png */,
 				F04C7EEB1AD330A1001AE62E /* icon76x2.png */,
 				F04C7EEC1AD330A1001AE62E /* icon292.png */,
@@ -377,6 +393,8 @@
 				F07943091A6D97F5002849ED /* BoardCellDTO.h */,
 				F07943071A6D97EA002849ED /* BoardCellDTO.m */,
 				A30ADC931A4CFBD200047201 /* Main.storyboard */,
+				F0965A561AD3590700348DB0 /* EndGameDialog.xib */,
+				F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */,
 				A36E23281ACC3CF10068F887 /* MultiPlayerHighScoresVC.h */,
 				A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */,
 				A30ADC961A4CFBD200047201 /* Images.xcassets */,
@@ -388,6 +406,8 @@
 				A30FCE871AB60D3A0009F82E /* ScoresViewController.m */,
 				A36E23251ACC3AEB0068F887 /* SinglePlayerScoresVC.h */,
 				A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */,
+				F0965A581AD35DD200348DB0 /* EndGameDialog.h */,
+				F0965A591AD35DDD00348DB0 /* EndGameDialog.m */,
 			);
 			path = NetworkingDemo;
 			sourceTree = "<group>";
@@ -548,6 +568,7 @@
 				F0F1FDA31ACC71EA00F45F3C /* t8.png in Resources */,
 				A38645391ABA06110032CF8C /* gamebkg4.png in Resources */,
 				F0F1FDA51ACC71EA00F45F3C /* t10.png in Resources */,
+				F0965A541AD3566300348DB0 /* endGameDialog.png in Resources */,
 				F0221D721AB51ED200245C38 /* fuel_red_2.png in Resources */,
 				F04C7F031AD33A51001AE62E /* rematchBut.png in Resources */,
 				F0206BBE1ACF4CE500BA0B80 /* t12.png in Resources */,
@@ -575,15 +596,19 @@
 				F04C7EEF1AD330A1001AE62E /* icon292.png in Resources */,
 				F04C7EE91AD32F76001AE62E /* icon76.png in Resources */,
 				F051CEA21AB54B850013AAC7 /* tile1.png in Resources */,
+				F0965A531AD3566300348DB0 /* bkg.png in Resources */,
 				F0F1FD9D1ACC71EA00F45F3C /* t2.png in Resources */,
+				F0965A571AD3590700348DB0 /* EndGameDialog.xib in Resources */,
 				A36E23241AC9E9200068F887 /* hiscorebkg.png in Resources */,
 				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,
 				A30FCE831AB605D60009F82E /* unplayedTile4.png in Resources */,
+				F0965A5C1AD366DC00348DB0 /* EndGameDialog2.xib in Resources */,
 				F08B23D71A9CE9BA0051C3AF /* tilePressed.png in Resources */,
 				A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */,
 				A30ADC951A4CFBD200047201 /* Main.storyboard in Resources */,
 				F0F1FDA61ACC71EA00F45F3C /* t11.png in Resources */,
 				F00FF5F21AB53F4900D3C75E /* trash-64.png in Resources */,
+				F0965A551AD3566300348DB0 /* endGameDialog2.png in Resources */,
 				A330496F1A9E63D1002BA6EB /* tile2.png in Resources */,
 				F02422921A8C0478003F2B67 /* oj.ttf in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,
@@ -637,6 +662,7 @@
 				A30ADCB41A4D0CAD00047201 /* TileViewCell.m in Sources */,
 				F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */,
 				A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */,
+				F0965A5A1AD35DDD00348DB0 /* EndGameDialog.m in Sources */,
 				273F70671A61C68C005103BA /* NotificationListener.m in Sources */,
 				A30FCE881AB60D3A0009F82E /* ScoresViewController.m in Sources */,
 				F0206BC11ACF506F00BA0B80 /* TutorialTile2.m in Sources */,
