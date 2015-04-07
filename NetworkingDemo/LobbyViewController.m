@@ -67,6 +67,8 @@ NSString *alertMessage;
 - (void)createAndJoinGameWithName:(NSString *)name andNumPlayers:(int)players {
     numPlayers = players;
     [NetworkUtils createRoomWithName:name andNumPlayers:players];
+    
+    //If only one player, don't show the display, just start the game
     alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
     waitingForPlayersToJoinAlert=   [UIAlertController
                                      alertControllerWithTitle:@"Waiting..."
@@ -74,6 +76,12 @@ NSString *alertMessage;
                                      preferredStyle:UIAlertControllerStyleAlert];
     
     [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
+}
+
+-(void)createSoloGame
+{
+    numPlayers = 1;
+    [NetworkUtils createRoomWithName:[GameConstants getUserName] andNumPlayers:1];
 }
 
 -(void)joinExistingGame
@@ -163,9 +171,14 @@ NSString *alertMessage;
         [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
         [self createGame];
     }];
+    UIAlertAction *soloAction = [UIAlertAction actionWithTitle:@"Play Solo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
+        [self createSoloGame];
+    }];
     
     [joinOrCreate addAction:joinAction];
     [joinOrCreate addAction:createAction];
+    [joinOrCreate addAction:soloAction];
     
     [self presentViewController:joinOrCreate animated:YES completion:nil];
     
@@ -250,14 +263,6 @@ NSString *alertMessage;
                                                 [self presentViewController:alert animated:YES completion:nil];
                                                 
                                                 //create ok action for alert
-                                                UIAlertAction* p1 = [UIAlertAction
-                                                                     actionWithTitle:@"1"
-                                                                     style:UIAlertActionStyleDefault
-                                                                     handler:^(UIAlertAction * action)
-                                                                     {
-                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         [self createAndJoinGameWithName:gameName andNumPlayers:1];
-                                                                     }];
                                                 UIAlertAction* p2 = [UIAlertAction
                                                                      actionWithTitle:@"2"
                                                                      style:UIAlertActionStyleDefault
@@ -293,7 +298,6 @@ NSString *alertMessage;
                                                                              
                                                                          }];
                                                 
-                                                [alert addAction:p1]; // add action to uialertcontroller
                                                 [alert addAction:p2]; // add action to uialertcontroller
                                                 [alert addAction:p3]; // add action to uialertcontroller
                                                 [alert addAction:p4]; // add action to uialertcontroller
