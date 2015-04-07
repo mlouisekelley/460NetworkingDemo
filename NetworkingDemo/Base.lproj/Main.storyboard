@@ -688,7 +688,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.9960784912109375" green="0.058823533356189728" blue="0.0078431377187371254" alpha="1" colorSpace="deviceRGB"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="230" y="934" width="282" height="26"/>
+                                    <rect key="frame" x="230" y="932" width="282" height="28"/>
                                 </variation>
                             </view>
                         </subviews>

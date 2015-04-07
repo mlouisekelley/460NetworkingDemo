@@ -98,7 +98,7 @@ EndGameDialog *endGameDialog;
 -(void) setUpGame {
     if(_numPlayers == 1){
         minutes = 0;
-        seconds = 10;
+        seconds = 30;
     } else {
         minutes = 2;
         seconds = 0;
@@ -987,6 +987,7 @@ EndGameDialog *endGameDialog;
         CGRect rect = [self.rackTileFrames[i] CGRectValue];
         [UIView animateWithDuration:0.1 animations:^{
             cell.frame = rect;
+            cell.startPoint = rect.origin;
         }];
     }
     for (int j = [tileViewCellsOnRack count]; j < STARTING_NUMBER_OF_TILES; j++) {
