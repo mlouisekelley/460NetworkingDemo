@@ -65,6 +65,8 @@
     }
     
     if([chatEvent.message isEqualToString:@"joined"]){
+        NSLog(@"Sender: %@, Username: %@", chatEvent.sender, [GameConstants getUserName]);
+        
         [[GameHost sharedGameHost] addColorforPlayer:chatEvent.sender];
         if([chatEvent.sender isEqualToString:[GameConstants getUserName]]){
             if([[LobbyViewController sharedViewController] getNumPlayers] == 1){

@@ -12,6 +12,7 @@
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 NSString *userName = nil;
+NSString *playerId = nil;
 NSString *roomIdToJoin = nil;
 NSString *subscribedRoom = nil;
 

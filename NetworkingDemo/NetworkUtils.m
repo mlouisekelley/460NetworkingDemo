@@ -7,6 +7,7 @@
 //
 
 #import "NetworkUtils.h"
+#import <Parse/Parse.h>
 @implementation NetworkUtils
 
 +(void)sendLetterPlayed:(NSString *)theUpdate
@@ -110,6 +111,18 @@
     NSString *starting_word = [starting_words objectAtIndex: arc4random() % [starting_words count]];
     NSString* message = [NSString stringWithFormat:@"startingWord:%@", starting_word];
     [[WarpClient getInstance] sendChat:message];
+}
+
++(void)deleteAllParseRoomInfo
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+    // Retrieve the object by id
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"DELETING %lu rooms", (unsigned long)[objects count]);
+        for (PFObject *object in objects) {
+            [object deleteInBackground];
+        }
+    }];
 }
 
 @end

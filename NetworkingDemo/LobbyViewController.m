@@ -48,7 +48,7 @@ NSString *alertMessage;
     self.touchToPlay = NO;
     vc = self;
     [self configureAppWarp];
-    
+    NSLog(@"View Did Load");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -60,7 +60,7 @@ NSString *alertMessage;
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         // do stuff with the user
-        [GameConstants setUserName:currentUser.username];
+        //[GameConstants setUserName:currentUser.username];
         return;
     }
     UIAlertController *loginOrSignup = [UIAlertController
@@ -276,6 +276,7 @@ NSString *alertMessage;
 }
 
 -(void)playerJoinedLobby {
+    NSLog(@"Player joined lobby message recieved");
     if(joined){
         return;
     }
@@ -318,6 +319,7 @@ NSString *alertMessage;
 }
 
 - (IBAction)playButtonTouched:(id)sender {
+    //[NetworkUtils deleteAllParseRoomInfo];
     UIAlertController *joinOrCreate = [UIAlertController
                                          alertControllerWithTitle:@"Select an option from below:"
                                          message:nil
@@ -350,11 +352,11 @@ NSString *alertMessage;
 
 -(void)goToJoinScreen {
     [self configureAppWarp];
-    [[WarpClient getInstance] getAllRooms];
+    [self showCurrentGames];
 
 }
 
--(void)showCurrentGames:(NSMutableArray *)roomIds
+-(void)showCurrentGames
 {
     UIAlertController * selectGameAlert = [UIAlertController
                                          alertControllerWithTitle:@"Open Games"
@@ -362,31 +364,44 @@ NSString *alertMessage;
                                          preferredStyle:UIAlertControllerStyleAlert];
     
     
-    UIAlertAction *gameAction;
-    for (NSString *roomId in roomIds) {
-        //[[WarpClient getInstance] deleteRoom:roomId];
-        gameAction = [UIAlertAction
-                             actionWithTitle:roomId
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
-                                 [GameConstants setRoomIdToJoin:roomId];
-                                 [self joinExistingGame];
-                             }];
-        [selectGameAlert addAction:gameAction];
-    }
-    
-    UIAlertAction *cancel = [UIAlertAction
-                  actionWithTitle:@"Cancel"
-                  style:UIAlertActionStyleDefault
-                  handler:^(UIAlertAction * action)
-                  {
-                      [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
-                  }];
-    [selectGameAlert addAction:cancel];
-    
-    [self presentViewController:selectGameAlert animated:YES completion:nil];
+    // Get the high scores from Parse
+    PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+    [query whereKey:@"numPlayers" greaterThan:@1];
+    [query whereKey:@"gameStarted" equalTo:@NO];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu rooms.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                UIAlertAction *gameAction = [UIAlertAction
+                              actionWithTitle:object[@"name"]
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
+                                  [GameConstants setRoomIdToJoin:object[@"roomId"]];
+                                  [self joinExistingGame];
+                              }];
+                [selectGameAlert addAction:gameAction];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertAction *cancel = [UIAlertAction
+                                         actionWithTitle:@"Cancel"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
+                                         }];
+                [selectGameAlert addAction:cancel];
+                
+                [self presentViewController:selectGameAlert animated:YES completion:nil];
+            });
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 -(void)createGame {

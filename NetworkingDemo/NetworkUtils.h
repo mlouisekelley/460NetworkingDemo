@@ -30,6 +30,7 @@
 +(void)sendLetterReturned:(NSString *)update;
 +(void)generateAndSendStartingWord;
 +(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players;
++(void)deleteAllParseRoomInfo;
 
 
 @end

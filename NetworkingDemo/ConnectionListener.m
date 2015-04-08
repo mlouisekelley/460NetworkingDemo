@@ -8,6 +8,7 @@
 
 #import "ConnectionListener.h"
 #import "LobbyViewController.h"
+#import <Parse/Parse.h>
 @implementation ConnectionListener
 @synthesize helper;
 
@@ -85,8 +86,6 @@
 
 -(void)onGetAllRoomsDone:(AllRoomsEvent*)event{
     if (event.result == SUCCESS) {
-        NSMutableArray *roomIds = event.roomIds;
-        [[LobbyViewController sharedViewController] showCurrentGames:roomIds];
     }
     else {
         NSLog(@"Failed to get all rooms");
@@ -130,6 +129,20 @@
     if(roomEvent.result == SUCCESS){
         NSLog(@"ROOM CREATED: %@", roomEvent.roomData.roomId);
         [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
+        
+        //Add game info to parse
+        PFObject *room = [PFObject objectWithClassName:@"RoomData"];
+        room[@"roomId"] = roomEvent.roomData.roomId;
+        room[@"name"] = roomEvent.roomData.name;
+        room[@"numPlayers"] = [NSNumber numberWithInt:roomEvent.roomData.maxUsers];
+        room[@"gameStarted"] = @NO;
+        [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Parse saved room information");
+            } else {
+                NSLog(@"Parse save of room info failed");
+            }
+        }];
     } else {
         NSLog(@"failed to create room");
     }
@@ -139,6 +152,16 @@
 -(void)onDeleteRoomDone:(RoomEvent *)roomEvent{
     if(roomEvent.result == SUCCESS){
         NSLog(@"Deleted room: %@", roomEvent.roomData.roomId);
+        
+        //delete the room from parse
+        PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+        [query whereKey:@"roomId" equalTo:roomEvent.roomData.roomId];
+        // Retrieve the object by id
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (PFObject *object in objects) {
+                [object deleteInBackground];
+            }
+        }];
     } else {
         NSLog(@"Failed to delete room: %@", roomEvent.roomData.roomId);
     }
