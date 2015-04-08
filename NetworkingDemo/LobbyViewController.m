@@ -11,6 +11,7 @@
 #import "RoomListener.h"
 #import "NotificationListener.h"
 #import "ConnectionListener.h"
+#import <Parse/Parse.h>
 
 @interface LobbyViewController ()
 
@@ -47,6 +48,175 @@ NSString *alertMessage;
     self.touchToPlay = NO;
     vc = self;
     [self configureAppWarp];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self performLogin];
+}
+
+- (void)performLogin {
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        // do stuff with the user
+        [GameConstants setUserName:currentUser.username];
+        return;
+    }
+    UIAlertController *loginOrSignup = [UIAlertController
+                                       alertControllerWithTitle:@"Welcome!"
+                                       message:nil
+                                       preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"Login" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [loginOrSignup dismissViewControllerAnimated:YES completion:nil];
+        [self login];
+    }];
+    UIAlertAction *signupAction = [UIAlertAction actionWithTitle:@"Sign Up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [loginOrSignup dismissViewControllerAnimated:YES completion:nil];
+        [self signUp];
+    }];
+
+    
+    [loginOrSignup addAction:loginAction];
+    [loginOrSignup addAction:signupAction];
+    
+    [self presentViewController:loginOrSignup animated:YES completion:nil];
+    
+}
+
+- (void) login {
+    
+    UIAlertController * userNameAlert = [UIAlertController
+                                         alertControllerWithTitle:@"Login"
+                                         message:@"Please enter player name and password"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+    
+    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"username";
+     }];
+    
+    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"password";
+         textField.secureTextEntry = YES;
+     }];
+    
+    //create ok action for alert
+    UIAlertAction* okay = [UIAlertAction
+                           actionWithTitle:@"Enter"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               //[userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                               UITextField *login = userNameAlert.textFields.firstObject;
+                               UITextField *password = userNameAlert.textFields.lastObject;
+                               
+                               [PFUser logInWithUsernameInBackground:login.text password:password.text
+                                                               block:^(PFUser *user, NSError *error) {
+                                                                   if (user) {
+                                                                       // Do stuff after successful login.
+                                                                       [GameConstants setUserName:user.username];
+                                                                   } else {
+                                                                       // The login failed. Check error to see why.
+                                                                       [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                                                                       UIAlertController *errorController = [UIAlertController
+                                                                                                             alertControllerWithTitle:@"Error"
+                                                                                                             message:error.localizedFailureReason
+                                                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                                                                       UIAlertAction *okAction = [UIAlertAction
+                                                                                                  actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                                                                  style:UIAlertActionStyleDefault
+                                                                                                  handler:^(UIAlertAction *action)
+                                                                                                  {
+                                                                                                      [self presentViewController:userNameAlert animated:YES completion:nil];
+                                                                                                  }];
+                                                                       [errorController addAction:okAction];
+                                                                       [self presentViewController:errorController animated:YES completion:nil];
+                                                                   }
+                                                               }];
+                               
+                           }];
+    
+    [userNameAlert addAction:okay];
+    [self presentViewController:userNameAlert animated:YES completion:nil];
+    
+}
+
+- (void) signUp {
+    UIAlertController * userNameAlert = [UIAlertController
+                                         alertControllerWithTitle:@"Sign Up"
+                                         message:@"Please enter player name and password you would like to register"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+    
+    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"username";
+     }];
+    
+    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"password";
+         textField.secureTextEntry = YES;
+     }];
+    
+    //create ok action for alert
+    UIAlertAction* okay = [UIAlertAction
+                           actionWithTitle:@"Enter"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               UITextField *login = userNameAlert.textFields.firstObject;
+                               UITextField *password = userNameAlert.textFields.lastObject;
+                               
+                               PFUser *user = [PFUser user];
+                               user.username = login.text;
+                               user.password = password.text;
+                               
+                               [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                   if (!error) {
+                                       // Hooray! Let them use the app now.
+                                       [GameConstants setUserName:user.username];
+                                       [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                                       UIAlertController *success = [UIAlertController
+                                                                             alertControllerWithTitle:@"Success!"
+                                                                             message:@"Successfully created new user"
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                                       UIAlertAction *okAction = [UIAlertAction
+                                                                  actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                                  style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction *action)
+                                                                  {
+                                                                      [success dismissViewControllerAnimated:YES completion:nil];
+                                                                  }];
+                                       [success addAction:okAction];
+                                       [self presentViewController:success animated:YES completion:nil];
+                                   } else {
+                                       NSString *errorString = [error userInfo][@"error"];
+                                       // Show the errorString somewhere and let the user try again.
+                                       [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                                       UIAlertController *errorController = [UIAlertController
+                                                                             alertControllerWithTitle:@"Error"
+                                                                             message:errorString
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                                       UIAlertAction *okAction = [UIAlertAction
+                                                                  actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                                  style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction *action)
+                                                                  {
+                                                                      [self presentViewController:userNameAlert animated:YES completion:nil];
+                                                                  }];
+                                       [errorController addAction:okAction];
+                                       [self presentViewController:errorController animated:YES completion:nil];
+                                   }
+                               }];
+                           }];
+                               //[userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                              
+    [userNameAlert addAction:okay];
+    [self presentViewController:userNameAlert animated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
