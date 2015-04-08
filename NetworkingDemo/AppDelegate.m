@@ -11,12 +11,9 @@
 #import "NotificationListener.h"
 #import "ConnectionListener.h"
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
-#import <AVFoundation/AVAudioPlayer.h>
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
-
-@property (nonatomic, retain) AVAudioPlayer *myAudioPlayer;
 
 @end
 
@@ -40,8 +37,7 @@
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath ];
     self.myAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
     self.myAudioPlayer.numberOfLoops = -1; //infinite loop
-    //[self.myAudioPlayer play];
-    
+    [self.myAudioPlayer play];
     
     // Override point for customization after application launch.
     return YES;
