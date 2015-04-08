@@ -13,6 +13,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 
 NSString *userName = nil;
 NSString *roomIdToJoin = nil;
+NSString *subscribedRoom = nil;
 
 +(NSString *) getUserName
 {
@@ -43,6 +44,16 @@ NSString *roomIdToJoin = nil;
 +(void)setRoomIdToJoin:(NSString *)roomId
 {
     roomIdToJoin = roomId;
+}
+
++(NSString *)getSubscribedRoom
+{
+    return subscribedRoom;
+}
+
++(void)setSubscribedRoom:(NSString *)roomId
+{
+    subscribedRoom = roomId;
 }
 
 @end

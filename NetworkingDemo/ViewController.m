@@ -1475,10 +1475,6 @@ NSString *curWord;
     [self.boardCollectionView reloadData];
 }
 
--(void)leaveGame{
-    [[WarpClient getInstance] disconnect];
-}
-
 #pragma mark - ViewHelperMethods
 
 -(BoardViewCell *) findClosestCellToView:(UIView *)view {
@@ -1512,5 +1508,17 @@ NSString *curWord;
 -(void) highlightCell:(BoardViewCell *)bvc {
     bvc.layer.borderWidth = 2.0f;
     bvc.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+
+#pragma mark - Navigation
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"ReturnToLobby"])
+    {
+        NSLog(@"ReturnToLobby was called");
+        [[WarpClient getInstance] leaveRoom:[GameConstants getSubscribedRoom]];
+    }
 }
 @end

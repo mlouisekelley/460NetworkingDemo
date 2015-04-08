@@ -34,8 +34,8 @@
     
     if (roomEvent.result == SUCCESS)
     {
-        //[[WarpClient getInstance]setCustomRoomData:roomEvent.roomData.roomId roomData:@"custom room data set"];
         NSLog(@"onSubscribeRoomDone  SUCCESS");
+        [GameConstants setSubscribedRoom:roomEvent.roomData.roomId];
         [NetworkUtils sendJoinedLobby];
     }
     else
@@ -47,7 +47,8 @@
 -(void)onUnSubscribeRoomDone:(RoomEvent*)roomEvent{
     if (roomEvent.result == SUCCESS)
     {
-        
+        NSLog(@"Unsubscribed from room");
+        [GameConstants setSubscribedRoom:nil];
     }
     else
     {
@@ -76,7 +77,9 @@
 
 -(void)onLeaveRoomDone:(RoomEvent*)roomEvent{
     if (roomEvent.result == SUCCESS) {
+        NSLog(@"Left Room");
         [[WarpClient getInstance]unsubscribeRoom:roomEvent.roomData.roomId];
+        [[WarpClient getInstance] getLiveRoomInfo:roomEvent.roomData.roomId];
     }
     else {
     }
@@ -85,6 +88,12 @@
 -(void)onGetLiveRoomInfoDone:(LiveRoomInfoEvent*)event{
     NSString *joinedUsers = @"";
     NSLog(@"joined users array = %@",event.joinedUsers);
+    
+    //no one is in the room so kill it
+    if([event.joinedUsers count] == 0){
+        [[WarpClient getInstance] deleteRoom:event.roomData.roomId];
+    }
+    
     [[ViewController sharedViewController] updatePlayerList:event.joinedUsers];
     for (int i=0; i<[event.joinedUsers count]; i++)
     {

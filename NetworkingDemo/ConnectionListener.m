@@ -135,4 +135,13 @@
     }
 }
 
+
+-(void)onDeleteRoomDone:(RoomEvent *)roomEvent{
+    if(roomEvent.result == SUCCESS){
+        NSLog(@"Deleted room: %@", roomEvent.roomData.roomId);
+    } else {
+        NSLog(@"Failed to delete room: %@", roomEvent.roomData.roomId);
+    }
+}
+
 @end
