@@ -335,10 +335,14 @@ NSString *alertMessage;
         [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
         [self createSoloGame];
     }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [joinOrCreate dismissViewControllerAnimated:YES completion:nil];
+    }];
     
     [joinOrCreate addAction:joinAction];
     [joinOrCreate addAction:createAction];
     [joinOrCreate addAction:soloAction];
+    [joinOrCreate addAction:cancelAction];
     
     [self presentViewController:joinOrCreate animated:YES completion:nil];
     
@@ -346,28 +350,8 @@ NSString *alertMessage;
 
 -(void)goToJoinScreen {
     [self configureAppWarp];
-    UIAlertController * userNameAlert = [UIAlertController
-                                         alertControllerWithTitle:@"Username"
-                                         message:@"Please enter player name"
-                                         preferredStyle:UIAlertControllerStyleAlert];
-    
-    [userNameAlert addTextFieldWithConfigurationHandler:^(UITextField *textField)
-     {
-         textField.placeholder = NSLocalizedString(@"LoginPlaceholder", @"Name");
-     }];
-    
-    //create ok action for alert
-    UIAlertAction* okay = [UIAlertAction
-                           actionWithTitle:@"Enter"
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               //[userNameAlert dismissViewControllerAnimated:YES completion:nil];
-                               [[WarpClient getInstance] getAllRooms];
-                           }];
-    
-    [userNameAlert addAction:okay];
-    [self presentViewController:userNameAlert animated:YES completion:nil];
+    [[WarpClient getInstance] getAllRooms];
+
 }
 
 -(void)showCurrentGames:(NSMutableArray *)roomIds
