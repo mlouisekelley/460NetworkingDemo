@@ -367,6 +367,7 @@ NSString *curWord;
         if (seconds <= 5 && minutes == 0) {
             self.countDownLabel.text = [NSString stringWithFormat:@"%d", seconds];
             self.countDownLabel.alpha = 0.5 * (milliseconds) / 1000.0 + .2;
+            [self.view bringSubviewToFront:self.countDownLabel];
         }
         else {
             self.countDownLabel.text = @"";
@@ -572,7 +573,7 @@ NSString *curWord;
         endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
         endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
         endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
-        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%f", (1.0)* currentPlayer.numWords / numSeconds];
+        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
         endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
         shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
         shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];

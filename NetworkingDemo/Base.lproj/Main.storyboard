@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
-            <string>orangejuice</string>
-            <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
@@ -2059,20 +2058,12 @@
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="zs0-lr-Bie" customClass="TutorialTile2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ctile.png" translatesAutoresizingMaskIntoConstraints="NO" id="zs0-lr-Bie" customClass="TutorialTile2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="215" y="329" width="64" height="64"/>
+                                    <rect key="frame" x="215" y="325" width="64" height="68"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01a-E0-ChU">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="234" y="344" width="36" height="43"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -2103,7 +2094,6 @@
                                 <exclude reference="TxT-QC-ng3"/>
                                 <exclude reference="knB-D0-14S"/>
                                 <exclude reference="zs0-lr-Bie"/>
-                                <exclude reference="01a-E0-ChU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -2134,7 +2124,6 @@
                                 <include reference="TxT-QC-ng3"/>
                                 <include reference="knB-D0-14S"/>
                                 <include reference="zs0-lr-Bie"/>
-                                <include reference="01a-E0-ChU"/>
                             </mask>
                         </variation>
                     </view>
@@ -4099,12 +4088,6 @@
                                     <rect key="frame" x="189" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-4J-Eoz" customClass="TutorialTile">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="267" y="773" width="64" height="64"/>
-                                </variation>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-Yr-xud">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -4129,14 +4112,6 @@
                                     <rect key="frame" x="639" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uu6-sn-byS">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="286" y="789" width="36" height="43"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSW-Ql-c9Y">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
@@ -4183,6 +4158,12 @@
                                     <rect key="frame" x="94" y="789" width="36" height="39"/>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ctile.png" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-4J-Eoz" customClass="TutorialTile">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="264" y="768" width="64" height="68"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -4204,18 +4185,17 @@
                                 <exclude reference="g9J-1j-60F"/>
                                 <exclude reference="fYQ-hA-pBQ"/>
                                 <exclude reference="Xpa-Eu-WNs"/>
-                                <exclude reference="PGa-4J-Eoz"/>
                                 <exclude reference="tJU-Yr-xud"/>
                                 <exclude reference="ead-RW-Vtn"/>
                                 <exclude reference="aRX-Mf-IJ0"/>
                                 <exclude reference="sMp-w6-Jvq"/>
-                                <exclude reference="uu6-sn-byS"/>
                                 <exclude reference="TSW-Ql-c9Y"/>
                                 <exclude reference="0b9-kW-wR6"/>
                                 <exclude reference="dfs-t2-thw"/>
                                 <exclude reference="chy-QM-mb3"/>
                                 <exclude reference="6Va-fL-HFl"/>
                                 <exclude reference="qbf-tl-JGw"/>
+                                <exclude reference="PGa-4J-Eoz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -4237,18 +4217,17 @@
                                 <include reference="g9J-1j-60F"/>
                                 <include reference="fYQ-hA-pBQ"/>
                                 <include reference="Xpa-Eu-WNs"/>
-                                <include reference="PGa-4J-Eoz"/>
                                 <include reference="tJU-Yr-xud"/>
                                 <include reference="ead-RW-Vtn"/>
                                 <include reference="aRX-Mf-IJ0"/>
                                 <include reference="sMp-w6-Jvq"/>
-                                <include reference="uu6-sn-byS"/>
                                 <include reference="TSW-Ql-c9Y"/>
                                 <include reference="0b9-kW-wR6"/>
                                 <include reference="dfs-t2-thw"/>
                                 <include reference="chy-QM-mb3"/>
                                 <include reference="6Va-fL-HFl"/>
                                 <include reference="qbf-tl-JGw"/>
+                                <include reference="PGa-4J-Eoz"/>
                             </mask>
                         </variation>
                     </view>
@@ -4269,6 +4248,7 @@
         <image name="TileFinal" width="212" height="212"/>
         <image name="Trophy" width="50" height="50"/>
         <image name="bkg.png" width="1042" height="1381"/>
+        <image name="ctile.png" width="140" height="149"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg4.png" width="1593" height="2108"/>
         <image name="hiscorebkg.png" width="1593" height="2112"/>
