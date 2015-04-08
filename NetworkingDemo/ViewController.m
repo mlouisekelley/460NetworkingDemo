@@ -14,6 +14,7 @@
 #import "BoardCellDTO.h"
 #import "Player.h"
 #import "EndGameDialog.h"
+#import "AppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVAudioPlayer.h>
 #import <Parse/Parse.h>
@@ -44,6 +45,7 @@ int minutes;
 int seconds;
 int milliseconds;
 BOOL isGameOver = NO;
+BOOL isPlaying = YES;
 int TILE_WIDTH;
 int TILE_HEIGHT;
 int displayScore = 0;
@@ -891,6 +893,17 @@ NSString *curWord;
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if ([self tileIsSelected]) {
         [self takeTileFromBoard:[self selectedTile]];
+    }
+}
+
+- (IBAction)mute:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (isPlaying) {
+        [appDelegate.myAudioPlayer stop];
+        isPlaying = NO;
+    } else {
+        [appDelegate.myAudioPlayer play];
+        isPlaying = YES;
     }
 }
 
