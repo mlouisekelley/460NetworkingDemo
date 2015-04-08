@@ -86,7 +86,7 @@
     if(roomId){
         [[WarpClient getInstance] joinRoom:roomId];
     } else {
-        [[WarpClient getInstance] createRoomWithRoomName:[GameConstants getUserName] roomOwner:@"admin" properties:nil maxUsers:10];
+        NSLog(@"ERROR: ROOM ID WAS NOT SET FOR ROOM YOU WANTED TO JOIN");
     }
 }
 

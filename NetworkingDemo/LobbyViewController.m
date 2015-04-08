@@ -23,7 +23,6 @@
 
 static LobbyViewController *vc;
 static bool joined = NO;
-static bool first = YES;
 static int numPlayers = 0;
 static int joinsRecieved = 0;
 UIAlertController * waitingForPlayersToJoinAlert;
@@ -41,15 +40,6 @@ NSString *alertMessage;
 -(int)getNumPlayers {
     return numPlayers;
 }
-
-- (IBAction)switchStateChanged:(UISwitch *)switchState{
-    if ([switchState isOn]) {
-        self.touchToPlay = YES;
-    } else {
-        self.touchToPlay = NO;
-    }
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -232,6 +222,15 @@ NSString *alertMessage;
                              }];
         [selectGameAlert addAction:gameAction];
     }
+    
+    UIAlertAction *cancel = [UIAlertAction
+                  actionWithTitle:@"Cancel"
+                  style:UIAlertActionStyleDefault
+                  handler:^(UIAlertAction * action)
+                  {
+                      [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
+                  }];
+    [selectGameAlert addAction:cancel];
     
     [self presentViewController:selectGameAlert animated:YES completion:nil];
 }

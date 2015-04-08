@@ -128,6 +128,7 @@
 
 -(void)onCreateRoomDone:(RoomEvent *)roomEvent{
     if(roomEvent.result == SUCCESS){
+        NSLog(@"ROOM CREATED: %@", roomEvent.roomData.roomId);
         [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
     } else {
         NSLog(@"failed to create room");
