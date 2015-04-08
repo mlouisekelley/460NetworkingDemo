@@ -59,6 +59,15 @@
 
 +(void)sendStartGame
 {
+    PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+    [query whereKey:@"roomId" equalTo:[GameConstants getSubscribedRoom]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for(PFObject *object in objects){
+            object[@"gameStarted"] = @YES;
+            [object saveInBackground];
+        }
+    }];
+    
     NSString* message = [NSString stringWithFormat:@"start"];
     [[WarpClient getInstance] sendChat:message];
 }
