@@ -17,5 +17,6 @@
 -(int)getNumPlayers;
 -(void)startGameHelper;
 -(void)showCurrentGames:(NSMutableArray *)roomIds;
+-(void)notConnectedToAppWarp;
 
 @end

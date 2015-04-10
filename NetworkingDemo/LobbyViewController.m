@@ -55,6 +55,17 @@ NSString *alertMessage;
     [self performLogin];
 }
 
+-(void)notConnectedToAppWarp
+{
+    NSString *message = [NSString stringWithFormat:@"Unable to connect to our server, please check your internet connection"];
+    UIAlertController *waitingForPlayersToJoinAlert=   [UIAlertController
+                                     alertControllerWithTitle:@"No Connection"
+                                     message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
+}
+
 - (void)performLogin {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
