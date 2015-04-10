@@ -201,6 +201,20 @@
                                     <segue destination="IF6-Sh-vro" kind="show" id="IHe-Md-d5e"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67t-Jk-C2U">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="497" y="921" width="89" height="73"/>
+                                </variation>
+                                <connections>
+                                    <action selector="logout:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="rpG-N1-jaU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -210,6 +224,7 @@
                                 <exclude reference="Qq4-kn-as6"/>
                                 <exclude reference="GAv-d8-mCx"/>
                                 <exclude reference="gdJ-AQ-ubE"/>
+                                <exclude reference="67t-Jk-C2U"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -219,6 +234,7 @@
                                 <include reference="Qq4-kn-as6"/>
                                 <include reference="GAv-d8-mCx"/>
                                 <include reference="gdJ-AQ-ubE"/>
+                                <include reference="67t-Jk-C2U"/>
                             </mask>
                         </variation>
                     </view>
@@ -792,7 +808,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RFE-Jx-9gr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mPh-z8-V4O">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t66-y0-JMN">
@@ -3944,7 +3960,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FAE-kZ-9GF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TQX-zm-irn">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-F6-RT0">

@@ -45,7 +45,7 @@ NSString *alertMessage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [PFUser logOut];
+    
     joined = NO;
     self.touchToPlay = NO;
     vc = self;
@@ -422,6 +422,10 @@ NSString *alertMessage;
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+- (IBAction)logout:(id)sender {
+    [PFUser logOut];
+    [self presentViewController:self.loginOrSignup animated:YES completion:nil];
 }
 
 -(void)createGame {
