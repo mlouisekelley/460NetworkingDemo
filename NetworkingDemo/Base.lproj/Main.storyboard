@@ -623,7 +623,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="mute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZPK-mT-sji"/>
-                                    <segue destination="IF6-Sh-vro" kind="show" id="0OY-zl-CYX"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
@@ -4270,9 +4269,8 @@
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0OY-zl-CYX"/>
-        <segue reference="As8-Oz-X3g"/>
         <segue reference="AlX-Ox-Ng0"/>
+        <segue reference="As8-Oz-X3g"/>
         <segue reference="8vg-oJ-Mwt"/>
     </inferredMetricsTieBreakers>
 </document>

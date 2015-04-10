@@ -17,6 +17,7 @@
 
 @property (nonatomic) BOOL touchToPlay;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
+@property (strong, nonatomic) UIAlertController *loginOrSignup;
 
 @end
 
@@ -44,10 +45,29 @@ NSString *alertMessage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [PFUser logOut];
     joined = NO;
     self.touchToPlay = NO;
     vc = self;
     [self configureAppWarp];
+    
+    self.loginOrSignup = [UIAlertController
+                          alertControllerWithTitle:@"Welcome!"
+                          message:nil
+                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"Login" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self.loginOrSignup dismissViewControllerAnimated:YES completion:nil];
+        [self login];
+    }];
+    UIAlertAction *signupAction = [UIAlertAction actionWithTitle:@"Sign Up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self.loginOrSignup dismissViewControllerAnimated:YES completion:nil];
+        [self signUp];
+    }];
+    
+    
+    [self.loginOrSignup addAction:loginAction];
+    [self.loginOrSignup addAction:signupAction];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,25 +82,9 @@ NSString *alertMessage;
         [GameConstants setHandle:currentUser.username];
         return;
     }
-    UIAlertController *loginOrSignup = [UIAlertController
-                                       alertControllerWithTitle:@"Welcome!"
-                                       message:nil
-                                       preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"Login" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [loginOrSignup dismissViewControllerAnimated:YES completion:nil];
-        [self login];
-    }];
-    UIAlertAction *signupAction = [UIAlertAction actionWithTitle:@"Sign Up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [loginOrSignup dismissViewControllerAnimated:YES completion:nil];
-        [self signUp];
-    }];
-
     
-    [loginOrSignup addAction:loginAction];
-    [loginOrSignup addAction:signupAction];
-    
-    [self presentViewController:loginOrSignup animated:YES completion:nil];
+    [self presentViewController:self.loginOrSignup animated:YES completion:nil];
     
 }
 
@@ -101,6 +105,15 @@ NSString *alertMessage;
          textField.placeholder = @"password";
          textField.secureTextEntry = YES;
      }];
+    
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                                 [self presentViewController:self.loginOrSignup animated:YES completion:nil];
+                             }];
     
     //create ok action for alert
     UIAlertAction* okay = [UIAlertAction
@@ -138,7 +151,9 @@ NSString *alertMessage;
                                
                            }];
     
+    [userNameAlert addAction:cancel];
     [userNameAlert addAction:okay];
+    
     [self presentViewController:userNameAlert animated:YES completion:nil];
     
 }
@@ -159,6 +174,15 @@ NSString *alertMessage;
          textField.placeholder = @"password";
          textField.secureTextEntry = YES;
      }];
+    
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [userNameAlert dismissViewControllerAnimated:YES completion:nil];
+                                 [self presentViewController:self.loginOrSignup animated:YES completion:nil];
+                             }];
     
     //create ok action for alert
     UIAlertAction* okay = [UIAlertAction
@@ -211,8 +235,7 @@ NSString *alertMessage;
                                    }
                                }];
                            }];
-                               //[userNameAlert dismissViewControllerAnimated:YES completion:nil];
-                              
+    [userNameAlert addAction:cancel];
     [userNameAlert addAction:okay];
     [self presentViewController:userNameAlert animated:YES completion:nil];
     
