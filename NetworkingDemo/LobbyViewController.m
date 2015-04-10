@@ -135,7 +135,7 @@ NSString *alertMessage;
                                                                        [userNameAlert dismissViewControllerAnimated:YES completion:nil];
                                                                        UIAlertController *errorController = [UIAlertController
                                                                                                              alertControllerWithTitle:@"Error"
-                                                                                                             message:error.localizedFailureReason
+                                                                                                             message:[error userInfo][@"error"]
                                                                                                              preferredStyle:UIAlertControllerStyleAlert];
                                                                        UIAlertAction *okAction = [UIAlertAction
                                                                                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
