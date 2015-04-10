@@ -301,7 +301,7 @@ NSString *curWord;
 #pragma mark End Game stuff
 - (void) getTopScore {
     PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
-    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
     [query orderByDescending:@"score"];
     
@@ -322,7 +322,7 @@ NSString *curWord;
 
 - (void) getAverageScore {
     PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
-    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -513,11 +513,11 @@ NSString *curWord;
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
     gameScore[@"score"] = @0;
     for (Player *player in self.players) {
-        if ([player.userName isEqualToString:[GameConstants getUserName]]) {
+        if ([player.userName isEqualToString:[GameConstants getHandle]]) {
             gameScore[@"score"] = [NSNumber numberWithInt:player.score];
         }
     }
-    gameScore[@"playerName"] = [GameConstants getUserName];
+    gameScore[@"playerName"] = [GameConstants getHandle];
     gameScore[@"numPlayers"] = [NSNumber numberWithInteger:[self.players count]];
     [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -530,7 +530,7 @@ NSString *curWord;
     
     
     PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
-    [query whereKey:@"playerName" equalTo:[GameConstants getUserName]];
+    [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -546,7 +546,7 @@ NSString *curWord;
                 }
             } else {
                 PFObject *newStats = [PFObject objectWithClassName:@"Stats"];
-                newStats[@"playerName"] = [GameConstants getUserName];
+                newStats[@"playerName"] = [GameConstants getHandle];
                 newStats[@"totalScore"] = gameScore[@"score"];
                 newStats[@"numGames"] = @1;
                 [newStats saveInBackground];

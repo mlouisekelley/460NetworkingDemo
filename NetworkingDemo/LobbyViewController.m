@@ -59,7 +59,7 @@ NSString *alertMessage;
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         // do stuff with the user
-        //[GameConstants setUserName:currentUser.username];
+        [GameConstants setHandle:currentUser.username];
         return;
     }
     UIAlertController *loginOrSignup = [UIAlertController
@@ -116,7 +116,7 @@ NSString *alertMessage;
                                                                block:^(PFUser *user, NSError *error) {
                                                                    if (user) {
                                                                        // Do stuff after successful login.
-                                                                       [GameConstants setUserName:user.username];
+                                                                       [GameConstants setHandle:user.username];
                                                                    } else {
                                                                        // The login failed. Check error to see why.
                                                                        [userNameAlert dismissViewControllerAnimated:YES completion:nil];
@@ -176,7 +176,7 @@ NSString *alertMessage;
                                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                    if (!error) {
                                        // Hooray! Let them use the app now.
-                                       [GameConstants setUserName:user.username];
+                                       [GameConstants setHandle:user.username];
                                        [userNameAlert dismissViewControllerAnimated:YES completion:nil];
                                        UIAlertController *success = [UIAlertController
                                                                              alertControllerWithTitle:@"Success!"
@@ -244,7 +244,7 @@ NSString *alertMessage;
 
 -(void)joinExistingGame
 {
-    alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
+    alertMessage = [NSString stringWithFormat:@"Waiting for host to start the game"];
     waitingForPlayersToJoinAlert=   [UIAlertController
                                      alertControllerWithTitle:@"Waiting..."
                                      message:alertMessage

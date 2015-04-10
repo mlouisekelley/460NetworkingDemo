@@ -18,6 +18,8 @@
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 @interface GameConstants : NSObject
 
++(NSString *)getHandle;
++(void)setHandle:(NSString *)inputHandle;
 +(NSString *)getUserName;
 +(void)setUserName:(NSString *)userName;
 +(NSString *)getRoomIdToJoin;

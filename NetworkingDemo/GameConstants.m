@@ -11,10 +11,20 @@
 
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-NSString *userName = nil;
-NSString *playerId = nil;
+NSString *handle = nil; //Used for login and high score information
+NSString *userName = nil; //Used for appwarp communication
 NSString *roomIdToJoin = nil;
 NSString *subscribedRoom = nil;
+
++(NSString *)getHandle
+{
+    return handle;
+}
+
++(void)setHandle:(NSString *)inputHandle
+{
+    handle = inputHandle;
+}
 
 +(NSString *) getUserName
 {
