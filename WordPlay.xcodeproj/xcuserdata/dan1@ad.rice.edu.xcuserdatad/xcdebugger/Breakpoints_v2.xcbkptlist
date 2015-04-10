@@ -333,7 +333,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "743"
             endingLineNumber = "743"
-            landmarkName = "-playerDeniedRematch"
+            landmarkName = "-playerWaitingForRematch"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

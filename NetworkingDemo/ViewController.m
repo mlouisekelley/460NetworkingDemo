@@ -607,7 +607,9 @@ NSString *curWord;
                                       message:alertMessage
                                       preferredStyle:UIAlertControllerStyleAlert];
         
-       // [self presentViewController:alert animated:YES completion:nil];
+       if(_numPlayers != 1){
+        [self presentViewController:alert animated:YES completion:nil];
+       }
         
         //create rematch action for alert
         UIAlertAction* rematch = [UIAlertAction
