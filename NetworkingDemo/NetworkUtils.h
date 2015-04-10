@@ -31,6 +31,7 @@
 +(void)generateAndSendStartingWord;
 +(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players;
 +(void)deleteAllParseRoomInfo;
++(void)deleteAllAppWarpRooms;
 
 
 @end

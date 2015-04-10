@@ -92,6 +92,7 @@
 
 +(void)joinRoom
 {
+    NSLog(@"Join Room Called");
     NSString *roomId = [GameConstants getRoomIdToJoin];
     if(roomId){
         [[WarpClient getInstance] joinRoom:roomId];
@@ -132,6 +133,11 @@
             [object deleteInBackground];
         }
     }];
+}
+
++(void)deleteAllAppWarpRooms
+{
+    [[WarpClient getInstance] getAllRooms];
 }
 
 @end

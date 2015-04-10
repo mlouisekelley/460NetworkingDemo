@@ -48,7 +48,6 @@ NSString *alertMessage;
     self.touchToPlay = NO;
     vc = self;
     [self configureAppWarp];
-    NSLog(@"View Did Load");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -228,7 +227,6 @@ NSString *alertMessage;
     numPlayers = players;
     [NetworkUtils createRoomWithName:name andNumPlayers:players];
     
-    //If only one player, don't show the display, just start the game
     alertMessage = [NSString stringWithFormat:@"1/%d players have joined the room.", numPlayers];
     waitingForPlayersToJoinAlert=   [UIAlertController
                                      alertControllerWithTitle:@"Waiting..."
@@ -300,7 +298,6 @@ NSString *alertMessage;
                 [NetworkUtils sendUpdateColor:@"blue" forPlayer:key];
             }
         }
-        [self.waitingIndicator stopAnimating];
         [self startGameHelper];
     }
 }

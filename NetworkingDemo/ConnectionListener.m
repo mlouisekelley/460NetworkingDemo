@@ -86,6 +86,10 @@
 
 -(void)onGetAllRoomsDone:(AllRoomsEvent*)event{
     if (event.result == SUCCESS) {
+        NSLog(@"Got all rooms");
+        for(NSString *roomId in event.roomIds){
+            [[WarpClient getInstance] deleteRoom:roomId];
+        }
     }
     else {
         NSLog(@"Failed to get all rooms");

@@ -11,6 +11,9 @@
 
 @synthesize helper;
 
+BOOL subscribed = NO;
+BOOL joined = NO;
+
 -(id)initWithHelper:(id)l_helper
 {
     self.helper = l_helper;
@@ -36,7 +39,10 @@
     {
         NSLog(@"onSubscribeRoomDone  SUCCESS");
         [GameConstants setSubscribedRoom:roomEvent.roomData.roomId];
-        [NetworkUtils sendJoinedLobby];
+        if(joined == NO){
+            joined = YES;
+            [NetworkUtils sendJoinedLobby];
+        }
     }
     else
     {
@@ -48,6 +54,7 @@
     if (roomEvent.result == SUCCESS)
     {
         NSLog(@"Unsubscribed from room");
+        subscribed = NO;
         [GameConstants setSubscribedRoom:nil];
     }
     else
@@ -63,7 +70,11 @@
     if (roomEvent.result == SUCCESS)
     {
         RoomData *roomData = roomEvent.roomData;
-        [[WarpClient getInstance]subscribeRoom:roomData.roomId];
+        if(subscribed == NO){
+            subscribed = YES;
+            NSLog(@"SUBSCRIBE ROOM CALLED");
+            [[WarpClient getInstance]subscribeRoom:roomData.roomId];
+        }
         [[WarpClient getInstance]getLiveRoomInfo:roomData.roomId];
         NSLog(@".onJoinRoomDone..on Join room listener called Success");
     }
@@ -78,6 +89,7 @@
 -(void)onLeaveRoomDone:(RoomEvent*)roomEvent{
     if (roomEvent.result == SUCCESS) {
         NSLog(@"Left Room");
+        joined = NO;
         [[WarpClient getInstance]unsubscribeRoom:roomEvent.roomData.roomId];
         [[WarpClient getInstance] getLiveRoomInfo:roomEvent.roomData.roomId];
     }
