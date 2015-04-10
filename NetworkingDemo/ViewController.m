@@ -102,7 +102,7 @@ NSString *curWord;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 0;
+        minutes = 2;
         seconds = 30;
     } else {
         minutes = 2;
@@ -1149,14 +1149,26 @@ NSString *curWord;
 
 -(void)rearrangeTiles:(UIView *)tile  {
     TileViewCell *theTile = ((TileViewCell *)tile);
+    if (!theTile.isOnRack) {
+        NSString* message = [NSString stringWithFormat:@"letterReturned:%ld", (long)theTile.indexPath.item];
+        [NetworkUtils sendLetterReturned:message];
+        
+        [self clearOutlingColor:theTile];
+        [self removeTileFromCurrentSpot:theTile];
+        currentPlayer.numberOfTiles++;
+        theTile.isOnRack = YES;
+        [theTile makeUnselected];
+        [theTile setColorOfTile:currentPlayer.color];
+        theTile.startPoint = tile.frame.origin;
+        
+        [self clearSelectedTile];
 
+    }
     
     CGPoint closestRackSpace = [self findClosestRackTile:theTile];
     if (closestRackSpace.x != theTile.startPoint.x) {
         
         CGRect newFrame = CGRectMake(closestRackSpace.x, closestRackSpace.y, theTile.frame.size.width, theTile.frame.size.height);
-        
-        
         
         if (closestRackSpace.x >= theTile.startPoint.x) {
             for (int i = 0; i < [self.allTiles count]; i++) {
@@ -1172,7 +1184,6 @@ NSString *curWord;
                             aTile.startPoint = theTile.startPoint;
                             break;
                         }
-                        
                     }
                 }
             }
@@ -1181,12 +1192,10 @@ NSString *curWord;
             for (int i = 0; i < [self.allTiles count]; i++) {
                 TileViewCell *aTile = (TileViewCell *)self.allTiles[i];
                 CGPoint nextClosestRackSpace = CGPointMake(closestRackSpace.x + (TILE_WIDTH + 30), closestRackSpace.y);
-                [self.tileSpaces addObject:[NSValue valueWithCGRect:CGRectMake(nextClosestRackSpace.x, nextClosestRackSpace.y, TILE_WIDTH, TILE_HEIGHT)]];
                 if (aTile.isOnRack) {
                     if (aTile.frame.origin.x == closestRackSpace.x) {
                         
                         aTile.startPoint = nextClosestRackSpace;
-                        [self removeSpaceFromTileSpaces:CGRectMake(nextClosestRackSpace.x, nextClosestRackSpace.y, TILE_WIDTH, TILE_HEIGHT)];
                         
                         closestRackSpace = nextClosestRackSpace;
                         
@@ -1206,21 +1215,39 @@ NSString *curWord;
                 [UIView animateWithDuration:0.1 animations:^{
                     aTile.frame = tempFrame;
                 }];
-
+               
             }
         }
         theTile.startPoint = newFrame.origin;
         [UIView animateWithDuration:0.1 animations:^{
             tile.frame = newFrame;
         }];
-        [self removeSpaceFromTileSpaces:newFrame];
+        
+        self.tileSpaces = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [self.rackTileFrames count]; j++) {
+            CGRect rackFrame = [[self.rackTileFrames objectAtIndex:j] CGRectValue];
+            [self.tileSpaces addObject:[NSValue valueWithCGRect:rackFrame]];
+        }
+
+        for (int j = 0; j < [self.allTiles count]; j++) {
+            TileViewCell *aTile = (TileViewCell *)self.allTiles[j];
+            if (aTile.isOnRack) {
+                for (int p = [self.tileSpaces count] - 1; p >= 0; p--) {
+                    CGRect spaceFrame = [[self.tileSpaces objectAtIndex:p] CGRectValue];
+                    if (spaceFrame.origin.x == aTile.frame.origin.x) {
+                        
+                        [self.tileSpaces removeObjectAtIndex:p];
+                    }
+                }
+            }
+        }
 
     }
     
     
 }
 -(void) removeSpaceFromTileSpaces:(CGRect) frame {
-    
+    CGRect a = frame;
     for (long i = [_tileSpaces count] - 1; i >= 0; i--) {
         CGRect aframe = [[_tileSpaces objectAtIndex:i] CGRectValue];
         if (aframe.origin.x == frame.origin.x) {
