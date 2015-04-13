@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -33,7 +33,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="touchHome:" destination="MXs-Jn-LTR" eventType="touchUpInside" id="TzM-42-wl8"/>
+                                <action selector="touchHome:" destination="iN0-l3-epB" eventType="touchUpInside" id="2vC-KD-w1x"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhh-dt-99g">
@@ -43,6 +43,7 @@
                             </state>
                             <connections>
                                 <action selector="touchRematch:" destination="MXs-Jn-LTR" eventType="touchUpInside" id="2pL-Ci-K3e"/>
+                                <action selector="touchRematch:" destination="iN0-l3-epB" eventType="touchUpInside" id="ayf-cK-fzk"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzK-CH-yNU">
@@ -95,6 +96,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avgScore" destination="xzK-CH-yNU" id="Jw4-Mk-OKm"/>
+                <outlet property="finalScore" destination="d1b-VZ-Cok" id="MEH-0h-MJH"/>
+                <outlet property="highScore" destination="DWf-7p-3Wn" id="G1S-5h-dK2"/>
+                <outlet property="highestScoringWord" destination="2uQ-Ec-Z8E" id="fAy-K8-jNs"/>
+                <outlet property="pointsSecond" destination="UWL-Za-YJt" id="ree-H6-Y2s"/>
+                <outlet property="wordsSecond" destination="T5k-Zh-f2C" id="au7-LU-K4y"/>
+            </connections>
         </view>
     </objects>
     <resources>

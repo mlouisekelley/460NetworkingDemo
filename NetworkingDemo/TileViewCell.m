@@ -87,14 +87,14 @@ ViewController *superview;
     if ([ourColor isEqual:[UIColor orangeColor]]) {
         [self setImage:[UIImage imageNamed:@"tile.png"]];
     }
-    if ([ourColor isEqual:[UIColor purpleColor]]) {
+    else if ([ourColor isEqual:[UIColor purpleColor]]) {
         [self setImage:[UIImage imageNamed:@"tile2.png"]];
     }
-    if ([ourColor isEqual:[UIColor greenColor]]) {
-        [self setImage:[UIImage imageNamed:@"tile3.png"]];
+    else if ([ourColor isEqual:[UIColor greenColor]]) {
+        [self setImage:[UIImage imageNamed:@"Tile3"]];
     }
-    if ([ourColor isEqual:[UIColor blueColor]]) {
-        [self setImage:[UIImage imageNamed:@"tile4.png"]];
+    else {
+        [self setImage:[UIImage imageNamed:@"Tile4"]];
     }
     _isSelected = NO;
 }
@@ -203,14 +203,14 @@ ViewController *superview;
         UIImage *tileImg = [UIImage imageNamed:@"tile.png"];
         [self setImage:tileImg];
     }
-    if ([color isEqual:[UIColor purpleColor]]) {
+    else if ([color isEqual:[UIColor purpleColor]]) {
         [self setImage:[UIImage imageNamed:@"tile2.png"]];
     }
-    if ([color isEqual:[UIColor greenColor]]) {
-        [self setImage:[UIImage imageNamed:@"tile3.png"]];
+    else if ([color isEqual:[UIColor greenColor]]) {
+        [self setImage:[UIImage imageNamed:@"Tile3"]];
     }
-    if ([color isEqual:[UIColor blueColor]]) {
-        [self setImage:[UIImage imageNamed:@"tile4.png"]];
+    else{
+        [self setImage:[UIImage imageNamed:@"Tile4"]];
     }
 }
 

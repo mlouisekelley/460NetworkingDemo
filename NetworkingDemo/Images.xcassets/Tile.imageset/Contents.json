@@ -14,6 +14,10 @@
     },
     {
       "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
       "unassigned" : true
     }
   ],

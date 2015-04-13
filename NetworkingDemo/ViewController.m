@@ -106,8 +106,8 @@ NSString *curWord;
         minutes = 2;
         seconds = 0;
     } else {
-        minutes = 2;
-        seconds = 0;
+        minutes = 0;
+        seconds = 10;
     }
     numSeconds = seconds + minutes * 60;
     milliseconds = 0;
@@ -569,19 +569,8 @@ NSString *curWord;
             alertMessage = @"You did not get a new high score. Better luck next time!";
             endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
         }
-                [self getAverageScore];
-        [self getTopScore];
-        [self.view addSubview:shieldView];
         
-        [UIView animateWithDuration:0.0
-                              delay:0
-                            options: UIViewAnimationCurveLinear
-                         animations:^{
-                             endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
-                            
-                         }
-                         completion:^(BOOL finished){
-                         }];
+        
     } else {
         if ([self didCurrentPlayerWin]) {
             alertMessage = @"You Win!";
@@ -598,9 +587,22 @@ NSString *curWord;
     endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
     endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
     endGameDialog.avgScore = 0;
+    [self getAverageScore];
+    [self getTopScore];
+
     shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
     shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+    [self.view addSubview:shieldView];
     [self.view addSubview:endGameDialog];
+    [UIView animateWithDuration:0.0
+                          delay:0
+                        options: UIViewAnimationCurveLinear
+                     animations:^{
+                         endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+                         
+                     }
+                     completion:^(BOOL finished){
+                     }];
 
     if (objc_getClass("UIAlertController") != nil){
         
