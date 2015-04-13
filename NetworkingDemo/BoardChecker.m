@@ -9,6 +9,7 @@
 #import "BoardChecker.h"
 #import "GameConstants.h"
 #import "BoardCellDTO.h"
+#import "ViewController.h"
 #import <Parse/Parse.h>
 
 @interface BoardChecker()
@@ -351,9 +352,33 @@
         if (!error) {
             if(objects.count > 1){
                 NSLog(@"Error: Found more than one room with a given room id");
-                return;
             } else {
-                //check the board of this room
+                BOOL free = YES;
+                for (PFObject *object in objects) {
+                    for (int i = 0; i<[board count]; i++) {
+                        BoardCellDTO *cellDTO = board[i];
+                        if(cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
+                            NSString *key = [NSString stringWithFormat:@"s%d", i];
+                            [object incrementKey:key byAmount:[NSNumber numberWithInt:1]];
+                            NSLog(@"CHECKED: %d", i);
+                            NSNumber *value = object[key];
+                            if(![value isEqual:@1]){
+                                NSLog(@"FAILED ON: %d, for value: %@", i, object[key]);
+                                free = NO;
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [[ViewController sharedViewController] thereWasARace];
+                                });
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(free){
+                    NSLog(@"ALL SPACES WERE FREE");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[ViewController sharedViewController] noRace];
+                    });
+                }
             }
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);

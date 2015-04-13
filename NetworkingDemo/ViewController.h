@@ -60,6 +60,8 @@
 -(void)playerDeniedRematch;
 -(void)goRematch;
 -(void)goHome;
+-(void)noRace;
+-(void)thereWasARace;
 
 
 

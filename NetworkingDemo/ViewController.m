@@ -906,7 +906,12 @@ NSString *curWord;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-    BOOL areSpacesfree = [self.boardChecker areSpacesFree:self.board];
+    //Call to see if all the spaces are free
+    [self.boardChecker areSpacesFree:self.board];
+}
+
+-(void)noRace
+{
     NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
     NSArray *invalidWordsOnBoard = boardCheckerResults[0];
     NSArray *notConnectedWordsOnBoard = boardCheckerResults[1];
@@ -960,23 +965,12 @@ NSString *curWord;
         
     } else {
         
-        //RACE AVOIDANCE
-        NSMutableDictionary *lockProperties = [[NSMutableDictionary alloc] init];
-        for (int i = 0; i<[self.board count]; i++) {
-            BoardCellDTO *cellDTO = self.board[i];
-            TileViewCell *tvc = cellDTO.tvc;
-            if(tvc.isUnsent){
-                [lockProperties setObject:@"-" forKey:[NSString stringWithFormat:@"%d",i]];
-            }
-        }
-        
         int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
         for (int i = 0; i < num; i++) {
             [self createTileInRack];
         }
         [self updateSelfScore:newWords];
         currentPlayer.numWords++;
-        //TODO: Need to move this to a seperate callable method
         
         //Play a sound
         SystemSoundID audioEffect;
@@ -990,6 +984,11 @@ NSString *curWord;
         [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
         
     }
+}
+
+-(void)thereWasARace
+{
+    
 }
 
 
