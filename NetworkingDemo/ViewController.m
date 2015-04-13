@@ -313,6 +313,7 @@ NSString *curWord;
             // Do something with the found objects
             for (PFObject *object in objects) {
                 NSLog(@"%@", object.objectId);
+                endGameDialog.highScore.text = [NSString stringWithFormat:@"%d", [(NSNumber *)object intValue]];
             }
         } else {
             // Log details of the failure
@@ -332,6 +333,7 @@ NSString *curWord;
             NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             PFObject *object = objects[0];
             double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
+            endGameDialog.avgScore.text = [NSString stringWithFormat:@"%f",average];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -572,8 +574,11 @@ NSString *curWord;
         endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
         endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
         endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
+        endGameDialog.avgScore = 0;
         shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
         shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+        [self getAverageScore];
+        [self getTopScore];
         [self.view addSubview:shieldView];
         
         [self.view addSubview:endGameDialog];
@@ -582,6 +587,7 @@ NSString *curWord;
                             options: UIViewAnimationCurveLinear
                          animations:^{
                              endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+                            
                          }
                          completion:^(BOOL finished){
                          }];
