@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EndGameDialog">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="574" height="583"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EndGame4" translatesAutoresizingMaskIntoConstraints="NO" id="Ndt-Sw-EM9">
@@ -90,6 +90,7 @@
                 <outlet property="pointsSecond" destination="xmO-Eo-gt5" id="LwN-qd-Yz8"/>
                 <outlet property="wordsSecond" destination="VrL-KV-ozz" id="4SW-2h-GCp"/>
             </connections>
+            <point key="canvasLocation" x="283" y="214.5"/>
         </view>
     </objects>
     <resources>
