@@ -994,7 +994,8 @@ NSString *curWord;
 
 -(void)thereWasARace
 {
-    
+    NSLog(@"THERE WAS A RACE");
+    //do nothing?
 }
 
 
