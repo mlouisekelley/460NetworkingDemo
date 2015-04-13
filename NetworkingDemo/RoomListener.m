@@ -76,6 +76,7 @@ BOOL joined = NO;
             [[WarpClient getInstance]subscribeRoom:roomData.roomId];
         }
         [[WarpClient getInstance]getLiveRoomInfo:roomData.roomId];
+        [GameConstants setCurrentRoomId:roomData.roomId];
         NSLog(@".onJoinRoomDone..on Join room listener called Success");
     }
     else
@@ -92,6 +93,7 @@ BOOL joined = NO;
         joined = NO;
         [[WarpClient getInstance]unsubscribeRoom:roomEvent.roomData.roomId];
         [[WarpClient getInstance] getLiveRoomInfo:roomEvent.roomData.roomId];
+        [GameConstants setCurrentRoomId:nil];
     }
     else {
     }

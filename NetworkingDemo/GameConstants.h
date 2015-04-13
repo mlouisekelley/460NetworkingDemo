@@ -24,6 +24,8 @@
 +(void)setUserName:(NSString *)userName;
 +(NSString *)getRoomIdToJoin;
 +(void)setRoomIdToJoin:(NSString *)roomId;
++(NSString *)getCurrentRoomId;
++(void)setCurrentRoomId:(NSString *)roomId;
 +(NSString *)getSubscribedRoom;
 +(void)setSubscribedRoom:(NSString *)roomId;
 

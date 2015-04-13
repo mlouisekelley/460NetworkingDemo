@@ -906,6 +906,7 @@ NSString *curWord;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
+    BOOL areSpacesfree = [self.boardChecker areSpacesFree:self.board];
     NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
     NSArray *invalidWordsOnBoard = boardCheckerResults[0];
     NSArray *notConnectedWordsOnBoard = boardCheckerResults[1];

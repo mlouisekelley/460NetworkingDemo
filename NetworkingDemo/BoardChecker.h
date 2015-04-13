@@ -15,4 +15,5 @@
 -(NSUInteger)calculateScoreForBoard:(NSArray *)board andPlayer:(NSString *)player;
 - (id)initWithScrabbleDict;
 +(NSInteger)getScoreForLetter:(NSString *)letter;
+-(BOOL)areSpacesFree:(NSArray *)board;
 @end

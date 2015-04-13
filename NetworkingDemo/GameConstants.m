@@ -14,6 +14,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 NSString *handle = nil; //Used for login and high score information
 NSString *userName = nil; //Used for appwarp communication
 NSString *roomIdToJoin = nil;
+NSString *currentRoomId = nil;
 NSString *subscribedRoom = nil;
 
 +(NSString *)getHandle
@@ -55,6 +56,16 @@ NSString *subscribedRoom = nil;
 +(void)setRoomIdToJoin:(NSString *)roomId
 {
     roomIdToJoin = roomId;
+}
+
++(NSString *)getCurrentRoomId
+{
+    return currentRoomId;
+}
+
++(void)setCurrentRoomId:(NSString *)roomId
+{
+    currentRoomId = roomId;
 }
 
 +(NSString *)getSubscribedRoom

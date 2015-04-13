@@ -395,7 +395,7 @@ NSString *alertMessage;
                                          preferredStyle:UIAlertControllerStyleAlert];
     
     
-    // Get the high scores from Parse
+    //Get currently available games to join from parse
     PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
     [query whereKey:@"numPlayers" greaterThan:@1];
     [query whereKey:@"gameStarted" equalTo:@NO];

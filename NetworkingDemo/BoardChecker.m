@@ -9,6 +9,7 @@
 #import "BoardChecker.h"
 #import "GameConstants.h"
 #import "BoardCellDTO.h"
+#import <Parse/Parse.h>
 
 @interface BoardChecker()
 
@@ -33,7 +34,7 @@
     
     
     NSArray *listArray = [fileContents componentsSeparatedByString:@"\n"];
-    NSLog(@"items = %d", [listArray count]);
+    NSLog(@"items = %lu", (unsigned long)[listArray count]);
     
     for (NSString *word in listArray) {
         if ([word length] > 1) {
@@ -339,6 +340,27 @@
         return YES;
     }
     return NO;
+}
+
+-(BOOL)areSpacesFree:(NSArray *)board
+{
+    //Get currently available games to join from parse
+    PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+    [query whereKey:@"roomId" equalTo:[GameConstants getCurrentRoomId]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if(objects.count > 1){
+                NSLog(@"Error: Found more than one room with a given room id");
+                return;
+            } else {
+                //check the board of this room
+            }
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    return YES;
 }
 
 @end

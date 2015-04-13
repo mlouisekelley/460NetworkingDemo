@@ -140,6 +140,10 @@
         room[@"name"] = roomEvent.roomData.name;
         room[@"numPlayers"] = [NSNumber numberWithInt:roomEvent.roomData.maxUsers];
         room[@"gameStarted"] = @NO;
+        for(int i = 0; i < 100; i++){
+            NSString *roomKey = [NSString stringWithFormat:@"s%d", i];
+            room[roomKey] = @0;
+        }
         [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"Parse saved room information");
