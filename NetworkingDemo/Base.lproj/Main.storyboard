@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
-            <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
@@ -150,24 +149,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="p72-if-KEn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bkg3.png" translatesAutoresizingMaskIntoConstraints="NO" id="p72-if-KEn">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="20" width="768" height="1026"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFT-9s-LJM">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="202" y="496" width="402" height="98"/>
-                                </variation>
-                                <connections>
-                                    <action selector="playButtonTouched:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="icN-j3-lbD"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qq4-kn-as6">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
@@ -176,13 +163,13 @@
                                     <rect key="frame" x="390" y="439" width="20" height="20"/>
                                 </variation>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-d8-mCx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-d8-mCx">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <state key="normal" image="ScoresBut">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="83" y="662" width="633" height="93"/>
+                                    <rect key="frame" x="97" y="688" width="606" height="102"/>
                                 </variation>
                                 <connections>
                                     <segue destination="bKl-In-zzV" kind="show" id="XcJ-h0-umB"/>
@@ -202,24 +189,30 @@
                                     <segue destination="IF6-Sh-vro" kind="show" id="IHe-Md-d5e"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="R6v-kb-RUF">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="509" y="904" width="103" height="105"/>
-                                </variation>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67t-Jk-C2U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67t-Jk-C2U">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="25"/>
-                                <state key="normal" title="Logout">
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="14"/>
+                                <state key="normal" image="LogoutBut">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="516" y="920" width="89" height="73"/>
+                                    <rect key="frame" x="702" y="50" width="29" height="29"/>
                                 </variation>
                                 <connections>
                                     <action selector="logout:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="rpG-N1-jaU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFT-9s-LJM">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="PlayBut">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="163" y="523" width="461" height="118"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playButtonTouched:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="icN-j3-lbD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -227,23 +220,21 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="p72-if-KEn"/>
-                                <exclude reference="sFT-9s-LJM"/>
                                 <exclude reference="Qq4-kn-as6"/>
                                 <exclude reference="GAv-d8-mCx"/>
                                 <exclude reference="gdJ-AQ-ubE"/>
-                                <exclude reference="R6v-kb-RUF"/>
                                 <exclude reference="67t-Jk-C2U"/>
+                                <exclude reference="sFT-9s-LJM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="p72-if-KEn"/>
-                                <include reference="sFT-9s-LJM"/>
                                 <include reference="Qq4-kn-as6"/>
                                 <include reference="GAv-d8-mCx"/>
                                 <include reference="gdJ-AQ-ubE"/>
-                                <include reference="R6v-kb-RUF"/>
                                 <include reference="67t-Jk-C2U"/>
+                                <include reference="sFT-9s-LJM"/>
                             </mask>
                         </variation>
                     </view>
@@ -4266,13 +4257,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogoutBut" width="50" height="50"/>
+        <image name="PlayBut" width="569" height="146"/>
         <image name="Reload Filled-50.png" width="50" height="50"/>
+        <image name="ScoresBut" width="864" height="146"/>
         <image name="Screen Shot 2015-03-14 at 8.15.56 PM.png" width="103" height="102"/>
         <image name="Shuffle-50 (1).png" width="50" height="50"/>
         <image name="Tile2" width="212" height="212"/>
         <image name="TileFinal" width="212" height="212"/>
         <image name="Trophy" width="50" height="50"/>
-        <image name="bkg.png" width="1042" height="1381"/>
+        <image name="bkg3.png" width="1042" height="1381"/>
         <image name="ctile.png" width="140" height="149"/>
         <image name="fuel_red_2.png" width="419" height="21"/>
         <image name="gamebkg4.png" width="1593" height="2108"/>
@@ -4291,7 +4285,6 @@
         <image name="t7.png" width="1052" height="1379"/>
         <image name="t8.png" width="1052" height="1379"/>
         <image name="t9.png" width="1052" height="1379"/>
-        <image name="tile.png" width="212" height="212"/>
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
