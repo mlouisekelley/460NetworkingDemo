@@ -569,19 +569,10 @@ NSString *curWord;
             alertMessage = @"You did not get a new high score. Better luck next time!";
             endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
         }
-        endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
-        endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
-        endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
-        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
-        endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
-        endGameDialog.avgScore = 0;
-        shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
-        shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
-        [self getAverageScore];
+                [self getAverageScore];
         [self getTopScore];
         [self.view addSubview:shieldView];
         
-        [self.view addSubview:endGameDialog];
         [UIView animateWithDuration:0.0
                               delay:0
                             options: UIViewAnimationCurveLinear
@@ -594,12 +585,23 @@ NSString *curWord;
     } else {
         if ([self didCurrentPlayerWin]) {
             alertMessage = @"You Win!";
+            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog4" owner:self options:nil] objectAtIndex:0];
         }
         else {
             alertMessage = @"You Lose.";
+            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog3" owner:self options:nil] objectAtIndex:0];
         }
     }
-    
+    endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+    endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
+    endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
+    endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
+    endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
+    endGameDialog.avgScore = 0;
+    shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
+    shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+    [self.view addSubview:endGameDialog];
+
     if (objc_getClass("UIAlertController") != nil){
         
 //        //create an alert
@@ -607,10 +609,6 @@ NSString *curWord;
                                       alertControllerWithTitle:@"GAME OVER"
                                       message:alertMessage
                                       preferredStyle:UIAlertControllerStyleAlert];
-        
-       if(_numPlayers != 1){
-        [self presentViewController:homeOrRematchAlert animated:YES completion:nil];
-       }
         
         //create rematch action for alert
         UIAlertAction* rematch = [UIAlertAction
