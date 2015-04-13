@@ -360,7 +360,7 @@
                         if(cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
                             NSString *key = [NSString stringWithFormat:@"s%d", i];
                             [object incrementKey:key byAmount:[NSNumber numberWithInt:1]];
-                            NSLog(@"CHECKED: %d", i);
+                            [object saveInBackground];
                             NSNumber *value = object[key];
                             if(![value isEqual:@1]){
                                 NSLog(@"FAILED ON: %d, for value: %@", i, object[key]);
