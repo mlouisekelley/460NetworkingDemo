@@ -104,7 +104,7 @@ NSString *curWord;
 -(void) setUpGame {
     if(_numPlayers == 1){
         minutes = 2;
-        seconds = 30;
+        seconds = 0;
     } else {
         minutes = 2;
         seconds = 0;
@@ -384,7 +384,7 @@ NSString *curWord;
         self.msLabel.text = [NSString stringWithFormat:@"%d",milliseconds / 10];
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 
-        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (180 * 1000.0);
+        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
         self.barTimerView.percent = percent;
         [self.barTimerView setNeedsDisplay];
     }
