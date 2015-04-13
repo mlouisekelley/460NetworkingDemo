@@ -59,6 +59,7 @@ int playerNumber = 2;
 NSString *successNoisePath;
 NSURL *successNoisePathURL;
 int waitsRecieved = 0;
+UIAlertController * homeOrRematchAlert;
 UIAlertController * waitingAlert;
 UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
@@ -382,14 +383,8 @@ NSString *curWord;
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 
         double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (180 * 1000.0);
-//        self.circleTimerView.percent = percent;
-//        self.circleTimerView.seconds = seconds + minutes * 60;
-//        self.circleTimerView.milliseconds = milliseconds;
-//        [self.circleTimerView setNeedsDisplay];
         self.barTimerView.percent = percent;
         [self.barTimerView setNeedsDisplay];
-        
-//        [self.view bringSubviewToFront:self.circleTimerView];
     }
 }
 
@@ -602,7 +597,7 @@ NSString *curWord;
     if (objc_getClass("UIAlertController") != nil){
         
 //        //create an alert
-        UIAlertController * alert=   [UIAlertController
+         homeOrRematchAlert =   [UIAlertController
                                       alertControllerWithTitle:@"GAME OVER"
                                       message:alertMessage
                                       preferredStyle:UIAlertControllerStyleAlert];
@@ -615,7 +610,7 @@ NSString *curWord;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
                                  
                                  [NetworkUtils sendWaitingForRematch];
                                  
@@ -633,15 +628,15 @@ NSString *curWord;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
                                  
                                  [NetworkUtils sendRematchDenied];
                                  
                                  [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
                              }];
         
-        [alert addAction:home];
-        [alert addAction:rematch]; // add action to uialertcontroller
+        [homeOrRematchAlert addAction:home];
+        [homeOrRematchAlert addAction:rematch]; // add action to uialertcontroller
         
     }
     else {
@@ -745,6 +740,7 @@ NSString *curWord;
 
 -(void)playerDeniedRematch {
     NSLog(@"Rematch denied");
+    [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
     [waitingAlert dismissViewControllerAnimated:YES completion:nil];
     rematchDeniedAlert =   [UIAlertController
                                   alertControllerWithTitle:@"A Player Denied to Rematch"
