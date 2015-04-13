@@ -112,6 +112,7 @@
 
 +(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players
 {
+    NSLog(@"CREATING ROOM");
     [[WarpClient getInstance] createRoomWithRoomName:name roomOwner:[GameConstants getUserName] properties:nil maxUsers:players];
 }
 

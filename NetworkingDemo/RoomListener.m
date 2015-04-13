@@ -82,7 +82,6 @@ BOOL joined = NO;
     else
     {
         NSLog(@".onJoinRoomDone..on Join room listener called failed");
-        [[WarpClient getInstance] createRoomWithRoomName:[GameConstants getUserName] roomOwner:@"admin" properties:nil maxUsers:10];
     }
     
 }

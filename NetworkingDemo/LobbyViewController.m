@@ -416,7 +416,6 @@ NSString *alertMessage;
                               }];
                 [selectGameAlert addAction:gameAction];
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertAction *cancel = [UIAlertAction
                                          actionWithTitle:@"Cancel"
                                          style:UIAlertActionStyleDefault
@@ -425,7 +424,8 @@ NSString *alertMessage;
                                              [selectGameAlert dismissViewControllerAnimated:YES completion:nil];
                                          }];
                 [selectGameAlert addAction:cancel];
-                
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:selectGameAlert animated:YES completion:nil];
             });
         } else {
