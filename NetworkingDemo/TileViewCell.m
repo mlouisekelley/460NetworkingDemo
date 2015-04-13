@@ -90,6 +90,12 @@ ViewController *superview;
     if ([ourColor isEqual:[UIColor purpleColor]]) {
         [self setImage:[UIImage imageNamed:@"tile2.png"]];
     }
+    if ([ourColor isEqual:[UIColor greenColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile3.png"]];
+    }
+    if ([ourColor isEqual:[UIColor blueColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile4.png"]];
+    }
     _isSelected = NO;
 }
 
@@ -200,7 +206,12 @@ ViewController *superview;
     if ([color isEqual:[UIColor purpleColor]]) {
         [self setImage:[UIImage imageNamed:@"tile2.png"]];
     }
-
+    if ([color isEqual:[UIColor greenColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile3.png"]];
+    }
+    if ([color isEqual:[UIColor blueColor]]) {
+        [self setImage:[UIImage imageNamed:@"tile4.png"]];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
