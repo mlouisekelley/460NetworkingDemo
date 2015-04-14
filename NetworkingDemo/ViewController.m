@@ -59,7 +59,6 @@ int playerNumber = 2;
 NSString *successNoisePath;
 NSURL *successNoisePathURL;
 int waitsRecieved = 0;
-UIAlertController * homeOrRematchAlert;
 UIAlertController * waitingAlert;
 UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
@@ -104,7 +103,7 @@ NSString *curWord;
 -(void) setUpGame {
     if(_numPlayers == 1){
         minutes = 2;
-        seconds = 30;
+        seconds = 0;
     } else {
         minutes = 2;
         seconds = 0;
@@ -384,7 +383,7 @@ NSString *curWord;
         self.msLabel.text = [NSString stringWithFormat:@"%d",milliseconds / 10];
         self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 
-        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (180 * 1000.0);
+        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
         self.barTimerView.percent = percent;
         [self.barTimerView setNeedsDisplay];
     }
@@ -569,19 +568,8 @@ NSString *curWord;
             alertMessage = @"You did not get a new high score. Better luck next time!";
             endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
         }
-                [self getAverageScore];
-        [self getTopScore];
-        [self.view addSubview:shieldView];
         
-        [UIView animateWithDuration:0.0
-                              delay:0
-                            options: UIViewAnimationCurveLinear
-                         animations:^{
-                             endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
-                            
-                         }
-                         completion:^(BOOL finished){
-                         }];
+        
     } else {
         if ([self didCurrentPlayerWin]) {
             alertMessage = @"You Win!";
@@ -598,59 +586,23 @@ NSString *curWord;
     endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
     endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
     endGameDialog.avgScore = 0;
+    [self getAverageScore];
+    [self getTopScore];
+
     shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
     shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+    [self.view addSubview:shieldView];
     [self.view addSubview:endGameDialog];
+    [UIView animateWithDuration:0.0
+                          delay:0
+                        options: UIViewAnimationCurveLinear
+                     animations:^{
+                         endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+                         
+                     }
+                     completion:^(BOOL finished){
+                     }];
 
-    if (objc_getClass("UIAlertController") != nil){
-        
-//        //create an alert
-         homeOrRematchAlert =   [UIAlertController
-                                      alertControllerWithTitle:@"GAME OVER"
-                                      message:alertMessage
-                                      preferredStyle:UIAlertControllerStyleAlert];
-        
-        //create rematch action for alert
-        UIAlertAction* rematch = [UIAlertAction
-                             actionWithTitle:@"Rematch!"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                                 [NetworkUtils sendWaitingForRematch];
-                                 
-                                 waitingAlert=   [UIAlertController
-                                                               alertControllerWithTitle:@"WAITING"
-                                                               message:alertMessage
-                                                               preferredStyle:UIAlertControllerStyleAlert];
-                                 
-                                 [self presentViewController:waitingAlert animated:YES completion:nil];
-                             }];
-        
-        //create ok action for alert
-        UIAlertAction* home = [UIAlertAction
-                             actionWithTitle:@"Home"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                                 [NetworkUtils sendRematchDenied];
-                                 
-                                 [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
-                             }];
-        
-        [homeOrRematchAlert addAction:home];
-        [homeOrRematchAlert addAction:rematch]; // add action to uialertcontroller
-        
-    }
-    else {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Board" message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        
-    }
 }
 
 -(void) goHome {
@@ -746,7 +698,6 @@ NSString *curWord;
 
 -(void)playerDeniedRematch {
     NSLog(@"Rematch denied");
-    [homeOrRematchAlert dismissViewControllerAnimated:YES completion:nil];
     [waitingAlert dismissViewControllerAnimated:YES completion:nil];
     rematchDeniedAlert =   [UIAlertController
                                   alertControllerWithTitle:@"A Player Denied to Rematch"
@@ -992,7 +943,8 @@ NSString *curWord;
 
 -(void)thereWasARace
 {
-    
+    NSLog(@"THERE WAS A RACE");
+    //do nothing?
 }
 
 

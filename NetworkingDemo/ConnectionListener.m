@@ -24,6 +24,8 @@
     if (event.result==SUCCESS)
     {
         NSLog(@"connection success");
+        //USE THIS TO CLEAR APP WARP ROOMS:
+        //[NetworkUtils deleteAllAppWarpRooms];
     }
     else if (event.result==SUCCESS_RECOVERED)
     {
