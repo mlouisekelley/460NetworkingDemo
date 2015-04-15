@@ -352,6 +352,7 @@ NSString *alertMessage;
 }
 
 -(void)startGame {
+    joinsRecieved = 0;
     [vc performSegueWithIdentifier:@"BeginGame" sender:vc];
 }
 
