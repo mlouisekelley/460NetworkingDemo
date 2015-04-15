@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
+            <string>orangejuice</string>
+            <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
             <string>orangejuice</string>
@@ -173,7 +175,7 @@
                                     <rect key="frame" x="97" y="688" width="606" height="102"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="bKl-In-zzV" kind="show" id="XcJ-h0-umB"/>
+                                    <segue destination="YZo-dX-Rfc" kind="show" id="lso-A4-pMu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-AQ-ubE">
@@ -198,7 +200,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="702" y="50" width="29" height="29"/>
+                                    <rect key="frame" x="702" y="52" width="29" height="29"/>
                                 </variation>
                                 <connections>
                                     <action selector="logout:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="rpG-N1-jaU"/>
@@ -254,7 +256,7 @@
         <!--Item 1-->
         <scene sceneID="Kd1-Aa-olI">
             <objects>
-                <viewController id="YZo-dX-Rfc" customClass="MultiPlayerHighScoresVC" sceneMemberID="viewController">
+                <viewController id="YZo-dX-Rfc" customClass="ScoresViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B2A-Xe-a8J"/>
                         <viewControllerLayoutGuide type="bottom" id="tm2-wq-O87"/>
@@ -269,17 +271,63 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
                                 </variation>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="hAt-Pv-6IC">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="72" y="52" width="66" height="63"/>
+                                </variation>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92c-Ac-Jbe">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Home">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="77" y="68" width="55" height="28"/>
+                                    <rect key="frame" x="77" y="57" width="55" height="50"/>
                                 </variation>
                                 <connections>
                                     <segue destination="Ti6-2w-sDr" kind="show" id="DAE-b2-Flf"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="hui-a9-VOX">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="187" y="239" width="178" height="94"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="J4S-TV-4cS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="393" y="239" width="178" height="94"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-9Q-zu5">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="26"/>
+                                <state key="normal" title="Multi-player">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="187" y="240" width="178" height="91"/>
+                                </variation>
+                                <connections>
+                                    <action selector="multiPlayerTouched:" destination="YZo-dX-Rfc" eventType="touchUpInside" id="bU0-HI-SR4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypc-Oa-GHq">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="25"/>
+                                <state key="normal" title="Single player">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="393" y="240" width="178" height="89"/>
+                                </variation>
+                                <connections>
+                                    <action selector="singlePlayerTouched:" destination="YZo-dX-Rfc" eventType="touchUpInside" id="plX-IV-HlL"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Multi-player High Scores:" translatesAutoresizingMaskIntoConstraints="NO" id="zO1-U1-mrp">
@@ -288,7 +336,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="77" y="247" width="577" height="729"/>
+                                    <rect key="frame" x="63" y="339" width="577" height="638"/>
                                 </variation>
                             </textView>
                         </subviews>
@@ -296,14 +344,24 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="JDi-rn-VzU"/>
+                                <exclude reference="hAt-Pv-6IC"/>
                                 <exclude reference="92c-Ac-Jbe"/>
+                                <exclude reference="hui-a9-VOX"/>
+                                <exclude reference="J4S-TV-4cS"/>
+                                <exclude reference="cEb-9Q-zu5"/>
+                                <exclude reference="ypc-Oa-GHq"/>
                                 <exclude reference="zO1-U1-mrp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="JDi-rn-VzU"/>
+                                <include reference="hAt-Pv-6IC"/>
                                 <include reference="92c-Ac-Jbe"/>
+                                <include reference="hui-a9-VOX"/>
+                                <include reference="J4S-TV-4cS"/>
+                                <include reference="cEb-9Q-zu5"/>
+                                <include reference="ypc-Oa-GHq"/>
                                 <include reference="zO1-U1-mrp"/>
                             </mask>
                         </variation>
@@ -315,26 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvw-tZ-Mhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="156" y="2868"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="bVq-WX-Hnq">
-            <objects>
-                <tabBarController id="bKl-In-zzV" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="itJ-X8-UGK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="YZo-dX-Rfc" kind="relationship" relationship="viewControllers" id="4pl-hH-3im"/>
-                        <segue destination="lPu-0u-Pgm" kind="relationship" relationship="viewControllers" id="ifw-fF-BBQ"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8kv-x8-JxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-967.5" y="2137.5"/>
+            <point key="canvasLocation" x="-645.75" y="1371"/>
         </scene>
         <!--Item-->
         <scene sceneID="2cd-De-rHK">
@@ -544,7 +583,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cr-me-NlN">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button" image="Screen Shot 2015-03-14 at 8.15.56 PM.png">
+                                <state key="normal" image="TileFinal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -630,18 +669,6 @@
                                     <rect key="frame" x="601" y="935" width="38" height="38"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="688" y="40" width="34" height="36"/>
-                                </variation>
-                                <connections>
-                                    <action selector="mute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZPK-mT-sji"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -706,6 +733,18 @@
                                     <rect key="frame" x="230" y="932" width="282" height="28"/>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Mute">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="697" y="46" width="26" height="26"/>
+                                </variation>
+                                <connections>
+                                    <action selector="mute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZPK-mT-sji"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -731,7 +770,6 @@
                                 <exclude reference="nfM-0g-U8t"/>
                                 <exclude reference="JiL-GT-ghm"/>
                                 <exclude reference="7F4-au-toT"/>
-                                <exclude reference="YQ1-UB-pKn"/>
                                 <exclude reference="WQm-aD-wuj"/>
                                 <exclude reference="rko-FW-xV2"/>
                                 <exclude reference="bUh-bB-XZO"/>
@@ -739,6 +777,7 @@
                                 <exclude reference="8sB-kq-WvK"/>
                                 <exclude reference="sXc-VK-uUn"/>
                                 <exclude reference="kZK-yJ-WHM"/>
+                                <exclude reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -764,7 +803,6 @@
                                 <include reference="nfM-0g-U8t"/>
                                 <include reference="JiL-GT-ghm"/>
                                 <include reference="7F4-au-toT"/>
-                                <include reference="YQ1-UB-pKn"/>
                                 <include reference="WQm-aD-wuj"/>
                                 <include reference="rko-FW-xV2"/>
                                 <include reference="bUh-bB-XZO"/>
@@ -772,6 +810,7 @@
                                 <include reference="8sB-kq-WvK"/>
                                 <include reference="sXc-VK-uUn"/>
                                 <include reference="kZK-yJ-WHM"/>
+                                <include reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                     </view>
@@ -4259,6 +4298,7 @@
     </scenes>
     <resources>
         <image name="LogoutBut" width="50" height="50"/>
+        <image name="Mute" width="50" height="50"/>
         <image name="PlayBut" width="569" height="146"/>
         <image name="Reload Filled-50.png" width="50" height="50"/>
         <image name="ScoresBut" width="864" height="146"/>
@@ -4286,11 +4326,12 @@
         <image name="t7.png" width="1052" height="1379"/>
         <image name="t8.png" width="1052" height="1379"/>
         <image name="t9.png" width="1052" height="1379"/>
+        <image name="tile.png" width="212" height="212"/>
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AlX-Ox-Ng0"/>
-        <segue reference="As8-Oz-X3g"/>
         <segue reference="8vg-oJ-Mwt"/>
+        <segue reference="DAE-b2-Flf"/>
+        <segue reference="As8-Oz-X3g"/>
     </inferredMetricsTieBreakers>
 </document>

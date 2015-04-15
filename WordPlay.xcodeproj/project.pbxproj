@@ -48,8 +48,6 @@
 		A330496F1A9E63D1002BA6EB /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A330496E1A9E63D1002BA6EB /* tile2.png */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		A36E23241AC9E9200068F887 /* hiscorebkg.png in Resources */ = {isa = PBXBuildFile; fileRef = A36E23231AC9E9200068F887 /* hiscorebkg.png */; };
-		A36E23271ACC3AEB0068F887 /* SinglePlayerScoresVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */; };
-		A36E232A1ACC3CF10068F887 /* MultiPlayerHighScoresVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */; };
 		A38645351ABA05F90032CF8C /* Shuffle-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645341ABA05F90032CF8C /* Shuffle-50.png */; };
 		A38645371ABA06000032CF8C /* Reload Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645361ABA06000032CF8C /* Reload Filled-50.png */; };
 		A38645391ABA06110032CF8C /* gamebkg4.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645381ABA06110032CF8C /* gamebkg4.png */; };
@@ -68,6 +66,8 @@
 		F0221D751AB5232F00245C38 /* BarTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0221D741AB5232F00245C38 /* BarTimerView.m */; };
 		F02422921A8C0478003F2B67 /* oj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02422911A8C0466003F2B67 /* oj.ttf */; };
 		F02422931A8C0485003F2B67 /* oj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02422911A8C0466003F2B67 /* oj.ttf */; };
+		F036CB151ADECA2A005302E0 /* Mute Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F036CB141ADECA2A005302E0 /* Mute Filled-50.png */; };
+		F036CB171ADECAD5005302E0 /* atile2.png in Resources */ = {isa = PBXBuildFile; fileRef = F036CB161ADECAD5005302E0 /* atile2.png */; };
 		F04428F01A68302600D7B02E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F04428EF1A68302600D7B02E /* Player.m */; };
 		F04498961AB0B5F90020F01A /* unplayedTile.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498931AB0B5F90020F01A /* unplayedTile.png */; };
 		F04498971AB0B5F90020F01A /* gamebkg2.png in Resources */ = {isa = PBXBuildFile; fileRef = F04498941AB0B5F90020F01A /* gamebkg2.png */; };
@@ -198,10 +198,6 @@
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		A36E23231AC9E9200068F887 /* hiscorebkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hiscorebkg.png; sourceTree = "<group>"; };
-		A36E23251ACC3AEB0068F887 /* SinglePlayerScoresVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePlayerScoresVC.h; sourceTree = "<group>"; };
-		A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerScoresVC.m; sourceTree = "<group>"; };
-		A36E23281ACC3CF10068F887 /* MultiPlayerHighScoresVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPlayerHighScoresVC.h; sourceTree = "<group>"; };
-		A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiPlayerHighScoresVC.m; sourceTree = "<group>"; };
 		A38645341ABA05F90032CF8C /* Shuffle-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shuffle-50.png"; sourceTree = "<group>"; };
 		A38645361ABA06000032CF8C /* Reload Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reload Filled-50.png"; sourceTree = "<group>"; };
 		A38645381ABA06110032CF8C /* gamebkg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg4.png; sourceTree = "<group>"; };
@@ -221,6 +217,8 @@
 		F0221D741AB5232F00245C38 /* BarTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTimerView.m; sourceTree = "<group>"; };
 		F0221D761AB5233900245C38 /* BarTimerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarTimerView.h; sourceTree = "<group>"; };
 		F02422911A8C0466003F2B67 /* oj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = oj.ttf; sourceTree = "<group>"; };
+		F036CB141ADECA2A005302E0 /* Mute Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mute Filled-50.png"; sourceTree = "<group>"; };
+		F036CB161ADECAD5005302E0 /* atile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atile2.png; sourceTree = "<group>"; };
 		F04428EF1A68302600D7B02E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		F04428F11A68303600D7B02E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F04498931AB0B5F90020F01A /* unplayedTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unplayedTile.png; sourceTree = "<group>"; };
@@ -340,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				F06BD5E81ADC425200365D66 /* bkg3.png */,
+				F036CB141ADECA2A005302E0 /* Mute Filled-50.png */,
 				F06BD5E91ADC425200365D66 /* e1.png */,
 				F06BD5EA1ADC425200365D66 /* e2.png */,
 				F06BD5EB1ADC425200365D66 /* e3.png */,
@@ -359,6 +358,7 @@
 				F051CE9E1AB54B850013AAC7 /* gamebkg.png */,
 				A36E23231AC9E9200068F887 /* hiscorebkg.png */,
 				F06BD5FA1ADC44D200365D66 /* Logout-50.png */,
+				F036CB161ADECAD5005302E0 /* atile2.png */,
 				F084F9001AD37B1A00208B98 /* t1.png */,
 				F084F9011AD37B1A00208B98 /* t2.png */,
 				F084F9021AD37B1A00208B98 /* t3.png */,
@@ -436,8 +436,6 @@
 				F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */,
 				F06BD5F61ADC42F300365D66 /* EndGameDialog3.xib */,
 				F06BD5F81ADC431B00365D66 /* EndGameDialog4.xib */,
-				A36E23281ACC3CF10068F887 /* MultiPlayerHighScoresVC.h */,
-				A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */,
 				A30ADC961A4CFBD200047201 /* Images.xcassets */,
 				A30ADC981A4CFBD200047201 /* LaunchScreen.xib */,
 				A30ADC891A4CFBD200047201 /* Supporting Files */,
@@ -445,8 +443,6 @@
 				F0221D741AB5232F00245C38 /* BarTimerView.m */,
 				A30FCE861AB60D3A0009F82E /* ScoresViewController.h */,
 				A30FCE871AB60D3A0009F82E /* ScoresViewController.m */,
-				A36E23251ACC3AEB0068F887 /* SinglePlayerScoresVC.h */,
-				A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */,
 				F0965A581AD35DD200348DB0 /* EndGameDialog.h */,
 				F0965A591AD35DDD00348DB0 /* EndGameDialog.m */,
 			);
@@ -654,6 +650,7 @@
 				F0965A571AD3590700348DB0 /* EndGameDialog.xib in Resources */,
 				A36E23241AC9E9200068F887 /* hiscorebkg.png in Resources */,
 				A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */,
+				F036CB151ADECA2A005302E0 /* Mute Filled-50.png in Resources */,
 				F06BD5F41ADC425200365D66 /* playButton.png in Resources */,
 				A30FCE831AB605D60009F82E /* unplayedTile4.png in Resources */,
 				F0965A5C1AD366DC00348DB0 /* EndGameDialog2.xib in Resources */,
@@ -664,6 +661,7 @@
 				A30ADC951A4CFBD200047201 /* Main.storyboard in Resources */,
 				F00FF5F21AB53F4900D3C75E /* trash-64.png in Resources */,
 				F0965A551AD3566300348DB0 /* endGameDialog2.png in Resources */,
+				F036CB171ADECAD5005302E0 /* atile2.png in Resources */,
 				A330496F1A9E63D1002BA6EB /* tile2.png in Resources */,
 				F02422921A8C0478003F2B67 /* oj.ttf in Resources */,
 				A30ADC9A1A4CFBD200047201 /* LaunchScreen.xib in Resources */,
@@ -702,9 +700,7 @@
 				A30ADC921A4CFBD200047201 /* ViewController.m in Sources */,
 				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
 				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
-				A36E232A1ACC3CF10068F887 /* MultiPlayerHighScoresVC.m in Sources */,
 				270711811A9143AF00591493 /* GameHost.m in Sources */,
-				A36E23271ACC3AEB0068F887 /* SinglePlayerScoresVC.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */,
