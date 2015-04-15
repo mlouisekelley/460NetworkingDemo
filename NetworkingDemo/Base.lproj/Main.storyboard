@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ti6-2w-sDr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="oj.ttf">
@@ -200,7 +200,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="702" y="50" width="29" height="29"/>
+                                    <rect key="frame" x="702" y="52" width="29" height="29"/>
                                 </variation>
                                 <connections>
                                     <action selector="logout:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="rpG-N1-jaU"/>
@@ -583,7 +583,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cr-me-NlN">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button" image="Screen Shot 2015-03-14 at 8.15.56 PM.png">
+                                <state key="normal" image="TileFinal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -669,18 +669,6 @@
                                     <rect key="frame" x="601" y="935" width="38" height="38"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="688" y="40" width="34" height="36"/>
-                                </variation>
-                                <connections>
-                                    <action selector="mute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZPK-mT-sji"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="WQm-aD-wuj">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -745,6 +733,18 @@
                                     <rect key="frame" x="230" y="932" width="282" height="28"/>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-UB-pKn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Mute">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="697" y="46" width="26" height="26"/>
+                                </variation>
+                                <connections>
+                                    <action selector="mute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZPK-mT-sji"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -770,7 +770,6 @@
                                 <exclude reference="nfM-0g-U8t"/>
                                 <exclude reference="JiL-GT-ghm"/>
                                 <exclude reference="7F4-au-toT"/>
-                                <exclude reference="YQ1-UB-pKn"/>
                                 <exclude reference="WQm-aD-wuj"/>
                                 <exclude reference="rko-FW-xV2"/>
                                 <exclude reference="bUh-bB-XZO"/>
@@ -778,6 +777,7 @@
                                 <exclude reference="8sB-kq-WvK"/>
                                 <exclude reference="sXc-VK-uUn"/>
                                 <exclude reference="kZK-yJ-WHM"/>
+                                <exclude reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -803,7 +803,6 @@
                                 <include reference="nfM-0g-U8t"/>
                                 <include reference="JiL-GT-ghm"/>
                                 <include reference="7F4-au-toT"/>
-                                <include reference="YQ1-UB-pKn"/>
                                 <include reference="WQm-aD-wuj"/>
                                 <include reference="rko-FW-xV2"/>
                                 <include reference="bUh-bB-XZO"/>
@@ -811,6 +810,7 @@
                                 <include reference="8sB-kq-WvK"/>
                                 <include reference="sXc-VK-uUn"/>
                                 <include reference="kZK-yJ-WHM"/>
+                                <include reference="YQ1-UB-pKn"/>
                             </mask>
                         </variation>
                     </view>
@@ -4298,6 +4298,7 @@
     </scenes>
     <resources>
         <image name="LogoutBut" width="50" height="50"/>
+        <image name="Mute" width="50" height="50"/>
         <image name="PlayBut" width="569" height="146"/>
         <image name="Reload Filled-50.png" width="50" height="50"/>
         <image name="ScoresBut" width="864" height="146"/>

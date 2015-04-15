@@ -1,12 +1,9 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "atile2.png"
+      "filename" : "Mute Filled-50.png"
     },
     {
       "idiom" : "universal",
