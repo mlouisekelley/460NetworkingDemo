@@ -285,12 +285,12 @@ NSString *alertMessage;
 -(void)joinExistingGame
 {
     alertMessage = [NSString stringWithFormat:@"Waiting for host to start the game"];
-    waitingForPlayersToJoinAlert=   [UIAlertController
+    UIAlertController * waitingForHostToStart =   [UIAlertController
                                      alertControllerWithTitle:@"Waiting..."
                                      message:alertMessage
                                      preferredStyle:UIAlertControllerStyleAlert];
     
-    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
+    [self presentViewController:waitingForHostToStart animated:YES completion:nil];
     [NetworkUtils joinRoom];
 }
 
