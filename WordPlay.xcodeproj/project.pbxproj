@@ -48,8 +48,6 @@
 		A330496F1A9E63D1002BA6EB /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A330496E1A9E63D1002BA6EB /* tile2.png */; };
 		A36C3C171A670DF0000BF0B0 /* BoardChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C3C161A670DF0000BF0B0 /* BoardChecker.m */; };
 		A36E23241AC9E9200068F887 /* hiscorebkg.png in Resources */ = {isa = PBXBuildFile; fileRef = A36E23231AC9E9200068F887 /* hiscorebkg.png */; };
-		A36E23271ACC3AEB0068F887 /* SinglePlayerScoresVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */; };
-		A36E232A1ACC3CF10068F887 /* MultiPlayerHighScoresVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */; };
 		A38645351ABA05F90032CF8C /* Shuffle-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645341ABA05F90032CF8C /* Shuffle-50.png */; };
 		A38645371ABA06000032CF8C /* Reload Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645361ABA06000032CF8C /* Reload Filled-50.png */; };
 		A38645391ABA06110032CF8C /* gamebkg4.png in Resources */ = {isa = PBXBuildFile; fileRef = A38645381ABA06110032CF8C /* gamebkg4.png */; };
@@ -200,10 +198,6 @@
 		A36C3C151A670DF0000BF0B0 /* BoardChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardChecker.h; sourceTree = "<group>"; };
 		A36C3C161A670DF0000BF0B0 /* BoardChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardChecker.m; sourceTree = "<group>"; };
 		A36E23231AC9E9200068F887 /* hiscorebkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hiscorebkg.png; sourceTree = "<group>"; };
-		A36E23251ACC3AEB0068F887 /* SinglePlayerScoresVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePlayerScoresVC.h; sourceTree = "<group>"; };
-		A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerScoresVC.m; sourceTree = "<group>"; };
-		A36E23281ACC3CF10068F887 /* MultiPlayerHighScoresVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPlayerHighScoresVC.h; sourceTree = "<group>"; };
-		A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiPlayerHighScoresVC.m; sourceTree = "<group>"; };
 		A38645341ABA05F90032CF8C /* Shuffle-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shuffle-50.png"; sourceTree = "<group>"; };
 		A38645361ABA06000032CF8C /* Reload Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reload Filled-50.png"; sourceTree = "<group>"; };
 		A38645381ABA06110032CF8C /* gamebkg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamebkg4.png; sourceTree = "<group>"; };
@@ -442,8 +436,6 @@
 				F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */,
 				F06BD5F61ADC42F300365D66 /* EndGameDialog3.xib */,
 				F06BD5F81ADC431B00365D66 /* EndGameDialog4.xib */,
-				A36E23281ACC3CF10068F887 /* MultiPlayerHighScoresVC.h */,
-				A36E23291ACC3CF10068F887 /* MultiPlayerHighScoresVC.m */,
 				A30ADC961A4CFBD200047201 /* Images.xcassets */,
 				A30ADC981A4CFBD200047201 /* LaunchScreen.xib */,
 				A30ADC891A4CFBD200047201 /* Supporting Files */,
@@ -451,8 +443,6 @@
 				F0221D741AB5232F00245C38 /* BarTimerView.m */,
 				A30FCE861AB60D3A0009F82E /* ScoresViewController.h */,
 				A30FCE871AB60D3A0009F82E /* ScoresViewController.m */,
-				A36E23251ACC3AEB0068F887 /* SinglePlayerScoresVC.h */,
-				A36E23261ACC3AEB0068F887 /* SinglePlayerScoresVC.m */,
 				F0965A581AD35DD200348DB0 /* EndGameDialog.h */,
 				F0965A591AD35DDD00348DB0 /* EndGameDialog.m */,
 			);
@@ -710,9 +700,7 @@
 				A30ADC921A4CFBD200047201 /* ViewController.m in Sources */,
 				273F70611A61C60E005103BA /* ConnectionListener.m in Sources */,
 				F07943081A6D97EA002849ED /* BoardCellDTO.m in Sources */,
-				A36E232A1ACC3CF10068F887 /* MultiPlayerHighScoresVC.m in Sources */,
 				270711811A9143AF00591493 /* GameHost.m in Sources */,
-				A36E23271ACC3AEB0068F887 /* SinglePlayerScoresVC.m in Sources */,
 				A30ADC8F1A4CFBD200047201 /* AppDelegate.m in Sources */,
 				A30ADC8C1A4CFBD200047201 /* main.m in Sources */,
 				277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */,

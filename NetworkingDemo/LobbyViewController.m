@@ -78,12 +78,18 @@ NSString *alertMessage;
 -(void)notConnectedToAppWarp
 {
     NSString *message = [NSString stringWithFormat:@"Unable to connect to our server, please check your internet connection"];
-    UIAlertController *waitingForPlayersToJoinAlert=   [UIAlertController
+    UIAlertController *notConnectedAlert=   [UIAlertController
                                      alertControllerWithTitle:@"No Connection"
                                      message:message
                                      preferredStyle:UIAlertControllerStyleAlert];
     
-    [self presentViewController:waitingForPlayersToJoinAlert animated:YES completion:nil];
+    UIAlertAction *retry = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [notConnectedAlert dismissViewControllerAnimated:YES completion:nil];
+        [[WarpClient getInstance] connectWithUserName:[GameConstants getUserName]];
+    }];
+    
+    [notConnectedAlert addAction:retry];
+    [self presentViewController:notConnectedAlert animated:YES completion:nil];
 }
 
 - (void)performLogin {
