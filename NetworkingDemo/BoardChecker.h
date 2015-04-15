@@ -16,4 +16,5 @@
 - (id)initWithScrabbleDict;
 +(NSInteger)getScoreForLetter:(NSString *)letter;
 -(BOOL)areSpacesFree:(NSArray *)board;
+-(void)aquireLocks:(NSArray *)board;
 @end

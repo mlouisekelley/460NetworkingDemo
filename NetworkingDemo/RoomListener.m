@@ -22,7 +22,13 @@ BOOL joined = NO;
 
 -(void)onLockPropertiesDone:(Byte)result
 {
-    
+    if (result == SUCCESS){
+        NSLog(@"Successfully aquired the lock");
+        [[ViewController sharedViewController] noRace];
+    } else {
+        NSLog(@"Failed to aquire Lock");
+        [[ViewController sharedViewController] thereWasARace];
+    }
 }
 -(void)onUnlockPropertiesDone:(Byte)result
 {

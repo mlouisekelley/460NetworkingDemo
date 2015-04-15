@@ -388,4 +388,22 @@
     return YES;
 }
 
+-(void)aquireLocks:(NSArray *)board
+{
+    NSMutableArray *spaces = [[NSMutableArray alloc] init];
+    for (int i = 0; i<[board count]; i++) {
+        BoardCellDTO *cellDTO = board[i];
+        if(cellDTO.tvc.isUnsent && [cellDTO.tvc.pid isEqualToString:[GameConstants getUserName]]){
+            NSString *obj = [NSString stringWithFormat:@"%d", i];
+            [spaces insertObject:obj atIndex:0];
+        }
+    }
+    
+    NSMutableDictionary *propertiesToLock = [[NSMutableDictionary alloc] init];
+    for (NSString *key in spaces){
+        [propertiesToLock setObject:@0 forKey:key];
+    }
+    [[WarpClient getInstance] lockRoomProperties:(NSDictionary *)propertiesToLock];
+}
+
 @end

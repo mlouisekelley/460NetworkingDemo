@@ -861,12 +861,6 @@ NSString *curWord;
 }
 
 - (IBAction)touchUpSubmit:(id)sender {
-    //Call to see if all the spaces are free
-    [self.boardChecker areSpacesFree:self.board];
-}
-
--(void)noRace
-{
     NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
     NSArray *invalidWordsOnBoard = boardCheckerResults[0];
     NSArray *notConnectedWordsOnBoard = boardCheckerResults[1];
@@ -919,26 +913,33 @@ NSString *curWord;
         }
         
     } else {
-        
-        int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
-        for (int i = 0; i < num; i++) {
-            [self createTileInRack];
-        }
-        [self updateSelfScore:newWords];
-        currentPlayer.numWords++;
-        
-        //Play a sound
-        SystemSoundID audioEffect;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef) successNoisePathURL, &audioEffect);
-        AudioServicesPlaySystemSound(audioEffect);
-        
-        // Using GCD, we can use a block to dispose of the audio effect without using a NSTimer or something else to figure out when it'll be finished playing.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            AudioServicesDisposeSystemSoundID(audioEffect);
-        });
-        [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
-        
+        //Call to see if all the spaces are free
+        [self.boardChecker aquireLocks:self.board];
     }
+}
+
+-(void)noRace
+{
+    NSArray *boardCheckerResults = [self.boardChecker checkBoardState:self.board];
+    NSString *newWords = boardCheckerResults[2];
+        
+    int num = STARTING_NUMBER_OF_TILES - currentPlayer.numberOfTiles;
+    for (int i = 0; i < num; i++) {
+        [self createTileInRack];
+    }
+    [self updateSelfScore:newWords];
+    currentPlayer.numWords++;
+    
+    //Play a sound
+    SystemSoundID audioEffect;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef) successNoisePathURL, &audioEffect);
+    AudioServicesPlaySystemSound(audioEffect);
+    
+    // Using GCD, we can use a block to dispose of the audio effect without using a NSTimer or something else to figure out when it'll be finished playing.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        AudioServicesDisposeSystemSoundID(audioEffect);
+    });
+    [self finalizePendingEnemyTilesForPlayer:[GameConstants getUserName]];
 }
 
 -(void)thereWasARace
