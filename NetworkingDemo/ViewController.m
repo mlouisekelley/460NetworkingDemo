@@ -1113,7 +1113,8 @@ NSString *curWord;
         theTile.isOnRack = YES;
         [theTile makeUnselected];
         [theTile setColorOfTile:currentPlayer.color];
-        theTile.startPoint = tile.frame.origin;
+        theTile.startPoint = [[self.tileSpaces objectAtIndex:0 ] CGRectValue].origin;
+        [self.tileSpaces removeObjectAtIndex:0];
         
         [self clearSelectedTile];
 
@@ -1142,7 +1143,7 @@ NSString *curWord;
                 }
             }
         }
-        else if (closestRackSpace.x < theTile.startPoint.x) {
+        else if (closestRackSpace.x <= theTile.startPoint.x) {
             for (int i = 0; i < [self.allTiles count]; i++) {
                 TileViewCell *aTile = (TileViewCell *)self.allTiles[i];
                 CGPoint nextClosestRackSpace = CGPointMake(closestRackSpace.x + (TILE_WIDTH + 30), closestRackSpace.y);

@@ -461,8 +461,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "340"
             endingLineNumber = "340"
-            landmarkName = "-startGameHelper"
+            landmarkName = "-playerJoinedLobby"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LobbyViewController playerJoinedLobby]"
+                  moduleName = "WordPlay"
+                  urlString = "file:///Users/dan1/Documents/460NetworkingDemo/NetworkingDemo/LobbyViewController.m"
+                  timestampString = "450814426.789259"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "340"
+                  endingLineNumber = "340"
+                  offsetFromSymbolStart = "1373">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LobbyViewController playerJoinedLobby]"
+                  moduleName = "WordPlay"
+                  urlString = "file:///Users/dan1/Documents/460NetworkingDemo/NetworkingDemo/LobbyViewController.m"
+                  timestampString = "450814426.789429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "340"
+                  endingLineNumber = "340"
+                  offsetFromSymbolStart = "1517">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -477,7 +507,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
             endingLineNumber = "349"
-            landmarkName = "-startGame"
+            landmarkName = "-startGameHelper"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -510,6 +540,22 @@
             startingLineNumber = "63"
             endingLineNumber = "63"
             landmarkName = "+sendStartGame"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkingDemo/ViewController.m"
+            timestampString = "450814237.665621"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1106"
+            endingLineNumber = "1106"
+            landmarkName = "-rearrangeTiles:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
