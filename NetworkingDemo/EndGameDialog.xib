@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="573" height="584"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EndGame1" translatesAutoresizingMaskIntoConstraints="NO" id="8FM-3e-Igt">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="e1.png" translatesAutoresizingMaskIntoConstraints="NO" id="8FM-3e-Igt">
                     <rect key="frame" x="-15" y="-10" width="649" height="655"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fs5-9u-8w6">
@@ -93,8 +93,8 @@
         </view>
     </objects>
     <resources>
-        <image name="EndGame1" width="826" height="843"/>
         <image name="Home" width="139" height="71"/>
         <image name="Rematch" width="139" height="71"/>
+        <image name="e1.png" width="826" height="843"/>
     </resources>
 </document>

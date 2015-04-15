@@ -3983,6 +3983,14 @@
                                     <rect key="frame" x="154" y="574" width="64" height="64"/>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-Bg-W28">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="173" y="585" width="36" height="43"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -4014,6 +4022,7 @@
                                 <exclude reference="133-59-y59"/>
                                 <exclude reference="07W-Os-jP7"/>
                                 <exclude reference="x7F-vq-7uR"/>
+                                <exclude reference="8ju-Bg-W28"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -4045,6 +4054,7 @@
                                 <include reference="133-59-y59"/>
                                 <include reference="07W-Os-jP7"/>
                                 <include reference="x7F-vq-7uR"/>
+                                <include reference="8ju-Bg-W28"/>
                             </mask>
                         </variation>
                     </view>

@@ -24,7 +24,7 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXs-Jn-LTR" customClass="EndGameDialog">
                     <rect key="frame" x="0.0" y="0.0" width="573" height="584"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EndGame3" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-Is-X8K">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="e3.png" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-Is-X8K">
                             <rect key="frame" x="-15" y="-10" width="649" height="655"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhh-dt-99g">
@@ -108,8 +108,8 @@
         </view>
     </objects>
     <resources>
-        <image name="EndGame3" width="826" height="843"/>
         <image name="Home" width="139" height="71"/>
         <image name="Rematch" width="139" height="71"/>
+        <image name="e3.png" width="826" height="843"/>
     </resources>
 </document>

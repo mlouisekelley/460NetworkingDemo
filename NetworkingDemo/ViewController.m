@@ -104,11 +104,11 @@ NSString *curWord;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 2;
-        seconds = 0;
+        minutes = 0;
+        seconds = 10;
     } else {
-        minutes = 2;
-        seconds = 0;
+        minutes = 0;
+        seconds = 10;
     }
     numSeconds = seconds + minutes * 60;
     milliseconds = 0;
@@ -332,6 +332,9 @@ NSString *curWord;
     query.limit = 1;
     NSArray *objects = [query findObjects];
     NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+    if ([objects count] == 0) {
+        return;
+    }
     PFObject *object = objects[0];
     double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
     endGameDialog.avgScore.text = [NSString stringWithFormat:@"%.2f",average];
@@ -575,6 +578,7 @@ NSString *curWord;
             endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog3" owner:self options:nil] objectAtIndex:0];
         }
     }
+    NSLog(@"Thisran");
     endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
     endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
     endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
@@ -704,9 +708,9 @@ NSString *curWord;
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [rematchDeniedAlert dismissViewControllerAnimated:YES completion:^{
-            [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
-        }];
+        
+        [rematchDeniedAlert dismissViewControllerAnimated:YES completion:nil];
+        [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
     }];
     
     [rematchDeniedAlert addAction:okay];

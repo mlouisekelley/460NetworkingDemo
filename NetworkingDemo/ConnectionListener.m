@@ -134,6 +134,7 @@
 -(void)onCreateRoomDone:(RoomEvent *)roomEvent{
     if(roomEvent.result == SUCCESS){
         NSLog(@"ROOM CREATED: %@", roomEvent.roomData.roomId);
+        
         [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
         
         //Make sure there isn't already a game with this ID, create a parse room if there isn't
@@ -141,7 +142,7 @@
         [query whereKey:@"roomId" equalTo:roomEvent.roomData.roomId];
         // Retrieve the object by id
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if([objects count] > 0){
+            if([objects count] == 0){
                 //Add game info to parse
                 PFObject *room = [PFObject objectWithClassName:@"RoomData"];
                 room[@"roomId"] = roomEvent.roomData.roomId;
