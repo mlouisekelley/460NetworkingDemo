@@ -32,6 +32,7 @@
 +(void)createRoomWithName:(NSString *)name andNumPlayers:(int)players;
 +(void)deleteAllParseRoomInfo;
 +(void)deleteAllAppWarpRooms;
++(void)sendLeftGame;
 
 
 @end

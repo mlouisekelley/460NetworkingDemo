@@ -91,6 +91,12 @@
     [[WarpClient getInstance] sendChat:message];
 }
 
++(void)sendLeftGame
+{
+    NSString* message = [NSString stringWithFormat:@"leftGame"];
+    [[WarpClient getInstance] sendChat:message];
+}
+
 +(void)joinRoom
 {
     NSLog(@"Join Room Called");

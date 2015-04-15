@@ -46,6 +46,7 @@ int seconds;
 int milliseconds;
 BOOL isGameOver = NO;
 BOOL isPlaying = YES;
+BOOL playerExited = NO;
 int TILE_WIDTH;
 int TILE_HEIGHT;
 int displayScore = 0;
@@ -611,6 +612,11 @@ NSString *curWord;
     [shieldView removeFromSuperview];
     [endGameDialog removeFromSuperview];
     
+    if(playerExited){
+        [self playerDeniedRematch];
+        return;
+    }
+    
     [NetworkUtils sendWaitingForRematch];
     
     waitingAlert=   [UIAlertController
@@ -704,6 +710,11 @@ NSString *curWord;
                                    selector:@selector(returnToMainMenu)
                                    userInfo:nil
                                     repeats:NO];
+}
+
+-(void)playerExitedGame
+{
+    playerExited = YES;
 }
 
 -(void)returnToMainMenu {
@@ -942,6 +953,7 @@ NSString *curWord;
 }
 
 - (IBAction)exitTouched:(id)sender {
+    [NetworkUtils sendLeftGame];
     [self goHome];
 }
 

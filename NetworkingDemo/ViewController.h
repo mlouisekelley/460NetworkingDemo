@@ -63,6 +63,7 @@
 -(void)noRace;
 -(void)thereWasARace;
 - (IBAction)exitTouched:(id)sender;
+-(void)playerExitedGame;
 
 
 

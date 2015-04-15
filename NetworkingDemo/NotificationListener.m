@@ -63,6 +63,10 @@
             [[ViewController sharedViewController] playerDeniedRematch];
             return;
         }
+        if([chatEvent.message isEqualToString:@"leftGame"]){
+            [[ViewController sharedViewController] playerExitedGame];
+            return;
+        }
     }
     
     if([chatEvent.message isEqualToString:@"joined"]){
