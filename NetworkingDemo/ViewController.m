@@ -313,7 +313,10 @@ NSString *curWord;
             // Do something with the found objects
             for (PFObject *object in objects) {
                 NSLog(@"%@", object.objectId);
-                endGameDialog.highScore.text = [NSString stringWithFormat:@"%d", [(NSNumber *)object intValue]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    endGameDialog.highScore.text = [NSString stringWithFormat:@"%d", [(NSNumber *)object[@"score"] intValue]];
+                    [endGameDialog reloadInputViews];
+                });
             }
         } else {
             // Log details of the failure
@@ -326,19 +329,11 @@ NSString *curWord;
     PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
     [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
-            PFObject *object = objects[0];
-            double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
-            endGameDialog.avgScore.text = [NSString stringWithFormat:@"%f",average];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    NSArray *objects = [query findObjects];
+    NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+    PFObject *object = objects[0];
+    double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
+    endGameDialog.avgScore.text = [NSString stringWithFormat:@"%.2f",average];
 }
 
 - (void)updateCounter:(CADisplayLink *)displayLink {
@@ -508,7 +503,7 @@ NSString *curWord;
     
     
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-    gameScore[@"score"] = @0;
+    gameScore[@"score"] = [NSNumber numberWithInt:currentPlayer.score];
     for (Player *player in self.players) {
         if ([player.userName isEqualToString:[GameConstants getHandle]]) {
             gameScore[@"score"] = [NSNumber numberWithInt:player.score];
@@ -553,8 +548,6 @@ NSString *curWord;
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    [gameScore incrementKey:@"score" byAmount:[NSNumber numberWithDouble:20.0]];
-    [gameScore saveInBackground];
     
     
     //PFObject *
@@ -586,7 +579,6 @@ NSString *curWord;
     endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
     endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
     endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
-    endGameDialog.avgScore = 0;
     [self getAverageScore];
     [self getTopScore];
 
