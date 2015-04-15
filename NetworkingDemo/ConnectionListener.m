@@ -136,23 +136,32 @@
         NSLog(@"ROOM CREATED: %@", roomEvent.roomData.roomId);
         [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
         
-        //Add game info to parse
-        PFObject *room = [PFObject objectWithClassName:@"RoomData"];
-        room[@"roomId"] = roomEvent.roomData.roomId;
-        room[@"name"] = roomEvent.roomData.name;
-        room[@"numPlayers"] = [NSNumber numberWithInt:roomEvent.roomData.maxUsers];
-        room[@"gameStarted"] = @NO;
-        for(int i = 0; i < 100; i++){
-            NSString *roomKey = [NSString stringWithFormat:@"s%d", i];
-            room[roomKey] = @0;
-        }
-        [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                NSLog(@"Parse saved room information");
-            } else {
-                NSLog(@"Parse save of room info failed");
+        //Make sure there isn't already a game with this ID, create a parse room if there isn't
+        PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
+        [query whereKey:@"roomId" equalTo:roomEvent.roomData.roomId];
+        // Retrieve the object by id
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if([objects count] > 0){
+                //Add game info to parse
+                PFObject *room = [PFObject objectWithClassName:@"RoomData"];
+                room[@"roomId"] = roomEvent.roomData.roomId;
+                room[@"name"] = roomEvent.roomData.name;
+                room[@"numPlayers"] = [NSNumber numberWithInt:roomEvent.roomData.maxUsers];
+                room[@"gameStarted"] = @NO;
+                for(int i = 0; i < 100; i++){
+                    NSString *roomKey = [NSString stringWithFormat:@"s%d", i];
+                    room[roomKey] = @0;
+                }
+                [room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        NSLog(@"Parse saved room information");
+                    } else {
+                        NSLog(@"Parse save of room info failed");
+                    }
+                }];
             }
         }];
+        
     } else {
         NSLog(@"failed to create room");
     }

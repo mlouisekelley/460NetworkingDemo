@@ -16,7 +16,7 @@
 - (IBAction)playButtonTouched:(id)sender;
 -(int)getNumPlayers;
 -(void)startGameHelper;
--(void)showCurrentGames:(NSMutableArray *)roomIds;
+-(void)showCurrentGames;
 -(void)notConnectedToAppWarp;
 
 @end
