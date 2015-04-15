@@ -43,6 +43,7 @@
 -(void)onChatReceived:(ChatEvent*)chatEvent{
     
     if([chatEvent.message isEqualToString:@"start"]){
+        chatEvent.message = @"";
         [[LobbyViewController sharedViewController] startGame];
         return;
     }

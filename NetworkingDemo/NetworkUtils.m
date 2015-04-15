@@ -59,6 +59,7 @@
 
 +(void)sendStartGame
 {
+    NSLog(@"----Startgame");
     PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
     [query whereKey:@"roomId" equalTo:[GameConstants getSubscribedRoom]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

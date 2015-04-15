@@ -68,9 +68,10 @@ NSString *curWord;
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
+
     isGameOver = NO;
     
-    [super viewDidLoad];
     [self.boardCollectionView setTag:1];
     
     [self.boardCollectionView reloadData];

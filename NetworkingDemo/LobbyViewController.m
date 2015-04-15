@@ -521,6 +521,7 @@ NSString *alertMessage;
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"BeginGame"])
     {
+        NSLog(@"-----SEGUE----");
         // Get reference to the destination view controller
         ViewController *vc = [segue destinationViewController];
         
