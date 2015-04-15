@@ -384,7 +384,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Ozr-LL-4b0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y6T-5l-jyZ">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiscorebkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="AP7-7z-PGd">
@@ -1602,7 +1602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T9n-U5-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616.25" y="-1463.25"/>
+            <point key="canvasLocation" x="2426.25" y="-1211.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NPw-I0-Usv">
@@ -2799,7 +2799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzR-C6-CVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3990" y="-3002.25"/>
+            <point key="canvasLocation" x="2886" y="-3380.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6kK-HR-V8k">
@@ -3104,7 +3104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmW-lS-t70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3192.75" y="-3015.75"/>
+            <point key="canvasLocation" x="2178.75" y="-2547.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yqR-Fj-a7j">
@@ -3396,7 +3396,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Sq-K7-d7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2493" y="-2887.5"/>
+            <point key="canvasLocation" x="3417" y="-2245.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sB1-kG-VMn">
@@ -3699,7 +3699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aT-HE-L44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="171"/>
+            <point key="canvasLocation" x="3246.75" y="-734.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3xf-96-TbW">
@@ -3817,7 +3817,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="aGI-pJ-WfO">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="172" y="773" width="64" height="64"/>
+                                    <rect key="frame" x="214" y="574" width="64" height="64"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpR-lN-twt">
@@ -3825,19 +3825,19 @@
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="189" y="789" width="36" height="43"/>
+                                    <rect key="frame" x="231" y="590" width="36" height="43"/>
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="hiT-cH-kNz">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="363" y="773" width="64" height="64"/>
+                                    <rect key="frame" x="214" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-oz-zua">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="455" y="773" width="64" height="64"/>
+                                    <rect key="frame" x="110" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-Pp-9Tr">
@@ -3846,18 +3846,12 @@
                                     <rect key="frame" x="547" y="773" width="64" height="64"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="133-59-y59">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="639" y="773" width="64" height="64"/>
-                                </variation>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCy-FY-Nnd">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="476" y="789" width="36" height="43"/>
+                                    <rect key="frame" x="131" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAr-cI-cNg">
@@ -3868,26 +3862,18 @@
                                     <rect key="frame" x="570" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07W-Os-jP7">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="656" y="789" width="36" height="43"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XF-Rh-yhT">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="382" y="789" width="36" height="43"/>
+                                    <rect key="frame" x="233" y="789" width="36" height="43"/>
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="DgI-UA-vQx">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="259" y="773" width="64" height="64"/>
+                                    <rect key="frame" x="273" y="573" width="64" height="64"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeM-cr-FZN">
@@ -3895,13 +3881,13 @@
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="45"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="278" y="789" width="36" height="43"/>
+                                    <rect key="frame" x="292" y="591" width="36" height="43"/>
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="x7F-vq-7uR">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="76" y="773" width="64" height="64"/>
+                                    <rect key="frame" x="154" y="574" width="64" height="64"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OP-Qb-cGk">
@@ -3909,7 +3895,7 @@
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="43"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="95" y="789" width="36" height="43"/>
+                                    <rect key="frame" x="173" y="590" width="36" height="43"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wa9-yz-jhb">
@@ -3919,6 +3905,20 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="513" y="936" width="48" height="18"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile2" translatesAutoresizingMaskIntoConstraints="NO" id="133-59-y59">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="446" y="774" width="64" height="64"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07W-Os-jP7">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="44"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="463" y="790" width="36" height="43"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -3942,16 +3942,16 @@
                                 <exclude reference="hiT-cH-kNz"/>
                                 <exclude reference="a8J-oz-zua"/>
                                 <exclude reference="sdh-Pp-9Tr"/>
-                                <exclude reference="133-59-y59"/>
                                 <exclude reference="jCy-FY-Nnd"/>
                                 <exclude reference="ZAr-cI-cNg"/>
-                                <exclude reference="07W-Os-jP7"/>
                                 <exclude reference="4XF-Rh-yhT"/>
                                 <exclude reference="DgI-UA-vQx"/>
                                 <exclude reference="WeM-cr-FZN"/>
                                 <exclude reference="x7F-vq-7uR"/>
                                 <exclude reference="4OP-Qb-cGk"/>
                                 <exclude reference="wa9-yz-jhb"/>
+                                <exclude reference="133-59-y59"/>
+                                <exclude reference="07W-Os-jP7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -3973,23 +3973,23 @@
                                 <include reference="hiT-cH-kNz"/>
                                 <include reference="a8J-oz-zua"/>
                                 <include reference="sdh-Pp-9Tr"/>
-                                <include reference="133-59-y59"/>
                                 <include reference="jCy-FY-Nnd"/>
                                 <include reference="ZAr-cI-cNg"/>
-                                <include reference="07W-Os-jP7"/>
                                 <include reference="4XF-Rh-yhT"/>
                                 <include reference="DgI-UA-vQx"/>
                                 <include reference="WeM-cr-FZN"/>
                                 <include reference="x7F-vq-7uR"/>
                                 <include reference="4OP-Qb-cGk"/>
                                 <include reference="wa9-yz-jhb"/>
+                                <include reference="133-59-y59"/>
+                                <include reference="07W-Os-jP7"/>
                             </mask>
                         </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEh-tO-bgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4758.75" y="-2271.75"/>
+            <point key="canvasLocation" x="4644.75" y="-2025.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DZG-vg-GpB">
@@ -4330,8 +4330,8 @@
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8vg-oJ-Mwt"/>
-        <segue reference="DAE-b2-Flf"/>
         <segue reference="As8-Oz-X3g"/>
+        <segue reference="Vnf-em-BxD"/>
+        <segue reference="8vg-oJ-Mwt"/>
     </inferredMetricsTieBreakers>
 </document>
