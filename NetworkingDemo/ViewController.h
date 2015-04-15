@@ -62,6 +62,7 @@
 -(void)goHome;
 -(void)noRace;
 -(void)thereWasARace;
+- (IBAction)exitTouched:(id)sender;
 
 
 

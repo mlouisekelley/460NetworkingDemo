@@ -949,6 +949,10 @@ NSString *curWord;
     //do nothing?
 }
 
+- (IBAction)exitTouched:(id)sender {
+    [self goHome];
+}
+
 
 - (IBAction)recallTiles:(id)sender {
     for (TileViewCell *cell in self.allTiles) {
@@ -1538,4 +1542,5 @@ NSString *curWord;
         [[WarpClient getInstance] leaveRoom:[GameConstants getSubscribedRoom]];
     }
 }
+
 @end

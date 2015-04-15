@@ -125,6 +125,7 @@
 		F0965A5A1AD35DDD00348DB0 /* EndGameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0965A591AD35DDD00348DB0 /* EndGameDialog.m */; };
 		F0965A5C1AD366DC00348DB0 /* EndGameDialog2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */; };
 		F0AC56741A905B6500D8E953 /* CircleTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC56731A905B6500D8E953 /* CircleTimerView.m */; };
+		F0DC2CE61ADEE421005F8274 /* Exit-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DC2CE51ADEE421005F8274 /* Exit-50.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +282,7 @@
 		F0965A5B1AD366DC00348DB0 /* EndGameDialog2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameDialog2.xib; sourceTree = "<group>"; };
 		F0AC56721A905B6500D8E953 /* CircleTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTimerView.h; sourceTree = "<group>"; };
 		F0AC56731A905B6500D8E953 /* CircleTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleTimerView.m; sourceTree = "<group>"; };
+		F0DC2CE51ADEE421005F8274 /* Exit-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Exit-50.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +394,7 @@
 				A330496E1A9E63D1002BA6EB /* tile2.png */,
 				F08B23D41A9CE9BA0051C3AF /* tilePressed.png */,
 				F08B23D51A9CE9BA0051C3AF /* bkg.png */,
+				F0DC2CE51ADEE421005F8274 /* Exit-50.png */,
 				F0AC56721A905B6500D8E953 /* CircleTimerView.h */,
 				F0AC56731A905B6500D8E953 /* CircleTimerView.m */,
 				F02422911A8C0466003F2B67 /* oj.ttf */,
@@ -642,6 +645,7 @@
 				F04C7EE91AD32F76001AE62E /* icon76.png in Resources */,
 				F06BD5EF1ADC425200365D66 /* bkg3.png in Resources */,
 				F084F90C1AD37B1A00208B98 /* t1.png in Resources */,
+				F0DC2CE61ADEE421005F8274 /* Exit-50.png in Resources */,
 				F084F9141AD37B1A00208B98 /* t9.png in Resources */,
 				F07A313E1AD4A04500B80EB0 /* unplayedTile3.png in Resources */,
 				F084F9171AD37B1A00208B98 /* t12.png in Resources */,

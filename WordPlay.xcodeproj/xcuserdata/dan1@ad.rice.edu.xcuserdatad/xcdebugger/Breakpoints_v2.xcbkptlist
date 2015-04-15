@@ -471,7 +471,7 @@
                   symbolName = "-[LobbyViewController playerJoinedLobby]"
                   moduleName = "WordPlay"
                   urlString = "file:///Users/dan1/Documents/460NetworkingDemo/NetworkingDemo/LobbyViewController.m"
-                  timestampString = "450814426.789259"
+                  timestampString = "450815612.684757"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "340"
@@ -485,7 +485,7 @@
                   symbolName = "-[LobbyViewController playerJoinedLobby]"
                   moduleName = "WordPlay"
                   urlString = "file:///Users/dan1/Documents/460NetworkingDemo/NetworkingDemo/LobbyViewController.m"
-                  timestampString = "450814426.789429"
+                  timestampString = "450815612.684935"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "340"
@@ -550,12 +550,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetworkingDemo/ViewController.m"
-            timestampString = "450814237.665621"
+            timestampString = "450815595.20856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1106"
-            endingLineNumber = "1106"
+            startingLineNumber = "1110"
+            endingLineNumber = "1110"
             landmarkName = "-rearrangeTiles:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkingDemo/ViewController.m"
+            timestampString = "450815612.431598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "953"
+            endingLineNumber = "953"
+            landmarkName = "-exitTouched:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkingDemo/ViewController.m"
+            timestampString = "450815627.198625"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1539"
+            endingLineNumber = "1539"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
