@@ -212,7 +212,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="163" y="523" width="461" height="118"/>
+                                    <rect key="frame" x="169" y="523" width="461" height="118"/>
                                 </variation>
                                 <connections>
                                     <action selector="playButtonTouched:" destination="Ti6-2w-sDr" eventType="touchUpInside" id="icN-j3-lbD"/>
@@ -282,7 +282,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="1026"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="hAt-Pv-6IC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="hAt-Pv-6IC">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="72" y="52" width="66" height="63"/>
@@ -301,32 +301,18 @@
                                     <segue destination="Ti6-2w-sDr" kind="show" id="DAE-b2-Flf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="hui-a9-VOX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="hui-a9-VOX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="187" y="239" width="178" height="94"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tile.png" translatesAutoresizingMaskIntoConstraints="NO" id="J4S-TV-4cS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TileFinal" translatesAutoresizingMaskIntoConstraints="NO" id="J4S-TV-4cS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="393" y="239" width="178" height="94"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-9Q-zu5">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="26"/>
-                                <state key="normal" title="Multi-player">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="187" y="240" width="178" height="91"/>
-                                </variation>
-                                <connections>
-                                    <action selector="multiPlayerTouched:" destination="YZo-dX-Rfc" eventType="touchUpInside" id="bU0-HI-SR4"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypc-Oa-GHq">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="25"/>
@@ -335,7 +321,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="393" y="240" width="178" height="89"/>
+                                    <rect key="frame" x="393" y="243" width="178" height="89"/>
                                 </variation>
                                 <connections>
                                     <action selector="singlePlayerTouched:" destination="YZo-dX-Rfc" eventType="touchUpInside" id="plX-IV-HlL"/>
@@ -350,6 +336,20 @@
                                     <rect key="frame" x="63" y="339" width="577" height="638"/>
                                 </variation>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-9Q-zu5">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="orangejuice" family="orange juice" pointSize="26"/>
+                                <state key="normal" title="Multi-player">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="187" y="243" width="178" height="91"/>
+                                </variation>
+                                <connections>
+                                    <action selector="multiPlayerTouched:" destination="YZo-dX-Rfc" eventType="touchUpInside" id="bU0-HI-SR4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -359,9 +359,9 @@
                                 <exclude reference="92c-Ac-Jbe"/>
                                 <exclude reference="hui-a9-VOX"/>
                                 <exclude reference="J4S-TV-4cS"/>
-                                <exclude reference="cEb-9Q-zu5"/>
                                 <exclude reference="ypc-Oa-GHq"/>
                                 <exclude reference="zO1-U1-mrp"/>
+                                <exclude reference="cEb-9Q-zu5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -371,9 +371,9 @@
                                 <include reference="92c-Ac-Jbe"/>
                                 <include reference="hui-a9-VOX"/>
                                 <include reference="J4S-TV-4cS"/>
-                                <include reference="cEb-9Q-zu5"/>
                                 <include reference="ypc-Oa-GHq"/>
                                 <include reference="zO1-U1-mrp"/>
+                                <include reference="cEb-9Q-zu5"/>
                             </mask>
                         </variation>
                     </view>
@@ -411,7 +411,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="81" y="54" width="60" height="56"/>
+                                    <rect key="frame" x="81" y="55" width="60" height="56"/>
                                 </variation>
                                 <connections>
                                     <segue destination="Ti6-2w-sDr" kind="show" id="8Zs-wi-qRJ"/>
@@ -4376,12 +4376,11 @@
         <image name="t7.png" width="1052" height="1379"/>
         <image name="t8.png" width="1052" height="1379"/>
         <image name="t9.png" width="1052" height="1379"/>
-        <image name="tile.png" width="212" height="212"/>
         <image name="trash-64.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="As8-Oz-X3g"/>
-        <segue reference="AlX-Ox-Ng0"/>
+        <segue reference="8Zs-wi-qRJ"/>
         <segue reference="8vg-oJ-Mwt"/>
     </inferredMetricsTieBreakers>
 </document>
