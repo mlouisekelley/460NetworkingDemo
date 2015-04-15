@@ -703,24 +703,20 @@ NSString *curWord;
                                   message:@""
                                   preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [rematchDeniedAlert dismissViewControllerAnimated:YES completion:^{
+            [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+        }];
+    }];
+    
+    [rematchDeniedAlert addAction:okay];
     [self presentViewController:rematchDeniedAlert animated:YES completion:nil];
     
-    [NSTimer scheduledTimerWithTimeInterval:2
-                                     target:self
-                                   selector:@selector(returnToMainMenu)
-                                   userInfo:nil
-                                    repeats:NO];
 }
 
 -(void)playerExitedGame
 {
     playerExited = YES;
-}
-
--(void)returnToMainMenu {
-    [rematchDeniedAlert dismissViewControllerAnimated:YES completion:^{
-       [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc]; 
-    }];
 }
 
 -(void)rematch {
