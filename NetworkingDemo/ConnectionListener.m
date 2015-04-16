@@ -12,9 +12,11 @@
 @implementation ConnectionListener
 @synthesize helper;
 
+NSMutableArray *cache;
 -(id)initWithHelper:(id)l_helper
 {
     self.helper = l_helper;
+    cache = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -136,7 +138,13 @@
         NSLog(@"ROOM CREATED: %@", roomEvent.roomData.roomId);
         
         [[WarpClient getInstance] joinRoom:roomEvent.roomData.roomId];
-        
+        for (int i = 0 ; i < [cache count]; i++) {
+            NSString* roomId = roomEvent.roomData.roomId;
+            if ([[cache objectAtIndex:i] isEqualToString:roomId]) {
+                return;
+            }
+        }
+        [cache addObject:roomEvent.roomData.roomId];
         //Make sure there isn't already a game with this ID, create a parse room if there isn't
         PFQuery *query = [PFQuery queryWithClassName:@"RoomData"];
         [query whereKey:@"roomId" equalTo:roomEvent.roomData.roomId];
