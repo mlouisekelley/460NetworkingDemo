@@ -108,11 +108,11 @@ NSString *curWord;
 
 -(void) setUpGame {
     if(_numPlayers == 1){
-        minutes = 0;
-        seconds = 10;
+        minutes = 2;
+        seconds = 0;
     } else {
-        minutes = 0;
-        seconds = 10;
+        minutes = 2;
+        seconds = 0;
     }
     numSeconds = seconds + minutes * 60;
     milliseconds = 0;
@@ -967,6 +967,11 @@ NSString *curWord;
 }
 
 - (IBAction)exitTouched:(id)sender {
+    [NetworkUtils sendLeftGame];
+    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
+}
+
+-(void)forceExit {
     [NetworkUtils sendLeftGame];
     [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
 }

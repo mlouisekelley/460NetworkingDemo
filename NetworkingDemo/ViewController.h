@@ -64,6 +64,7 @@
 -(void)thereWasARace;
 - (IBAction)exitTouched:(id)sender;
 -(void)playerExitedGame;
+-(void)forceExit;
 
 
 

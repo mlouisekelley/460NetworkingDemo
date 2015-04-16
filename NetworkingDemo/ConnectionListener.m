@@ -35,6 +35,7 @@ NSMutableArray *cache;
     }
     else if (event.result==CONNECTION_ERROR_RECOVERABLE)
     {
+        [[ViewController sharedViewController] forceExit];
         NSLog(@"recoverable connection error");
         
     }
