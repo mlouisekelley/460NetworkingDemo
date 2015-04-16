@@ -65,6 +65,10 @@ UIAlertController * rematchDeniedAlert;
 NSNumber *lowestHighScore;
 UIView *shieldView;
 EndGameDialog *endGameDialog;
+EndGameDialog *endGameDialog1;
+EndGameDialog *endGameDialog2;
+EndGameDialog *endGameDialog3;
+EndGameDialog *endGameDialog4;
 NSString *curWord;
 
 - (void)viewDidLoad {
@@ -112,6 +116,7 @@ NSString *curWord;
     }
     numSeconds = seconds + minutes * 60;
     milliseconds = 0;
+    isGameOver = NO;
     
     playerTwoScore = 0;
     playerThreeScore = 0;
@@ -140,6 +145,27 @@ NSString *curWord;
     [self resetBoard];
     [self initLowestHighScore];
     [self.boardCollectionView reloadData];
+    shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
+    shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+    [self.view addSubview:shieldView];
+
+    [self.view sendSubviewToBack:shieldView];
+    
+ 
+    endGameDialog2 = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog2" owner:self options:nil] objectAtIndex:0];
+    endGameDialog1 = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
+    endGameDialog4 = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog4" owner:self options:nil] objectAtIndex:0];
+    endGameDialog3 = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog3" owner:self options:nil] objectAtIndex:0];
+    
+    [self.view addSubview:endGameDialog1];
+    [self.view addSubview:endGameDialog2];
+    [self.view addSubview:endGameDialog3];
+    [self.view addSubview:endGameDialog4];
+    
+    [self.view sendSubviewToBack:endGameDialog1];
+    [self.view sendSubviewToBack:endGameDialog2];
+    [self.view sendSubviewToBack:endGameDialog3];
+    [self.view sendSubviewToBack:endGameDialog4];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -376,16 +402,18 @@ NSString *curWord;
         else {
             self.countDownLabel.text = @"";
         }
-        
-        if (minutes < 0  && !isGameOver) {
-            [self gameOver];
+        if (minutes < 0) {
+            [self agameOver];
+            
         }
-        self.msLabel.text = [NSString stringWithFormat:@"%d",milliseconds / 10];
-        self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+        if (minutes >= 0) {
+            self.msLabel.text = [NSString stringWithFormat:@"%d",milliseconds / 10];
+            self.timerLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 
-        double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
-        self.barTimerView.percent = percent;
-        [self.barTimerView setNeedsDisplay];
+            double percent = (minutes * 60.0 * 1000 + seconds * 1000 + milliseconds) / (120 * 1000.0);
+            self.barTimerView.percent = percent;
+            [self.barTimerView setNeedsDisplay];
+        }
     }
 }
 
@@ -501,11 +529,10 @@ NSString *curWord;
 }
 
 
--(void) gameOver {
-    isGameOver = YES;
+-(void) agameOver {
     NSString *alertMessage = @"";
-    
-    
+
+
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
     gameScore[@"score"] = [NSNumber numberWithInt:currentPlayer.score];
     for (Player *player in self.players) {
@@ -557,55 +584,41 @@ NSString *curWord;
     //PFObject *
     
     if(_numPlayers == 1){
-        if([self didGetHighScore:gameScore[@"score"]]){
-            
-            alertMessage = @"New High Score!";
-            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog2" owner:self options:nil] objectAtIndex:0];
-            
-        } else {
-            alertMessage = @"You did not get a new high score. Better luck next time!";
-            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog" owner:self options:nil] objectAtIndex:0];
-        }
+                       if([self didGetHighScore:gameScore[@"score"]]){
+        
+                           endGameDialog = endGameDialog2;
+        
+                        } else {
+        endGameDialog = endGameDialog1;
+                        }
         
         
     } else {
         if ([self didCurrentPlayerWin]) {
-            alertMessage = @"You Win!";
-            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog4" owner:self options:nil] objectAtIndex:0];
+            endGameDialog = endGameDialog4;
         }
         else {
-            alertMessage = @"You Lose.";
-            endGameDialog = (EndGameDialog*)[[[NSBundle mainBundle] loadNibNamed:@"EndGameDialog3" owner:self options:nil] objectAtIndex:0];
+            endGameDialog = endGameDialog3;
         }
     }
-    NSLog(@"Thisran");
-    endGameDialog.frame = CGRectMake(125, -1 * endGameDialog.frame.size.height, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+    //            NSLog(@"Thisran");
+    endGameDialog.frame = CGRectMake(125, 100, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
     endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
     endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
     endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
     endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
     [self getAverageScore];
     [self getTopScore];
-
-    shieldView = [[UIView alloc] initWithFrame:self.view.bounds];
-    shieldView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
-    [self.view addSubview:shieldView];
-    [self.view addSubview:endGameDialog];
-    [UIView animateWithDuration:0.0
-                          delay:0
-                        options: UIViewAnimationCurveLinear
-                     animations:^{
-                         endGameDialog.frame = CGRectMake(endGameDialog.frame.origin.x, 200, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
-                         
-                     }
-                     completion:^(BOOL finished){
-                     }];
-
+    
+    [self.view bringSubviewToFront:shieldView];
+    [self.view bringSubviewToFront:endGameDialog];
+//    isGameOver = YES;
+    
 }
 
 -(void) goHome {
-    [shieldView removeFromSuperview];
-    [endGameDialog removeFromSuperview];
+    [self.view sendSubviewToBack:shieldView];
+    [self.view sendSubviewToBack:endGameDialog];
     
     [NetworkUtils sendRematchDenied];
     
@@ -613,8 +626,8 @@ NSString *curWord;
 }
 
 -(void) goRematch {
-    [shieldView removeFromSuperview];
-    [endGameDialog removeFromSuperview];
+    [self.view sendSubviewToBack:shieldView];
+    [self.view sendSubviewToBack:endGameDialog];
     
     if(playerExited){
         [self playerDeniedRematch];
@@ -901,7 +914,7 @@ NSString *curWord;
                                  {
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      if (isGameOver) {
-                                         [self gameOver];
+                                         [self agameOver];
                                      }
                                      
                                  }];
@@ -1543,6 +1556,8 @@ NSString *curWord;
     if ([[segue identifier] isEqualToString:@"ReturnToLobby"])
     {
         NSLog(@"ReturnToLobby was called");
+        isGameOver = YES;
+        
         [[WarpClient getInstance] leaveRoom:[GameConstants getSubscribedRoom]];
     }
 }
