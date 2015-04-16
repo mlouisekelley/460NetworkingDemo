@@ -720,6 +720,7 @@ NSString *curWord;
 
 -(void)playerExitedGame
 {
+    NSLog(@"Player exited game");
     playerExited = YES;
 }
 
@@ -954,7 +955,7 @@ NSString *curWord;
 
 - (IBAction)exitTouched:(id)sender {
     [NetworkUtils sendLeftGame];
-    [self goHome];
+    [vc performSegueWithIdentifier:@"ReturnToLobby" sender:vc];
 }
 
 
