@@ -70,6 +70,7 @@ EndGameDialog *endGameDialog2;
 EndGameDialog *endGameDialog3;
 EndGameDialog *endGameDialog4;
 NSString *curWord;
+BOOL hasQueried;
 
 - (void)viewDidLoad {
     
@@ -117,6 +118,7 @@ NSString *curWord;
     numSeconds = seconds + minutes * 60;
     milliseconds = 0;
     isGameOver = NO;
+    hasQueried = NO;
     
     playerTwoScore = 0;
     playerThreeScore = 0;
@@ -335,9 +337,6 @@ NSString *curWord;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
-            // Do something with the found objects
             for (PFObject *object in objects) {
                 NSLog(@"%@", object.objectId);
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -356,14 +355,18 @@ NSString *curWord;
     PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
     [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
-    NSArray *objects = [query findObjects];
-    NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
-    if ([objects count] == 0) {
-        return;
-    }
-    PFObject *object = objects[0];
-    double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
-    endGameDialog.avgScore.text = [NSString stringWithFormat:@"%.2f",average];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if ([objects count] == 0) {
+                return;
+            }
+            PFObject *object = objects[0];
+            double average = [(NSNumber *)object[@"totalScore"] doubleValue] / [(NSNumber *)object[@"numGames"] doubleValue];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                endGameDialog.avgScore.text = [NSString stringWithFormat:@"%.2f",average];
+            });
+        }
+    }];
 }
 
 - (void)updateCounter:(CADisplayLink *)displayLink {
@@ -551,7 +554,7 @@ NSString *curWord;
         }
     }];
     
-    
+    if (!hasQueried) {
     PFQuery *query = [PFQuery queryWithClassName:@"Stats"];
     [query whereKey:@"playerName" equalTo:[GameConstants getHandle]];
     query.limit = 1;
@@ -579,7 +582,7 @@ NSString *curWord;
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
+    }
     
     //PFObject *
     
@@ -602,18 +605,21 @@ NSString *curWord;
         }
     }
     //            NSLog(@"Thisran");
-    endGameDialog.frame = CGRectMake(125, 100, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
-    endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
-    endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
-    endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
-    endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
-    [self getAverageScore];
-    [self getTopScore];
-    
+    if (!hasQueried) {
+        shieldView.frame = CGRectMake(0, 0, shieldView.frame.size.width, shieldView.frame.size.height);
+
+        endGameDialog.frame = CGRectMake(125, 100, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+        endGameDialog.finalScore.text = [NSString stringWithFormat:@"%d", currentPlayer.score];
+        endGameDialog.pointsSecond.text = [NSString stringWithFormat:@"%d", currentPlayer.score / numSeconds];
+        endGameDialog.wordsSecond.text = [NSString stringWithFormat:@"%.5f", (1.0)* currentPlayer.numWords / numSeconds];
+        endGameDialog.highestScoringWord.text = currentPlayer.maxWord;
+        [self getAverageScore];
+        [self getTopScore];
+    }
     [self.view bringSubviewToFront:shieldView];
     [self.view bringSubviewToFront:endGameDialog];
 //    isGameOver = YES;
-    
+    hasQueried = YES;
 }
 
 -(void) goHome {
@@ -626,8 +632,6 @@ NSString *curWord;
 }
 
 -(void) goRematch {
-    [self.view sendSubviewToBack:shieldView];
-    [self.view sendSubviewToBack:endGameDialog];
     
     if(playerExited){
         [self playerDeniedRematch];
@@ -642,6 +646,13 @@ NSString *curWord;
                      preferredStyle:UIAlertControllerStyleAlert];
     
     [self presentViewController:waitingAlert animated:YES completion:nil];
+    
+    shieldView.frame = CGRectMake(-1000, 0, shieldView.frame.size.width, shieldView.frame.size.height);
+    endGameDialog.frame = CGRectMake(-1000, 100, endGameDialog.frame.size.width, endGameDialog.frame.size.height);
+
+    [self.view sendSubviewToBack:shieldView];
+    [self.view sendSubviewToBack:endGameDialog];
+    
 }
 -(Player *)getMaxPlayer {
     Player *maxPlayer = nil;
@@ -1358,6 +1369,7 @@ NSString *curWord;
     NSUInteger pointsEarned = [self.boardChecker calculateScoreForBoard:self.board andPlayer:currentPlayer.userName];
     if (pointsEarned > currentPlayer.maxWordScore) {
         currentPlayer.maxWord = newWords;
+        NSLog(@"The new words are %@", newWords);
     }
     if ([newWords containsString:@","]) {
         currentPlayer.numWords++;

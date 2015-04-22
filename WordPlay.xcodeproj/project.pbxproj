@@ -12,7 +12,6 @@
 		273F70611A61C60E005103BA /* ConnectionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70601A61C60E005103BA /* ConnectionListener.m */; };
 		273F70661A61C68C005103BA /* RoomListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70631A61C68C005103BA /* RoomListener.m */; };
 		273F70671A61C68C005103BA /* NotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F70651A61C68C005103BA /* NotificationListener.m */; };
-		273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */; };
 		277E15EC1A800035009BD072 /* TossTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 277E15EB1A800035009BD072 /* TossTileView.m */; };
 		277E15EF1A8292F4009BD072 /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277E15EE1A8292F4009BD072 /* LobbyViewController.m */; };
 		27C759A71A69AAEF0004DB59 /* NetworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C759A61A69AAEF0004DB59 /* NetworkUtils.m */; };
@@ -54,6 +53,7 @@
 		A386453B1ABA080D0032CF8C /* Shuffle-50 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A386453A1ABA080D0032CF8C /* Shuffle-50 (1).png */; };
 		A38B9DAA1A8479D300F1F59A /* scrabble_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A38B9DA91A8479D300F1F59A /* scrabble_words.txt */; };
 		A39C06B51A912D8E00D1B8B8 /* play-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A39C06B41A912D8E00D1B8B8 /* play-100.png */; };
+		A3B4A6701AE0639700CD78C9 /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B4A66F1AE0639600CD78C9 /* AppWarp_iOS_SDK.framework */; };
 		A3CABF1B1A8BBC690037B370 /* trash-64.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1A1A8BBC690037B370 /* trash-64.png */; };
 		A3CABF1D1A8E6E4F0037B370 /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A3CABF1C1A8E6CA80037B370 /* success.m4a */; };
 		F00FF5F21AB53F4900D3C75E /* trash-64.png in Resources */ = {isa = PBXBuildFile; fileRef = F00FF5F11AB53F4900D3C75E /* trash-64.png */; };
@@ -137,7 +137,6 @@
 		270711821A9143BE00591493 /* GameHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHost.h; sourceTree = "<group>"; };
 		273BD35D1AD2261500BFEE65 /* JoinGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinGameVC.h; sourceTree = "<group>"; };
 		273BD35E1AD2261500BFEE65 /* JoinGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinGameVC.m; sourceTree = "<group>"; };
-		273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../Downloads/AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		273F705F1A61C60E005103BA /* ConnectionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionListener.h; sourceTree = "<group>"; };
 		273F70601A61C60E005103BA /* ConnectionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListener.m; sourceTree = "<group>"; };
 		273F70621A61C68C005103BA /* RoomListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomListener.h; sourceTree = "<group>"; };
@@ -199,6 +198,7 @@
 		A386453A1ABA080D0032CF8C /* Shuffle-50 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shuffle-50 (1).png"; sourceTree = "<group>"; };
 		A38B9DA91A8479D300F1F59A /* scrabble_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrabble_words.txt; sourceTree = "<group>"; };
 		A39C06B41A912D8E00D1B8B8 /* play-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-100.png"; sourceTree = "<group>"; };
+		A3B4A66F1AE0639600CD78C9 /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppWarp_iOS_SDK.framework; path = ../AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		A3CABF1A1A8BBC690037B370 /* trash-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-64.png"; sourceTree = "<group>"; };
 		A3CABF1C1A8E6CA80037B370 /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		F00FF5F11AB53F4900D3C75E /* trash-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-64.png"; sourceTree = "<group>"; };
@@ -278,6 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B4A6701AE0639700CD78C9 /* AppWarp_iOS_SDK.framework in Frameworks */,
 				A30CA1FE1AC34A37001EDD8E /* libsqlite3.dylib in Frameworks */,
 				A30CA1FC1AC34A2A001EDD8E /* libz.dylib in Frameworks */,
 				A30CA1FA1AC34A16001EDD8E /* SystemConfiguration.framework in Frameworks */,
@@ -291,7 +292,6 @@
 				A30CA1EA1AC349B8001EDD8E /* AudioToolbox.framework in Frameworks */,
 				A30CA1E81AC34973001EDD8E /* Bolts.framework in Frameworks */,
 				A30CA1E61AC34968001EDD8E /* Parse.framework in Frameworks */,
-				273F70681A61DB82005103BA /* AppWarp_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +470,7 @@
 		A30CA1FF1AC34A4F001EDD8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3B4A66F1AE0639600CD78C9 /* AppWarp_iOS_SDK.framework */,
 				A30CA1FD1AC34A37001EDD8E /* libsqlite3.dylib */,
 				A30CA1FB1AC34A2A001EDD8E /* libz.dylib */,
 				A30CA1F91AC34A16001EDD8E /* SystemConfiguration.framework */,
@@ -483,7 +484,6 @@
 				A30CA1E91AC349B8001EDD8E /* AudioToolbox.framework */,
 				A30CA1E71AC34973001EDD8E /* Bolts.framework */,
 				A30CA1E51AC34967001EDD8E /* Parse.framework */,
-				273F705D1A61C101005103BA /* AppWarp_iOS_SDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -832,7 +832,7 @@
 					/Users/margaretkelley/Desktop,
 				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WordPlay;
 				PROVISIONING_PROFILE = "";
@@ -853,7 +853,7 @@
 					/Users/margaretkelley/Desktop,
 				);
 				INFOPLIST_FILE = NetworkingDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WordPlay;
 				PROVISIONING_PROFILE = "";

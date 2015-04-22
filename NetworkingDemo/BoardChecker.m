@@ -97,11 +97,13 @@
                     currentDTO = currLetterIndex < 100 ? board[currLetterIndex] : nil;
                     
                 }
-                if ([newWords length] > 0) {
-                    [newWords appendString:@", "];
+                if (isNewWord) {
+                    if ([newWords length] > 0) {
+                        [newWords appendString:@", "];
+                    }
+                    
+                    [newWords appendString:word];
                 }
-                [newWords appendString:word];
-                
                 if (!wordIsConnected) {
                     if(isNewWord){
                         [notConnectedWords addObject:word];
